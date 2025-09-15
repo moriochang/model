@@ -1,4 +1,4 @@
-manufacture_style,Code,product_name,大分類,中分類,小分類,Remark
+﻿manufacture_style,Code,product_name,大分類,中分類,小分類,Remark
 MC747TA/A,0024810094,45W Magsafe Power MC747,Accy,#Power Adapter,Magsafe,正常品
 MD564FE/A,0024838073,APPLE USB SUPERDRIVE MD564,Accy,*CPU Accy,Super Drive,正常品
 MD592TA/A,0024838077,45W Magsafe 2 Power MD592,Accy,#Power Adapter,Magsafe,正常品
@@ -510,16 +510,6 @@ MYE93ZP/A,0013027362,iPhone 16 128GB 白 MYE93,iPhone,iPhone 16,iPhone 16 白,�
 MYEA3ZP/A,0013027363,iPhone 16 128GB 粉 MYEA3,iPhone,iPhone 16,iPhone 16 粉,正常品
 MYEC3ZP/A,0013027364,iPhone 16 128GB 藍 MYEC3,iPhone,iPhone 16,iPhone 16 藍,正常品
 MYED3ZP/A,0013027365,iPhone 16 128GB 綠 MYED3,iPhone,iPhone 16,iPhone 16 綠,正常品
-MYEE3ZP/A,0013027366,iPhone 16 256GB 黑 MYEE3,iPhone,iPhone 16,iPhone 16 黑,正常品
-MYEF3ZP/A,0013027367,iPhone 16 256GB 白 MYEF3,iPhone,iPhone 16,iPhone 16 白,正常品
-MYEG3ZP/A,0013027368,iPhone 16 256GB 粉 MYEG3,iPhone,iPhone 16,iPhone 16 粉,正常品
-MYEH3ZP/A,0013027369,iPhone 16 256GB 藍 MYEH3,iPhone,iPhone 16,iPhone 16 藍,正常品
-MYEJ3ZP/A,0013027370,iPhone 16 256GB 綠 MYEJ3,iPhone,iPhone 16,iPhone 16 綠,正常品
-MYEK3ZP/A,0013027371,iPhone 16 512GB 黑 MYEK3,iPhone,iPhone 16,iPhone 16 黑,正常品
-MYEP3ZP/A,0013027372,iPhone 16 512GB 白 MYEP3,iPhone,iPhone 16,iPhone 16 白,正常品
-MYEQ3ZP/A,0013027373,iPhone 16 512GB 粉 MYEQ3,iPhone,iPhone 16,iPhone 16 粉,正常品
-MYER3ZP/A,0013027374,iPhone 16 512GB 藍 MYER3,iPhone,iPhone 16,iPhone 16 藍,正常品
-MYEU3ZP/A,0013027375,iPhone 16 512GB 綠 MYEU3,iPhone,iPhone 16,iPhone 16 綠,正常品
 MXVU3ZP/A,0013027376,iPhone 16+ 128GB 黑 MXVU3,iPhone,iPhone 16+,iPhone 16+ 黑,正常品
 MXVV3ZP/A,0013027377,iPhone 16+ 128GB 白 MXVV3,iPhone,iPhone 16+,iPhone 16+ 白,正常品
 MXVW3ZP/A,0013027378,iPhone 16+ 128GB 粉 MXVW3,iPhone,iPhone 16+,iPhone 16+ 粉,正常品
@@ -530,39 +520,6 @@ MXWV3ZP/A,0013027382,iPhone 16+ 256GB 白 MXWV3,iPhone,iPhone 16+,iPhone 16+ 白
 MXY13ZP/A,0013027383,iPhone 16+ 256GB 粉 MXY13,iPhone,iPhone 16+,iPhone 16+ 粉,正常品
 MXY23ZP/A,0013027384,iPhone 16+ 256GB 藍 MXY23,iPhone,iPhone 16+,iPhone 16+ 藍,正常品
 MXY53ZP/A,0013027385,iPhone 16+ 256GB 綠 MXY53,iPhone,iPhone 16+,iPhone 16+ 綠,正常品
-MY1P3ZP/A,0013027386,iPhone 16+ 512GB 黑 MY1P3,iPhone,iPhone 16+,iPhone 16+ 黑,正常品
-MY1X3ZP/A,0013027387,iPhone 16+ 512GB 白 MY1X3,iPhone,iPhone 16+,iPhone 16+ 白,正常品
-MY253ZP/A,0013027388,iPhone 16+ 512GB 粉 MY253,iPhone,iPhone 16+,iPhone 16+ 粉,正常品
-MY2D3ZP/A,0013027389,iPhone 16+ 512GB 藍 MY2D3,iPhone,iPhone 16+,iPhone 16+ 藍,正常品
-MY2J3ZP/A,0013027390,iPhone 16+ 512GB 綠 MY2J3,iPhone,iPhone 16+,iPhone 16+ 綠,正常品
-MYND3ZP/A,0013027391,iPhone 16 Pro 128GB 黑 MYND3,iPhone,iPhone 16 Pro,iPhone 16 Pro 黑,正常品
-MYNE3ZP/A,0013027392,iPhone 16 Pro 128GB 白 MYNE3,iPhone,iPhone 16 Pro,iPhone 16 Pro 白,正常品
-MYNF3ZP/A,0013027393,iPhone 16 Pro 128GB 沙 MYNF3,iPhone,iPhone 16 Pro,iPhone 16 Pro 沙,正常品
-MYNG3ZP/A,0013027394,iPhone 16 Pro 128GB 原 MYNG3,iPhone,iPhone 16 Pro,iPhone 16 Pro 原,正常品
-MYNH3ZP/A,0013027395,iPhone 16 Pro 256GB 黑 MYNH3,iPhone,iPhone 16 Pro,iPhone 16 Pro 黑,正常品
-MYNJ3ZP/A,0013027396,iPhone 16 Pro 256GB 白 MYNJ3,iPhone,iPhone 16 Pro,iPhone 16 Pro 白,正常品
-MYNK3ZP/A,0013027397,iPhone 16 Pro 256GB 沙 MYNK3,iPhone,iPhone 16 Pro,iPhone 16 Pro 沙,正常品
-MYNL3ZP/A,0013027398,iPhone 16 Pro 256GB 原 MYNL3,iPhone,iPhone 16 Pro,iPhone 16 Pro 原,正常品
-MYNM3ZP/A,0013027399,iPhone 16 Pro 512GB 黑 MYNM3,iPhone,iPhone 16 Pro,iPhone 16 Pro 黑,正常品
-MYNN3ZP/A,0013027400,iPhone 16 Pro 512GB 白 MYNN3,iPhone,iPhone 16 Pro,iPhone 16 Pro 白,正常品
-MYNP3ZP/A,0013027401,iPhone 16 Pro 512GB 沙 MYNP3,iPhone,iPhone 16 Pro,iPhone 16 Pro 沙,正常品
-MYNQ3ZP/A,0013027402,iPhone 16 Pro 512GB 原 MYNQ3,iPhone,iPhone 16 Pro,iPhone 16 Pro 原,正常品
-MYNR3ZP/A,0013027403,iPhone 16 Pro 1TB 黑 MYNR3,iPhone,iPhone 16 Pro,iPhone 16 Pro 黑,正常品
-MYNT3ZP/A,0013027404,iPhone 16 Pro 1TB 白 MYNT3,iPhone,iPhone 16 Pro,iPhone 16 Pro 白,正常品
-MYNW3ZP/A,0013027405,iPhone 16 Pro 1TB 沙 MYNW3,iPhone,iPhone 16 Pro,iPhone 16 Pro 沙,正常品
-MYNX3ZP/A,0013027406,iPhone 16 Pro 1TB 原 MYNX3,iPhone,iPhone 16 Pro,iPhone 16 Pro 原,正常品
-MYWV3ZP/A,0013027407,iPhone 16 PM 256GB 黑 MYWV3,iPhone,iPhone 16 Pro Max,iPhone 16 Pro Max 黑,正常品
-MYWW3ZP/A,0013027408,iPhone 16 PM 256GB 白 MYWW3,iPhone,iPhone 16 Pro Max,iPhone 16 Pro Max 白,正常品
-MYWX3ZP/A,0013027409,iPhone 16 PM 256GB 沙 MYWX3,iPhone,iPhone 16 Pro Max,iPhone 16 Pro Max 沙,正常品
-MYWY3ZP/A,0013027410,iPhone 16 PM 256GB 原 MYWY3,iPhone,iPhone 16 Pro Max,iPhone 16 Pro Max 原,正常品
-MYX03ZP/A,0013027411,iPhone 16 PM 512GB 黑 MYX03,iPhone,iPhone 16 Pro Max,iPhone 16 Pro Max 黑,正常品
-MYX13ZP/A,0013027412,iPhone 16 PM 512GB 白 MYX13,iPhone,iPhone 16 Pro Max,iPhone 16 Pro Max 白,正常品
-MYX23ZP/A,0013027413,iPhone 16 PM 512GB 沙 MYX23,iPhone,iPhone 16 Pro Max,iPhone 16 Pro Max 沙,正常品
-MYX33ZP/A,0013027414,iPhone 16 PM 512GB 原 MYX33,iPhone,iPhone 16 Pro Max,iPhone 16 Pro Max 原,正常品
-MYX43ZP/A,0013027415,iPhone 16 PM 1TB 黑 MYX43,iPhone,iPhone 16 Pro Max,iPhone 16 Pro Max 黑,正常品
-MYX53ZP/A,0013027416,iPhone 16 PM 1TB 白 MYX53,iPhone,iPhone 16 Pro Max,iPhone 16 Pro Max 白,正常品
-MYX63ZP/A,0013027417,iPhone 16 PM 1TB 沙 MYX63,iPhone,iPhone 16 Pro Max,iPhone 16 Pro Max 沙,正常品
-MYX73ZP/A,0013027418,iPhone 16 PM 1TB 原 MYX73,iPhone,iPhone 16 Pro Max,iPhone 16 Pro Max 原,正常品
 3N396ZP/A,0013027530,3N396 iPhone 16 128GB 黑,iPhone,iPhone 16,iPhone 16 黑,Demo
 3N397ZP/A,0013027531,3N397 iPhone 16 128GB 白,iPhone,iPhone 16,iPhone 16 白,Demo
 3N398ZP/A,0013027532,3N398 iPhone 16 128GB 粉,iPhone,iPhone 16,iPhone 16 粉,Demo
@@ -660,70 +617,13 @@ MXM73FE/A,0013027694,46mm 運動錶帶 星光色 M/L MXM73,Accy,*Apple Watch Acc
 MXM83FE/A,0013027695,46mm 運動錶帶 胭脂粉 S/M MXM83,Accy,*Apple Watch Accy,Band 46mm Sport,正常品
 MXM93FE/A,0013027696,46mm 運動錶帶 胭脂粉 M/L MXM93,Accy,*Apple Watch Accy,Band 46mm Sport,正常品
 MXTL3FE/A,0013027714,49mm 原鈦海洋錶帶 黑色 MXTL3,Accy,*Apple Watch Accy,Band 49mm Ocean Band,正常品
-MXTX3FE/A,0013027720,42mm N 運動錶環 灰藍 MXTX3,Accy,*Apple Watch Accy,Band 42mm Nike Sport Loop,正常品
-MXTY3FE/A,0013027721,42mm N 運動錶環 綠灰 MXTY3,Accy,*Apple Watch Accy,Band 42mm Nike Sport Loop,正常品
-MXU03FE/A,0013027722,42mm N 運動錶環 藍紅 MXU03,Accy,*Apple Watch Accy,Band 42mm Nike Sport Loop,正常品
-MXU13FE/A,0013027723,46mm N 運動錶環 灰藍 MXU13,Accy,*Apple Watch Accy,Band 46mm Nike Sport Loop,正常品
-MXU33FE/A,0013027724,46mm N 運動錶環 綠灰 MXU33,Accy,*Apple Watch Accy,Band 46mm Nike Sport Loop,正常品
-MXU43FE/A,0013027725,46mm N 運動錶環 藍紅 MXU43,Accy,*Apple Watch Accy,Band 46mm Nike Sport Loop,正常品
-MXU53FE/A,0013027726,42mm N 運動錶帶 螢綠 S/M MXU53,Accy,*Apple Watch Accy,Band 42mm Nike Sport,正常品
-MXU63FE/A,0013027727,42mm N 運動錶帶 螢綠 M/L MXU63,Accy,*Apple Watch Accy,Band 42mm Nike Sport,正常品
-MXU73FE/A,0013027728,46mm N 運動錶帶 螢綠 S/M MXU73,Accy,*Apple Watch Accy,Band 46mm Nike Sport,正常品
-MXU83FE/A,0013027729,46mm N 運動錶帶 螢綠 M/L MXU83,Accy,*Apple Watch Accy,Band 46mm Nike Sport,正常品
 MYG03FE/A,0013027732,46mm 運動錶帶 午夜色 S/M MYG03,Accy,*Apple Watch Accy,Band 46mm Sport,正常品
 MYG13FE/A,0013027733,46mm 運動錶帶 午夜色 M/L MYG13,Accy,*Apple Watch Accy,Band 46mm Sport,正常品
 MYJ33FE/A,0013027736,40mm 運動錶帶 星光色 S/M MYJ33,Accy,*Apple Watch Accy,Band 40mm Sport,正常品
 MYJ43FE/A,0013027737,40mm 運動錶帶 星光色 M/L MYJ43,Accy,*Apple Watch Accy,Band 40mm Sport,正常品
 MYJ53FE/A,0013027738,40mm 運動錶帶 午夜色 S/M MYJ53,Accy,*Apple Watch Accy,Band 40mm Sport,正常品
 MYJ63FE/A,0013027739,40mm 運動錶帶 午夜色 M/L MYJ63,Accy,*Apple Watch Accy,Band 40mm Sport,正常品
-MYJ73FE/A,0013027740,40mm 運動錶環 墨水色 MYJ73,Accy,*Apple Watch Accy,Band 40mm Sport,正常品
-MYJ83FE/A,0013027741,40mm 運動錶環 青雲色 MYJ83,Accy,*Apple Watch Accy,Band 40mm Sport,正常品
-MYJA3FE/A,0013027743,42mm N 運動錶環 黑藍 MYJA3,Accy,*Apple Watch Accy,Band 42mm Nike Sport Loop,正常品
-MYJC3FE/A,0013027744,42mm N 運動錶環 星粉 MYJC3,Accy,*Apple Watch Accy,Band 42mm Nike Sport Loop,正常品
-MYJD3FE/A,0013027745,46mm N 運動錶環 黑藍 MYJD3,Accy,*Apple Watch Accy,Band 46mm Nike Sport Loop,正常品
-MYJE3FE/A,0013027746,46mm N 運動錶環 星粉 MYJE3,Accy,*Apple Watch Accy,Band 46mm Nike Sport Loop,正常品
-MYJM3FE/A,0013027747,42mm N 運動錶帶 純鉑 S/M MYJM3,Accy,*Apple Watch Accy,Band 42mm Nike Sport,正常品
-MYJN3FE/A,0013027748,42mm N 運動錶帶 純鉑 M/L MYJN3,Accy,*Apple Watch Accy,Band 42mm Nike Sport,正常品
-MYJP3FE/A,0013027749,42mm N 運動錶帶 午夜 S/M MYJP3,Accy,*Apple Watch Accy,Band 42mm Nike Sport,正常品
-MYJQ3FE/A,0013027750,42mm N 運動錶帶 午夜 M/L MYJQ3,Accy,*Apple Watch Accy,Band 42mm Nike Sport,正常品
-MYJR3FE/A,0013027751,42mm N 運動錶帶 沙漠 S/M MYJR3,Accy,*Apple Watch Accy,Band 42mm Nike Sport,正常品
-MYJT3FE/A,0013027752,42mm N 運動錶帶 沙漠 M/L MYJT3,Accy,*Apple Watch Accy,Band 42mm Nike Sport,正常品
-MYJW3FE/A,0013027753,42mm N 運動錶帶 藍焰 S/M MYJW3,Accy,*Apple Watch Accy,Band 42mm Nike Sport,正常品
-MYJX3FE/A,0013027754,42mm N 運動錶帶 藍焰 M/L MYJX3,Accy,*Apple Watch Accy,Band 42mm Nike Sport,正常品
-MYJY3FE/A,0013027755,42mm N 運動錶帶 卡其 S/M MYJY3,Accy,*Apple Watch Accy,Band 42mm Nike Sport,正常品
-MYL03FE/A,0013027756,42mm N 運動錶帶 卡其 M/L MYL03,Accy,*Apple Watch Accy,Band 42mm Nike Sport,正常品
-MYL23FE/A,0013027757,42mm N 運動錶帶 橙粉 S/M MYL23,Accy,*Apple Watch Accy,Band 42mm Nike Sport,正常品
-MYL33FE/A,0013027758,42mm N 運動錶帶 橙粉 M/L MYL33,Accy,*Apple Watch Accy,Band 42mm Nike Sport,正常品
-MYL43FE/A,0013027759,46mm N 運動錶帶 純鉑 S/M MYL43,Accy,*Apple Watch Accy,Band 46mm Nike Sport,正常品
-MYL53FE/A,0013027760,46mm N 運動錶帶 純鉑 M/L MYL53,Accy,*Apple Watch Accy,Band 46mm Nike Sport,正常品
-MYL63FE/A,0013027761,46mm N 運動錶帶 午夜 S/M MYL63,Accy,*Apple Watch Accy,Band 46mm Nike Sport,正常品
-MYL73FE/A,0013027762,46mm N 運動錶帶 午夜 M/L MYL73,Accy,*Apple Watch Accy,Band 46mm Nike Sport,正常品
-MYL83FE/A,0013027763,46mm N 運動錶帶 沙漠 S/M MYL83,Accy,*Apple Watch Accy,Band 46mm Nike Sport,正常品
-MYL93FE/A,0013027764,46mm N 運動錶帶 沙漠 M/L MYL93,Accy,*Apple Watch Accy,Band 46mm Nike Sport,正常品
-MYLA3FE/A,0013027765,46mm N 運動錶帶 藍焰 S/M MYLA3,Accy,*Apple Watch Accy,Band 46mm Nike Sport,正常品
-MYLC3FE/A,0013027766,46mm N 運動錶帶 藍焰 M/L MYLC3,Accy,*Apple Watch Accy,Band 46mm Nike Sport,正常品
-MYLD3FE/A,0013027767,46mm N 運動錶帶 卡其 S/M MYLD3,Accy,*Apple Watch Accy,Band 46mm Nike Sport,正常品
-MYLE3FE/A,0013027768,46mm N 運動錶帶 卡其 M/L MYLE3,Accy,*Apple Watch Accy,Band 46mm Nike Sport,正常品
-MYLF3FE/A,0013027769,46mm N 運動錶帶 橙粉 S/M MYLF3,Accy,*Apple Watch Accy,Band 46mm Nike Sport,正常品
-MYLG3FE/A,0013027770,46mm N 運動錶帶 橙粉 M/L MYLG3,Accy,*Apple Watch Accy,Band 46mm Nike Sport,正常品
-MYP83FE/A,0013027771,49mm 黑鈦海洋錶帶 冰藍色 MYP83,Accy,*Apple Watch Accy,Band 49mm Ocean Band,正常品
-MYPA3FE/A,0013027772,49mm 黑鈦海洋錶帶 海藍色 MYPA3,Accy,*Apple Watch Accy,Band 49mm Ocean Band,正常品
 MYPD3FE/A,0013027773,49mm 黑鈦海洋錶帶 黑色 MYPD3,Accy,*Apple Watch Accy,Band 49mm Ocean Band,正常品
-MYPQ3FE/A,0013027774,49mm 黑鈦高山錶環 深綠 S MYPQ3,Accy,*Apple Watch Accy,Band 49mm Alpine Loop,正常品
-MYPR3FE/A,0013027775,49mm 黑鈦高山錶環 深綠 M MYPR3,Accy,*Apple Watch Accy,Band 49mm Alpine Loop,正常品
-MYPT3FE/A,0013027776,49mm 黑鈦高山錶環 深綠 L MYPT3,Accy,*Apple Watch Accy,Band 49mm Alpine Loop,正常品
-MYPW3FE/A,0013027777,49mm 黑鈦高山錶環 深藍 S MYPW3,Accy,*Apple Watch Accy,Band 49mm Alpine Loop,正常品
-MYPX3FE/A,0013027778,49mm 黑鈦高山錶環 深藍 M MYPX3,Accy,*Apple Watch Accy,Band 49mm Alpine Loop,正常品
-MYPY3FE/A,0013027779,49mm 黑鈦高山錶環 深藍 L MYPY3,Accy,*Apple Watch Accy,Band 49mm Alpine Loop,正常品
-MYQ03FE/A,0013027780,49mm 黑鈦高山錶環 小麥 S MYQ03,Accy,*Apple Watch Accy,Band 49mm Alpine Loop,正常品
-MYQ13FE/A,0013027781,49mm 黑鈦高山錶環 小麥 M MYQ13,Accy,*Apple Watch Accy,Band 49mm Alpine Loop,正常品
-MYQ23FE/A,0013027782,49mm 黑鈦高山錶環 小麥 L MYQ23,Accy,*Apple Watch Accy,Band 49mm Alpine Loop,正常品
-MYQ33FE/A,0013027783,49mm 黑鈦越野錶環 綠 S/M MYQ33,Accy,*Apple Watch Accy,Band 49mm Trail Loop,正常品
-MYQ43FE/A,0013027784,49mm 黑鈦越野錶環 綠 M/L MYQ43,Accy,*Apple Watch Accy,Band 49mm Trail Loop,正常品
-MYQ53FE/A,0013027785,49mm 黑鈦越野錶環 黑 S/M MYQ53,Accy,*Apple Watch Accy,Band 49mm Trail Loop,正常品
-MYQ63FE/A,0013027786,49mm 黑鈦越野錶環 黑 M/L MYQ63,Accy,*Apple Watch Accy,Band 49mm Trail Loop,正常品
-MYQ73FE/A,0013027787,49mm 黑鈦越野錶環 藍 S/M MYQ73,Accy,*Apple Watch Accy,Band 49mm Trail Loop,正常品
-MYQ83FE/A,0013027788,49mm 黑鈦越野錶環 藍 M/L MYQ83,Accy,*Apple Watch Accy,Band 49mm Trail Loop,正常品
 SNHA2TA/A,0013027789,AC+ for iPhone 16 SNHA2,Care,ACPP+,iPhone 16 ACPP+,正常品
 SNHP2TA/A,0013027790,AC+ for iPhone 16 Plus SNHP2,Care,ACPP+,iPhone 16 Plus ACPP+,正常品
 SNHV2TA/A,0013027791,AC+ for iPhone 16 Pro SNHV2,Care,ACPP+,iPhone 16 Pro ACPP+,正常品
@@ -1181,12 +1081,12 @@ MEWU4TA/A,0013029893,AW Ultra 原鈦/越野藍環 L MEWU4,Apple Watch,Ultra 3,49
 MEWW4TA/A,0013029894,AW Ultra 原鈦/原米蘭環 S MEWW4,Apple Watch,Ultra 3,49MM 不鏽鋼,正常品
 MEWY4TA/A,0013029895,AW Ultra 原鈦/原米蘭環 M MEWY4,Apple Watch,Ultra 3,49MM 不鏽鋼,正常品
 MF0E4TA/A,0013029896,AW Ultra 原鈦/原米蘭環 L MF0E4,Apple Watch,Ultra 3,49MM 不鏽鋼,正常品
-MF0J4TA/A,0013029897,AW Ultra 黑鈦/海洋藍 MF0J4,Apple Watch,Ultra 3,49MM Sport,正常品
-MF0Q4TA/A,0013029898,AW Ultra 黑鈦/高山藍環 S MF0Q4,Apple Watch,Ultra 3,49MM Loop,正常品
-MF0V4TA/A,0013029899,AW Ultra 黑鈦/高山藍環 M MF0V4,Apple Watch,Ultra 3,49MM Loop,正常品
-MF0X4TA/A,0013029900,AW Ultra 黑鈦/高山藍環 L MF0X4,Apple Watch,Ultra 3,49MM Loop,正常品
-MF1D4TA/A,0013029901,AW Ultra 黑鈦/越野藍環 S MF1D4,Apple Watch,Ultra 3,49MM Loop,正常品
-MF1H4TA/A,0013029902,AW Ultra 黑鈦/越野藍環 L MF1H4,Apple Watch,Ultra 3,49MM Loop,正常品
+MF0J4TA/A,0013029897,AW Ultra 黑鈦/海洋黑 MF0J4,Apple Watch,Ultra 3,49MM Sport,正常品
+MF0Q4TA/A,0013029898,AW Ultra 黑鈦/高山黑環 S MF0Q4,Apple Watch,Ultra 3,49MM Loop,正常品
+MF0V4TA/A,0013029899,AW Ultra 黑鈦/高山黑環 M MF0V4,Apple Watch,Ultra 3,49MM Loop,正常品
+MF0X4TA/A,0013029900,AW Ultra 黑鈦/高山黑環 L MF0X4,Apple Watch,Ultra 3,49MM Loop,正常品
+MF1D4TA/A,0013029901,AW Ultra 黑鈦/越野黑環 S MF1D4,Apple Watch,Ultra 3,49MM Loop,正常品
+MF1H4TA/A,0013029902,AW Ultra 黑鈦/越野黑環 L MF1H4,Apple Watch,Ultra 3,49MM Loop,正常品
 MF1N4TA/A,0013029903,AW Ultra 黑鈦/黑米蘭環 S MF1N4,Apple Watch,Ultra 3,49MM 不鏽鋼,正常品
 MF1Q4TA/A,0013029904,AW Ultra 黑鈦/黑米蘭環 M MF1Q4,Apple Watch,Ultra 3,49MM 不鏽鋼,正常品
 MF1T4TA/A,0013029905,AW Ultra 黑鈦/黑米蘭環 L MF1T4,Apple Watch,Ultra 3,49MM 不鏽鋼,正常品
@@ -1209,7 +1109,7 @@ MF1T4TA/A,0013029905,AW Ultra 黑鈦/黑米蘭環 L MF1T4,Apple Watch,Ultra 3,49
 3P315TA/A,0013029922,3P315 AW S11 46 黑鋁/黑帶 L,Apple Watch,S11-GPS,46MM Sport,Demo
 3P317TA/A,0013029923,3P317 AW S11 46 灰鋁/黑帶 L,Apple Watch,S11-GPS,46MM Sport,Demo
 3P337TA/A,0013029924,3P337 AW Ultra 原鈦/海洋藍,Apple Watch,Ultra 3,49MM Sport,Demo
-3P339TA/A,0013029925,3P339 AW Ultra 黑鈦/海洋藍,Apple Watch,Ultra 3,49MM Sport,Demo
+3P339TA/A,0013029925,3P339 AW Ultra 黑鈦/海洋黑,Apple Watch,Ultra 3,49MM Sport,Demo
 MGYW4FE/A,0013029926,iPhone 16e 矽膠殼 黃 MGYW4,Accy,iPhone Case,iPhone 16e,正常品
 MGF24FE/A,0013029927,iPhone 17 透明殼 MGF24,Accy,iPhone Case,iPhone 17,正常品
 MGFT4FE/A,0013029928,iPhone 17P 透明殼 MGFT4,Accy,iPhone Case,iPhone 17 Pro,正常品
@@ -1218,7 +1118,7 @@ MGEV4FE/A,0013029930,iPhone 17 矽膠殼 霓虹黃 MGEV4,Accy,iPhone Case,iPhone
 MGEW4FE/A,0013029931,iPhone 17 矽膠殼 錨藍 MGEW4,Accy,iPhone Case,iPhone 17,正常品
 MGEX4FE/A,0013029932,iPhone 17 矽膠殼 淡青苔 MGEX4,Accy,iPhone Case,iPhone 17,正常品
 MGF04FE/A,0013029933,iPhone 17 矽膠殼 霧紫 MGF04,Accy,iPhone Case,iPhone 17,正常品
-MGF14FE/A,0013029934,iPhone 17 矽膠殼 黑 MGF04,Accy,iPhone Case,iPhone 17,正常品
+MGF14FE/A,0013029934,iPhone 17 矽膠殼 黑 MGF14,Accy,iPhone Case,iPhone 17,正常品
 MGH24FE/A,0013029935,iPhone Air 保護殼 暗影 MGH24,Accy,iPhone Case,iPhone Air,正常品
 MGH34FE/A,0013029936,iPhone Air 保護殼 冰霜 MGH34,Accy,iPhone Case,iPhone Air,正常品
 MH004FE/A,0013029937,iPhone Air 防護邊框 黑 MH004,Accy,iPhone Case,iPhone Air,正常品
@@ -1242,11 +1142,11 @@ MGFN4FE/A,0013029954,iPhone 17PM 矽膠殼 紫 MGFN4,Accy,iPhone Case,iPhone 17 
 MGFP4FE/A,0013029955,iPhone 17PM 矽膠殼 午 MGFP4,Accy,iPhone Case,iPhone 17 Pro Max,正常品
 MGFQ4FE/A,0013029956,iPhone 17PM 矽膠殼 陶 MGFQ4,Accy,iPhone Case,iPhone 17 Pro Max,正常品
 MGFR4FE/A,0013029957,iPhone 17PM 矽膠殼 黑 MGFR4,Accy,iPhone Case,iPhone 17 Pro Max,正常品
-MGF84FE/A,0013029958,iPhone 17 PM 織紋殼 黑 MGF84,Accy,iPhone Case,iPhone 17 Pro Max,正常品
-MGF94FE/A,0013029959,iPhone 17 PM 織紋殼 藍 MGF94,Accy,iPhone Case,iPhone 17 Pro Max,正常品
-MGFA4FE/A,0013029960,iPhone 17 PM 織紋殼 紫 MGFA4,Accy,iPhone Case,iPhone 17 Pro Max,正常品
-MGFC4FE/A,0013029961,iPhone 17 PM 織紋殼 褐 MGFC4,Accy,iPhone Case,iPhone 17 Pro Max,正常品
-MGFD4FE/A,0013029962,iPhone 17 PM 織紋殼 綠 MGFD4,Accy,iPhone Case,iPhone 17 Pro Max,正常品
+MGF84FE/A,0013029958,iPhone 17PM 織紋殼 黑 MGF84,Accy,iPhone Case,iPhone 17 Pro Max,正常品
+MGF94FE/A,0013029959,iPhone 17PM 織紋殼 藍 MGF94,Accy,iPhone Case,iPhone 17 Pro Max,正常品
+MGFA4FE/A,0013029960,iPhone 17PM 織紋殼 紫 MGFA4,Accy,iPhone Case,iPhone 17 Pro Max,正常品
+MGFC4FE/A,0013029961,iPhone 17PM 織紋殼 褐 MGFC4,Accy,iPhone Case,iPhone 17 Pro Max,正常品
+MGFD4FE/A,0013029962,iPhone 17PM 織紋殼 綠 MGFD4,Accy,iPhone Case,iPhone 17 Pro Max,正常品
 MGH64FE/A,0013029963,iPhone 織紋卡套 狐橙 MGH64,Accy,*iPhone Accy,MagSafe,正常品
 MGH74FE/A,0013029964,iPhone 織紋卡套 青苔 MGH74,Accy,*iPhone Accy,MagSafe,正常品
 MGH84FE/A,0013029965,iPhone 織紋卡套 午紫 MGH84,Accy,*iPhone Accy,MagSafe,正常品
@@ -1261,12 +1161,12 @@ MGGJ4FE/A,0013029973,斜背掛繩 紫 MGGJ4,Accy,*iPhone Accy,掛繩,正常品
 MGGK4FE/A,0013029974,斜背掛繩 小麥 MGGK4,Accy,*iPhone Accy,掛繩,正常品
 MGGL4FE/A,0013029975,斜背掛繩 黑 MGGL4,Accy,*iPhone Accy,掛繩,正常品
 MGGM4FE/A,0013029976,斜背掛繩 淺灰 MGGM4,Accy,*iPhone Accy,掛繩,正常品
-MGGN4FE/A,0013029977,斜背掛繩 赭褐 MGGM4,Accy,*iPhone Accy,掛繩,正常品
+MGGN4FE/A,0013029977,斜背掛繩 赭褐 MGGN4,Accy,*iPhone Accy,掛繩,正常品
 MGFX4FE/A,0013029978,AirTag 織紋鑰匙圈 青苔 MGFX4,Accy,*iPhone Accy,AirTag Accy,正常品
 MGFY4FE/A,0013029979,AirTag 織紋鑰匙圈 狐橙 MGFY4,Accy,*iPhone Accy,AirTag Accy,正常品
 MGG04FE/A,0013029980,AirTag 織紋鑰匙圈 午紫 MGG04,Accy,*iPhone Accy,AirTag Accy,正常品
 MGG14FE/A,0013029981,AirTag 織紋鑰匙圈 軍藍 MGG14,Accy,*iPhone Accy,AirTag Accy,正常品
-MGG24FE/A,0013029982,AirTag 織紋鑰匙圈 黑 MGG14,Accy,*iPhone Accy,AirTag Accy,正常品
+MGG24FE/A,0013029982,AirTag 織紋鑰匙圈 黑 MGG24,Accy,*iPhone Accy,AirTag Accy,正常品
 MGKQ4J/A,0013029983,40W 電源轉接器 MGKQ4,Accy,#Power Adapter,USB-C,正常品
 MGD74TA/A,0013029984,MagSafe 充電器 1m MGD74,Accy,#Cable,MagSafe,正常品
 MGDM4TA/A,0013029985,MagSafe 充電器 2m MGDM4,Accy,#Cable,MagSafe,正常品
