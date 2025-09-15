@@ -6,53 +6,346 @@
   <title>產品查找工具</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    body { font-family: 'Inter', sans-serif; margin: 20px; background-color: #f0f4f8; color: #333; }
-    .container { max-width: 1200px; margin: 0 auto; background-color: #fff; padding: 30px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
-    h1 { color: #1e3a5f; text-align: center; margin-bottom: 20px; font-size: 32px; font-weight: bold; }
-    .divider { border: none; border-top: 1px solid #eee; width: 60%; margin: 6px auto; }
-    .subtitle { font-size: 10px; color: #aaa; margin-top: -2px; margin-bottom: 20px; text-align: center; }
-    .controls { display: flex; justify-content: center; margin-bottom: 20px; }
-    #searchInput { max-width: 400px; width: 100%; padding: 12px; border: 1px solid #d1d5db; border-radius: 8px; font-size: 16px; transition: all 0.2s; }
-    #searchInput:focus { outline: none; border-color: #3b82f6; box-shadow: 0 0 0 3px rgba(59,130,246,0.2); }
-    .table-container { overflow-x: auto; border: 1px solid #e5e7eb; border-radius: 8px; }
-    table { border-collapse: collapse; width: 100%; min-width: 800px; }
-    th, td { border: 1px solid #e5e7eb; padding: 12px; text-align: left; font-size: 14px; }
-    th { background-color: #f9fafb; color: #4b5563; font-weight: 600; position: sticky; top: 0; z-index: 1; }
-    tbody tr:nth-child(even) { background-color: #f9fafb; }
-    tbody tr:hover { background-color: #f3f4f6; }
-    .no-results { text-align: center; padding: 20px; color: #6b7280; }
-    .error { background: #fef2f2; color: #dc2626; padding: 10px; margin: 10px 0; border-radius: 8px; }
-    @media (max-width: 768px) { .controls { flex-direction: column; align-items: stretch; } #searchInput { max-width: none; } }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body { 
+      font-family: 'Inter', sans-serif; 
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      padding: 20px;
+      color: #2d3748;
+    }
+
+    .container { 
+      max-width: 1400px; 
+      margin: 0 auto; 
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      border-radius: 24px; 
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      overflow: hidden;
+      animation: slideUp 0.6s ease-out;
+    }
+
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .header {
+      background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+      padding: 40px 30px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .header::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+      animation: shimmer 4s ease-in-out infinite;
+    }
+
+    @keyframes shimmer {
+      0%, 100% { transform: rotate(0deg); }
+      50% { transform: rotate(180deg); }
+    }
+
+    h1 { 
+      color: white !important;
+      font-size: 50px !important;
+      font-weight: 700 !important;
+      margin-bottom: 12px;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+      position: relative;
+      z-index: 1;
+    }
+
+    .divider { 
+      width: 120px;
+      height: 4px;
+      background: linear-gradient(90deg, #10b981, #3b82f6);
+      border: none;
+      border-radius: 2px;
+      margin: 0 auto 16px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .subtitle { 
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.8);
+      font-weight: 400;
+      position: relative;
+      z-index: 1;
+    }
+
+    .search-section {
+      padding: 40px 30px;
+      background: white;
+    }
+
+    .search-container {
+      max-width: 600px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #9ca3af;
+      z-index: 2;
+    }
+
+    #searchInput { 
+      width: 100%;
+      padding: 18px 24px 18px 56px;
+      border: 2px solid #e5e7eb;
+      border-radius: 16px;
+      font-size: 16px;
+      font-weight: 500;
+      background: white;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    }
+
+    #searchInput:focus { 
+      outline: none;
+      border-color: #3b82f6;
+      box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1), 0 10px 25px -5px rgba(59, 130, 246, 0.1);
+      transform: translateY(-2px);
+    }
+
+    #searchInput::placeholder {
+      color: #9ca3af;
+      font-weight: 400;
+    }
+
+    .table-section {
+      padding: 0 30px 40px;
+      background: white;
+    }
+
+    .table-container { 
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+      border: 1px solid #e5e7eb;
+    }
+
+    table { 
+      border-collapse: collapse; 
+      width: 100%; 
+      background: white;
+    }
+
+    th, td { 
+      padding: 16px 20px;
+      text-align: left; 
+      font-size: 14px;
+      border-bottom: 1px solid #f1f5f9;
+    }
+
+    th { 
+      background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+      color: #475569;
+      font-weight: 600;
+      position: sticky; 
+      top: 0; 
+      z-index: 1;
+      text-transform: uppercase;
+      font-size: 14px;
+      letter-spacing: 0.05em;
+    }
+
+    tbody tr { 
+      transition: all 0.2s ease;
+    }
+
+    tbody tr:nth-child(even) { 
+      background-color: #fafbfc;
+    }
+
+    tbody tr:hover { 
+      background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+      transform: scale(1.01);
+      box-shadow: 0 4px 12px rgba(59, 130, 246, 0.15);
+    }
+
+    tbody td {
+      font-weight: 500;
+      color: #374151;
+    }
+
+    tbody td:first-child {
+      font-weight: 600;
+      color: #1e40af;
+      font-size: 15px;
+    }
+
+    tbody td:nth-child(2) {
+      font-family: 'Monaco', 'Menlo', monospace;
+      color: #059669;
+      font-size: 13px;
+    }
+
+    .no-results { 
+      text-align: center; 
+      padding: 60px 20px;
+      color: #6b7280;
+      font-size: 18px;
+      font-weight: 500;
+    }
+
+    .no-results::before {
+      content: '🔍';
+      display: block;
+      font-size: 48px;
+      margin-bottom: 16px;
+      opacity: 0.5;
+    }
+
+    .error { 
+      background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
+      color: #dc2626;
+      padding: 16px 20px;
+      margin: 20px 30px;
+      border-radius: 12px;
+      border: 1px solid #fecaca;
+      font-weight: 500;
+    }
+
+    .footer {
+      text-align: center;
+      padding: 20px;
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 12px;
+      font-weight: 400;
+    }
+
+    /* 響應式設計 */
+    @media (max-width: 768px) { 
+      .container {
+        margin: 10px;
+        border-radius: 16px;
+      }
+      
+      h1 {
+        font-size: 38px !important;
+      }
+      
+      .header, .search-section, .table-section {
+        padding: 24px 20px;
+      }
+      
+      #searchInput {
+        padding: 16px 20px 16px 48px;
+        font-size: 14px;
+      }
+      
+      th, td {
+        padding: 12px 16px;
+        font-size: 13px;
+      }
+      
+      .table-container {
+        overflow-x: auto;
+      }
+      
+      table {
+        min-width: 800px;
+      }
+    }
+
+    /* 載入動畫 */
+    .loading {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 60px;
+    }
+
+    .spinner {
+      width: 40px;
+      height: 40px;
+      border: 4px solid #e5e7eb;
+      border-top: 4px solid #3b82f6;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
   </style>
 </head>
 <body>
   <div class="container">
-    <h1>產品查找工具</h1>
-    <hr class="divider">
-    <p class="subtitle">僅限 iStore 內部員工使用 </p>
+    <div class="header">
+      <h1>產品查找工具</h1>
+      <div class="divider"></div>
+      <p class="subtitle">僅限 iStore 內部員工使用</p>
+    </div>
 
-    <div class="controls">
-      <input type="text" id="searchInput" placeholder="輸入產品名稱、代碼或分類關鍵字">
+    <div class="search-section">
+      <div class="search-container">
+        <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"></circle>
+          <path d="m21 21-4.35-4.35"></path>
+        </svg>
+        <input type="text" id="searchInput" placeholder="輸入產品名稱、代碼或分類關鍵字進行搜尋...">
+      </div>
     </div>
 
     <div id="errorInfo" class="error" style="display: none;"></div>
 
-    <div class="table-container">
-      <table id="resultTable">
-        <thead>
-          <tr>
-            <th>型號</th>
-            <th>Code</th>
-            <th>產品名稱</th>
-            <th>大分類</th>
-            <th>中分類</th>
-            <th>小分類</th>
-            <th>Remark</th>
-          </tr>
-        </thead>
-        <tbody></tbody>
-      </table>
+    <div class="table-section">
+      <div class="table-container">
+        <table id="resultTable">
+          <thead>
+            <tr>
+              <th>型號</th>
+              <th>Code</th>
+              <th>產品名稱</th>
+              <th>大分類</th>
+              <th>中分類</th>
+              <th>小分類</th>
+              <th>備註</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td colspan="7" class="loading">
+                <div class="spinner"></div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 
@@ -65,7 +358,7 @@
     let originalData = [];
     let columnMapping = {};
 
-    // 欄位對應設定 - 可能的欄位名稱變化
+    // 欄位對應設定
     const fieldMappings = {
       'manufacture_style': ['manufacture_style', '型號', 'model', 'Model', '製造商型號'],
       'Code': ['Code', 'code', '代碼', '編碼', 'SKU', 'sku'],
@@ -86,7 +379,6 @@
       document.getElementById('errorInfo').style.display = 'none';
     }
 
-    // 建立欄位對應關係
     function createColumnMapping(headers) {
       columnMapping = {};
       
@@ -104,23 +396,20 @@
       return Object.keys(columnMapping).length > 0;
     }
 
-    // 使用 PapaParse 解析 CSV
     function parseCSVWithPapa(csvText) {
       return new Promise((resolve, reject) => {
-        // 檢查是否有標題行
         const firstLine = csvText.split('\n')[0];
-        const hasHeader = !firstLine.match(/^[A-Z]{2}\d{3}[A-Z]{2}\/[A-Z]/); // 不是以型號格式開頭
+        const hasHeader = !firstLine.match(/^[A-Z]{2}\d{3}[A-Z]{2}\/[A-Z]/);
         
         Papa.parse(csvText, {
           header: hasHeader,
           skipEmptyLines: true,
-          dynamicTyping: false, // 關閉自動類型轉換，保持字串格式
+          dynamicTyping: false,
           complete: function(results) {
             if (results.errors.length > 0) {
               console.warn('CSV 解析警告:', results.errors);
             }
             
-            // 如果沒有標題，手動添加標題
             if (!hasHeader) {
               const processedData = results.data.map(row => ({
                 'manufacture_style': row[0] || '',
@@ -182,7 +471,6 @@
       renderTable(filtered);
     });
 
-    // 載入預設 CSV 檔案
     async function loadDefaultCSV() {
       try {
         hideMessages();
@@ -204,18 +492,17 @@
         const mappingSuccess = createColumnMapping(headers);
         
         if (!mappingSuccess) {
-          showError('data.csv 欄位格式不正確，請上傳正確格式的 CSV 檔案');
+          showError('data.csv 欄位格式不正確');
           return;
         }
 
         renderTable(originalData);
         
       } catch (error) {
-        showError('載入預設 CSV 失敗: ' + error.message + '<br>請上傳您的 CSV 檔案');
+        showError('載入資料失敗: ' + error.message);
       }
     }
 
-    // 頁面載入時執行
     loadDefaultCSV();
   </script>
 </body>
