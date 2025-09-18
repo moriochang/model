@@ -98,6 +98,47 @@
       font-weight: 400;
       position: relative;
       z-index: 1;
+      margin-bottom: 20px;
+    }
+
+    .nav-menu {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .nav-btn {
+      padding: 12px 24px;
+      background: rgba(255, 255, 255, 0.2);
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      border-radius: 12px;
+      color: white;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+    }
+
+    .nav-btn:hover {
+      background: rgba(255, 255, 255, 0.3);
+      border-color: rgba(255, 255, 255, 0.5);
+      transform: translateY(-2px);
+    }
+
+    .nav-btn.active {
+      background: rgba(255, 255, 255, 0.9);
+      color: #1e3a8a;
+      border-color: rgba(255, 255, 255, 0.9);
+    }
+
+    .page {
+      display: none;
+    }
+
+    .page.active {
+      display: block;
     }
 
     .search-section {
@@ -238,6 +279,89 @@
       font-weight: 500;
     }
 
+    /* 教育價和CARE保險頁面樣式 */
+    .content-page {
+      padding: 40px 30px;
+      background: white;
+      min-height: 400px;
+    }
+
+    .content-wrapper {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .page-title {
+      text-align: center;
+      font-size: 32px;
+      font-weight: 700;
+      color: #1e3a8a;
+      margin-bottom: 30px;
+    }
+
+    .image-gallery {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      margin-top: 30px;
+    }
+
+    .image-card {
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+      border: 1px solid #e5e7eb;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .image-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.15);
+    }
+
+    .image-placeholder {
+      width: 100%;
+      height: auto;
+      min-height: 300px;
+      background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #64748b;
+      font-size: 16px;
+      font-weight: 500;
+      padding: 20px;
+    }
+
+    .image-card img {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+      border-radius: 8px;
+      padding: 20px;
+      background: white;
+    }
+
+    .image-card-content {
+      padding: 20px;
+    }
+
+    .image-card-title {
+      font-size: 18px;
+      font-weight: 600;
+      color: #1e40af;
+      margin-bottom: 8px;
+    }
+
+    .image-card-description {
+      color: #6b7280;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
     .footer {
       text-align: center;
       padding: 20px;
@@ -257,8 +381,19 @@
         font-size: 38px !important;
       }
       
-      .header, .search-section, .table-section {
+      .header, .search-section, .table-section, .content-page {
         padding: 24px 20px;
+      }
+      
+      .nav-menu {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+      }
+      
+      .nav-btn {
+        width: 200px;
+        text-align: center;
       }
       
       #searchInput {
@@ -277,6 +412,15 @@
       
       table {
         min-width: 800px;
+      }
+
+      .page-title {
+        font-size: 24px;
+      }
+
+      .image-gallery {
+        grid-template-columns: 1fr;
+        gap: 20px;
       }
     }
 
@@ -309,42 +453,105 @@
       <h1>產品查找工具</h1>
       <div class="divider"></div>
       <p class="subtitle">僅限 iStore 內部員工使用</p>
-    </div>
-
-    <div class="search-section">
-      <div class="search-container">
-        <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="11" cy="11" r="8"></circle>
-          <path d="m21 21-4.35-4.35"></path>
-        </svg>
-        <input type="text" id="searchInput" placeholder="輸入產品名稱、代碼或分類關鍵字進行搜尋...">
+      
+      <div class="nav-menu">
+        <button class="nav-btn active" onclick="showPage('search')">產品搜尋</button>
+        <button class="nav-btn" onclick="showPage('education')">教育價</button>
+        <button class="nav-btn" onclick="showPage('care')">CARE 保險</button>
       </div>
     </div>
 
-    <div id="errorInfo" class="error" style="display: none;"></div>
+    <!-- 產品搜尋頁面 -->
+    <div id="searchPage" class="page active">
+      <div class="search-section">
+        <div class="search-container">
+          <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <path d="m21 21-4.35-4.35"></path>
+          </svg>
+          <input type="text" id="searchInput" placeholder="輸入產品名稱、代碼或分類關鍵字進行搜尋...">
+        </div>
+      </div>
 
-    <div class="table-section">
-      <div class="table-container">
-        <table id="resultTable">
-          <thead>
-            <tr>
-              <th>型號</th>
-              <th>Code</th>
-              <th>產品名稱</th>
-              <th>大分類</th>
-              <th>中分類</th>
-              <th>小分類</th>
-              <th>備註</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td colspan="7" class="loading">
-                <div class="spinner"></div>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+      <div id="errorInfo" class="error" style="display: none;"></div>
+
+      <div class="table-section">
+        <div class="table-container">
+          <table id="resultTable">
+            <thead>
+              <tr>
+                <th>型號</th>
+                <th>Code</th>
+                <th>產品名稱</th>
+                <th>大分類</th>
+                <th>中分類</th>
+                <th>小分類</th>
+                <th>備註</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td colspan="7" class="loading">
+                  <div class="spinner"></div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- 教育價頁面 -->
+    <div id="educationPage" class="page content-page">
+      <div class="content-wrapper">
+        <h2 class="page-title">教育價格資訊</h2>
+        
+        <div class="image-gallery">
+          <div class="image-card">
+            <img src="images/mac-education-price.jpg" alt="Mac 教育價格表" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="image-placeholder" style="display: none;">Mac 教育價格表</div>
+            <div class="image-card-content">
+              <div class="image-card-title">MacBook 教育優惠</div>
+              <div class="image-card-description">適用於學生、教師和教育機構的 MacBook 系列特殊優惠價格</div>
+            </div>
+          </div>
+
+          <div class="image-card">
+            <img src="images/ipad-education-price.jpg" alt="iPad 教育價格表" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="image-placeholder" style="display: none;">iPad 教育價格表</div>
+            <div class="image-card-content">
+              <div class="image-card-title">iPad 教育優惠</div>
+              <div class="image-card-description">iPad 系列產品的教育機構專屬價格資訊</div>
+            </div>
+          </div>
+
+          <div class="image-card">
+            <img src="images/accessories-education-price.jpg" alt="配件教育價格表" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="image-placeholder" style="display: none;">配件教育價格表</div>
+            <div class="image-card-content">
+              <div class="image-card-title">配件教育優惠</div>
+              <div class="image-card-description">Apple 配件產品的教育優惠價格，包含鍵盤、滑鼠、充電器等</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CARE 保險頁面 -->
+    <div id="carePage" class="page content-page">
+      <div class="content-wrapper">
+        <h2 class="page-title">CARE 保險資訊</h2>
+        
+        <div class="image-gallery">
+          <div class="image-card">
+            <img src="images/care-insurance.jpg" alt="CARE 保險方案" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="image-placeholder" style="display: none;">CARE 保險方案</div>
+            <div class="image-card-content">
+              <div class="image-card-title">AppleCare+ 保險方案</div>
+              <div class="image-card-description">提供意外損壞保護和優先技術支援服務，讓您的 Apple 產品得到全方位保障</div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -357,6 +564,31 @@
     let data = [];
     let originalData = [];
     let columnMapping = {};
+
+    // 頁面切換功能
+    function showPage(pageName) {
+      // 隱藏所有頁面
+      document.querySelectorAll('.page').forEach(page => {
+        page.classList.remove('active');
+      });
+      
+      // 移除所有按鈕的 active 狀態
+      document.querySelectorAll('.nav-btn').forEach(btn => {
+        btn.classList.remove('active');
+      });
+      
+      // 顯示選中的頁面
+      if (pageName === 'search') {
+        document.getElementById('searchPage').classList.add('active');
+        document.querySelector('.nav-btn[onclick="showPage(\'search\')"]').classList.add('active');
+      } else if (pageName === 'education') {
+        document.getElementById('educationPage').classList.add('active');
+        document.querySelector('.nav-btn[onclick="showPage(\'education\')"]').classList.add('active');
+      } else if (pageName === 'care') {
+        document.getElementById('carePage').classList.add('active');
+        document.querySelector('.nav-btn[onclick="showPage(\'care\')"]').classList.add('active');
+      }
+    }
 
     // 欄位對應設定
     const fieldMappings = {
