@@ -764,6 +764,42 @@
       });
     }
 
+    // 根據選擇的大分類更新中分類選項
+    function updateSubcategoryOptions(selectedCategory) {
+      const subcategorySelect = document.getElementById('subcategoryFilter');
+      subcategorySelect.innerHTML = '<option value="">所有中分類</option>';
+      
+      if (!selectedCategory) {
+        // 如果沒有選擇大分類，顯示所有中分類
+        Array.from(allSubcategories).sort().forEach(subcategory => {
+          const option = document.createElement('option');
+          option.value = subcategory;
+          option.textContent = subcategory;
+          subcategorySelect.appendChild(option);
+        });
+        return;
+      }
+      
+      // 收集該大分類下的所有中分類
+      const relevantSubcategories = new Set();
+      originalData.forEach(row => {
+        const category = row[columnMapping['大分類']];
+        const subcategory = row[columnMapping['中分類']];
+        
+        if (category === selectedCategory && subcategory && subcategory.trim()) {
+          relevantSubcategories.add(subcategory.trim());
+        }
+      });
+      
+      // 添加該大分類下的中分類選項
+      Array.from(relevantSubcategories).sort().forEach(subcategory => {
+        const option = document.createElement('option');
+        option.value = subcategory;
+        option.textContent = subcategory;
+        subcategorySelect.appendChild(option);
+      });
+    }
+
     // 更新篩選資訊
     function updateFilterInfo() {
       const keyword = document.getElementById('searchInput').value;
@@ -825,6 +861,7 @@
     // 快速篩選功能
     function quickFilter(category) {
       const categorySelect = document.getElementById('categoryFilter');
+      const subcategorySelect = document.getElementById('subcategoryFilter');
       const buttons = document.querySelectorAll('.quick-filter-btn');
       
       // 移除所有按鈕的 active 狀態
@@ -834,10 +871,16 @@
       if (activeQuickFilter === category) {
         activeQuickFilter = null;
         categorySelect.value = '';
+        subcategorySelect.value = '';
+        updateSubcategoryOptions('');
       } else {
         // 選中新的分類
         activeQuickFilter = category;
         categorySelect.value = category;
+        subcategorySelect.value = '';
+        
+        // 更新中分類選項
+        updateSubcategoryOptions(category);
         
         // 高亮對應按鈕
         event.target.classList.add('active');
@@ -857,6 +900,9 @@
       document.querySelectorAll('.quick-filter-btn').forEach(btn => {
         btn.classList.remove('active');
       });
+      
+      // 重置中分類選項為所有選項
+      updateSubcategoryOptions('');
       
       renderTable(originalData);
       updateFilterInfo();
@@ -971,7 +1017,28 @@
 
     // 事件監聽器
     document.getElementById('searchInput').addEventListener('input', applyFilters);
-    document.getElementById('categoryFilter').addEventListener('change', applyFilters);
+    document.getElementById('categoryFilter').addEventListener('change', function() {
+      const selectedCategory = this.value;
+      updateSubcategoryOptions(selectedCategory);
+      document.getElementById('subcategoryFilter').value = '';
+      
+      // 更新快速按鈕狀態
+      const buttons = document.querySelectorAll('.quick-filter-btn');
+      buttons.forEach(btn => {
+        if (btn.textContent.trim() === selectedCategory) {
+          btn.classList.add('active');
+          activeQuickFilter = selectedCategory;
+        } else {
+          btn.classList.remove('active');
+        }
+      });
+      
+      if (!selectedCategory) {
+        activeQuickFilter = null;
+      }
+      
+      applyFilters();
+    });
     document.getElementById('subcategoryFilter').addEventListener('change', applyFilters);
     document.getElementById('clearFilters').addEventListener('click', clearAllFilters);
 
