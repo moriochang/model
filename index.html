@@ -215,6 +215,48 @@
       display: none;
     }
 
+    .quick-filters {
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .quick-filter-btn {
+      padding: 10px 20px;
+      background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+      border: 2px solid #e5e7eb;
+      border-radius: 12px;
+      color: #475569;
+      font-weight: 600;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    }
+
+    .quick-filter-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      border-color: #3b82f6;
+    }
+
+    .quick-filter-btn.active {
+      background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+      color: white;
+      border-color: #3b82f6;
+      box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+    }
+
+    .quick-filter-label {
+      font-size: 12px;
+      color: #6b7280;
+      text-align: center;
+      margin-top: 8px;
+      font-weight: 500;
+    }
+
     .search-icon {
       position: absolute;
       left: 20px;
@@ -549,6 +591,14 @@
           </div>
           
           <div id="filterInfo" class="filter-info"></div>
+          
+          <div class="quick-filters">
+            <div class="quick-filter-label">快速篩選：</div>
+            <button class="quick-filter-btn" onclick="quickFilter('CPU')">CPU</button>
+            <button class="quick-filter-btn" onclick="quickFilter('iPad')">iPad</button>
+            <button class="quick-filter-btn" onclick="quickFilter('iPhone')">iPhone</button>
+            <button class="quick-filter-btn" onclick="quickFilter('Apple Watch')">Apple Watch</button>
+          </div>
         </div>
       </div>
 
@@ -645,6 +695,7 @@
     let columnMapping = {};
     let allCategories = new Set();
     let allSubcategories = new Set();
+    let activeQuickFilter = null;
 
     // 頁面切換功能
     function showPage(pageName) {
@@ -771,11 +822,42 @@
       updateFilterInfo();
     }
 
+    // 快速篩選功能
+    function quickFilter(category) {
+      const categorySelect = document.getElementById('categoryFilter');
+      const buttons = document.querySelectorAll('.quick-filter-btn');
+      
+      // 移除所有按鈕的 active 狀態
+      buttons.forEach(btn => btn.classList.remove('active'));
+      
+      // 如果點擊的是已選中的分類，則取消選擇
+      if (activeQuickFilter === category) {
+        activeQuickFilter = null;
+        categorySelect.value = '';
+      } else {
+        // 選中新的分類
+        activeQuickFilter = category;
+        categorySelect.value = category;
+        
+        // 高亮對應按鈕
+        event.target.classList.add('active');
+      }
+      
+      applyFilters();
+    }
+
     // 清除所有篩選
     function clearAllFilters() {
       document.getElementById('searchInput').value = '';
       document.getElementById('categoryFilter').value = '';
       document.getElementById('subcategoryFilter').value = '';
+      
+      // 清除快速篩選按鈕狀態
+      activeQuickFilter = null;
+      document.querySelectorAll('.quick-filter-btn').forEach(btn => {
+        btn.classList.remove('active');
+      });
+      
       renderTable(originalData);
       updateFilterInfo();
     }
