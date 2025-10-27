@@ -416,9 +416,8 @@
       cursor: pointer;
       transition: all 0.3s ease;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-      display: inline-block !important;
-      visibility: visible !important;
-      opacity: 1 !important;
+      display: inline-block;
+      visibility: visible;
     }
 
     .quick-filter-btn:hover {
@@ -840,9 +839,6 @@
       <div id="loginError" class="error-message"></div>
     </div>
   </div>
-
-  <!-- 主內容 -->
-  <div id="mainContent">
     <div class="container">
       <div class="header">
         <div id="userInfo" class="user-info">
@@ -1500,15 +1496,6 @@
 
     // 初始化所有事件監聽器
     function initializeEventListeners() {
-      console.log('開始初始化事件監聽器');
-      
-      // 檢查大分類按鈕是否存在
-      const quickFilterButtons = document.querySelectorAll('.quick-filter-btn');
-      console.log('找到大分類按鈕數量:', quickFilterButtons.length);
-      quickFilterButtons.forEach((btn, index) => {
-        console.log(`按鈕 ${index}:`, btn.textContent, btn.getAttribute('data-category'));
-      });
-      
       // 搜尋輸入
       document.getElementById('searchInput').addEventListener('input', applyFilters);
       
