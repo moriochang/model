@@ -818,7 +818,7 @@
     <div class="login-container">
       <div class="login-logo">🍎</div>
       <h2 class="login-title">iStore 內部系統</h2>
-      <p class="login-subtitle">請使用 iStore 員工信箱登入</p>
+      <p class="login-subtitle">請使用 iStore 員工帳號登入</p>
       
       <button id="googleLoginBtn" class="google-login-btn">
         <svg class="google-icon" viewBox="0 0 24 24">
@@ -1562,8 +1562,96 @@
       }
     }
 
+    // 初始化所有事件監聽器
+    function initializeEventListeners() {
+      // 搜尋輸入
+      document.getElementById('searchInput').addEventListener('input', applyFilters);
+      
+      // 大分類下拉選單
+      document.getElementById('categoryFilter').addEventListener('change', function() {
+        const selectedCategory = this.value;
+        updateSubcategoryOptions(selectedCategory);
+        document.getElementById('subcategoryFilter').value = '';
+        
+        showQuickSubcategoryButtons(selectedCategory);
+        activeQuickSubcategory = null;
+        
+        const buttons = document.querySelectorAll('.quick-filter-btn');
+        buttons.forEach(btn => {
+          if (btn.getAttribute('data-category') === selectedCategory) {
+            btn.classList.add('active');
+            activeQuickFilter = selectedCategory;
+          } else {
+            btn.classList.remove('active');
+          }
+        });
+        
+        if (!selectedCategory) {
+          activeQuickFilter = null;
+        }
+        
+        applyFilters();
+      });
+      
+      // 中分類下拉選單
+      document.getElementById('subcategoryFilter').addEventListener('change', function() {
+        const selectedSubcategory = this.value;
+        
+        const buttons = document.querySelectorAll('.quick-subcategory-btn');
+        buttons.forEach(btn => {
+          if (btn.getAttribute('data-subcategory') === selectedSubcategory) {
+            btn.classList.add('active');
+            activeQuickSubcategory = selectedSubcategory;
+          } else {
+            btn.classList.remove('active');
+          }
+        });
+        
+        if (!selectedSubcategory) {
+          activeQuickSubcategory = null;
+        }
+        
+        applyFilters();
+      });
+      
+      // 清除篩選按鈕
+      document.getElementById('clearFilters').addEventListener('click', clearAllFilters);
+
+      // 頁面切換按鈕
+      document.querySelectorAll('.nav-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+          const pageName = this.getAttribute('data-page');
+          showPage(pageName);
+        });
+      });
+
+      // 快速篩選按鈕
+      document.querySelectorAll('.quick-filter-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+          const category = this.getAttribute('data-category');
+          quickFilter(category);
+        });
+      });
+
+      // 快速中分類按鈕事件（使用事件委派）
+      document.getElementById('quickSubcategoryButtons').addEventListener('click', function(e) {
+        if (e.target.classList.contains('quick-subcategory-btn')) {
+          const subcategory = e.target.getAttribute('data-subcategory');
+          quickSubcategoryFilter(subcategory);
+        }
+      });
+    }
+
     // 將函數掛載到 window 供 Firebase 腳本呼叫
     window.loadDefaultCSV = loadDefaultCSV;
+    window.initializeEventListeners = initializeEventListeners;
+    
+    // 當 DOM 載入完成後初始化事件監聽器
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initializeEventListeners);
+    } else {
+      initializeEventListeners();
+    }
   </script>
 </body>
 </html>filter-row">
