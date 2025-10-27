@@ -25,6 +25,10 @@
     }
 
     /* 登入頁面樣式 */
+    #loginPage {
+      display: none;
+    }
+
     .login-container {
       max-width: 450px;
       margin: 100px auto;
@@ -104,6 +108,11 @@
       transform: translateY(0);
     }
 
+    .google-login-btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
     .google-icon {
       width: 24px;
       height: 24px;
@@ -138,10 +147,6 @@
     /* 主內容區域 */
     #mainContent {
       display: none;
-    }
-
-    #mainContent.show {
-      display: block;
     }
 
     .container { 
@@ -225,9 +230,9 @@
     }
 
     h1 { 
-      color: white !important;
-      font-size: 50px !important;
-      font-weight: 700 !important;
+      color: white;
+      font-size: 50px;
+      font-weight: 700;
       margin-bottom: 12px;
       text-shadow: 0 2px 10px rgba(0,0,0,0.3);
       position: relative;
@@ -620,6 +625,7 @@
       transition: all 0.3s ease;
       max-width: 800px;
       margin: 0 auto;
+      width: 100%;
     }
 
     .image-card:hover {
@@ -687,7 +693,7 @@
       }
       
       h1 {
-        font-size: 38px !important;
+        font-size: 38px;
       }
       
       .header, .search-section, .table-section, .content-page {
@@ -769,11 +775,6 @@
       .page-title {
         font-size: 24px;
       }
-
-      .image-gallery {
-        grid-template-columns: 1fr;
-        gap: 20px;
-      }
     }
 
     .loading {
@@ -789,28 +790,35 @@
       border: 4px solid #e5e7eb;
       border-top: 4px solid #3b82f6;
       border-radius: 50%;
-      animation: spin 1s linear infinite;
+      animation: spin2 1s linear infinite;
+    }
+
+    @keyframes spin2 {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
     }
   </style>
 </head>
 <body>
   <!-- 登入頁面 -->
-  <div id="loginPage" class="login-container">
-    <div class="login-logo">🍎</div>
-    <h2 class="login-title">iStore 內部系統</h2>
-    <p class="login-subtitle">請使用 iStore 員工帳號登入</p>
-    
-    <button id="googleLoginBtn" class="google-login-btn">
-      <svg class="google-icon" viewBox="0 0 24 24">
-        <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
-        <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
-        <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
-        <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
-      </svg>
-      使用 Google 帳號登入
-    </button>
-    
-    <div id="loginError" class="error-message"></div>
+  <div id="loginPage">
+    <div class="login-container">
+      <div class="login-logo">🍎</div>
+      <h2 class="login-title">iStore 內部系統</h2>
+      <p class="login-subtitle">請使用 iStore 員工帳號登入</p>
+      
+      <button id="googleLoginBtn" class="google-login-btn">
+        <svg class="google-icon" viewBox="0 0 24 24">
+          <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+          <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+          <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+          <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+        </svg>
+        使用 Google 帳號登入
+      </button>
+      
+      <div id="loginError" class="error-message"></div>
+    </div>
   </div>
 
   <!-- 主內容 -->
@@ -818,7 +826,7 @@
     <div class="container">
       <div class="header">
         <div id="userInfo" class="user-info">
-          <img id="userAvatar" class="user-avatar" src="" alt="">
+          <img id="userAvatar" class="user-avatar" src="" alt="User Avatar">
           <span id="userName" class="user-name"></span>
           <button id="logoutBtn" class="logout-btn">登出</button>
         </div>
@@ -828,9 +836,9 @@
         <p class="subtitle">僅限 iStore 內部員工使用</p>
         
         <div class="nav-menu">
-          <button class="nav-btn active" onclick="showPage('search')">產品搜尋</button>
-          <button class="nav-btn" onclick="showPage('education')">教育價</button>
-          <button class="nav-btn" onclick="showPage('care')">CARE 保險</button>
+          <button class="nav-btn active" data-page="search">產品搜尋</button>
+          <button class="nav-btn" data-page="education">教育價</button>
+          <button class="nav-btn" data-page="care">CARE 保險</button>
         </div>
       </div>
 
@@ -861,12 +869,6 @@
             <div id="filterInfo" class="filter-info"></div>
             
             <div class="quick-filters">
-              <div class="quick-filter-row">
-                <div class="quick-filter-label">大分類：</div>
-                <button class="quick-filter-btn" onclick="quickFilter('iPhone')">iPhone</button>
-                <button class="quick-filter-btn" onclick="quickFilter('Apple Watch')">Apple Watch</button>
-              </div>
-              
               <div class="quick-filter-row" id="quickSubcategoryRow">
                 <div class="quick-filter-label">中分類：</div>
                 <div id="quickSubcategoryButtons"></div>
@@ -1043,18 +1045,20 @@
       if (user && user.email.endsWith('@istore.com.tw')) {
         // 已登入且是 iStore 員工
         document.getElementById('loginPage').style.display = 'none';
-        document.getElementById('mainContent').classList.add('show');
+        document.getElementById('mainContent').style.display = 'block';
         
         // 顯示使用者資訊
         document.getElementById('userName').textContent = user.displayName || user.email;
         document.getElementById('userAvatar').src = user.photoURL || 'https://via.placeholder.com/36';
         
         // 載入資料
-        loadDefaultCSV();
+        if (window.loadDefaultCSV) {
+          window.loadDefaultCSV();
+        }
       } else {
         // 未登入或非 iStore 員工
         document.getElementById('loginPage').style.display = 'block';
-        document.getElementById('mainContent').classList.remove('show');
+        document.getElementById('mainContent').style.display = 'none';
       }
     });
 
@@ -1068,11 +1072,11 @@
       }
     });
 
-    // 將 auth 對象掛載到 window，供其他腳本使用
+    // 將 auth 對象掛載到 window
     window.firebaseAuth = auth;
   </script>
 
-  <!-- 原有的產品搜尋功能 -->
+  <!-- 產品搜尋功能 -->
   <script>
     let data = [];
     let originalData = [];
@@ -1084,23 +1088,27 @@
 
     // 頁面切換功能
     function showPage(pageName) {
+      // 隱藏所有頁面
       document.querySelectorAll('.page').forEach(page => {
         page.classList.remove('active');
       });
       
+      // 移除所有按鈕的 active 狀態
       document.querySelectorAll('.nav-btn').forEach(btn => {
         btn.classList.remove('active');
       });
       
-      if (pageName === 'search') {
-        document.getElementById('searchPage').classList.add('active');
-        document.querySelector('.nav-btn[onclick="showPage(\'search\')"]').classList.add('active');
-      } else if (pageName === 'education') {
-        document.getElementById('educationPage').classList.add('active');
-        document.querySelector('.nav-btn[onclick="showPage(\'education\')"]').classList.add('active');
-      } else if (pageName === 'care') {
-        document.getElementById('carePage').classList.add('active');
-        document.querySelector('.nav-btn[onclick="showPage(\'care\')"]').classList.add('active');
+      // 顯示選中的頁面
+      const pageMap = {
+        'search': 'searchPage',
+        'education': 'educationPage',
+        'care': 'carePage'
+      };
+      
+      const pageId = pageMap[pageName];
+      if (pageId) {
+        document.getElementById(pageId).classList.add('active');
+        document.querySelector(`.nav-btn[data-page="${pageName}"]`).classList.add('active');
       }
     }
 
@@ -1330,7 +1338,7 @@
           const button = document.createElement('button');
           button.className = 'quick-subcategory-btn';
           button.textContent = subcategory;
-          button.onclick = () => quickSubcategoryFilter(subcategory);
+          button.setAttribute('data-subcategory', subcategory);
           quickSubcategoryButtons.appendChild(button);
         });
       } else {
@@ -1350,7 +1358,8 @@
       } else {
         activeQuickSubcategory = subcategory;
         subcategorySelect.value = subcategory;
-        event.target.classList.add('active');
+        const activeBtn = document.querySelector(`.quick-subcategory-btn[data-subcategory="${subcategory}"]`);
+        if (activeBtn) activeBtn.classList.add('active');
       }
       
       applyFilters();
@@ -1361,7 +1370,7 @@
       const subcategorySelect = document.getElementById('subcategoryFilter');
       const buttons = document.querySelectorAll('.quick-filter-btn');
       
-      buttons.forEach(btn => btn.classList.remove('active');
+      buttons.forEach(btn => btn.classList.remove('active'));
       
       if (activeQuickFilter === category) {
         activeQuickFilter = null;
@@ -1379,7 +1388,8 @@
         updateSubcategoryOptions(category);
         showQuickSubcategoryButtons(category);
         
-        event.target.classList.add('active');
+        const activeBtn = document.querySelector(`.quick-filter-btn[data-category="${category}"]`);
+        if (activeBtn) activeBtn.classList.add('active');
       }
       
       applyFilters();
@@ -1421,13 +1431,15 @@
           <td>${row[columnMapping['大分類']] || ''}</td>
           <td>${row[columnMapping['中分類']] || ''}</td>
           <td>${row[columnMapping['小分類']] || ''}</td>
-          <td>${row[columnMapping['Remark']] || row['remark'] || ''}</td>
+          <td>${row[columnMapping['Remark']] || ''}</td>
         `;
         tbody.appendChild(tr);
       });
     }
 
+    // 事件監聽器
     document.getElementById('searchInput').addEventListener('input', applyFilters);
+    
     document.getElementById('categoryFilter').addEventListener('change', function() {
       const selectedCategory = this.value;
       updateSubcategoryOptions(selectedCategory);
@@ -1438,7 +1450,7 @@
       
       const buttons = document.querySelectorAll('.quick-filter-btn');
       buttons.forEach(btn => {
-        if (btn.textContent.trim() === selectedCategory) {
+        if (btn.getAttribute('data-category') === selectedCategory) {
           btn.classList.add('active');
           activeQuickFilter = selectedCategory;
         } else {
@@ -1452,12 +1464,13 @@
       
       applyFilters();
     });
+    
     document.getElementById('subcategoryFilter').addEventListener('change', function() {
       const selectedSubcategory = this.value;
       
       const buttons = document.querySelectorAll('.quick-subcategory-btn');
       buttons.forEach(btn => {
-        if (btn.textContent.trim() === selectedSubcategory) {
+        if (btn.getAttribute('data-subcategory') === selectedSubcategory) {
           btn.classList.add('active');
           activeQuickSubcategory = selectedSubcategory;
         } else {
@@ -1471,8 +1484,34 @@
       
       applyFilters();
     });
+    
     document.getElementById('clearFilters').addEventListener('click', clearAllFilters);
 
+    // 頁面切換按鈕事件
+    document.querySelectorAll('.nav-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        const pageName = this.getAttribute('data-page');
+        showPage(pageName);
+      });
+    });
+
+    // 快速篩選按鈕事件
+    document.querySelectorAll('.quick-filter-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        const category = this.getAttribute('data-category');
+        quickFilter(category);
+      });
+    });
+
+    // 快速中分類按鈕事件（使用事件委派）
+    document.getElementById('quickSubcategoryButtons').addEventListener('click', function(e) {
+      if (e.target.classList.contains('quick-subcategory-btn')) {
+        const subcategory = e.target.getAttribute('data-subcategory');
+        quickSubcategoryFilter(subcategory);
+      }
+    });
+
+    // 載入 CSV 資料
     async function loadDefaultCSV() {
       try {
         hideMessages();
@@ -1506,11 +1545,16 @@
       }
     }
 
-    // 讓函數可以被全域呼叫
-    window.showPage = showPage;
-    window.quickFilter = quickFilter;
+    // 將函數掛載到 window 供 Firebase 腳本呼叫
+    window.loadDefaultCSV = loadDefaultCSV;
   </script>
 </body>
-</html>="quick-filter-btn" onclick="quickFilter('CPU')">CPU</button>
-                <button class="quick-filter-btn" onclick="quickFilter('iPad')">iPad</button>
-                <button class
+</html>filter-row">
+                <div class="quick-filter-label">大分類：</div>
+                <button class="quick-filter-btn" data-category="CPU">CPU</button>
+                <button class="quick-filter-btn" data-category="iPad">iPad</button>
+                <button class="quick-filter-btn" data-category="iPhone">iPhone</button>
+                <button class="quick-filter-btn" data-category="Apple Watch">Apple Watch</button>
+              </div>
+              
+              <div class="quick-
