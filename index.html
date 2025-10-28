@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>產品查找工具</title>
+  <title>產品查找工具 - iStore 內部系統</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -24,15 +24,29 @@
       color: #2d3748;
     }
 
-    .container { 
-      max-width: 1400px; 
-      margin: 0 auto; 
+    /* 登入頁面樣式 */
+    #loginPage {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 9999;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      padding: 20px;
+    }
+
+    .login-container {
+      max-width: 450px;
+      margin: 100px auto;
       background: rgba(255, 255, 255, 0.95);
       backdrop-filter: blur(20px);
-      border-radius: 24px; 
+      border-radius: 24px;
       box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
       border: 1px solid rgba(255, 255, 255, 0.2);
-      overflow: hidden;
+      padding: 50px 40px;
+      text-align: center;
       animation: slideUp 0.6s ease-out;
     }
 
@@ -45,6 +59,115 @@
         opacity: 1;
         transform: translateY(0);
       }
+    }
+
+    .login-logo {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+      border-radius: 20px;
+      margin: 0 auto 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 40px;
+      box-shadow: 0 10px 25px -5px rgba(59, 130, 246, 0.3);
+    }
+
+    .login-title {
+      font-size: 32px;
+      font-weight: 700;
+      color: #1e3a8a;
+      margin-bottom: 12px;
+    }
+
+    .login-subtitle {
+      font-size: 14px;
+      color: #6b7280;
+      margin-bottom: 40px;
+    }
+
+    .google-login-btn {
+      width: 100%;
+      padding: 16px 24px;
+      background: white;
+      border: 2px solid #e5e7eb;
+      border-radius: 12px;
+      font-size: 16px;
+      font-weight: 600;
+      color: #374151;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    }
+
+    .google-login-btn:hover {
+      background: #f9fafb;
+      border-color: #3b82f6;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px -5px rgba(59, 130, 246, 0.2);
+    }
+
+    .google-login-btn:active {
+      transform: translateY(0);
+    }
+
+    .google-login-btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .google-icon {
+      width: 24px;
+      height: 24px;
+    }
+
+    .error-message {
+      background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
+      color: #dc2626;
+      padding: 12px 16px;
+      border-radius: 10px;
+      border: 1px solid #fecaca;
+      font-size: 14px;
+      margin-top: 20px;
+      display: none;
+    }
+
+    .loading-spinner {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      border: 3px solid #e5e7eb;
+      border-top: 3px solid #3b82f6;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* 主內容區域 */
+    #mainContent {
+      display: none;
+      width: 100%;
+    }
+
+    .container { 
+      max-width: 1400px; 
+      margin: 0 auto; 
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      border-radius: 24px; 
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      overflow: hidden;
+      animation: slideUp 0.6s ease-out;
     }
 
     .header {
@@ -71,10 +194,54 @@
       50% { transform: rotate(180deg); }
     }
 
+    .user-info {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: rgba(255, 255, 255, 0.15);
+      padding: 8px 16px;
+      border-radius: 12px;
+      backdrop-filter: blur(10px);
+      z-index: 10;
+    }
+
+    .user-avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 2px solid white;
+    }
+
+    .user-name {
+      color: white;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .logout-btn {
+      background: rgba(239, 68, 68, 0.9);
+      color: white;
+      border: none;
+      padding: 6px 14px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .logout-btn:hover {
+      background: rgba(220, 38, 38, 1);
+      transform: translateY(-1px);
+    }
+
     h1 { 
-      color: white !important;
-      font-size: 50px !important;
-      font-weight: 700 !important;
+      color: white;
+      font-size: 50px;
+      font-weight: 700;
       margin-bottom: 12px;
       text-shadow: 0 2px 10px rgba(0,0,0,0.3);
       position: relative;
@@ -432,7 +599,6 @@
       font-weight: 500;
     }
 
-    /* 教育價和CARE保險頁面樣式 */
     .content-page {
       padding: 40px 30px;
       background: white;
@@ -468,6 +634,7 @@
       transition: all 0.3s ease;
       max-width: 800px;
       margin: 0 auto;
+      width: 100%;
     }
 
     .image-card:hover {
@@ -523,19 +690,29 @@
       font-weight: 400;
     }
 
-    /* 響應式設計 */
     @media (max-width: 768px) { 
+      .login-container {
+        margin: 50px auto;
+        padding: 40px 30px;
+      }
+
       .container {
         margin: 10px;
         border-radius: 16px;
       }
       
       h1 {
-        font-size: 38px !important;
+        font-size: 38px;
       }
       
       .header, .search-section, .table-section, .content-page {
         padding: 24px 20px;
+      }
+
+      .user-info {
+        position: static;
+        margin-bottom: 20px;
+        justify-content: center;
       }
       
       .nav-menu {
@@ -547,6 +724,43 @@
       .nav-btn {
         width: 200px;
         text-align: center;
+      }
+      
+      .search-row {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      
+      .search-input-wrapper {
+        min-width: unset;
+      }
+      
+      .filter-select {
+        min-width: unset;
+      }
+
+      .quick-filter-row {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      
+      .quick-filter-label {
+        width: 100%;
+        text-align: center;
+        margin-bottom: 8px;
+      }
+      
+      .quick-filter-btn, .quick-subcategory-btn {
+        flex: 1;
+        min-width: 120px;
+      }
+      
+      #quickSubcategoryButtons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        justify-content: center;
+        width: 100%;
       }
       
       #searchInput {
@@ -570,14 +784,8 @@
       .page-title {
         font-size: 24px;
       }
-
-      .image-gallery {
-        grid-template-columns: 1fr;
-        gap: 20px;
-      }
     }
 
-    /* 載入動畫 */
     .loading {
       display: flex;
       justify-content: center;
@@ -591,158 +799,285 @@
       border: 4px solid #e5e7eb;
       border-top: 4px solid #3b82f6;
       border-radius: 50%;
-      animation: spin 1s linear infinite;
+      animation: spin2 1s linear infinite;
     }
 
-    @keyframes spin {
+    @keyframes spin2 {
       0% { transform: rotate(0deg); }
       100% { transform: rotate(360deg); }
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="header">
-      <h1>產品查找工具</h1>
-      <div class="divider"></div>
-      <p class="subtitle">僅限 iStore 內部員工使用</p>
+  <!-- 登入頁面 -->
+  <div id="loginPage">
+    <div class="login-container">
+      <div class="login-logo">🍎</div>
+      <h2 class="login-title">iStore 內部系統</h2>
+      <p class="login-subtitle">請使用 iStore 員工帳號登入</p>
       
-      <div class="nav-menu">
-        <button class="nav-btn active" onclick="showPage('search')">產品搜尋</button>
-        <button class="nav-btn" onclick="showPage('education')">教育價</button>
-        <button class="nav-btn" onclick="showPage('care')">CARE 保險</button>
-      </div>
-    </div>
-
-    <!-- 產品搜尋頁面 -->
-    <div id="searchPage" class="page active">
-      <div class="search-section">
-        <div class="search-container">
-          <div class="search-row">
-            <div class="search-input-wrapper">
-              <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="11" cy="11" r="8"></circle>
-                <path d="m21 21-4.35-4.35"></path>
-              </svg>
-              <input type="text" id="searchInput" placeholder="輸入產品名稱、代碼或分類關鍵字進行搜尋...">
-            </div>
-            
-            <select id="categoryFilter" class="filter-select">
-              <option value="">所有大分類</option>
-            </select>
-            
-            <select id="subcategoryFilter" class="filter-select">
-              <option value="">所有中分類</option>
-            </select>
-            
-            <button id="clearFilters" class="clear-filters">清除篩選</button>
-          </div>
-          
-          <div id="filterInfo" class="filter-info"></div>
-          
-          <div class="quick-filters">
-            <div class="quick-filter-row">
-              <div class="quick-filter-label">大分類：</div>
-              <button class="quick-filter-btn" onclick="quickFilter('CPU')">CPU</button>
-              <button class="quick-filter-btn" onclick="quickFilter('iPad')">iPad</button>
-              <button class="quick-filter-btn" onclick="quickFilter('iPhone')">iPhone</button>
-              <button class="quick-filter-btn" onclick="quickFilter('Apple Watch')">Apple Watch</button>
-            </div>
-            
-            <div class="quick-filter-row" id="quickSubcategoryRow">
-              <div class="quick-filter-label">中分類：</div>
-              <div id="quickSubcategoryButtons"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div id="errorInfo" class="error" style="display: none;"></div>
-
-      <div class="table-section">
-        <div class="table-container">
-          <table id="resultTable">
-            <thead>
-              <tr>
-                <th>型號</th>
-                <th>Code</th>
-                <th>產品名稱</th>
-                <th>大分類</th>
-                <th>中分類</th>
-                <th>小分類</th>
-                <th>備註</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td colspan="7" class="loading">
-                  <div class="spinner"></div>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-
-    <!-- 教育價頁面 -->
-    <div id="educationPage" class="page content-page">
-      <div class="content-wrapper">
-        <h2 class="page-title">教育價格資訊</h2>
-        
-        <div class="image-gallery">
-          <div class="image-card">
-            <img src="images/mac-education-price.jpg" alt="Mac 教育價格表" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-            <div class="image-placeholder" style="display: none;">Mac 教育價格表</div>
-            <div class="image-card-content">
-              <div class="image-card-title">MacBook 教育優惠</div>
-              <div class="image-card-description">適用於學生、教師和教育機構的 MacBook 系列特殊優惠價格</div>
-            </div>
-          </div>
-
-          <div class="image-card">
-            <img src="images/ipad-education-price.jpg" alt="iPad 教育價格表" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-            <div class="image-placeholder" style="display: none;">iPad 教育價格表</div>
-            <div class="image-card-content">
-              <div class="image-card-title">iPad 教育優惠</div>
-              <div class="image-card-description">iPad 系列產品的教育機構專屬價格資訊</div>
-            </div>
-          </div>
-
-          <div class="image-card">
-            <img src="images/accessories-education-price.jpg" alt="配件教育價格表" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-            <div class="image-placeholder" style="display: none;">配件教育價格表</div>
-            <div class="image-card-content">
-              <div class="image-card-title">配件教育優惠</div>
-              <div class="image-card-description">Apple 配件產品的教育優惠價格，包含鍵盤、滑鼠、充電器等</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- CARE 保險頁面 -->
-    <div id="carePage" class="page content-page">
-      <div class="content-wrapper">
-        <h2 class="page-title">CARE 保險資訊</h2>
-        
-        <div class="image-gallery">
-          <div class="image-card">
-            <img src="images/care-insurance.jpg" alt="CARE 保險方案" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-            <div class="image-placeholder" style="display: none;">CARE 保險方案</div>
-            <div class="image-card-content">
-              <div class="image-card-title">AppleCare+ 保險方案</div>
-              <div class="image-card-description">提供意外損壞保護和優先技術支援服務，讓您的 Apple 產品得到全方位保障</div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <button id="googleLoginBtn" class="google-login-btn">
+        <svg class="google-icon" viewBox="0 0 24 24">
+          <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+          <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+          <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+          <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+        </svg>
+        使用 Google 帳號登入
+      </button>
+      
+      <div id="loginError" class="error-message"></div>
     </div>
   </div>
 
-  <footer class="footer">
-    <p>Created by Morio © 2025</p>
-  </footer>
+  <!-- 主內容 -->
+  <div id="mainContent">
+    <div class="container">
+      <div class="header">
+        <div id="userInfo" class="user-info">
+          <img id="userAvatar" class="user-avatar" src="" alt="User Avatar">
+          <span id="userName" class="user-name"></span>
+          <button id="logoutBtn" class="logout-btn">登出</button>
+        </div>
+        
+        <h1>產品查找工具</h1>
+        <div class="divider"></div>
+        <p class="subtitle">僅限 iStore 內部員工使用</p>
+        
+        <div class="nav-menu">
+          <button class="nav-btn active" data-page="search">產品搜尋</button>
+          <button class="nav-btn" data-page="education">教育價</button>
+          <button class="nav-btn" data-page="care">CARE 保險</button>
+        </div>
+      </div>
+
+      <!-- 產品搜尋頁面 -->
+      <div id="searchPage" class="page active">
+        <div class="search-section">
+          <div class="search-container">
+            <div class="search-row">
+              <div class="search-input-wrapper">
+                <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="11" cy="11" r="8"></circle>
+                  <path d="m21 21-4.35-4.35"></path>
+                </svg>
+                <input type="text" id="searchInput" placeholder="輸入產品名稱、代碼或分類關鍵字進行搜尋...">
+              </div>
+              
+              <select id="categoryFilter" class="filter-select">
+                <option value="">所有大分類</option>
+              </select>
+              
+              <select id="subcategoryFilter" class="filter-select">
+                <option value="">所有中分類</option>
+              </select>
+              
+              <button id="clearFilters" class="clear-filters">清除篩選</button>
+            </div>
+            
+            <div id="filterInfo" class="filter-info"></div>
+            
+            <div class="quick-filters">
+              <div class="quick-filter-row">
+                <div class="quick-filter-label">大分類：</div>
+                <button class="quick-filter-btn" data-category="CPU">CPU</button>
+                <button class="quick-filter-btn" data-category="iPad">iPad</button>
+                <button class="quick-filter-btn" data-category="iPhone">iPhone</button>
+                <button class="quick-filter-btn" data-category="Apple Watch">Apple Watch</button>
+              </div>
+              
+              <div class="quick-filter-row" id="quickSubcategoryRow">
+                <div class="quick-filter-label">中分類：</div>
+                <div id="quickSubcategoryButtons"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="errorInfo" class="error" style="display: none;"></div>
+
+        <div class="table-section">
+          <div class="table-container">
+            <table id="resultTable">
+              <thead>
+                <tr>
+                  <th>型號</th>
+                  <th>Code</th>
+                  <th>產品名稱</th>
+                  <th>大分類</th>
+                  <th>中分類</th>
+                  <th>小分類</th>
+                  <th>備註</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td colspan="7" class="loading">
+                    <div class="spinner"></div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- 教育價頁面 -->
+      <div id="educationPage" class="page content-page">
+        <div class="content-wrapper">
+          <h2 class="page-title">教育價格資訊</h2>
+          
+          <div class="image-gallery">
+            <div class="image-card">
+              <img src="images/mac-education-price.jpg" alt="Mac 教育價格表" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+              <div class="image-placeholder" style="display: none;">Mac 教育價格表</div>
+              <div class="image-card-content">
+                <div class="image-card-title">MacBook 教育優惠</div>
+                <div class="image-card-description">適用於學生、教師和教育機構的 MacBook 系列特殊優惠價格</div>
+              </div>
+            </div>
+
+            <div class="image-card">
+              <img src="images/ipad-education-price.jpg" alt="iPad 教育價格表" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+              <div class="image-placeholder" style="display: none;">iPad 教育價格表</div>
+              <div class="image-card-content">
+                <div class="image-card-title">iPad 教育優惠</div>
+                <div class="image-card-description">iPad 系列產品的教育機構專屬價格資訊</div>
+              </div>
+            </div>
+
+            <div class="image-card">
+              <img src="images/accessories-education-price.jpg" alt="配件教育價格表" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+              <div class="image-placeholder" style="display: none;">配件教育價格表</div>
+              <div class="image-card-content">
+                <div class="image-card-title">配件教育優惠</div>
+                <div class="image-card-description">Apple 配件產品的教育優惠價格，包含鍵盤、滑鼠、充電器等</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARE 保險頁面 -->
+      <div id="carePage" class="page content-page">
+        <div class="content-wrapper">
+          <h2 class="page-title">CARE 保險資訊</h2>
+          
+          <div class="image-gallery">
+            <div class="image-card">
+              <img src="images/care-insurance.jpg" alt="CARE 保險方案" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+              <div class="image-placeholder" style="display: none;">CARE 保險方案</div>
+              <div class="image-card-content">
+                <div class="image-card-title">AppleCare+ 保險方案</div>
+                <div class="image-card-description">提供意外損壞保護和優先技術支援服務，讓您的 Apple 產品得到全方位保障</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <p>Created by Morio © 2025</p>
+    </footer>
+  </div>
+
+  <!-- Firebase SDK -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+    import { getAuth, GoogleAuthProvider, signInWithPopup, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyAQH0RqBBwRQthE7vj80cH994GFkEYU1ho",
+      authDomain: "istore-login-tc.firebaseapp.com",
+      projectId: "istore-login-tc",
+      storageBucket: "istore-login-tc.firebasestorage.app",
+      messagingSenderId: "709619679365",
+      appId: "1:709619679365:web:62a50024c61b54954129ec",
+      measurementId: "G-K6JHQ9RD4Y"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const provider = new GoogleAuthProvider();
+
+    provider.setCustomParameters({
+      hd: 'istore.com.tw'
+    });
+
+    function showLoginError(message) {
+      const errorDiv = document.getElementById('loginError');
+      errorDiv.textContent = message;
+      errorDiv.style.display = 'block';
+      setTimeout(() => {
+        errorDiv.style.display = 'none';
+      }, 5000);
+    }
+
+    document.getElementById('googleLoginBtn').addEventListener('click', async () => {
+      const btn = document.getElementById('googleLoginBtn');
+      const originalText = btn.innerHTML;
+      btn.innerHTML = '<span class="loading-spinner"></span> 登入中...';
+      btn.disabled = true;
+
+      try {
+        const result = await signInWithPopup(auth, provider);
+        const user = result.user;
+        
+        if (!user.email.endsWith('@istore.com.tw')) {
+          await signOut(auth);
+          showLoginError('❌ 僅限 @istore.com.tw 員工帳號登入');
+          btn.innerHTML = originalText;
+          btn.disabled = false;
+          return;
+        }
+
+        console.log('登入成功:', user.email);
+        
+      } catch (error) {
+        console.error('登入錯誤:', error);
+        
+        if (error.code === 'auth/popup-closed-by-user') {
+          showLoginError('登入已取消');
+        } else if (error.code === 'auth/unauthorized-domain') {
+          showLoginError('此網域尚未授權，請聯絡系統管理員');
+        } else {
+          showLoginError('登入失敗，請稍後再試');
+        }
+        
+        btn.innerHTML = originalText;
+        btn.disabled = false;
+      }
+    });
+
+    onAuthStateChanged(auth, (user) => {
+      if (user && user.email.endsWith('@istore.com.tw')) {
+        document.getElementById('loginPage').style.display = 'none';
+        document.getElementById('mainContent').style.display = 'block';
+        
+        document.getElementById('userName').textContent = user.displayName || user.email;
+        document.getElementById('userAvatar').src = user.photoURL || 'https://via.placeholder.com/36';
+        
+        if (window.loadDefaultCSV) {
+          window.loadDefaultCSV();
+        }
+      } else {
+        document.getElementById('loginPage').style.display = 'block';
+        document.getElementById('mainContent').style.display = 'none';
+      }
+    });
+
+    document.getElementById('logoutBtn').addEventListener('click', async () => {
+      try {
+        await signOut(auth);
+        console.log('已登出');
+      } catch (error) {
+        console.error('登出錯誤:', error);
+      }
+    });
+
+    window.firebaseAuth = auth;
+  </script>
 
   <script>
     let data = [];
@@ -753,293 +1088,28 @@
     let activeQuickFilter = null;
     let activeQuickSubcategory = null;
 
-    // 頁面切換功能
     function showPage(pageName) {
-      // 隱藏所有頁面
       document.querySelectorAll('.page').forEach(page => {
         page.classList.remove('active');
       });
       
-      // 移除所有按鈕的 active 狀態
       document.querySelectorAll('.nav-btn').forEach(btn => {
         btn.classList.remove('active');
       });
       
-      // 顯示選中的頁面
-      if (pageName === 'search') {
-        document.getElementById('searchPage').classList.add('active');
-        document.querySelector('.nav-btn[onclick="showPage(\'search\')"]').classList.add('active');
-      } else if (pageName === 'education') {
-        document.getElementById('educationPage').classList.add('active');
-        document.querySelector('.nav-btn[onclick="showPage(\'education\')"]').classList.add('active');
-      } else if (pageName === 'care') {
-        document.getElementById('carePage').classList.add('active');
-        document.querySelector('.nav-btn[onclick="showPage(\'care\')"]').classList.add('active');
+      const pageMap = {
+        'search': 'searchPage',
+        'education': 'educationPage',
+        'care': 'carePage'
+      };
+      
+      const pageId = pageMap[pageName];
+      if (pageId) {
+        document.getElementById(pageId).classList.add('active');
+        document.querySelector(`.nav-btn[data-page="${pageName}"]`).classList.add('active');
       }
     }
 
-    // 初始化篩選器
-    function initializeFilters() {
-      const categorySelect = document.getElementById('categoryFilter');
-      const subcategorySelect = document.getElementById('subcategoryFilter');
-      
-      // 清空現有選項（保留預設選項）
-      categorySelect.innerHTML = '<option value="">所有大分類</option>';
-      subcategorySelect.innerHTML = '<option value="">所有中分類</option>';
-      
-      // 收集所有分類
-      allCategories.clear();
-      allSubcategories.clear();
-      
-      originalData.forEach(row => {
-        const category = row[columnMapping['大分類']];
-        const subcategory = row[columnMapping['中分類']];
-        
-        if (category && category.trim()) {
-          allCategories.add(category.trim());
-        }
-        if (subcategory && subcategory.trim()) {
-          allSubcategories.add(subcategory.trim());
-        }
-      });
-      
-      // 添加大分類選項
-      Array.from(allCategories).sort().forEach(category => {
-        const option = document.createElement('option');
-        option.value = category;
-        option.textContent = category;
-        categorySelect.appendChild(option);
-      });
-      
-      // 添加中分類選項
-      Array.from(allSubcategories).sort().forEach(subcategory => {
-        const option = document.createElement('option');
-        option.value = subcategory;
-        option.textContent = subcategory;
-        subcategorySelect.appendChild(option);
-      });
-    }
-
-    // 根據選擇的大分類更新中分類選項
-    function updateSubcategoryOptions(selectedCategory) {
-      const subcategorySelect = document.getElementById('subcategoryFilter');
-      subcategorySelect.innerHTML = '<option value="">所有中分類</option>';
-      
-      if (!selectedCategory) {
-        // 如果沒有選擇大分類，顯示所有中分類
-        Array.from(allSubcategories).sort().forEach(subcategory => {
-          const option = document.createElement('option');
-          option.value = subcategory;
-          option.textContent = subcategory;
-          subcategorySelect.appendChild(option);
-        });
-        return;
-      }
-      
-      // 收集該大分類下的所有中分類
-      const relevantSubcategories = new Set();
-      originalData.forEach(row => {
-        const category = row[columnMapping['大分類']];
-        const subcategory = row[columnMapping['中分類']];
-        
-        if (category === selectedCategory && subcategory && subcategory.trim()) {
-          relevantSubcategories.add(subcategory.trim());
-        }
-      });
-      
-      // 添加該大分類下的中分類選項
-      Array.from(relevantSubcategories).sort().forEach(subcategory => {
-        const option = document.createElement('option');
-        option.value = subcategory;
-        option.textContent = subcategory;
-        subcategorySelect.appendChild(option);
-      });
-    }
-
-    // 更新篩選資訊
-    function updateFilterInfo() {
-      const keyword = document.getElementById('searchInput').value;
-      const category = document.getElementById('categoryFilter').value;
-      const subcategory = document.getElementById('subcategoryFilter').value;
-      const filterInfo = document.getElementById('filterInfo');
-      
-      let infoText = '';
-      const filters = [];
-      
-      if (keyword) filters.push(`關鍵字: "${keyword}"`);
-      if (category) filters.push(`大分類: "${category}"`);
-      if (subcategory) filters.push(`中分類: "${subcategory}"`);
-      
-      if (filters.length > 0) {
-        infoText = `目前篩選條件: ${filters.join(' | ')}`;
-        filterInfo.textContent = infoText;
-        filterInfo.style.display = 'block';
-      } else {
-        filterInfo.style.display = 'none';
-      }
-    }
-
-    // 綜合篩選函數
-    function applyFilters() {
-      const keyword = document.getElementById('searchInput').value.toLowerCase();
-      const selectedCategory = document.getElementById('categoryFilter').value;
-      const selectedSubcategory = document.getElementById('subcategoryFilter').value;
-      
-      let filtered = originalData;
-      
-      // 大分類篩選
-      if (selectedCategory) {
-        filtered = filtered.filter(row => 
-          row[columnMapping['大分類']] === selectedCategory
-        );
-      }
-      
-      // 中分類篩選
-      if (selectedSubcategory) {
-        filtered = filtered.filter(row => 
-          row[columnMapping['中分類']] === selectedSubcategory
-        );
-      }
-      
-      // 關鍵字篩選
-      if (keyword) {
-        filtered = filtered.filter(row =>
-          Object.values(row).some(value =>
-            value && value.toString().toLowerCase().includes(keyword)
-          )
-        );
-      }
-      
-      renderTable(filtered);
-      updateFilterInfo();
-    }
-
-    // 顯示快速中分類按鈕
-    function showQuickSubcategoryButtons(category) {
-      const quickSubcategoryRow = document.getElementById('quickSubcategoryRow');
-      const quickSubcategoryButtons = document.getElementById('quickSubcategoryButtons');
-      
-      if (!category) {
-        quickSubcategoryRow.classList.remove('active');
-        quickSubcategoryButtons.innerHTML = '';
-        return;
-      }
-      
-      // 收集該大分類下的所有中分類
-      const relevantSubcategories = new Set();
-      originalData.forEach(row => {
-        const rowCategory = row[columnMapping['大分類']];
-        const subcategory = row[columnMapping['中分類']];
-        
-        if (rowCategory === category && subcategory && subcategory.trim()) {
-          relevantSubcategories.add(subcategory.trim());
-        }
-      });
-      
-      // 創建中分類按鈕
-      quickSubcategoryButtons.innerHTML = '';
-      const sortedSubcategories = Array.from(relevantSubcategories).sort();
-      
-      if (sortedSubcategories.length > 0) {
-        quickSubcategoryRow.classList.add('active');
-        
-        sortedSubcategories.forEach(subcategory => {
-          const button = document.createElement('button');
-          button.className = 'quick-subcategory-btn';
-          button.textContent = subcategory;
-          button.onclick = () => quickSubcategoryFilter(subcategory);
-          quickSubcategoryButtons.appendChild(button);
-        });
-      } else {
-        quickSubcategoryRow.classList.remove('active');
-      }
-    }
-
-    // 快速中分類篩選
-    function quickSubcategoryFilter(subcategory) {
-      const subcategorySelect = document.getElementById('subcategoryFilter');
-      const buttons = document.querySelectorAll('.quick-subcategory-btn');
-      
-      // 移除所有中分類按鈕的 active 狀態
-      buttons.forEach(btn => btn.classList.remove('active'));
-      
-      // 如果點擊的是已選中的中分類，則取消選擇
-      if (activeQuickSubcategory === subcategory) {
-        activeQuickSubcategory = null;
-        subcategorySelect.value = '';
-      } else {
-        // 選中新的中分類
-        activeQuickSubcategory = subcategory;
-        subcategorySelect.value = subcategory;
-        
-        // 高亮對應按鈕
-        event.target.classList.add('active');
-      }
-      
-      applyFilters();
-    }
-
-    // 快速篩選功能
-    function quickFilter(category) {
-      const categorySelect = document.getElementById('categoryFilter');
-      const subcategorySelect = document.getElementById('subcategoryFilter');
-      const buttons = document.querySelectorAll('.quick-filter-btn');
-      
-      // 移除所有按鈕的 active 狀態
-      buttons.forEach(btn => btn.classList.remove('active'));
-      
-      // 如果點擊的是已選中的分類，則取消選擇
-      if (activeQuickFilter === category) {
-        activeQuickFilter = null;
-        activeQuickSubcategory = null;
-        categorySelect.value = '';
-        subcategorySelect.value = '';
-        updateSubcategoryOptions('');
-        showQuickSubcategoryButtons('');
-      } else {
-        // 選中新的分類
-        activeQuickFilter = category;
-        activeQuickSubcategory = null;
-        categorySelect.value = category;
-        subcategorySelect.value = '';
-        
-        // 更新中分類選項
-        updateSubcategoryOptions(category);
-        
-        // 顯示快速中分類按鈕
-        showQuickSubcategoryButtons(category);
-        
-        // 高亮對應按鈕
-        event.target.classList.add('active');
-      }
-      
-      applyFilters();
-    }
-
-    // 清除所有篩選
-    function clearAllFilters() {
-      document.getElementById('searchInput').value = '';
-      document.getElementById('categoryFilter').value = '';
-      document.getElementById('subcategoryFilter').value = '';
-      
-      // 清除快速篩選按鈕狀態
-      activeQuickFilter = null;
-      activeQuickSubcategory = null;
-      document.querySelectorAll('.quick-filter-btn').forEach(btn => {
-        btn.classList.remove('active');
-      });
-      
-      // 隱藏中分類快速按鈕
-      showQuickSubcategoryButtons('');
-      
-      // 重置中分類選項為所有選項
-      updateSubcategoryOptions('');
-      
-      renderTable(originalData);
-      updateFilterInfo();
-    }
-
-    // 欄位對應設定
     const fieldMappings = {
       'manufacture_style': ['manufacture_style', '型號', 'model', 'Model', '製造商型號'],
       'Code': ['Code', 'code', '代碼', '編碼', 'SKU', 'sku'],
@@ -1113,6 +1183,233 @@
       });
     }
 
+    function initializeFilters() {
+      const categorySelect = document.getElementById('categoryFilter');
+      const subcategorySelect = document.getElementById('subcategoryFilter');
+      
+      categorySelect.innerHTML = '<option value="">所有大分類</option>';
+      subcategorySelect.innerHTML = '<option value="">所有中分類</option>';
+      
+      allCategories.clear();
+      allSubcategories.clear();
+      
+      originalData.forEach(row => {
+        const category = row[columnMapping['大分類']];
+        const subcategory = row[columnMapping['中分類']];
+        
+        if (category && category.trim()) {
+          allCategories.add(category.trim());
+        }
+        if (subcategory && subcategory.trim()) {
+          allSubcategories.add(subcategory.trim());
+        }
+      });
+      
+      Array.from(allCategories).sort().forEach(category => {
+        const option = document.createElement('option');
+        option.value = category;
+        option.textContent = category;
+        categorySelect.appendChild(option);
+      });
+      
+      Array.from(allSubcategories).sort().forEach(subcategory => {
+        const option = document.createElement('option');
+        option.value = subcategory;
+        option.textContent = subcategory;
+        subcategorySelect.appendChild(option);
+      });
+    }
+
+    function updateSubcategoryOptions(selectedCategory) {
+      const subcategorySelect = document.getElementById('subcategoryFilter');
+      subcategorySelect.innerHTML = '<option value="">所有中分類</option>';
+      
+      if (!selectedCategory) {
+        Array.from(allSubcategories).sort().forEach(subcategory => {
+          const option = document.createElement('option');
+          option.value = subcategory;
+          option.textContent = subcategory;
+          subcategorySelect.appendChild(option);
+        });
+        return;
+      }
+      
+      const relevantSubcategories = new Set();
+      originalData.forEach(row => {
+        const category = row[columnMapping['大分類']];
+        const subcategory = row[columnMapping['中分類']];
+        
+        if (category === selectedCategory && subcategory && subcategory.trim()) {
+          relevantSubcategories.add(subcategory.trim());
+        }
+      });
+      
+      Array.from(relevantSubcategories).sort().forEach(subcategory => {
+        const option = document.createElement('option');
+        option.value = subcategory;
+        option.textContent = subcategory;
+        subcategorySelect.appendChild(option);
+      });
+    }
+
+    function updateFilterInfo() {
+      const keyword = document.getElementById('searchInput').value;
+      const category = document.getElementById('categoryFilter').value;
+      const subcategory = document.getElementById('subcategoryFilter').value;
+      const filterInfo = document.getElementById('filterInfo');
+      
+      let infoText = '';
+      const filters = [];
+      
+      if (keyword) filters.push(`關鍵字: "${keyword}"`);
+      if (category) filters.push(`大分類: "${category}"`);
+      if (subcategory) filters.push(`中分類: "${subcategory}"`);
+      
+      if (filters.length > 0) {
+        infoText = `目前篩選條件: ${filters.join(' | ')}`;
+        filterInfo.textContent = infoText;
+        filterInfo.style.display = 'block';
+      } else {
+        filterInfo.style.display = 'none';
+      }
+    }
+
+    function applyFilters() {
+      const keyword = document.getElementById('searchInput').value.toLowerCase();
+      const selectedCategory = document.getElementById('categoryFilter').value;
+      const selectedSubcategory = document.getElementById('subcategoryFilter').value;
+      
+      let filtered = originalData;
+      
+      if (selectedCategory) {
+        filtered = filtered.filter(row => 
+          row[columnMapping['大分類']] === selectedCategory
+        );
+      }
+      
+      if (selectedSubcategory) {
+        filtered = filtered.filter(row => 
+          row[columnMapping['中分類']] === selectedSubcategory
+        );
+      }
+      
+      if (keyword) {
+        filtered = filtered.filter(row =>
+          Object.values(row).some(value =>
+            value && value.toString().toLowerCase().includes(keyword)
+          )
+        );
+      }
+      
+      renderTable(filtered);
+      updateFilterInfo();
+    }
+
+    function showQuickSubcategoryButtons(category) {
+      const quickSubcategoryRow = document.getElementById('quickSubcategoryRow');
+      const quickSubcategoryButtons = document.getElementById('quickSubcategoryButtons');
+      
+      if (!category) {
+        quickSubcategoryRow.classList.remove('active');
+        quickSubcategoryButtons.innerHTML = '';
+        return;
+      }
+      
+      const relevantSubcategories = new Set();
+      originalData.forEach(row => {
+        const rowCategory = row[columnMapping['大分類']];
+        const subcategory = row[columnMapping['中分類']];
+        
+        if (rowCategory === category && subcategory && subcategory.trim()) {
+          relevantSubcategories.add(subcategory.trim());
+        }
+      });
+      
+      quickSubcategoryButtons.innerHTML = '';
+      const sortedSubcategories = Array.from(relevantSubcategories).sort();
+      
+      if (sortedSubcategories.length > 0) {
+        quickSubcategoryRow.classList.add('active');
+        
+        sortedSubcategories.forEach(subcategory => {
+          const button = document.createElement('button');
+          button.className = 'quick-subcategory-btn';
+          button.textContent = subcategory;
+          button.setAttribute('data-subcategory', subcategory);
+          quickSubcategoryButtons.appendChild(button);
+        });
+      } else {
+        quickSubcategoryRow.classList.remove('active');
+      }
+    }
+
+    function quickSubcategoryFilter(subcategory) {
+      const subcategorySelect = document.getElementById('subcategoryFilter');
+      const buttons = document.querySelectorAll('.quick-subcategory-btn');
+      
+      buttons.forEach(btn => btn.classList.remove('active'));
+      
+      if (activeQuickSubcategory === subcategory) {
+        activeQuickSubcategory = null;
+        subcategorySelect.value = '';
+      } else {
+        activeQuickSubcategory = subcategory;
+        subcategorySelect.value = subcategory;
+        const activeBtn = document.querySelector(`.quick-subcategory-btn[data-subcategory="${subcategory}"]`);
+        if (activeBtn) activeBtn.classList.add('active');
+      }
+      
+      applyFilters();
+    }
+
+    function quickFilter(category) {
+      const categorySelect = document.getElementById('categoryFilter');
+      const subcategorySelect = document.getElementById('subcategoryFilter');
+      const buttons = document.querySelectorAll('.quick-filter-btn');
+      
+      buttons.forEach(btn => btn.classList.remove('active'));
+      
+      if (activeQuickFilter === category) {
+        activeQuickFilter = null;
+        activeQuickSubcategory = null;
+        categorySelect.value = '';
+        subcategorySelect.value = '';
+        updateSubcategoryOptions('');
+        showQuickSubcategoryButtons('');
+      } else {
+        activeQuickFilter = category;
+        activeQuickSubcategory = null;
+        categorySelect.value = category;
+        subcategorySelect.value = '';
+        
+        updateSubcategoryOptions(category);
+        showQuickSubcategoryButtons(category);
+        
+        const activeBtn = document.querySelector(`.quick-filter-btn[data-category="${category}"]`);
+        if (activeBtn) activeBtn.classList.add('active');
+      }
+      
+      applyFilters();
+    }
+
+    function clearAllFilters() {
+      document.getElementById('searchInput').value = '';
+      document.getElementById('categoryFilter').value = '';
+      document.getElementById('subcategoryFilter').value = '';
+      
+      activeQuickFilter = null;
+      activeQuickSubcategory = null;
+      document.querySelectorAll('.quick-filter-btn').forEach(btn => {
+        btn.classList.remove('active');
+      });
+      
+      showQuickSubcategoryButtons('');
+      updateSubcategoryOptions('');
+      
+      renderTable(originalData);
+      updateFilterInfo();
+    }
+
     function renderTable(filteredData) {
       const tbody = document.querySelector('#resultTable tbody');
       tbody.innerHTML = '';
@@ -1131,70 +1428,11 @@
           <td>${row[columnMapping['大分類']] || ''}</td>
           <td>${row[columnMapping['中分類']] || ''}</td>
           <td>${row[columnMapping['小分類']] || ''}</td>
-          <td>${row[columnMapping['Remark']] || row['remark'] || ''}</td>
+          <td>${row[columnMapping['Remark']] || ''}</td>
         `;
         tbody.appendChild(tr);
       });
     }
-
-    function filterData(keyword) {
-      const lowerKeyword = keyword.toLowerCase();
-      return originalData.filter(row =>
-        Object.values(row).some(value =>
-          value && value.toString().toLowerCase().includes(lowerKeyword)
-        )
-      );
-    }
-
-    // 事件監聽器
-    document.getElementById('searchInput').addEventListener('input', applyFilters);
-    document.getElementById('categoryFilter').addEventListener('change', function() {
-      const selectedCategory = this.value;
-      updateSubcategoryOptions(selectedCategory);
-      document.getElementById('subcategoryFilter').value = '';
-      
-      // 顯示快速中分類按鈕
-      showQuickSubcategoryButtons(selectedCategory);
-      activeQuickSubcategory = null;
-      
-      // 更新快速按鈕狀態
-      const buttons = document.querySelectorAll('.quick-filter-btn');
-      buttons.forEach(btn => {
-        if (btn.textContent.trim() === selectedCategory) {
-          btn.classList.add('active');
-          activeQuickFilter = selectedCategory;
-        } else {
-          btn.classList.remove('active');
-        }
-      });
-      
-      if (!selectedCategory) {
-        activeQuickFilter = null;
-      }
-      
-      applyFilters();
-    });
-    document.getElementById('subcategoryFilter').addEventListener('change', function() {
-      const selectedSubcategory = this.value;
-      
-      // 更新快速中分類按鈕狀態
-      const buttons = document.querySelectorAll('.quick-subcategory-btn');
-      buttons.forEach(btn => {
-        if (btn.textContent.trim() === selectedSubcategory) {
-          btn.classList.add('active');
-          activeQuickSubcategory = selectedSubcategory;
-        } else {
-          btn.classList.remove('active');
-        }
-      });
-      
-      if (!selectedSubcategory) {
-        activeQuickSubcategory = null;
-      }
-      
-      applyFilters();
-    });
-    document.getElementById('clearFilters').addEventListener('click', clearAllFilters);
 
     async function loadDefaultCSV() {
       try {
@@ -1229,7 +1467,85 @@
       }
     }
 
-    loadDefaultCSV();
+    function initializeEventListeners() {
+      document.getElementById('searchInput').addEventListener('input', applyFilters);
+      
+      document.getElementById('categoryFilter').addEventListener('change', function() {
+        const selectedCategory = this.value;
+        updateSubcategoryOptions(selectedCategory);
+        document.getElementById('subcategoryFilter').value = '';
+        
+        showQuickSubcategoryButtons(selectedCategory);
+        activeQuickSubcategory = null;
+        
+        const buttons = document.querySelectorAll('.quick-filter-btn');
+        buttons.forEach(btn => {
+          if (btn.getAttribute('data-category') === selectedCategory) {
+            btn.classList.add('active');
+            activeQuickFilter = selectedCategory;
+          } else {
+            btn.classList.remove('active');
+          }
+        });
+        
+        if (!selectedCategory) {
+          activeQuickFilter = null;
+        }
+        
+        applyFilters();
+      });
+      
+      document.getElementById('subcategoryFilter').addEventListener('change', function() {
+        const selectedSubcategory = this.value;
+        
+        const buttons = document.querySelectorAll('.quick-subcategory-btn');
+        buttons.forEach(btn => {
+          if (btn.getAttribute('data-subcategory') === selectedSubcategory) {
+            btn.classList.add('active');
+            activeQuickSubcategory = selectedSubcategory;
+          } else {
+            btn.classList.remove('active');
+          }
+        });
+        
+        if (!selectedSubcategory) {
+          activeQuickSubcategory = null;
+        }
+        
+        applyFilters();
+      });
+      
+      document.getElementById('clearFilters').addEventListener('click', clearAllFilters);
+
+      document.querySelectorAll('.nav-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+          const pageName = this.getAttribute('data-page');
+          showPage(pageName);
+        });
+      });
+
+      document.querySelectorAll('.quick-filter-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+          const category = this.getAttribute('data-category');
+          quickFilter(category);
+        });
+      });
+
+      document.getElementById('quickSubcategoryButtons').addEventListener('click', function(e) {
+        if (e.target.classList.contains('quick-subcategory-btn')) {
+          const subcategory = e.target.getAttribute('data-subcategory');
+          quickSubcategoryFilter(subcategory);
+        }
+      });
+    }
+
+    window.loadDefaultCSV = loadDefaultCSV;
+    
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initializeEventListeners);
+    } else {
+      initializeEventListeners();
+    }
   </script>
 </body>
 </html>
