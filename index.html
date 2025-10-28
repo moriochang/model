@@ -813,8 +813,8 @@
   <div id="loginPage">
     <div class="login-container">
       <div class="login-logo">🍎</div>
-      <h2 class="login-title">iStore 內部系統</h2>
-      <p class="login-subtitle">請使用 iStore 員工帳號登入</p>
+      <h2 class="login-title">iStore 型號查找工具</h2>
+      <p class="login-subtitle">請使用 iStore 員工信箱登入</p>
       
       <button id="googleLoginBtn" class="google-login-btn">
         <svg class="google-icon" viewBox="0 0 24 24">
@@ -1026,7 +1026,7 @@
         
         if (!user.email.endsWith('@istore.com.tw')) {
           await signOut(auth);
-          showLoginError('❌ 僅限 @istore.com.tw 員工帳號登入');
+          showLoginError('❌ 僅限 @istore.com.tw 員工信箱登入');
           btn.innerHTML = originalText;
           btn.disabled = false;
           return;
