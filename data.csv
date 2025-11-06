@@ -7,15 +7,6 @@ MJ1L2FE/A,0024944020,USB-C VGA Adapter MJ1L2,Accy,#Connector,USB-C,#N/A
 MRMH2TA/A,0013004407,Magic Keyboard繁中數字灰 MRMH2,Accy,*CPU Accy,Keyboard,4290
 S5067ZM/A,0013006741,AC+ for iPod touch S5067,Care,ACPP+,iPod ACPP+,2000
 S5432ZM/A,0013006742,AC+ for AW S3 S5432,Care,ACPP+,Aw S3 ACPP+,1690
-760557812821,0024702916,創見 DDR3 1066 2GB for NB,3rd Party,儲存類,記憶體,#N/A
-740617166453,0024789880,金士頓 DDR3 1333 4G 記憶體 NB,3rd Party,儲存類,記憶體,#N/A
-740617196771,0024821514,金士頓 DDR3 1333 4G 記憶體 APP,3rd Party,儲存類,記憶體,#N/A
-4960999905280,0024877281,Canon CLI-751 BK 黑色,3rd Party,life Style,其他,#N/A
-021986803331,0024771624,@@ Altec M102 單件 iPhone 喇叭,3rd Party,藍芽裝置&喇叭耳機,藍芽裝置,#N/A
-5060230650982,0024779026,@@ gear4 Angry Birds touch4 紅,3rd Party,life Style,其他,#N/A
-2000247724538,0024772453,iPhone 4 MicroShell 硬殼-白,3rd Party,ioS,iphone Case,#N/A
-3660619108695,0024773108,@@ LaCie 4GB iamakey 隨身碟,3rd Party,儲存類,隨身碟,#N/A
-4711542120137,0024776519,@@ 三星 IPD-100 iPhone 喇叭,3rd Party,藍芽裝置&喇叭耳機,藍芽裝置,#N/A
 S6446ZM/A,0013007618,AC+ for HomePod S6446,Care,ACPP+,HomePod ACPP+,1400
 MWTY2FE/A,0013007876,44mm 氈布錶環 錨灰色 MWTY2,Accy,*Apple Watch Accy,Band 44mm Sport Loop,1600
 MX832FE/A,0013007882,44 氈布錶環XL 錨灰色 MX832,Accy,*Apple Watch Accy,Band 44mm Sport Loop,1600
@@ -1190,3 +1181,29 @@ MGYY4TA/A,0013030537,Air 13 M2/3 巧控鍵盤 黑 MGYY4,Accy,*iPad Accy,12.9 7th
 SXKH2TA/A,0013030538,AC+ for M5 MBP 14 SXKH2,Care,ACPP+,14 MacBook Pro ACPP+,8990
 SXT02TA/A,0013030539,AC+ for M5 iPad Pro 11 SXT02,Care,ACPP+,iPad Pro 11 5th ACPP+,4890
 SXT12TA/A,0013030540,AC+ for M5 iPad Pro 13 SXT02,Care,ACPP+,iPad Pro 13 7th ACPP+,5590
+0025188698,0013026777,Marshall Emberton II 喇叭 銅黑,EGP,藍芽裝置&喇叭耳機,Marshall Emberton 二代,6490
+0025188702,0013026778,Marshall Emberton II 喇叭 白,EGP,藍芽裝置&喇叭耳機,Marshall Emberton 二代,6490
+0025230741,0013026779,Marshall Emberton II 鑄鋼黑,EGP,藍芽裝置&喇叭耳機,Marshall Emberton 二代,6490
+0025188703,0013026780,Marshall Willen 藍牙喇叭 銅黑,EGP,藍芽裝置&喇叭耳機,Marshall Willen 藍牙喇叭,3990
+0025188704,0013026781,Marshall Willen 藍牙喇叭 白,EGP,藍芽裝置&喇叭耳機,Marshall Willen 藍牙喇叭,3990
+0025198921,0013026782,Marshall Acton III 藍牙喇叭 黑,EGP,藍芽裝置&喇叭耳機,Marshall Acton 三代,11900
+0025198922,0013026783,Marshall Acton III 藍牙喇叭 白,EGP,藍芽裝置&喇叭耳機,Marshall Acton 三代,11900
+0025222546,0013026784,Marshall Acton III 藍牙喇叭 棕,EGP,藍芽裝置&喇叭耳機,Marshall Acton 三代,11900
+0025198923,0013026785,Marshall Stanmore III 喇叭 黑,EGP,藍芽裝置&喇叭耳機,Marshall Stanmore 三代,17900
+0025198924,0013026786,Marshall Stanmore III 喇叭 白,EGP,藍芽裝置&喇叭耳機,Marshall Stanmore 三代,17900
+0025222547,0013026787,Marshall Stanmore III 喇叭 棕,EGP,藍芽裝置&喇叭耳機,Marshall Stanmore 三代,17900
+0025198925,0013026788,Marshall Woburn III 喇叭 黑,EGP,藍芽裝置&喇叭耳機,Marshall Woburn 三代,23900
+0025198926,0013026789,Marshall Woburn III 喇叭 白,EGP,藍芽裝置&喇叭耳機,Marshall Woburn 三代,23900
+0025208453,0013026790,Marshall Middleton 喇叭 古銅,EGP,藍芽裝置&喇叭耳機,Marshall Middleton,9900
+0025208454,0013026791,Marshall Middleton 喇叭 白,EGP,藍芽裝置&喇叭耳機,Marshall Middleton,9900
+1006712,0013026902,Marshall Emberton III 古銅黑,EGP,藍芽裝置&喇叭耳機,Marshall Emberton 三代,6490
+1006714,0013026903,Marshall Emberton III 奶油白,EGP,藍芽裝置&喇叭耳機,Marshall Emberton 三代,6490
+1006714,0013026904,Marshall Willen II  古銅黑,EGP,藍芽裝置&喇叭耳機,Marshall Willen 二代,3990
+1006717,0013026905,Marshall Willen II 奶油白,EGP,藍芽裝置&喇叭耳機,Marshall Willen 二代,3990
+1008130 ,0013029018,Marshall Acton III 夜幕藍,EGP,藍芽裝置&喇叭耳機,Marshall Acton 三代,11900
+1008137 ,0013029019,Marshall Emberton III 夜幕藍,EGP,藍芽裝置&喇叭耳機,Marshall Emberton 三代,6490
+1007429 ,0013029020,Marshall Middleton II 奶油白,EGP,藍芽裝置&喇叭耳機,Marshall Middleton 二代,11900
+1007428 ,0013029021,Marshall Middleton II 古銅黑,EGP,藍芽裝置&喇叭耳機,Marshall Middleton 二代,11900
+1009086,0013029182,Marshall Acton III 藍牙喇叭 黑,EGP,藍芽裝置&喇叭耳機,Marshall Acton 三代,11900
+1009088,0013029183,Marshall Acton III 藍牙喇叭 棕,EGP,藍芽裝置&喇叭耳機,Marshall Acton 三代,11900
+1009090,0013029184,Marshall Acton III 藍牙喇叭 白,EGP,藍芽裝置&喇叭耳機,Marshall Acton 三代,11900
