@@ -1437,7 +1437,7 @@
     async function loadDefaultCSV() {
       try {
         hideMessages();
-        const response = await fetch("data.csv");
+        const response = await fetch('data.csv?v=' + new Date().getTime())
         
         if (!response.ok) {
           throw new Error(`HTTP ${response.status}: 無法載入 data.csv`);
