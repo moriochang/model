@@ -382,6 +382,25 @@
       display: none;
     }
 
+    /* 🆕 庫存狀態顯示 */
+    .inventory-status {
+      margin-top: 16px;
+      padding: 12px 20px;
+      background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+      border-radius: 12px;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-size: 14px;
+      color: #065f46;
+      font-weight: 600;
+    }
+
+    .inventory-status.loaded {
+      display: flex;
+    }
+
     .quick-filters {
       margin-top: 20px;
       display: flex;
@@ -571,6 +590,30 @@
       font-family: 'Monaco', 'Menlo', monospace;
       color: #059669;
       font-size: 13px;
+    }
+
+    /* 🆕 庫存欄位樣式 */
+    .stock-cell {
+      font-weight: 700;
+      font-size: 15px;
+      text-align: center;
+    }
+
+    .stock-available {
+      color: #10b981;
+    }
+
+    .stock-low {
+      color: #f59e0b;
+    }
+
+    .stock-out {
+      color: #ef4444;
+    }
+
+    .stock-unknown {
+      color: #9ca3af;
+      font-weight: 400;
     }
 
     .no-results { 
@@ -778,7 +821,7 @@
       }
       
       table {
-        min-width: 800px;
+        min-width: 900px;
       }
 
       .page-title {
@@ -877,6 +920,12 @@
             
             <div id="filterInfo" class="filter-info"></div>
             
+            <!-- 🆕 庫存狀態提示 -->
+            <div id="inventoryStatus" class="inventory-status">
+              <span>✅ 庫存資料已載入</span>
+              <span id="inventoryUpdateTime"></span>
+            </div>
+            
             <div class="quick-filters">
               <div class="quick-filter-row">
                 <div class="quick-filter-label">大分類：</div>
@@ -907,12 +956,19 @@
                   <th>大分類</th>
                   <th>中分類</th>
                   <th>小分類</th>
+                  <th id="totalStockHeader" style="display: none;">總庫存</th>
+                  <th id="stockHeader" style="display: none;">
+                    庫存
+                    <select id="storeSelector" style="display: block; margin-top: 4px; padding: 4px 8px; border-radius: 6px; border: 1px solid #cbd5e1; font-size: 12px; background: white; cursor: pointer;">
+                      <option value="75">75</option>
+                    </select>
+                  </th>
                   <th>備註</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td colspan="7" class="loading">
+                  <td colspan="9" class="loading">
                     <div class="spinner"></div>
                   </td>
                 </tr>
@@ -1001,8 +1057,10 @@
     const auth = getAuth(app);
     const provider = new GoogleAuthProvider();
 
+    // 🔧 強制每次登入都重新選擇帳號（解決自動登入舊帳號問題）
     provider.setCustomParameters({
-      hd: 'istore.com.tw'
+      hd: 'istore.com.tw',
+      prompt: 'select_account'  // 每次都顯示帳號選擇畫面
     });
 
     function showLoginError(message) {
@@ -1058,8 +1116,26 @@
         document.getElementById('userName').textContent = user.displayName || user.email;
         document.getElementById('userAvatar').src = user.photoURL || 'https://via.placeholder.com/36';
         
+        // 🆕 儲存使用者資訊並檢查權限
+        currentUserEmail = user.email;
+        hasInventoryPermission = INVENTORY_PERMISSION_USERS.includes(user.email);
+        
+        console.log(`👤 使用者: ${user.email}`);
+        console.log(`🔐 庫存權限: ${hasInventoryPermission ? '✅ 有' : '❌ 無'}`);
+        
+        // 🆕 初始化介面（顯示/隱藏庫存欄位）
+        initializeInventoryUI();
+        
+        // 登入後載入資料
         if (window.loadDefaultCSV) {
-          window.loadDefaultCSV();
+          window.loadDefaultCSV().then(() => {
+            // 只有有權限的使用者才載入庫存
+            if (hasInventoryPermission) {
+              window.loadInventory();
+            } else {
+              console.log('⚠️ 此帳號無庫存查看權限');
+            }
+          });
         }
       } else {
         document.getElementById('loginPage').style.display = 'block';
@@ -1069,10 +1145,45 @@
 
     document.getElementById('logoutBtn').addEventListener('click', async () => {
       try {
+        // 顯示登出中狀態
+        const btn = document.getElementById('logoutBtn');
+        const originalText = btn.textContent;
+        btn.textContent = '登出中...';
+        btn.disabled = true;
+        
+        // 🔧 完整登出流程
+        // 1. Firebase 登出
         await signOut(auth);
-        console.log('已登出');
+        
+        // 2. 清除本地資料
+        currentUserEmail = '';
+        hasInventoryPermission = false;
+        inventoryData = {};
+        storeInfo = {};
+        originalData = [];
+        
+        // 3. 清除快取的認證資訊（如果有的話）
+        if (window.sessionStorage) {
+          sessionStorage.clear();
+        }
+        if (window.localStorage) {
+          // 只清除 Firebase 相關的 localStorage
+          const firebaseKeys = Object.keys(localStorage).filter(key => 
+            key.startsWith('firebase:')
+          );
+          firebaseKeys.forEach(key => localStorage.removeItem(key));
+        }
+        
+        console.log('✅ 已完整登出');
+        
+        // 4. 重新載入頁面以完全清除狀態
+        setTimeout(() => {
+          window.location.reload();
+        }, 500);
+        
       } catch (error) {
-        console.error('登出錯誤:', error);
+        console.error('❌ 登出錯誤:', error);
+        alert('登出時發生錯誤，請重新整理頁面');
       }
     });
 
@@ -1087,6 +1198,16 @@
     let allSubcategories = new Set();
     let activeQuickFilter = null;
     let activeQuickSubcategory = null;
+    let inventoryData = {}; // 🆕 儲存庫存資料
+    let storeInfo = {}; // 🆕 店別資訊
+    let selectedStore = '75'; // 🆕 當前選擇的店別（預設：75店）
+    let currentUserEmail = ''; // 🆕 當前使用者 email
+    let hasInventoryPermission = false; // 🆕 是否有庫存查看權限
+    
+    // 🆕 有庫存查看權限的使用者清單
+    const INVENTORY_PERMISSION_USERS = [
+      'morio.chang@istore.com.tw'
+    ];
 
     function showPage(pageName) {
       document.querySelectorAll('.page').forEach(page => {
@@ -1410,34 +1531,198 @@
       updateFilterInfo();
     }
 
+    // 🆕 渲染表格（含庫存）
     function renderTable(filteredData) {
       const tbody = document.querySelector('#resultTable tbody');
       tbody.innerHTML = '';
       
+      // 🆕 根據權限決定 colspan（有權限時多兩欄：總庫存 + 店別庫存）
+      const colspanCount = hasInventoryPermission ? 9 : 7;
+      
       if (filteredData.length === 0) {
-        tbody.innerHTML = '<tr><td colspan="7" class="no-results">沒有符合的資料</td></tr>';
+        tbody.innerHTML = `<tr><td colspan="${colspanCount}" class="no-results">沒有符合的資料</td></tr>`;
         return;
       }
 
       filteredData.forEach(row => {
+        const code = row[columnMapping['Code']] || '';
+        
+        // 🆕 只有有權限的使用者才處理庫存
+        let totalStockHtml = '';
+        let stockHtml = '';
+        
+        if (hasInventoryPermission) {
+          const productInventory = inventoryData[code];
+          
+          // 計算總庫存
+          let totalStock = 0;
+          if (productInventory) {
+            totalStock = productInventory.total || 0;
+          }
+          
+          // 顯示總庫存
+          totalStockHtml = '<span class="stock-unknown">-</span>';
+          if (totalStock === 0 && productInventory) {
+            totalStockHtml = '<span class="stock-out">0</span>';
+          } else if (totalStock > 0 && totalStock <= 5) {
+            totalStockHtml = `<span class="stock-low">${totalStock}</span>`;
+          } else if (totalStock > 5) {
+            totalStockHtml = `<span class="stock-available">${totalStock}</span>`;
+          }
+          
+          // 🆕 根據選擇的店別取得庫存數量
+          let stock = 0;
+          if (productInventory) {
+            if (selectedStore === 'total') {
+              // 顯示總庫存（與總庫存欄位相同）
+              stock = productInventory.total || 0;
+            } else {
+              // 顯示特定店別的庫存
+              stock = productInventory.stores?.[selectedStore] || 0;
+            }
+          }
+          
+          // 決定店別庫存顯示
+          stockHtml = '<span class="stock-unknown">-</span>';
+          if (stock === 0 && productInventory) {
+            stockHtml = '<span class="stock-out">0</span>';
+          } else if (stock > 0 && stock <= 5) {
+            stockHtml = `<span class="stock-low">${stock}</span>`;
+          } else if (stock > 5) {
+            stockHtml = `<span class="stock-available">${stock}</span>`;
+          }
+        }
+        
         const tr = document.createElement('tr');
-        tr.innerHTML = `
-          <td>${row[columnMapping['manufacture_style']] || ''}</td>
-          <td>${row[columnMapping['Code']] || ''}</td>
-          <td>${row[columnMapping['product_name']] || ''}</td>
-          <td>${row[columnMapping['大分類']] || ''}</td>
-          <td>${row[columnMapping['中分類']] || ''}</td>
-          <td>${row[columnMapping['小分類']] || ''}</td>
-          <td>${row[columnMapping['Remark']] || ''}</td>
-        `;
+        
+        // 🆕 根據權限決定是否顯示庫存欄位
+        if (hasInventoryPermission) {
+          tr.innerHTML = `
+            <td>${row[columnMapping['manufacture_style']] || ''}</td>
+            <td>${code}</td>
+            <td>${row[columnMapping['product_name']] || ''}</td>
+            <td>${row[columnMapping['大分類']] || ''}</td>
+            <td>${row[columnMapping['中分類']] || ''}</td>
+            <td>${row[columnMapping['小分類']] || ''}</td>
+            <td class="stock-cell">${totalStockHtml}</td>
+            <td class="stock-cell">${stockHtml}</td>
+            <td>${row[columnMapping['Remark']] || ''}</td>
+          `;
+        } else {
+          tr.innerHTML = `
+            <td>${row[columnMapping['manufacture_style']] || ''}</td>
+            <td>${code}</td>
+            <td>${row[columnMapping['product_name']] || ''}</td>
+            <td>${row[columnMapping['大分類']] || ''}</td>
+            <td>${row[columnMapping['中分類']] || ''}</td>
+            <td>${row[columnMapping['小分類']] || ''}</td>
+            <td>${row[columnMapping['Remark']] || ''}</td>
+          `;
+        }
+        
         tbody.appendChild(tr);
       });
     }
 
+    // 🆕 根據權限初始化介面
+    function initializeInventoryUI() {
+      const totalStockHeader = document.getElementById('totalStockHeader');
+      const stockHeader = document.getElementById('stockHeader');
+      const inventoryStatus = document.getElementById('inventoryStatus');
+      
+      if (hasInventoryPermission) {
+        // 顯示庫存欄位
+        if (totalStockHeader) totalStockHeader.style.display = '';
+        if (stockHeader) stockHeader.style.display = '';
+        console.log('✅ 庫存欄位已啟用');
+      } else {
+        // 隱藏庫存欄位
+        if (totalStockHeader) totalStockHeader.style.display = 'none';
+        if (stockHeader) stockHeader.style.display = 'none';
+        if (inventoryStatus) inventoryStatus.style.display = 'none';
+        console.log('⚠️ 庫存欄位已隱藏');
+      }
+    }
+
+    // 🆕 載入庫存資料
+    async function loadInventory() {
+      try {
+        console.log('🔄 開始載入庫存資料...');
+        const response = await fetch('inventory.json?v=' + new Date().getTime());
+        
+        if (!response.ok) {
+          console.log('⚠️ 找不到 inventory.json，將顯示無庫存');
+          return;
+        }
+        
+        const data = await response.json();
+        inventoryData = data.inventory || {};
+        storeInfo = data.storeInfo || {};
+        
+        console.log(`✅ 庫存資料載入成功！`);
+        console.log(`   產品數: ${Object.keys(inventoryData).length}`);
+        console.log(`   店別數: ${Object.keys(storeInfo).length}`);
+        console.log(`   最後更新: ${data.lastUpdate}`);
+        
+        // 🆕 初始化店別選單
+        initializeStoreSelector();
+        
+        // 顯示庫存狀態
+        const statusDiv = document.getElementById('inventoryStatus');
+        const updateTimeSpan = document.getElementById('inventoryUpdateTime');
+        if (updateTimeSpan) updateTimeSpan.textContent = `(${data.lastUpdate})`;
+        if (statusDiv) statusDiv.classList.add('loaded');
+        
+        // 重新渲染表格
+        if (originalData.length > 0) {
+          applyFilters();
+        }
+        
+      } catch (error) {
+        console.error('❌ 載入庫存失敗:', error);
+      }
+    }
+
+    // 🆕 初始化店別選單
+    function initializeStoreSelector() {
+      const selector = document.getElementById('storeSelector');
+      if (!selector) return;
+      
+      // 清空並重新填充選項
+      selector.innerHTML = '<option value="total">總庫存</option>';
+      
+      // 按店別代碼排序
+      const sortedStores = Object.keys(storeInfo).sort((a, b) => parseInt(a) - parseInt(b));
+      
+      sortedStores.forEach(storeId => {
+        const option = document.createElement('option');
+        option.value = storeId;
+        option.textContent = storeId; // 只顯示店別代號
+        
+        // 預設選擇 75
+        if (storeId === '75') {
+          option.selected = true;
+        }
+        
+        selector.appendChild(option);
+      });
+      
+      // 監聽選擇變化
+      selector.addEventListener('change', function() {
+        selectedStore = this.value;
+        console.log(`📍 切換到: ${selectedStore === 'total' ? '總庫存' : '店別 ' + selectedStore}`);
+        applyFilters(); // 重新渲染表格
+      });
+      
+      console.log(`✅ 店別選單已初始化 (${sortedStores.length} 個店別)`);
+      console.log(`📍 預設顯示: 店別 ${selectedStore}`);
+    }
+
+    // 載入產品資料
     async function loadDefaultCSV() {
       try {
         hideMessages();
-        const response = await fetch('data.csv?v=' + new Date().getTime())
+        const response = await fetch('data.csv?v=' + new Date().getTime());
         
         if (!response.ok) {
           throw new Error(`HTTP ${response.status}: 無法載入 data.csv`);
@@ -1539,7 +1824,9 @@
       });
     }
 
+    // 🆕 設為全域函式，供 Firebase 登入後呼叫
     window.loadDefaultCSV = loadDefaultCSV;
+    window.loadInventory = loadInventory;
     
     if (document.readyState === 'loading') {
       document.addEventListener('DOMContentLoaded', initializeEventListeners);
