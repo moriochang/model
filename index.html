@@ -796,6 +796,18 @@
       font-weight: 400 !important;
     }
 
+    .lowstock-stock-cell.clickable {
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-weight: 600;
+    }
+
+    .lowstock-stock-cell.clickable:hover {
+      background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+      color: #1e40af;
+      transform: scale(1.05);
+    }
+
     .lowstock-ratio {
       display: inline-block;
       padding: 4px 12px;
@@ -2706,13 +2718,17 @@
         // 顯示標準庫存（安全庫存量）
         const standardDisplay = item.standardStock.toFixed(1);
         
+        // 🆕 判斷是否為 administrator 或 manager（可以點擊查看詳細庫存）
+        const canViewDetails = (userRole === 'administrator' || userRole === 'manager');
+        const stockCellClass = canViewDetails ? 'lowstock-stock-cell clickable' : 'lowstock-stock-cell';
+        
         tr.innerHTML = `
           <td class="lowstock-category">${item.category}</td>
           <td class="lowstock-model">${item.model}</td>
           <td class="lowstock-code">${item.code}</td>
           <td>${item.name}</td>
-          <td>${item.totalStock}</td>
-          <td>${stockDisplay}</td>
+          <td class="${stockCellClass}" data-code="${item.code}">${item.totalStock}</td>
+          <td class="${stockCellClass}" data-code="${item.code}">${stockDisplay}</td>
           <td>
             <span class="lowstock-ratio ${ratioClass}">${ratioPercent}%</span>
             <div style="font-size: 10px; color: #64748b; margin-top: 2px;">
@@ -2722,6 +2738,19 @@
         `;
         
         tbody.appendChild(tr);
+        
+        // 🆕 為 administrator 和 manager 添加點擊事件
+        if (canViewDetails) {
+          const stockCells = tr.querySelectorAll('.lowstock-stock-cell.clickable');
+          const productData = originalData.find(row => row[columnMapping['Code']] === item.code);
+          
+          stockCells.forEach(cell => {
+            cell.addEventListener('click', function() {
+              const productCode = this.getAttribute('data-code');
+              showInventoryModal(productCode, productData);
+            });
+          });
+        }
       });
     }
 
