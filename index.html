@@ -1907,12 +1907,18 @@
                   <th>產品名稱</th>
                   <th>總庫存</th>
                   <th>庫存</th>
-                  <th>庫存配置達成率<br><span style="font-size: 11px; font-weight: 400;">(現有庫存 / 最低庫存配置量)</span></th>
+                  <th style="cursor: pointer;" id="sortRatioHeader">
+                    庫存配置達成率
+                    <span id="sortRatioIcon" style="margin-left: 4px; font-size: 12px;">⇅</span>
+                    <br>
+                    <span style="font-size: 11px; font-weight: 400;">(現有庫存 / 最低庫存配置量)</span>
+                  </th>
+                  <th>建議轉貨門市</th>
                 </tr>
               </thead>
               <tbody id="lowstockTableBody">
                 <tr>
-                  <td colspan="7" class="loading">
+                  <td colspan="8" class="loading">
                     <div class="spinner"></div>
                     載入中...
                   </td>
@@ -2517,6 +2523,8 @@
 
     // 🆕 低庫存警報功能
     let activeLowStockCategory = 'all'; // 當前選擇的大分類
+    let lowStockSortOrder = 'none'; // 排序狀態：'none', 'asc', 'desc'
+    let currentLowStockItems = []; // 儲存當前的低庫存資料
 
     function initializeLowStockAlert() {
       // 🆕 權限檢查：只有有庫存權限的使用者才能使用
@@ -2661,11 +2669,29 @@
       
       console.log(`✅ 找到 ${lowStockItems.length} 個低庫存商品`);
       
+      // 🆕 儲存當前資料
+      currentLowStockItems = lowStockItems;
+      
+      // 🆕 應用排序
+      applySortToLowStockItems();
+      
       // 更新摘要
-      updateLowStockSummary(lowStockItems, storeFilter);
+      updateLowStockSummary(currentLowStockItems, storeFilter);
       
       // 渲染表格
-      renderLowStockTable(lowStockItems);
+      renderLowStockTable(currentLowStockItems);
+    }
+
+    // 🆕 應用排序到低庫存資料
+    function applySortToLowStockItems() {
+      if (lowStockSortOrder === 'asc') {
+        // 升序：達成率由低到高
+        currentLowStockItems.sort((a, b) => a.achievementRatio - b.achievementRatio);
+      } else if (lowStockSortOrder === 'desc') {
+        // 降序：達成率由高到低
+        currentLowStockItems.sort((a, b) => b.achievementRatio - a.achievementRatio);
+      }
+      // 'none' 時不排序，保持原始順序
     }
 
     function updateLowStockSummary(items, storeFilter) {
@@ -2715,8 +2741,88 @@
         // 庫存為 0 時顯示「缺貨」
         const stockDisplay = item.storeStock === 0 ? '<span style="color: #dc2626; font-weight: 700;">缺貨</span>' : item.storeStock;
         
-        // 顯示標準庫存（安全庫存量）
+        // 顯示標準庫存（最低庫存配置量）
         const standardDisplay = item.standardStock.toFixed(1);
+        
+        // 🆕 計算建議轉貨門市
+        const suggestedStores = [];
+        const productInventory = inventoryData[item.code];
+        
+        if (productInventory && productInventory.stores) {
+          // 遍歷所有門市，找出庫存 > 該門市的最低庫存配置量的門市
+          for (const [storeId, storeStock] of Object.entries(productInventory.stores)) {
+            // 計算該門市的最低庫存配置量
+            const storeStandardStock = item.totalStock * parseFloat(document.getElementById('lowstockThreshold').value);
+            
+            // 如果該門市庫存 > 最低庫存配置量，且不是當前缺貨的門市
+            if (storeStock > storeStandardStock && storeId !== item.storeId) {
+              suggestedStores.push({
+                id: storeId,
+                stock: storeStock
+              });
+            }
+          }
+        }
+        
+        // 🆕 優先級排序：880, 820, 821 優先，其餘按庫存由高到低
+        const priorityStores = ['880', '820', '821'];
+        suggestedStores.sort((a, b) => {
+          const aPriority = priorityStores.indexOf(a.id);
+          const bPriority = priorityStores.indexOf(b.id);
+          
+          // 如果都是優先門市，按優先級排序
+          if (aPriority !== -1 && bPriority !== -1) {
+            return aPriority - bPriority;
+          }
+          // 如果 a 是優先門市，a 排前面
+          if (aPriority !== -1) return -1;
+          // 如果 b 是優先門市，b 排前面
+          if (bPriority !== -1) return 1;
+          // 都不是優先門市，按庫存由高到低排序
+          return b.stock - a.stock;
+        });
+        
+        // 🆕 建立建議轉貨門市顯示內容（最多顯示5家，其餘可展開）
+        let suggestedStoresHtml = '';
+        if (suggestedStores.length > 0) {
+          const visibleStores = suggestedStores.slice(0, 5);
+          const hiddenStores = suggestedStores.slice(5);
+          
+          // 顯示前5家
+          suggestedStoresHtml = visibleStores.map(store => 
+            `<div style="display: inline-block; margin: 2px 4px; padding: 4px 8px; background: #f0fdf4; border: 1px solid #86efac; border-radius: 6px; font-size: 11px;">
+              <span style="font-weight: 600; color: #166534;">${store.id}</span>
+              <span style="color: #16a34a; margin-left: 4px;">(${store.stock})</span>
+            </div>`
+          ).join('');
+          
+          // 如果有超過5家，添加展開按鈕
+          if (hiddenStores.length > 0) {
+            const hiddenStoresHtml = hiddenStores.map(store => 
+              `<div style="display: inline-block; margin: 2px 4px; padding: 4px 8px; background: #f0fdf4; border: 1px solid #86efac; border-radius: 6px; font-size: 11px;">
+                <span style="font-weight: 600; color: #166534;">${store.id}</span>
+                <span style="color: #16a34a; margin-left: 4px;">(${store.stock})</span>
+              </div>`
+            ).join('');
+            
+            const uniqueId = 'stores-' + item.code + '-' + item.storeId;
+            suggestedStoresHtml = `
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <div style="flex: 1;">
+                  ${suggestedStoresHtml}
+                  <div id="${uniqueId}" style="display: none;">
+                    ${hiddenStoresHtml}
+                  </div>
+                </div>
+                <button class="expand-stores-btn" data-target="${uniqueId}" style="flex-shrink: 0; padding: 4px 8px; background: #dbeafe; border: 1px solid #60a5fa; border-radius: 6px; font-size: 11px; color: #1e40af; cursor: pointer; font-weight: 600;">
+                  +${hiddenStores.length}
+                </button>
+              </div>
+            `;
+          }
+        } else {
+          suggestedStoresHtml = '<span style="color: #94a3b8; font-size: 11px;">無可轉貨門市</span>';
+        }
         
         // 🆕 判斷是否為 administrator 或 manager（可以點擊查看詳細庫存）
         const canViewDetails = (userRole === 'administrator' || userRole === 'manager');
@@ -2735,6 +2841,7 @@
               ${item.storeStock} / ${standardDisplay} 台
             </div>
           </td>
+          <td style="padding: 8px;">${suggestedStoresHtml}</td>
         `;
         
         tbody.appendChild(tr);
@@ -2751,6 +2858,29 @@
             });
           });
         }
+      });
+      
+      // 🆕 為展開按鈕添加事件監聽器
+      document.querySelectorAll('.expand-stores-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+          const targetId = this.getAttribute('data-target');
+          const targetDiv = document.getElementById(targetId);
+          
+          if (targetDiv.style.display === 'none') {
+            targetDiv.style.display = 'inline';
+            this.innerHTML = '▲';
+            this.style.background = '#fee2e2';
+            this.style.borderColor = '#fca5a5';
+            this.style.color = '#dc2626';
+          } else {
+            targetDiv.style.display = 'none';
+            const hiddenCount = targetDiv.querySelectorAll('div').length;
+            this.innerHTML = `+${hiddenCount}`;
+            this.style.background = '#dbeafe';
+            this.style.borderColor = '#60a5fa';
+            this.style.color = '#1e40af';
+          }
+        });
       });
     }
 
@@ -3336,6 +3466,32 @@
       const lowstockExportCSV = document.getElementById('lowstockExportCSV');
       if (lowstockExportCSV) {
         lowstockExportCSV.addEventListener('click', exportLowStockCSV);
+      }
+
+      // 🆕 排序按鈕
+      const sortRatioHeader = document.getElementById('sortRatioHeader');
+      const sortRatioIcon = document.getElementById('sortRatioIcon');
+      if (sortRatioHeader && sortRatioIcon) {
+        sortRatioHeader.addEventListener('click', function() {
+          // 切換排序狀態：none -> asc -> desc -> none
+          if (lowStockSortOrder === 'none') {
+            lowStockSortOrder = 'asc';
+            sortRatioIcon.textContent = '↑';
+            sortRatioIcon.style.color = '#3b82f6';
+          } else if (lowStockSortOrder === 'asc') {
+            lowStockSortOrder = 'desc';
+            sortRatioIcon.textContent = '↓';
+            sortRatioIcon.style.color = '#3b82f6';
+          } else {
+            lowStockSortOrder = 'none';
+            sortRatioIcon.textContent = '⇅';
+            sortRatioIcon.style.color = '';
+          }
+          
+          // 應用排序並重新渲染
+          applySortToLowStockItems();
+          renderLowStockTable(currentLowStockItems);
+        });
       }
 
       // 🆕 大分類快速篩選按鈕
