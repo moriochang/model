@@ -2107,6 +2107,7 @@
   <script>
     let data = [];
     let originalData = [];
+    let productDataMap = new Map(); // 🆕 產品資料快速查找表（Code -> 產品資料）
     let columnMapping = {};
     let allCategories = new Set();
     let allSubcategories = new Set();
@@ -2601,8 +2602,8 @@
         // 計算單店標準庫存 = 總庫存 × 閾值%
         const standardStock = totalStock * threshold;
         
-        // 找出對應的產品資料（從 data.csv）
-        const productData = originalData.find(row => row[columnMapping['Code']] === code);
+        // 🆕 使用 Map 快速查找產品資料（取代 find）
+        const productData = productDataMap.get(code);
         if (!productData) continue;
         
         const category = productData[columnMapping['大分類']] || '';
@@ -2724,6 +2725,9 @@
       
       tbody.innerHTML = '';
       
+      // 🆕 預先計算閾值，避免在循環中重複讀取 DOM
+      const threshold = parseFloat(document.getElementById('lowstockThreshold').value);
+      
       items.forEach(item => {
         const tr = document.createElement('tr');
         
@@ -2749,11 +2753,11 @@
         const productInventory = inventoryData[item.code];
         
         if (productInventory && productInventory.stores) {
+          // 🆕 預先計算最低庫存配置量（避免在循環中重複計算）
+          const storeStandardStock = item.totalStock * threshold;
+          
           // 遍歷所有門市，找出庫存 > 該門市的最低庫存配置量的門市
           for (const [storeId, storeStock] of Object.entries(productInventory.stores)) {
-            // 計算該門市的最低庫存配置量
-            const storeStandardStock = item.totalStock * parseFloat(document.getElementById('lowstockThreshold').value);
-            
             // 如果該門市庫存 > 最低庫存配置量，且不是當前缺貨的門市
             if (storeStock > storeStandardStock && storeId !== item.storeId) {
               suggestedStores.push({
@@ -2849,7 +2853,7 @@
         // 🆕 為 administrator 和 manager 添加點擊事件
         if (canViewDetails) {
           const stockCells = tr.querySelectorAll('.lowstock-stock-cell.clickable');
-          const productData = originalData.find(row => row[columnMapping['Code']] === item.code);
+          const productData = productDataMap.get(item.code);
           
           stockCells.forEach(cell => {
             cell.addEventListener('click', function() {
@@ -2898,7 +2902,7 @@
         if (totalStock < 19) continue;
         
         const standardStock = totalStock * threshold;
-        const productData = originalData.find(row => row[columnMapping['Code']] === code);
+        const productData = productDataMap.get(code);
         if (!productData) continue;
         
         const category = productData[columnMapping['大分類']] || '';
@@ -3257,6 +3261,16 @@
           showError('data.csv 檔案是空的');
           return;
         }
+
+        // 🆕 建立產品資料快速查找表
+        productDataMap.clear();
+        originalData.forEach(row => {
+          const code = row[columnMapping['Code']] || row['Code'];
+          if (code) {
+            productDataMap.set(code, row);
+          }
+        });
+        console.log(`✅ 建立產品查找表，共 ${productDataMap.size} 個產品`);
 
         const headers = Object.keys(originalData[0]);
         const mappingSuccess = createColumnMapping(headers);
