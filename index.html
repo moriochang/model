@@ -2895,6 +2895,15 @@
       
       const lowStockItems = [];
       
+      // 🆕 定義固定的門市順序（所有 23 家門市）
+      const fixedStoreOrder = [
+        '880', '820', '821', '830',  // 線上EC
+        '45', '47', '48', '51', '57', '61', '65',  // 北一、北二區
+        '75', '76', '77', '81', '84',  // 中區
+        '86', '88', '89', '97',  // 台南、高雄區
+        '115', '116', '117'  // 其他
+      ];
+      
       // 重新計算低庫存資料（與 loadLowStockData 相同邏輯）
       for (const [code, product] of Object.entries(inventoryData)) {
         const totalStock = product.total || 0;
@@ -2915,29 +2924,15 @@
             if (storeStock < standardStock) {
               const achievementRatio = storeStock / standardStock;
               
-              // 🆕 計算建議轉貨門市
-              const suggestedStores = [];
+              // 🆕 計算建議轉貨門市（使用 Map 以門市 ID 為 key）
+              const suggestedStoresMap = new Map();
               const storeStandardStock = totalStock * threshold;
               
               for (const [sid, sstock] of Object.entries(product.stores || {})) {
                 if (sstock > storeStandardStock && sid !== storeId) {
-                  suggestedStores.push({
-                    id: sid,
-                    stock: sstock
-                  });
+                  suggestedStoresMap.set(sid, sstock);
                 }
               }
-              
-              // 排序：880, 820, 821 優先
-              const priorityStores = ['880', '820', '821'];
-              suggestedStores.sort((a, b) => {
-                const aPriority = priorityStores.indexOf(a.id);
-                const bPriority = priorityStores.indexOf(b.id);
-                if (aPriority !== -1 && bPriority !== -1) return aPriority - bPriority;
-                if (aPriority !== -1) return -1;
-                if (bPriority !== -1) return 1;
-                return b.stock - a.stock;
-              });
               
               lowStockItems.push({
                 storeId: storeId,
@@ -2950,7 +2945,7 @@
                 storeStock: storeStock,
                 standardStock: standardStock,
                 achievementRatio: achievementRatio,
-                suggestedStores: suggestedStores
+                suggestedStoresMap: suggestedStoresMap
               });
             }
           }
@@ -2959,29 +2954,15 @@
           if (storeStock < standardStock) {
             const achievementRatio = storeStock / standardStock;
             
-            // 🆕 計算建議轉貨門市
-            const suggestedStores = [];
+            // 🆕 計算建議轉貨門市（使用 Map 以門市 ID 為 key）
+            const suggestedStoresMap = new Map();
             const storeStandardStock = totalStock * threshold;
             
             for (const [sid, sstock] of Object.entries(product.stores || {})) {
               if (sstock > storeStandardStock && sid !== storeFilter) {
-                suggestedStores.push({
-                  id: sid,
-                  stock: sstock
-                });
+                suggestedStoresMap.set(sid, sstock);
               }
             }
-            
-            // 排序：880, 820, 821 優先
-            const priorityStores = ['880', '820', '821'];
-            suggestedStores.sort((a, b) => {
-              const aPriority = priorityStores.indexOf(a.id);
-              const bPriority = priorityStores.indexOf(b.id);
-              if (aPriority !== -1 && bPriority !== -1) return aPriority - bPriority;
-              if (aPriority !== -1) return -1;
-              if (bPriority !== -1) return 1;
-              return b.stock - a.stock;
-            });
             
             lowStockItems.push({
               storeId: storeFilter,
@@ -2994,7 +2975,7 @@
               storeStock: storeStock,
               standardStock: standardStock,
               achievementRatio: achievementRatio,
-              suggestedStores: suggestedStores
+              suggestedStoresMap: suggestedStoresMap
             });
           }
         }
@@ -3005,17 +2986,14 @@
         return;
       }
       
-      // 🆕 找出最大建議轉貨門市數量
-      const maxSuggestedStores = Math.max(...lowStockItems.map(item => item.suggestedStores.length));
-      
       // 建立 CSV 內容（UTF-8 BOM）
       let csvContent = '\uFEFF'; // UTF-8 BOM
       
-      // 🆕 CSV 標題（動態生成建議轉貨門市欄位）
+      // 🆕 CSV 標題（固定門市欄位）
       csvContent += '門市,門市名稱,大分類,型號,Code,產品名稱,總庫存,現有庫存,最低庫存配置量,庫存配置達成率';
-      for (let i = 0; i < maxSuggestedStores; i++) {
-        csvContent += ',建議轉貨門市,門市庫存';
-      }
+      fixedStoreOrder.forEach(storeId => {
+        csvContent += `,${storeId},庫存`;
+      });
       csvContent += '\n';
       
       // CSV 資料
@@ -3034,14 +3012,16 @@
         csvContent += `${standardDisplay},`;
         csvContent += `${ratioPercent}%`;
         
-        // 🆕 加入建議轉貨門市（橫向展開）
-        for (let i = 0; i < maxSuggestedStores; i++) {
-          if (i < item.suggestedStores.length) {
-            csvContent += `,${item.suggestedStores[i].id},${item.suggestedStores[i].stock}`;
+        // 🆕 按固定門市順序加入庫存資料
+        fixedStoreOrder.forEach(storeId => {
+          if (item.suggestedStoresMap.has(storeId)) {
+            // 該門市有建議轉貨庫存
+            csvContent += `,${storeId},${item.suggestedStoresMap.get(storeId)}`;
           } else {
-            csvContent += ',,'; // 空白欄位
+            // 該門市沒有建議轉貨庫存，留空
+            csvContent += ',,';
           }
-        }
+        });
         
         csvContent += '\n';
       });
