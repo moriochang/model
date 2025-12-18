@@ -2914,6 +2914,31 @@
           for (const [storeId, storeStock] of Object.entries(product.stores || {})) {
             if (storeStock < standardStock) {
               const achievementRatio = storeStock / standardStock;
+              
+              // 🆕 計算建議轉貨門市
+              const suggestedStores = [];
+              const storeStandardStock = totalStock * threshold;
+              
+              for (const [sid, sstock] of Object.entries(product.stores || {})) {
+                if (sstock > storeStandardStock && sid !== storeId) {
+                  suggestedStores.push({
+                    id: sid,
+                    stock: sstock
+                  });
+                }
+              }
+              
+              // 排序：880, 820, 821 優先
+              const priorityStores = ['880', '820', '821'];
+              suggestedStores.sort((a, b) => {
+                const aPriority = priorityStores.indexOf(a.id);
+                const bPriority = priorityStores.indexOf(b.id);
+                if (aPriority !== -1 && bPriority !== -1) return aPriority - bPriority;
+                if (aPriority !== -1) return -1;
+                if (bPriority !== -1) return 1;
+                return b.stock - a.stock;
+              });
+              
               lowStockItems.push({
                 storeId: storeId,
                 storeName: storeInfo[storeId] || storeId,
@@ -2924,7 +2949,8 @@
                 totalStock: totalStock,
                 storeStock: storeStock,
                 standardStock: standardStock,
-                achievementRatio: achievementRatio
+                achievementRatio: achievementRatio,
+                suggestedStores: suggestedStores
               });
             }
           }
@@ -2932,6 +2958,31 @@
           const storeStock = product.stores?.[storeFilter] || 0;
           if (storeStock < standardStock) {
             const achievementRatio = storeStock / standardStock;
+            
+            // 🆕 計算建議轉貨門市
+            const suggestedStores = [];
+            const storeStandardStock = totalStock * threshold;
+            
+            for (const [sid, sstock] of Object.entries(product.stores || {})) {
+              if (sstock > storeStandardStock && sid !== storeFilter) {
+                suggestedStores.push({
+                  id: sid,
+                  stock: sstock
+                });
+              }
+            }
+            
+            // 排序：880, 820, 821 優先
+            const priorityStores = ['880', '820', '821'];
+            suggestedStores.sort((a, b) => {
+              const aPriority = priorityStores.indexOf(a.id);
+              const bPriority = priorityStores.indexOf(b.id);
+              if (aPriority !== -1 && bPriority !== -1) return aPriority - bPriority;
+              if (aPriority !== -1) return -1;
+              if (bPriority !== -1) return 1;
+              return b.stock - a.stock;
+            });
+            
             lowStockItems.push({
               storeId: storeFilter,
               storeName: storeInfo[storeFilter] || storeFilter,
@@ -2942,7 +2993,8 @@
               totalStock: totalStock,
               storeStock: storeStock,
               standardStock: standardStock,
-              achievementRatio: achievementRatio
+              achievementRatio: achievementRatio,
+              suggestedStores: suggestedStores
             });
           }
         }
@@ -2953,11 +3005,18 @@
         return;
       }
       
+      // 🆕 找出最大建議轉貨門市數量
+      const maxSuggestedStores = Math.max(...lowStockItems.map(item => item.suggestedStores.length));
+      
       // 建立 CSV 內容（UTF-8 BOM）
       let csvContent = '\uFEFF'; // UTF-8 BOM
       
-      // CSV 標題
-      csvContent += '門市,門市名稱,大分類,型號,Code,產品名稱,總庫存,現有庫存,最低庫存配置量,庫存配置達成率\n';
+      // 🆕 CSV 標題（動態生成建議轉貨門市欄位）
+      csvContent += '門市,門市名稱,大分類,型號,Code,產品名稱,總庫存,現有庫存,最低庫存配置量,庫存配置達成率';
+      for (let i = 0; i < maxSuggestedStores; i++) {
+        csvContent += ',建議轉貨門市,門市庫存';
+      }
+      csvContent += '\n';
       
       // CSV 資料
       lowStockItems.forEach(item => {
@@ -2973,7 +3032,18 @@
         csvContent += `${item.totalStock},`;
         csvContent += `${item.storeStock},`;
         csvContent += `${standardDisplay},`;
-        csvContent += `${ratioPercent}%\n`;
+        csvContent += `${ratioPercent}%`;
+        
+        // 🆕 加入建議轉貨門市（橫向展開）
+        for (let i = 0; i < maxSuggestedStores; i++) {
+          if (i < item.suggestedStores.length) {
+            csvContent += `,${item.suggestedStores[i].id},${item.suggestedStores[i].stock}`;
+          } else {
+            csvContent += ',,'; // 空白欄位
+          }
+        }
+        
+        csvContent += '\n';
       });
       
       // 建立下載連結
