@@ -704,12 +704,12 @@ S6446ZM/A,0013007618,AC+ for HomePod S6446,Care,ACPP+,HomePod ACPP+,1400
 2000130096810,0013009681,[i]Care iPhone 兩年期_6197,Care,iCPP,[i]Care iPhone XS-17PM 兩年期_6197,0
 2000130096827,0013009682,[i]Care iPad M/A 一年期_1590,Care,iCPP,[i]Care iPad Mini/Air 一年期_1590,0
 2000130096834,0013009683,[i]Care iPad M/A/A16 兩年_2118,Care,iCPP,[i]Care iPad Mini/Air/A16 兩年期_2118,0
-2000130096841 ,0013009684,[i]Care EOL iPad Pro 一年_2590,Care,iCPP,[i]Care EOL iPad Pro 一年期_2590,0
-2000130096858 ,0013009685,[i]Care EOL iPad Pro 兩年_3960,Care,iCPP,[i]Care EOL iPad Pro 兩年期_3960,0
-2000130096865 ,0013009686,[i]Care AW S11 一年期_1690,Care,iCPP,[i]Care AW S4-S11 一年期_1690,0
-2000130096872 ,0013009687,[i]Care AW S11 兩年期_2536,Care,iCPP,[i]Care AW S4-S11 兩年期_2536,0
-2000130096889 ,0013009688,[i]Care AirPods 一年期_790,Care,iCPP,[i]Care AirPods 2/3/Pro 一年期_790,0
-2000130096896 ,0013009689,[i]Care AirPods 兩年期_990,Care,iCPP,[i]Care AirPods 2/3/Pro 兩年期_990,0
+2.00013E+12,0013009684,[i]Care EOL iPad Pro 一年_2590,Care,iCPP,[i]Care EOL iPad Pro 一年期_2590,0
+2.00013E+12,0013009685,[i]Care EOL iPad Pro 兩年_3960,Care,iCPP,[i]Care EOL iPad Pro 兩年期_3960,0
+2.00013E+12,0013009686,[i]Care AW S11 一年期_1690,Care,iCPP,[i]Care AW S4-S11 一年期_1690,0
+2.00013E+12,0013009687,[i]Care AW S11 兩年期_2536,Care,iCPP,[i]Care AW S4-S11 兩年期_2536,0
+2.00013E+12,0013009688,[i]Care AirPods 一年期_790,Care,iCPP,[i]Care AirPods 2/3/Pro 一年期_790,0
+2.00013E+12,0013009689,[i]Care AirPods 兩年期_990,Care,iCPP,[i]Care AirPods 2/3/Pro 兩年期_990,0
 2000130096902,0013009690,[i]Care MBA 一年期_4350,Care,iCPP,[i]Care MBA 一年期_4350,0
 2000130096919,0013009691,[i]Care M MBP 14 一年期_5090,Care,iCPP,[i]Care M1-M3 MBP 14 一年期_5090,0
 2000130096926,0013009692,[i]Care M MBP 16 一年期_6990,Care,iCPP,[i]Care M1-M3 MBP 16 一年期_6990,0
@@ -796,7 +796,7 @@ SEL02ZX/A,0013020823,AC+ for Studio Display SEL02,Care,ACPP+,Studio Display ACPP
 2000130209234,0013020923,[i]Care iPad Air 5 續保_1890,Care,iCPP,[i]Care iPad Air 5 續保一年期_1890,0
 SF8C2ZX/A,0013021306,AC+ for MBA 13 M2 SF8C2,Care,ACPP+,13 MacBook Air ACPP+,5490
 SF932ZX/A,0013021307,AC+ for MBP 13 M2 SF932,Care,ACPP+,13 MacBook Pro ACPP+,7490
-2000130213668 ,0013021366,[i]Care M3/M4 MBA 三年期_6151,Care,iCPP,[i]Care M3/M4 MBA 三年期_6151,0
+2.00013E+12,0013021366,[i]Care M3/M4 MBA 三年期_6151,Care,iCPP,[i]Care M3/M4 MBA 三年期_6151,0
 SFYT2TA/A,0013021784,AC+ for iPhone 14 Plus SFYT2,Care,ACPP+,iPhone 14 Plus ACPP+,5790
 SFYU2TA/A,0013021785,AC+ for iPhone 14 SFYU2,Care,ACPP+,iPhone 14 ACPP+,4890
 SFYV2TA/A,0013021786,AC+ for iPhone 14 Pro SFYV2,Care,ACPP+,iPhone 14 Pro ACPP+,6390
@@ -806,10 +806,10 @@ SG1Y2TA/A,0013021789,AC+ for AW Hermes SG1Y2,Care,ACPP+,AW Hermes S8 ACPP+,4790
 SG282TA/A,0013021790,AC+ for AW SE 2 SG282,Care,ACPP+,AW SE 2 ACPP+,1690
 SG2L2TA/A,0013021791,AC+ for AW S8 不鏽鋼 SG2L2,Care,ACPP+,AW S8 不鏽鋼 ACPP+,2590
 SG2U2TA/A,0013021792,AC+ for AW Ultra SG2U2,Care,ACPP+,AW Ultra ACPP+,3190
-2000130226514 ,0013022651,[i]Care 15/16 Plus 一年期_4290,Care,iCPP,[i]Care 15/16 Plus 一年期_4290,0
-2000130226521 ,0013022652,[i]Care 15/16 Plus 兩年期_5569,Care,iCPP,[i]Care 14-16 Plus 兩年期_5569,0
-2000130226545 ,0013022654,[i]Care AW Ultra 一年期_2290,Care,iCPP,[i]Care AW Ultra 一年期_2290,0
-2000130226552 ,0013022655,[i]Care AW Ultra 兩年期_3063,Care,iCPP,[i]Care AW Ultra 兩年期_3063,0
+2.00013E+12,0013022651,[i]Care 15/16 Plus 一年期_4290,Care,iCPP,[i]Care 15/16 Plus 一年期_4290,0
+2.00013E+12,0013022652,[i]Care 15/16 Plus 兩年期_5569,Care,iCPP,[i]Care 14-16 Plus 兩年期_5569,0
+2.00013E+12,0013022654,[i]Care AW Ultra 一年期_2290,Care,iCPP,[i]Care AW Ultra 一年期_2290,0
+2.00013E+12,0013022655,[i]Care AW Ultra 兩年期_3063,Care,iCPP,[i]Care AW Ultra 兩年期_3063,0
 SGFC2TA/A,0013022843,AC+ for iPad 10 SGFC2,Care,ACPP+,iPad/iPad Mini ACPP+,2190
 SGG22TA/A,0013022844,AC+ for iPad Pro 11 4 SGG22,Care,ACPP+,iPad Pro 11 4th ACPP+,4290
 SGGY2TA/A,0013022845,AC+ for iPad Pro 12.9 6 SGGY2,Care,ACPP+,iPad Pro 12.9 6th ACPP+,4890
@@ -819,7 +819,7 @@ SGQQ2TA/A,0013023242,AC+ for Mac mini M2 SGQQ2,Care,ACPP+,Mac mini ACPP+,2990
 SJFY2TA/A,0013023743,AC+ for MBA 15 M2 SJFY2,Care,ACPP+,15 MacBook Air ACPP+,7290
 SJGC2TA/A,0013023744,AC+ for Mac Studio M2 SJGC2,Care,ACPP+,Mac Studio ACPP+,5290
 SJGQ2TA/A,0013023745,AC+ for Mac Pro M2 SJGQ2,Care,ACPP+,Mac Pro ACPP+,15490
-2000130237756,0013023775,[i]Care M MBA 15 三年期_7227,Care,iCPP,[i]Care M2-M4 MBA 15 三年期_7227,0
+2.00013E+12,0013023775,[i]Care M MBA 15 三年期_7227,Care,iCPP,[i]Care M2-M4 MBA 15 三年期_7227,0
 SJXC2TA/A,0013025361,AC+ for AW S9 SJXC2,Care,ACPP+,AW S9 ACPP+,2590
 SJXD2TA/A,0013025362,AC+ for AW Ultra 2 SJXD2,Care,ACPP+,AW Ultra ACPP+,3190
 SJXE2TA/A,0013025363,AC+ for AW Herm_s S9 SJXE2,Care,ACPP+,AW Hermes S9 ACPP+,4790
@@ -838,12 +838,12 @@ SM2A2TA/A,0013026384,AC+ for iPad Air 13 1 SM2A2,Care,ACPP+,iPad Air 13 1th ACPP
 SM2V2TA/A,0013026385,AC+ for iPad Air 11 4 SM2V2,Care,ACPP+,iPad Air 11 4th ACPP+,2590
 SM2W2TA/A,0013026386,AC+ for iPad Pro 13 7 SM2W2,Care,ACPP+,iPad Pro 13 7th ACPP+,5590
 SM2X2TA/A,0013026387,AC+ for iPad Pro 11 5 SM2X2,Care,ACPP+,iPad Pro 11 5th ACPP+,4890
-2000130264820,0013026482,[i]Care iPad Air 13 一年_2090,Care,iCPP,[i]Care iPad Air 13 一年期_2090,0
-2000130264837,0013026483,[i]Care iPad Air 13 兩年_3199,Care,iCPP,[i]Care iPad Air 13 兩年期_3199,0
-2000130264844,0013026484,[i]Care iPad Pro 11 一年_3190,Care,iCPP,[i]Care iPad Pro 11 5 一年期_3190,0
-2000130264851,0013026485,[i]Care iPad Pro 11 兩年_4653,Care,iCPP,[i]Care iPad Pro 11 5 兩年期_4653,0
-2000130264868,0013026486,[i]Care iPad Pro 13 一年_3390,Care,iCPP,[i]Care iPad Pro 13 7 一年期_3390,0
-2000130264875,0013026487,[i]Care iPad Pro 13 兩年_5445,Care,iCPP,[i]Care iPad Pro 13 7 兩年期_5445,0
+2.00013E+12,0013026482,[i]Care iPad Air 13 一年_2090,Care,iCPP,[i]Care iPad Air 13 一年期_2090,0
+2.00013E+12,0013026483,[i]Care iPad Air 13 兩年_3199,Care,iCPP,[i]Care iPad Air 13 兩年期_3199,0
+2.00013E+12,0013026484,[i]Care iPad Pro 11 一年_3190,Care,iCPP,[i]Care iPad Pro 11 5 一年期_3190,0
+2.00013E+12,0013026485,[i]Care iPad Pro 11 兩年_4653,Care,iCPP,[i]Care iPad Pro 11 5 兩年期_4653,0
+2.00013E+12,0013026486,[i]Care iPad Pro 13 一年_3390,Care,iCPP,[i]Care iPad Pro 13 7 一年期_3390,0
+2.00013E+12,0013026487,[i]Care iPad Pro 13 兩年_5445,Care,iCPP,[i]Care iPad Pro 13 7 兩年期_5445,0
 SNHA2TA/A,0013027789,AC+ for iPhone 16 SNHA2,Care,ACPP+,iPhone 16 ACPP+,4890
 SNHP2TA/A,0013027790,AC+ for iPhone 16 Plus SNHP2,Care,ACPP+,iPhone 16 Plus ACPP+,5790
 SNHV2TA/A,0013027791,AC+ for iPhone 16 Pro SNHV2,Care,ACPP+,iPhone 16 Pro ACPP+,6390
@@ -948,38 +948,41 @@ Z1K5,0013028984,M4 iMac 24 10C 24 512 藍 Z1K5,CPU,IMAC,iMac 24 M4 512G,66800
 Z1EP,0013029126,M4 iMac 24 10C 16 256 藍 Z1EP,CPU,IMAC,iMac 24 M4 256G,52800
 Z1EK,0013029127,M4 iMac 24 10C 16 256 黃 Z1EK,CPU,IMAC,iMac 24 M4 256G,52800
 Z1EP,0013030468,M4 iMac 24 10C 24 256 藍 Z1EP,CPU,IMAC,iMac 24 M4 256G,58900
+Z1E7,0013030766,M4 iMac 24 8C 16 256 紫 Z1E7,CPU,IMAC,iMac 24 M4 256G,45200
+Z1EH,0013030805,M4 iMac 24 10C 16 512 銀 Z1EH,CPU,IMAC,iMac 24 M4 512G,56900
+Z1EJ,0013030806,M4 iMac 24 10C 24 512 銀 Z1EJ,CPU,IMAC,iMac 24 M4 512G,63900
 MDE04TA/A,0013030482,MBP 14 10C/16GB/512GB 黑 MDE04,CPU,MBP 14 M5,MacBook Pro M5 16G 512G 黑,52900
 MDE14TA/A,0013030483,MBP 14 10C/16GB/1TB 黑 MDE14,CPU,MBP 14 M5,MacBook Pro M5 16G 1T 黑,59900
 MDE34TA/A,0013030484,MBP 14 10C/24GB/1TB 黑 MDE34,CPU,MBP 14 M5,MacBook Pro M5 24G 1T 黑,66900
 MDE44TA/A,0013030485,MBP 14 10C/16GB/512GB 銀 MDE44,CPU,MBP 14 M5,MacBook Pro M5 16G 512G 銀,52900
 MDE54TA/A,0013030486,MBP 14 10C/16GB/1TB 銀 MDE54,CPU,MBP 14 M5,MacBook Pro M5 16G 1T 銀,59900
 MDE64TA/A,0013030487,MBP 14 10C/24GB/1TB 銀 MDE64,CPU,MBP 14 M5,MacBook Pro M5 16G 1T 銀,66900
-25188698 ,0013026777,Marshall Emberton II 喇叭 銅黑,EGP,藍芽裝置&喇叭耳機,Marshall Emberton 二代,6490
-25188702 ,0013026778,Marshall Emberton II 喇叭 白,EGP,藍芽裝置&喇叭耳機,Marshall Emberton 二代,6490
-25230741 ,0013026779,Marshall Emberton II 鑄鋼黑,EGP,藍芽裝置&喇叭耳機,Marshall Emberton 二代,6490
-25188703 ,0013026780,Marshall Willen 藍牙喇叭 銅黑,EGP,藍芽裝置&喇叭耳機,Marshall Willen 藍牙喇叭,3990
-25188704 ,0013026781,Marshall Willen 藍牙喇叭 白,EGP,藍芽裝置&喇叭耳機,Marshall Willen 藍牙喇叭,3990
-25198921 ,0013026782,Marshall Acton III 藍牙喇叭 黑,EGP,藍芽裝置&喇叭耳機,Marshall Acton 三代,11900
-25198922 ,0013026783,Marshall Acton III 藍牙喇叭 白,EGP,藍芽裝置&喇叭耳機,Marshall Acton 三代,11900
-25222546 ,0013026784,Marshall Acton III 藍牙喇叭 棕,EGP,藍芽裝置&喇叭耳機,Marshall Acton 三代,11900
-25198923 ,0013026785,Marshall Stanmore III 喇叭 黑,EGP,藍芽裝置&喇叭耳機,Marshall Stanmore 三代,17900
-25198924 ,0013026786,Marshall Stanmore III 喇叭 白,EGP,藍芽裝置&喇叭耳機,Marshall Stanmore 三代,17900
-25222547 ,0013026787,Marshall Stanmore III 喇叭 棕,EGP,藍芽裝置&喇叭耳機,Marshall Stanmore 三代,17900
-25198925 ,0013026788,Marshall Woburn III 喇叭 黑,EGP,藍芽裝置&喇叭耳機,Marshall Woburn 三代,23900
-25198926 ,0013026789,Marshall Woburn III 喇叭 白,EGP,藍芽裝置&喇叭耳機,Marshall Woburn 三代,23900
-25208453 ,0013026790,Marshall Middleton 喇叭 古銅,EGP,藍芽裝置&喇叭耳機,Marshall Middleton,9900
-25208454 ,0013026791,Marshall Middleton 喇叭 白,EGP,藍芽裝置&喇叭耳機,Marshall Middleton,9900
-1006712 ,0013026902,Marshall Emberton III 古銅黑,EGP,藍芽裝置&喇叭耳機,Marshall Emberton 三代,6490
-1006714 ,0013026903,Marshall Emberton III 奶油白,EGP,藍芽裝置&喇叭耳機,Marshall Emberton 三代,6490
-1006714 ,0013026904,Marshall Willen II  古銅黑,EGP,藍芽裝置&喇叭耳機,Marshall Willen 二代,3990
-1006717 ,0013026905,Marshall Willen II 奶油白,EGP,藍芽裝置&喇叭耳機,Marshall Willen 二代,3990
-1008130 ,0013029018,Marshall Acton III 夜幕藍,EGP,藍芽裝置&喇叭耳機,Marshall Acton 三代,11900
-1008137 ,0013029019,Marshall Emberton III 夜幕藍,EGP,藍芽裝置&喇叭耳機,Marshall Emberton 三代,6490
-1007429 ,0013029020,Marshall Middleton II 奶油白,EGP,藍芽裝置&喇叭耳機,Marshall Middleton 二代,11900
-1007428 ,0013029021,Marshall Middleton II 古銅黑,EGP,藍芽裝置&喇叭耳機,Marshall Middleton 二代,11900
-1009086 ,0013029182,Marshall Acton III 藍牙喇叭 黑,EGP,藍芽裝置&喇叭耳機,Marshall Acton 三代,11900
-1009088 ,0013029183,Marshall Acton III 藍牙喇叭 棕,EGP,藍芽裝置&喇叭耳機,Marshall Acton 三代,11900
-1009090 ,0013029184,Marshall Acton III 藍牙喇叭 白,EGP,藍芽裝置&喇叭耳機,Marshall Acton 三代,11900
+25188698,0013026777,Marshall Emberton II 喇叭 銅黑,EGP,藍芽裝置&喇叭耳機,Marshall Emberton 二代,6490
+25188702,0013026778,Marshall Emberton II 喇叭 白,EGP,藍芽裝置&喇叭耳機,Marshall Emberton 二代,6490
+25230741,0013026779,Marshall Emberton II 鑄鋼黑,EGP,藍芽裝置&喇叭耳機,Marshall Emberton 二代,6490
+25188703,0013026780,Marshall Willen 藍牙喇叭 銅黑,EGP,藍芽裝置&喇叭耳機,Marshall Willen 藍牙喇叭,3990
+25188704,0013026781,Marshall Willen 藍牙喇叭 白,EGP,藍芽裝置&喇叭耳機,Marshall Willen 藍牙喇叭,3990
+25198921,0013026782,Marshall Acton III 藍牙喇叭 黑,EGP,藍芽裝置&喇叭耳機,Marshall Acton 三代,11900
+25198922,0013026783,Marshall Acton III 藍牙喇叭 白,EGP,藍芽裝置&喇叭耳機,Marshall Acton 三代,11900
+25222546,0013026784,Marshall Acton III 藍牙喇叭 棕,EGP,藍芽裝置&喇叭耳機,Marshall Acton 三代,11900
+25198923,0013026785,Marshall Stanmore III 喇叭 黑,EGP,藍芽裝置&喇叭耳機,Marshall Stanmore 三代,17900
+25198924,0013026786,Marshall Stanmore III 喇叭 白,EGP,藍芽裝置&喇叭耳機,Marshall Stanmore 三代,17900
+25222547,0013026787,Marshall Stanmore III 喇叭 棕,EGP,藍芽裝置&喇叭耳機,Marshall Stanmore 三代,17900
+25198925,0013026788,Marshall Woburn III 喇叭 黑,EGP,藍芽裝置&喇叭耳機,Marshall Woburn 三代,23900
+25198926,0013026789,Marshall Woburn III 喇叭 白,EGP,藍芽裝置&喇叭耳機,Marshall Woburn 三代,23900
+25208453,0013026790,Marshall Middleton 喇叭 古銅,EGP,藍芽裝置&喇叭耳機,Marshall Middleton,9900
+25208454,0013026791,Marshall Middleton 喇叭 白,EGP,藍芽裝置&喇叭耳機,Marshall Middleton,9900
+1006712,0013026902,Marshall Emberton III 古銅黑,EGP,藍芽裝置&喇叭耳機,Marshall Emberton 三代,6490
+1006714,0013026903,Marshall Emberton III 奶油白,EGP,藍芽裝置&喇叭耳機,Marshall Emberton 三代,6490
+1006714,0013026904,Marshall Willen II  古銅黑,EGP,藍芽裝置&喇叭耳機,Marshall Willen 二代,3990
+1006717,0013026905,Marshall Willen II 奶油白,EGP,藍芽裝置&喇叭耳機,Marshall Willen 二代,3990
+1008130,0013029018,Marshall Acton III 夜幕藍,EGP,藍芽裝置&喇叭耳機,Marshall Acton 三代,11900
+1008137,0013029019,Marshall Emberton III 夜幕藍,EGP,藍芽裝置&喇叭耳機,Marshall Emberton 三代,6490
+1007429,0013029020,Marshall Middleton II 奶油白,EGP,藍芽裝置&喇叭耳機,Marshall Middleton 二代,11900
+1007428,0013029021,Marshall Middleton II 古銅黑,EGP,藍芽裝置&喇叭耳機,Marshall Middleton 二代,11900
+1009086,0013029182,Marshall Acton III 藍牙喇叭 黑,EGP,藍芽裝置&喇叭耳機,Marshall Acton 三代,11900
+1009088,0013029183,Marshall Acton III 藍牙喇叭 棕,EGP,藍芽裝置&喇叭耳機,Marshall Acton 三代,11900
+1009090,0013029184,Marshall Acton III 藍牙喇叭 白,EGP,藍芽裝置&喇叭耳機,Marshall Acton 三代,11900
 MXN63TA/A,0013028067,iPad mini WF 128G 太空灰 MXN63,iPad,iPad mini(A17 Pro),Wi-Fi  iPad mini 8.3 灰,15900
 MXN73TA/A,0013028068,iPad mini WF 128G 藍 MXN73,iPad,iPad mini(A17 Pro),Wi-Fi  iPad mini 8.3 藍,15900
 MXN83TA/A,0013028069,iPad mini WF 128G 星光 MXN83,iPad,iPad mini(A17 Pro),Wi-Fi  iPad mini 8.3 星,15900
@@ -1202,4 +1205,19 @@ MFYX4ZP/A,0013029815,iPhone 17 PM 1T 藏藍 MFYX4,iPhone,iPhone 17 Pro Max,iPhon
 MFYY4ZP/A,0013029816,iPhone 17 PM 2T 銀 MFYY4,iPhone,iPhone 17 Pro Max,iPhone 17 Pro Max 銀,72900
 MG004ZP/A,0013029817,iPhone 17 PM 2T 橙 MG004,iPhone,iPhone 17 Pro Max,iPhone 17 Pro Max 橙,72900
 MG014ZP/A,0013029818,iPhone 17 PM 2T 藏藍 MG014,iPhone,iPhone 17 Pro Max,iPhone 17 Pro Max 藍,72900
-
+MYND3ZP/A,0013027391,@@iPhone 16 Pro 128G 黑 MYND3,iPhone,iPhone 16 Pro,iPhone 16 Pro 黑,29900
+MYNE3ZP/A,0013027392,@@iPhone 16 Pro 128G 白 MYNE3,iPhone,iPhone 16 Pro,iPhone 16 Pro 白,29900
+MYNF3ZP/A,0013027393,@@iPhone 16 Pro 128G 沙 MYNF3,iPhone,iPhone 16 Pro,iPhone 16 Pro 沙,29900
+MYNG3ZP/A,0013027394,@@iPhone 16 Pro 128G 原 MYNG3,iPhone,iPhone 16 Pro,iPhone 16 Pro 原,29900
+MYNH3ZP/A,0013027395,@@iPhone 16 Pro 256G 黑 MYNH3,iPhone,iPhone 16 Pro,iPhone 16 Pro 黑,33400
+MYNJ3ZP/A,0013027396,@@iPhone 16 Pro 256G 白 MYNJ3,iPhone,iPhone 16 Pro,iPhone 16 Pro 白,33400
+MYNK3ZP/A,0013027397,@@iPhone 16 Pro 256G 沙 MYNK3,iPhone,iPhone 16 Pro,iPhone 16 Pro 沙,33400
+MYNL3ZP/A,0013027398,@@iPhone 16 Pro 256G 原 MYNL3,iPhone,iPhone 16 Pro,iPhone 16 Pro 原,33400
+MYNM3ZP/A,0013027399,@@iPhone 16 Pro 512G 黑 MYNM3,iPhone,iPhone 16 Pro,iPhone 16 Pro 黑,36900
+MYNN3ZP/A,0013027400,@@iPhone 16 Pro 512G 白 MYNN3,iPhone,iPhone 16 Pro,iPhone 16 Pro 白,36900
+MYNP3ZP/A,0013027401,@@iPhone 16 Pro 512G 沙 MYNP3,iPhone,iPhone 16 Pro,iPhone 16 Pro 沙,36900
+MYNQ3ZP/A,0013027402,@@iPhone 16 Pro 512G 原 MYNQ3,iPhone,iPhone 16 Pro,iPhone 16 Pro 原,36900
+MYNR3ZP/A,0013027403,@@iPhone 16 Pro 1T 黑 MYNR3,iPhone,iPhone 16 Pro,iPhone 16 Pro 黑,39900
+MYNT3ZP/A,0013027404,@@iPhone 16 Pro 1T 白 MYNT3,iPhone,iPhone 16 Pro,iPhone 16 Pro 白,39900
+MYNW3ZP/A,0013027405,@@iPhone 16 Pro 1T 沙 MYNW3,iPhone,iPhone 16 Pro,iPhone 16 Pro 沙,39900
+MYNX3ZP/A,0013027406,@@iPhone 16 Pro 1T 原 MYNX3,iPhone,iPhone 16 Pro,iPhone 16 Pro 原,39900
