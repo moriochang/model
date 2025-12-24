@@ -1,5 +1,5 @@
 {
-  "lastUpdate": "2025/12/24 16:52:29",
+  "lastUpdate": "2025/12/24 16:58:32",
   "totalProducts": 721,
   "totalStock": 29239,
   "outOfStock": 0,
@@ -31,27 +31,28 @@
   },
   "inventory": {
     "0013006198": {
+      "name": "MREE2D 2018 MacBook Air 128 金",
       "stores": {
         "48": 1
       },
-      "total": 1,
-      "name": "MREE2D 2018 MacBook Air 128 金"
+      "total": 1
     },
     "0013007138": {
+      "name": "MV962D MacBook Pro 13 灰 256",
       "stores": {
         "84": 1
       },
-      "total": 1,
-      "name": "MV962D MacBook Pro 13 灰 256"
+      "total": 1
     },
     "0013009321": {
+      "name": "MWTJ2D MacBook Air 256 灰",
       "stores": {
         "48": 1
       },
-      "total": 1,
-      "name": "MWTJ2D MacBook Air 256 灰"
+      "total": 1
     },
     "0013009697": {
+      "name": "MWTK2D MacBook Air 256 銀",
       "stores": {
         "51": 1,
         "57": 1,
@@ -61,181 +62,181 @@
         "115": 1,
         "117": 1
       },
-      "total": 7,
-      "name": "MWTK2D MacBook Air 256 銀"
+      "total": 7
     },
     "0013021310": {
+      "name": "@@M2 22 MBA 13 256G 銀 MLXY3",
       "stores": {
         "880": 1
       },
-      "total": 1,
-      "name": "@@M2 22 MBA 13 256G 銀 MLXY3"
+      "total": 1
     },
     "0013021352": {
+      "name": "MLY33D M2 22 MBA 13 256G 午夜",
       "stores": {
         "86": 2
       },
-      "total": 2,
-      "name": "MLY33D M2 22 MBA 13 256G 午夜"
+      "total": 2
     },
     "0013021353": {
+      "name": "MNEH3D M2 22 MBP 13 256G 灰",
       "stores": {
         "45": 1
       },
-      "total": 1,
-      "name": "MNEH3D M2 22 MBP 13 256G 灰"
+      "total": 1
     },
     "0013023265": {
+      "name": "MPHE3D M2P MBP 14'' 512G 灰",
       "stores": {
         "51": 1,
         "880": 1
       },
-      "total": 2,
-      "name": "MPHE3D M2P MBP 14'' 512G 灰"
+      "total": 2
     },
     "0013023732": {
+      "name": "@@Mac Studio M2U 1T MQH63",
       "stores": {
         "880": 1
       },
-      "total": 1,
-      "name": "@@Mac Studio M2U 1T MQH63"
+      "total": 1
     },
     "0013023733": {
+      "name": "@@Mac Studio M2M 512 MQH73",
       "stores": {
         "880": 3
       },
-      "total": 3,
-      "name": "@@Mac Studio M2M 512 MQH73"
+      "total": 3
     },
     "0013023747": {
+      "name": "MQKU3D M2 MBA 15 256G 星光色",
       "stores": {
         "880": 1
       },
-      "total": 1,
-      "name": "MQKU3D M2 MBA 15 256G 星光色"
+      "total": 1
     },
     "0013025677": {
+      "name": "@@M3P MBP 16\" 36G 512G黑 MRW23",
       "stores": {
         "880": 1
       },
-      "total": 1,
-      "name": "@@M3P MBP 16\" 36G 512G黑 MRW23"
+      "total": 1
     },
     "0013025679": {
+      "name": "@@M3P MBP 16\" 18G 512G銀 MRW43",
       "stores": {
         "880": 1
       },
-      "total": 1,
-      "name": "@@M3P MBP 16\" 18G 512G銀 MRW43"
+      "total": 1
     },
     "0013025680": {
+      "name": "@@M3P MBP 16\" 36G 512G銀 MRW63",
       "stores": {
         "880": 2
       },
-      "total": 2,
-      "name": "@@M3P MBP 16\" 36G 512G銀 MRW63"
+      "total": 2
     },
     "0013025681": {
+      "name": "@@M3M MBP 16\" 1T 銀 MRW73",
       "stores": {
         "880": 2
       },
-      "total": 2,
-      "name": "@@M3M MBP 16\" 1T 銀 MRW73"
+      "total": 2
     },
     "0013025684": {
+      "name": "@@M3M MBP 14\" 1T 黑 MRX53",
       "stores": {
         "880": 1
       },
-      "total": 1,
-      "name": "@@M3M MBP 14\" 1T 黑 MRX53"
+      "total": 1
     },
     "0013025687": {
+      "name": "@@M3M MBP 14\" 1T 銀 MRX83",
       "stores": {
         "880": 2
       },
-      "total": 2,
-      "name": "@@M3M MBP 14\" 1T 銀 MRX83"
+      "total": 2
     },
     "0013025691": {
+      "name": "@@M3M MBP 16\" 1T 銀 MUW73",
       "stores": {
         "880": 1
       },
-      "total": 1,
-      "name": "@@M3M MBP 16\" 1T 銀 MUW73"
+      "total": 1
     },
     "0013026035": {
+      "name": "@@M3 MBA 15\" 512G 太空灰 MRYN3",
       "stores": {
         "820": 2,
         "821": 2
       },
-      "total": 4,
-      "name": "@@M3 MBA 15\" 512G 太空灰 MRYN3"
+      "total": 4
     },
     "0013026037": {
+      "name": "@@M3 MBA 15\" 512G 銀色 MRYQ3",
       "stores": {
         "821": 2
       },
-      "total": 2,
-      "name": "@@M3 MBA 15\" 512G 銀色 MRYQ3"
+      "total": 2
     },
     "0013026038": {
+      "name": "@@M3 MBA 15\" 256G 星光色 MRYR3",
       "stores": {
         "880": 1
       },
-      "total": 1,
-      "name": "@@M3 MBA 15\" 256G 星光色 MRYR3"
+      "total": 1
     },
     "0013026041": {
+      "name": "@@M3 MBA 15\" 512G 午夜色 MRYV3",
       "stores": {
         "821": 2
       },
-      "total": 2,
-      "name": "@@M3 MBA 15\" 512G 午夜色 MRYV3"
+      "total": 2
     },
     "0013026102": {
+      "name": "MRXV3D M3 MBA 13\" 256G 午夜色",
       "stores": {
         "97": 1,
         "880": 3
       },
-      "total": 4,
-      "name": "MRXV3D M3 MBA 13\" 256G 午夜色"
+      "total": 4
     },
     "0013026103": {
+      "name": "MRYR3D M3 MBA 15\" 256G 星光色",
       "stores": {
         "880": 18
       },
-      "total": 18,
-      "name": "MRYR3D M3 MBA 15\" 256G 星光色"
+      "total": 18
     },
     "0013028166": {
+      "name": "@@M2 MBA 13 16G 256G 銀 MC7V4",
       "stores": {
         "880": 1
       },
-      "total": 1,
-      "name": "@@M2 MBA 13 16G 256G 銀 MC7V4"
+      "total": 1
     },
     "0013028174": {
+      "name": "@@M3 MBA 13 24G 512 銀 MC8N4",
       "stores": {
         "45": 1
       },
-      "total": 1,
-      "name": "@@M3 MBA 13 24G 512 銀 MC8N4"
+      "total": 1
     },
     "0013028176": {
+      "name": "@@M3 MBA 13 24G 512 午 MC8Q4",
       "stores": {
         "821": 1
       },
-      "total": 1,
-      "name": "@@M3 MBA 13 24G 512 午 MC8Q4"
+      "total": 1
     },
     "0013028184": {
+      "name": "@@M3 MBA 15 24G 512 午 MC9L4",
       "stores": {
         "880": 1
       },
-      "total": 1,
-      "name": "@@M3 MBA 15 24G 512 午 MC9L4"
+      "total": 1
     },
     "0013028191": {
+      "name": "M4P MBP 14 512GB 銀 MX2E3",
       "stores": {
         "45": 2,
         "47": 1,
@@ -248,20 +249,20 @@
         "115": 2,
         "821": 1
       },
-      "total": 14,
-      "name": "M4P MBP 14 512GB 銀 MX2E3"
+      "total": 14
     },
     "0013028192": {
+      "name": "M4P MBP 14 512GB 黑 MX2H3",
       "stores": {
         "45": 1,
         "86": 1,
         "88": 1,
         "97": 1
       },
-      "total": 4,
-      "name": "M4P MBP 14 512GB 黑 MX2H3"
+      "total": 4
     },
     "0013028193": {
+      "name": "M4P MBP 14 1TB 黑 MX2J3",
       "stores": {
         "45": 1,
         "47": 1,
@@ -270,59 +271,59 @@
         "75": 1,
         "86": 1
       },
-      "total": 6,
-      "name": "M4P MBP 14 1TB 黑 MX2J3"
+      "total": 6
     },
     "0013028194": {
+      "name": "M4P MBP 14 1TB 銀 MX2F3",
       "stores": {
         "45": 1,
         "75": 1,
         "86": 1,
         "115": 1
       },
-      "total": 4,
-      "name": "M4P MBP 14 1TB 銀 MX2F3"
+      "total": 4
     },
     "0013028196": {
+      "name": "M4M MBP 14 1TB 黑 MX2K3",
       "stores": {
         "115": 1,
         "880": 1
       },
-      "total": 2,
-      "name": "M4M MBP 14 1TB 黑 MX2K3"
+      "total": 2
     },
     "0013028198": {
+      "name": "M4P MBP 16 48G 512G 銀 MX2U3",
       "stores": {
         "75": 1
       },
-      "total": 1,
-      "name": "M4P MBP 16 48G 512G 銀 MX2U3"
+      "total": 1
     },
     "0013028215": {
+      "name": "MC9F4D M3 MBA 15 256GB 星",
       "stores": {
         "880": 4
       },
-      "total": 4,
-      "name": "MC9F4D M3 MBA 15 256GB 星"
+      "total": 4
     },
     "0013028706": {
+      "name": "M4 MBA 13 24G 512 銀 MC654",
       "stores": {
         "51": 1,
         "880": 2
       },
-      "total": 3,
-      "name": "M4 MBA 13 24G 512 銀 MC654"
+      "total": 3
     },
     "0013028707": {
+      "name": "M4 MBA 13 24G 512 星 MC6A4",
       "stores": {
         "51": 3,
         "57": 1,
         "75": 1
       },
-      "total": 5,
-      "name": "M4 MBA 13 24G 512 星 MC6A4"
+      "total": 5
     },
     "0013028708": {
+      "name": "M4 MBA 13 24G 512 午 MC6C4",
       "stores": {
         "45": 1,
         "51": 2,
@@ -332,17 +333,17 @@
         "86": 1,
         "115": 1
       },
-      "total": 8,
-      "name": "M4 MBA 13 24G 512 午 MC6C4"
+      "total": 8
     },
     "0013028709": {
+      "name": "M4 MBA 15 24G 512 銀 MC6J4",
       "stores": {
         "48": 1
       },
-      "total": 1,
-      "name": "M4 MBA 15 24G 512 銀 MC6J4"
+      "total": 1
     },
     "0013028710": {
+      "name": "M4 MBA 15 24G 512 星 MC6K4",
       "stores": {
         "45": 1,
         "48": 1,
@@ -350,20 +351,20 @@
         "76": 1,
         "86": 1
       },
-      "total": 6,
-      "name": "M4 MBA 15 24G 512 星 MC6K4"
+      "total": 6
     },
     "0013028711": {
+      "name": "M4 MBA 15 24G 512 午 MC6L4",
       "stores": {
         "61": 1,
         "75": 1,
         "86": 2,
         "115": 1
       },
-      "total": 5,
-      "name": "M4 MBA 15 24G 512 午 MC6L4"
+      "total": 5
     },
     "0013028712": {
+      "name": "M4 MBA 13 8GP 16G 256 藍 MC6T4",
       "stores": {
         "45": 5,
         "47": 4,
@@ -386,10 +387,10 @@
         "821": 4,
         "880": 4
       },
-      "total": 107,
-      "name": "M4 MBA 13 8GP 16G 256 藍 MC6T4"
+      "total": 107
     },
     "0013028713": {
+      "name": "M4 MBA 13 16G 512 藍 MC6U4",
       "stores": {
         "45": 2,
         "47": 1,
@@ -409,10 +410,10 @@
         "117": 3,
         "821": 2
       },
-      "total": 36,
-      "name": "M4 MBA 13 16G 512 藍 MC6U4"
+      "total": 36
     },
     "0013028714": {
+      "name": "M4 MBA 13 24G 512 藍 MC6V4",
       "stores": {
         "61": 1,
         "65": 1,
@@ -424,10 +425,10 @@
         "115": 1,
         "821": 1
       },
-      "total": 9,
-      "name": "M4 MBA 13 24G 512 藍 MC6V4"
+      "total": 9
     },
     "0013028715": {
+      "name": "M4 MBA 15 16G 256 藍 MC7A4",
       "stores": {
         "45": 1,
         "47": 1,
@@ -444,10 +445,10 @@
         "117": 1,
         "821": 1
       },
-      "total": 14,
-      "name": "M4 MBA 15 16G 256 藍 MC7A4"
+      "total": 14
     },
     "0013028716": {
+      "name": "M4 MBA 15 16G 512 藍 MC7C4",
       "stores": {
         "45": 1,
         "57": 1,
@@ -458,10 +459,10 @@
         "115": 1,
         "821": 1
       },
-      "total": 9,
-      "name": "M4 MBA 15 16G 512 藍 MC7C4"
+      "total": 9
     },
     "0013028717": {
+      "name": "M4 MBA 15 24G 512 藍 MC7D4",
       "stores": {
         "57": 1,
         "65": 1,
@@ -476,10 +477,10 @@
         "116": 1,
         "821": 1
       },
-      "total": 13,
-      "name": "M4 MBA 15 24G 512 藍 MC7D4"
+      "total": 13
     },
     "0013028718": {
+      "name": "M4 MBA 13 8GP 16G 256 銀 MW0W3",
       "stores": {
         "45": 2,
         "47": 3,
@@ -501,10 +502,10 @@
         "117": 2,
         "821": 2
       },
-      "total": 45,
-      "name": "M4 MBA 13 8GP 16G 256 銀 MW0W3"
+      "total": 45
     },
     "0013028719": {
+      "name": "M4 MBA 13 16G 512 銀 MW0X3",
       "stores": {
         "45": 3,
         "48": 2,
@@ -518,10 +519,10 @@
         "821": 1,
         "880": 1
       },
-      "total": 19,
-      "name": "M4 MBA 13 16G 512 銀 MW0X3"
+      "total": 19
     },
     "0013028720": {
+      "name": "M4 MBA 13 8GP 16G 256 星 MW0Y3",
       "stores": {
         "45": 1,
         "47": 3,
@@ -545,10 +546,10 @@
         "821": 3,
         "880": 4
       },
-      "total": 51,
-      "name": "M4 MBA 13 8GP 16G 256 星 MW0Y3"
+      "total": 51
     },
     "0013028721": {
+      "name": "M4 MBA 13 16G 512 星 MW103",
       "stores": {
         "45": 2,
         "47": 1,
@@ -566,10 +567,10 @@
         "117": 1,
         "821": 2
       },
-      "total": 28,
-      "name": "M4 MBA 13 16G 512 星 MW103"
+      "total": 28
     },
     "0013028722": {
+      "name": "M4 MBA 13 8GP 16G 256 午 MW123",
       "stores": {
         "45": 2,
         "51": 4,
@@ -590,10 +591,10 @@
         "820": 1,
         "821": 1
       },
-      "total": 37,
-      "name": "M4 MBA 13 8GP 16G 256 午 MW123"
+      "total": 37
     },
     "0013028723": {
+      "name": "M4 MBA 13 16G 512 午 MW133",
       "stores": {
         "45": 2,
         "47": 1,
@@ -608,10 +609,10 @@
         "117": 1,
         "821": 2
       },
-      "total": 27,
-      "name": "M4 MBA 13 16G 512 午 MW133"
+      "total": 27
     },
     "0013028725": {
+      "name": "M4 MBA 15 16G 512 銀 MW1H3",
       "stores": {
         "45": 1,
         "51": 1,
@@ -619,71 +620,71 @@
         "97": 1,
         "115": 1
       },
-      "total": 5,
-      "name": "M4 MBA 15 16G 512 銀 MW1H3"
+      "total": 5
     },
     "0013028726": {
+      "name": "M4 MBA 15 16G 256 星 MW1J3",
       "stores": {
         "45": 1
       },
-      "total": 1,
-      "name": "M4 MBA 15 16G 256 星 MW1J3"
+      "total": 1
     },
     "0013028729": {
+      "name": "M4 MBA 15 16G 512 午 MW1M3",
       "stores": {
         "88": 1,
         "97": 1,
         "116": 1
       },
-      "total": 3,
-      "name": "M4 MBA 15 16G 512 午 MW1M3"
+      "total": 3
     },
     "0013029055": {
+      "name": "北 MC6T4D M4 MBA13 8P16 256 藍",
       "stores": {
         "75": 2,
         "97": 2
       },
-      "total": 4,
-      "name": "北 MC6T4D M4 MBA13 8P16 256 藍"
+      "total": 4
     },
     "0013029056": {
+      "name": "北 MW0Y3D M4 MBA13 8P16 256 星",
       "stores": {
         "75": 1,
         "97": 1
       },
-      "total": 2,
-      "name": "北 MW0Y3D M4 MBA13 8P16 256 星"
+      "total": 2
     },
     "0013029057": {
+      "name": "北 MW1L3D M4 MBA 15 16G 256 午",
       "stores": {
         "75": 1,
         "97": 1
       },
-      "total": 2,
-      "name": "北 MW1L3D M4 MBA 15 16G 256 午"
+      "total": 2
     },
     "0013029058": {
+      "name": "北 MW2U3D M4 MBP 14 512GB 黑",
       "stores": {
         "880": 1
       },
-      "total": 1,
-      "name": "北 MW2U3D M4 MBP 14 512GB 黑"
+      "total": 1
     },
     "0013029059": {
+      "name": "北 MX2E3D M4P MBP 14 512GB 銀",
       "stores": {
         "97": 1
       },
-      "total": 1,
-      "name": "北 MX2E3D M4P MBP 14 512GB 銀"
+      "total": 1
     },
     "0013029060": {
+      "name": "北 MX2X3D M4P MBP 16 24 512 黑",
       "stores": {
         "97": 1
       },
-      "total": 1,
-      "name": "北 MX2X3D M4P MBP 16 24 512 黑"
+      "total": 1
     },
     "0013030482": {
+      "name": "MBP 14 10C/16GB/512GB 黑 MDE04",
       "stores": {
         "45": 2,
         "47": 1,
@@ -703,10 +704,10 @@
         "821": 1,
         "880": 6
       },
-      "total": 57,
-      "name": "MBP 14 10C/16GB/512GB 黑 MDE04"
+      "total": 57
     },
     "0013030483": {
+      "name": "MBP 14 10C/16GB/1TB 黑 MDE14",
       "stores": {
         "45": 2,
         "51": 2,
@@ -719,10 +720,10 @@
         "97": 1,
         "880": 3
       },
-      "total": 23,
-      "name": "MBP 14 10C/16GB/1TB 黑 MDE14"
+      "total": 23
     },
     "0013030484": {
+      "name": "MBP 14 10C/24GB/1TB 黑 MDE34",
       "stores": {
         "51": 1,
         "57": 1,
@@ -730,10 +731,10 @@
         "115": 2,
         "116": 1
       },
-      "total": 6,
-      "name": "MBP 14 10C/24GB/1TB 黑 MDE34"
+      "total": 6
     },
     "0013030485": {
+      "name": "MBP 14 10C/16GB/512GB 銀 MDE44",
       "stores": {
         "45": 5,
         "48": 1,
@@ -749,10 +750,10 @@
         "115": 1,
         "880": 4
       },
-      "total": 49,
-      "name": "MBP 14 10C/16GB/512GB 銀 MDE44"
+      "total": 49
     },
     "0013030486": {
+      "name": "MBP 14 10C/16GB/1TB 銀 MDE54",
       "stores": {
         "51": 2,
         "57": 1,
@@ -761,17 +762,17 @@
         "86": 1,
         "115": 1
       },
-      "total": 7,
-      "name": "MBP 14 10C/16GB/1TB 銀 MDE54"
+      "total": 7
     },
     "0013030487": {
+      "name": "MBP 14 10C/24GB/1TB 銀 MDE64",
       "stores": {
         "45": 1
       },
-      "total": 1,
-      "name": "MBP 14 10C/24GB/1TB 銀 MDE64"
+      "total": 1
     },
     "0013030545": {
+      "name": "MDE04D MBP 14 黑 10/16GB/512GB",
       "stores": {
         "45": 1,
         "47": 1,
@@ -793,98 +794,98 @@
         "116": 1,
         "117": 2
       },
-      "total": 20,
-      "name": "MDE04D MBP 14 黑 10/16GB/512GB"
+      "total": 20
     },
     "0024894454": {
+      "name": "ME864D MacBook Pro Retina 13",
       "stores": {
         "51": 1
       },
-      "total": 1,
-      "name": "ME864D MacBook Pro Retina 13"
+      "total": 1
     },
     "0013002584": {
+      "name": "3D115 iPad Pro 12.9 WF 64 金",
       "stores": {
         "76": 1
       },
-      "total": 1,
-      "name": "3D115 iPad Pro 12.9 WF 64 金"
+      "total": 1
     },
     "0013002588": {
+      "name": "3D119 iPad Pro10.5 WF 64 玫",
       "stores": {
         "116": 1
       },
-      "total": 1,
-      "name": "3D119 iPad Pro10.5 WF 64 玫"
+      "total": 1
     },
     "0013006786": {
+      "name": "3F561 iPad Air 10.5 Wifi 64 銀",
       "stores": {
         "51": 1,
         "115": 1,
         "116": 1
       },
-      "total": 3,
-      "name": "3F561 iPad Air 10.5 Wifi 64 銀"
+      "total": 3
     },
     "0013007669": {
+      "name": "3F837 iPad 10.2 WiFi 32 金",
       "stores": {
         "51": 1,
         "57": 1
       },
-      "total": 2,
-      "name": "3F837 iPad 10.2 WiFi 32 金"
+      "total": 2
     },
     "0013009168": {
+      "name": "3G931 iPad Pro 11 WiFi 128 灰",
       "stores": {
         "830": 1
       },
-      "total": 1,
-      "name": "3G931 iPad Pro 11 WiFi 128 灰"
+      "total": 1
     },
     "0013016611": {
+      "name": "3H186 iPad Air 4 WF 64 綠",
       "stores": {
         "45": 1
       },
-      "total": 1,
-      "name": "3H186 iPad Air 4 WF 64 綠"
+      "total": 1
     },
     "0013016612": {
+      "name": "3YLC2 iPad 10.2 WiFi 32G 金",
       "stores": {
         "115": 1
       },
-      "total": 1,
-      "name": "3YLC2 iPad 10.2 WiFi 32G 金"
+      "total": 1
     },
     "0013018290": {
+      "name": "3HQT3 iPad Pro 11 WF 128 銀",
       "stores": {
         "65": 1,
         "84": 1
       },
-      "total": 2,
-      "name": "3HQT3 iPad Pro 11 WF 128 銀"
+      "total": 2
     },
     "0013018995": {
+      "name": "@@iPad Mini WiFi 64 星 MK7P3",
       "stores": {
         "880": 10
       },
-      "total": 10,
-      "name": "@@iPad Mini WiFi 64 星 MK7P3"
+      "total": 10
     },
     "0013018996": {
+      "name": "@@iPad Mini WiFi 64 紫 MK7R3",
       "stores": {
         "880": 9
       },
-      "total": 9,
-      "name": "@@iPad Mini WiFi 64 紫 MK7R3"
+      "total": 9
     },
     "0013019013": {
+      "name": "3J364 iPad Mini WiFi 64 星",
       "stores": {
         "115": 1
       },
-      "total": 1,
-      "name": "3J364 iPad Mini WiFi 64 星"
+      "total": 1
     },
     "0013019014": {
+      "name": "3J366 iPad Mini WiFi 64 紫",
       "stores": {
         "51": 1,
         "65": 1,
@@ -892,79 +893,79 @@
         "81": 1,
         "117": 1
       },
-      "total": 5,
-      "name": "3J366 iPad Mini WiFi 64 紫"
+      "total": 5
     },
     "0013019911": {
+      "name": "3K2K3 iPad 10.2 WiFi 64 灰",
       "stores": {
         "61": 1,
         "115": 1,
         "117": 1
       },
-      "total": 3,
-      "name": "3K2K3 iPad 10.2 WiFi 64 灰"
+      "total": 3
     },
     "0013019912": {
+      "name": "3K2L3 iPad 10.2 WiFi 64 銀",
       "stores": {
         "117": 1
       },
-      "total": 1,
-      "name": "3K2L3 iPad 10.2 WiFi 64 銀"
+      "total": 1
     },
     "0013020810": {
+      "name": "3M9E3 iPad Air 5 WF 64 藍",
       "stores": {
         "48": 1
       },
-      "total": 1,
-      "name": "3M9E3 iPad Air 5 WF 64 藍"
+      "total": 1
     },
     "0013022837": {
+      "name": "3K873 iPad Pro 11 WF 128 銀",
       "stores": {
         "47": 1
       },
-      "total": 1,
-      "name": "3K873 iPad Pro 11 WF 128 銀"
+      "total": 1
     },
     "0013022841": {
+      "name": "3L204 iPad 10.9 WiFi 64 藍",
       "stores": {
         "86": 1
       },
-      "total": 1,
-      "name": "3L204 iPad 10.9 WiFi 64 藍"
+      "total": 1
     },
     "0013022842": {
+      "name": "3L206 iPad 10.9 WiFi 64 粉",
       "stores": {
         "57": 1,
         "88": 1
       },
-      "total": 2,
-      "name": "3L206 iPad 10.9 WiFi 64 粉"
+      "total": 2
     },
     "0013026261": {
+      "name": "@@iPad Air 11 WF 1TB 藍 MUWR3",
       "stores": {
         "45": 1,
         "51": 1,
         "76": 1
       },
-      "total": 3,
-      "name": "@@iPad Air 11 WF 1TB 藍 MUWR3"
+      "total": 3
     },
     "0013026263": {
+      "name": "@@iPad Air 11 WF 1TB 紫 MUWU3",
       "stores": {
         "45": 1,
         "51": 1
       },
-      "total": 2,
-      "name": "@@iPad Air 11 WF 1TB 紫 MUWU3"
+      "total": 2
     },
     "0013026274": {
+      "name": "@@iPad Air 11 CL 512 星 MUXP3",
       "stores": {
         "76": 1
       },
-      "total": 1,
-      "name": "@@iPad Air 11 CL 512 星 MUXP3"
+      "total": 1
     },
     "0013026276": {
+      "name": "@@iPad Air 11 CL 1TB 灰 MUXR3",
       "stores": {
         "45": 1,
         "51": 1,
@@ -973,10 +974,10 @@
         "820": 2,
         "821": 2
       },
-      "total": 11,
-      "name": "@@iPad Air 11 CL 1TB 灰 MUXR3"
+      "total": 11
     },
     "0013026277": {
+      "name": "@@iPad Air 11 CL 1TB 藍 MUXT3",
       "stores": {
         "45": 1,
         "51": 3,
@@ -985,10 +986,10 @@
         "820": 3,
         "821": 3
       },
-      "total": 14,
-      "name": "@@iPad Air 11 CL 1TB 藍 MUXT3"
+      "total": 14
     },
     "0013026278": {
+      "name": "@@iPad Air 11 CL 1TB 星 MUXU3",
       "stores": {
         "45": 1,
         "51": 1,
@@ -996,62 +997,62 @@
         "820": 2,
         "821": 1
       },
-      "total": 9,
-      "name": "@@iPad Air 11 CL 1TB 星 MUXU3"
+      "total": 9
     },
     "0013026279": {
+      "name": "@@iPad Air 11 CL 1TB 紫 MUXV3",
       "stores": {
         "51": 2,
         "76": 3,
         "820": 2
       },
-      "total": 7,
-      "name": "@@iPad Air 11 CL 1TB 紫 MUXV3"
+      "total": 7
     },
     "0013026292": {
+      "name": "@@iPad Air 13 WF 1TB 灰 MV2P3",
       "stores": {
         "51": 2,
         "75": 2,
         "76": 1,
         "880": 2
       },
-      "total": 7,
-      "name": "@@iPad Air 13 WF 1TB 灰 MV2P3"
+      "total": 7
     },
     "0013026293": {
+      "name": "@@iPad Air 13 WF 1TB 藍 MV2Q3",
       "stores": {
         "51": 1,
         "75": 1,
         "76": 1
       },
-      "total": 3,
-      "name": "@@iPad Air 13 WF 1TB 藍 MV2Q3"
+      "total": 3
     },
     "0013026295": {
+      "name": "@@iPad Air 13 WF 1TB 紫 MV2T3",
       "stores": {
         "51": 2,
         "76": 3
       },
-      "total": 5,
-      "name": "@@iPad Air 13 WF 1TB 紫 MV2T3"
+      "total": 5
     },
     "0013026306": {
+      "name": "@@iPad Air 13 CL 512 星 MV723",
       "stores": {
         "76": 2,
         "88": 1
       },
-      "total": 3,
-      "name": "@@iPad Air 13 CL 512 星 MV723"
+      "total": 3
     },
     "0013026307": {
+      "name": "@@iPad Air 13 CL 512 紫 MV733",
       "stores": {
         "75": 1,
         "76": 2
       },
-      "total": 3,
-      "name": "@@iPad Air 13 CL 512 紫 MV733"
+      "total": 3
     },
     "0013026308": {
+      "name": "@@iPad Air 13 CL 1TB 灰 MV743",
       "stores": {
         "45": 1,
         "51": 2,
@@ -1059,83 +1060,83 @@
         "76": 3,
         "821": 2
       },
-      "total": 10,
-      "name": "@@iPad Air 13 CL 1TB 灰 MV743"
+      "total": 10
     },
     "0013026309": {
+      "name": "@@iPad Air 13 CL 1TB 藍 MV753",
       "stores": {
         "45": 1,
         "51": 2,
         "75": 1,
         "76": 3
       },
-      "total": 7,
-      "name": "@@iPad Air 13 CL 1TB 藍 MV753"
+      "total": 7
     },
     "0013026310": {
+      "name": "@@iPad Air 13 CL 1TB 星 MV763",
       "stores": {
         "51": 3,
         "75": 2,
         "76": 2,
         "821": 1
       },
-      "total": 8,
-      "name": "@@iPad Air 13 CL 1TB 星 MV763"
+      "total": 8
     },
     "0013026311": {
+      "name": "@@iPad Air 13 CL 1TB 紫 MV773",
       "stores": {
         "75": 1,
         "76": 2,
         "821": 1
       },
-      "total": 4,
-      "name": "@@iPad Air 13 CL 1TB 紫 MV773"
+      "total": 4
     },
     "0013026312": {
+      "name": "@@iPad Pro 11 WF 256 黑 MVV83",
       "stores": {
         "57": 1
       },
-      "total": 1,
-      "name": "@@iPad Pro 11 WF 256 黑 MVV83"
+      "total": 1
     },
     "0013026329": {
+      "name": "@@iPad Pro 13 WF 256 銀 MVX33",
       "stores": {
         "61": 1
       },
-      "total": 1,
-      "name": "@@iPad Pro 13 WF 256 銀 MVX33"
+      "total": 1
     },
     "0013026330": {
+      "name": "@@iPad Pro 13 WF 512 黑 MVX43",
       "stores": {
         "45": 1,
         "48": 1,
         "51": 1
       },
-      "total": 3,
-      "name": "@@iPad Pro 13 WF 512 黑 MVX43"
+      "total": 3
     },
     "0013026331": {
+      "name": "@@iPad Pro 13 WF 512 銀 MVX53",
       "stores": {
         "48": 3
       },
-      "total": 3,
-      "name": "@@iPad Pro 13 WF 512 銀 MVX53"
+      "total": 3
     },
     "0013026336": {
+      "name": "@@iPad Pro 13 CL 256 黑 MVXR3",
       "stores": {
         "51": 1
       },
-      "total": 1,
-      "name": "@@iPad Pro 13 CL 256 黑 MVXR3"
+      "total": 1
     },
     "0013028067": {
+      "name": "iPad mini WF 128G 太空灰 MXN63",
       "stores": {
         "820": 1
       },
-      "total": 1,
-      "name": "iPad mini WF 128G 太空灰 MXN63"
+      "total": 1
     },
     "0013028068": {
+      "name": "iPad mini WF 128G 藍 MXN73",
       "stores": {
         "47": 1,
         "57": 2,
@@ -1148,10 +1149,10 @@
         "820": 1,
         "821": 1
       },
-      "total": 13,
-      "name": "iPad mini WF 128G 藍 MXN73"
+      "total": 13
     },
     "0013028069": {
+      "name": "iPad mini WF 128G 星光 MXN83",
       "stores": {
         "47": 2,
         "57": 1,
@@ -1161,18 +1162,18 @@
         "84": 2,
         "116": 1
       },
-      "total": 9,
-      "name": "iPad mini WF 128G 星光 MXN83"
+      "total": 9
     },
     "0013028070": {
+      "name": "iPad mini WF 128G 紫 MXN93",
       "stores": {
         "81": 1,
         "117": 1
       },
-      "total": 2,
-      "name": "iPad mini WF 128G 紫 MXN93"
+      "total": 2
     },
     "0013028071": {
+      "name": "iPad mini WF 256G 太空灰 MXNA3",
       "stores": {
         "45": 3,
         "48": 2,
@@ -1181,10 +1182,10 @@
         "115": 6,
         "117": 3
       },
-      "total": 17,
-      "name": "iPad mini WF 256G 太空灰 MXNA3"
+      "total": 17
     },
     "0013028072": {
+      "name": "iPad mini WF 256G 藍 MXNC3",
       "stores": {
         "45": 5,
         "48": 2,
@@ -1195,10 +1196,10 @@
         "115": 6,
         "117": 3
       },
-      "total": 36,
-      "name": "iPad mini WF 256G 藍 MXNC3"
+      "total": 36
     },
     "0013028073": {
+      "name": "iPad mini WF 256G 星光 MXND3",
       "stores": {
         "45": 4,
         "48": 1,
@@ -1207,10 +1208,10 @@
         "86": 3,
         "115": 7
       },
-      "total": 23,
-      "name": "iPad mini WF 256G 星光 MXND3"
+      "total": 23
     },
     "0013028074": {
+      "name": "iPad mini WF 256G 紫 MXNE3",
       "stores": {
         "45": 1,
         "48": 2,
@@ -1218,10 +1219,10 @@
         "115": 2,
         "117": 4
       },
-      "total": 10,
-      "name": "iPad mini WF 256G 紫 MXNE3"
+      "total": 10
     },
     "0013028084": {
+      "name": "iPad mini WF 512G 藍 MYH13",
       "stores": {
         "47": 1,
         "76": 1,
@@ -1230,19 +1231,19 @@
         "115": 1,
         "820": 1
       },
-      "total": 6,
-      "name": "iPad mini WF 512G 藍 MYH13"
+      "total": 6
     },
     "0013028085": {
+      "name": "iPad mini WF 512G 星光 MYH23",
       "stores": {
         "45": 1,
         "47": 1,
         "86": 2
       },
-      "total": 4,
-      "name": "iPad mini WF 512G 星光 MYH23"
+      "total": 4
     },
     "0013028091": {
+      "name": "3N305 iPad mini WF 128G 紫",
       "stores": {
         "45": 1,
         "47": 1,
@@ -1257,10 +1258,10 @@
         "115": 1,
         "116": 1
       },
-      "total": 12,
-      "name": "3N305 iPad mini WF 128G 紫"
+      "total": 12
     },
     "0013028094": {
+      "name": "3L205 iPad 10.9 WiFi 64 黃",
       "stores": {
         "45": 1,
         "47": 1,
@@ -1281,10 +1282,10 @@
         "116": 1,
         "117": 1
       },
-      "total": 18,
-      "name": "3L205 iPad 10.9 WiFi 64 黃"
+      "total": 18
     },
     "0013028574": {
+      "name": "iPad 11 WiFi 128 銀 MD3Y4",
       "stores": {
         "45": 24,
         "47": 15,
@@ -1307,10 +1308,10 @@
         "820": 5,
         "821": 5
       },
-      "total": 240,
-      "name": "iPad 11 WiFi 128 銀 MD3Y4"
+      "total": 240
     },
     "0013028575": {
+      "name": "iPad 11 WiFi 128 藍 MD4A4",
       "stores": {
         "45": 14,
         "47": 11,
@@ -1332,10 +1333,10 @@
         "820": 3,
         "821": 2
       },
-      "total": 175,
-      "name": "iPad 11 WiFi 128 藍 MD4A4"
+      "total": 175
     },
     "0013028576": {
+      "name": "iPad 11 WiFi 128 黃 MD4D4",
       "stores": {
         "45": 3,
         "51": 2,
@@ -1352,10 +1353,10 @@
         "97": 7,
         "115": 3
       },
-      "total": 58,
-      "name": "iPad 11 WiFi 128 黃 MD4D4"
+      "total": 58
     },
     "0013028577": {
+      "name": "iPad 11 WiFi 128 粉 MD4E4",
       "stores": {
         "45": 6,
         "47": 1,
@@ -1376,10 +1377,10 @@
         "820": 2,
         "821": 3
       },
-      "total": 63,
-      "name": "iPad 11 WiFi 128 粉 MD4E4"
+      "total": 63
     },
     "0013028578": {
+      "name": "iPad 11 WiFi 256 銀 MD4G4",
       "stores": {
         "47": 3,
         "48": 4,
@@ -1399,10 +1400,10 @@
         "820": 2,
         "821": 3
       },
-      "total": 65,
-      "name": "iPad 11 WiFi 256 銀 MD4G4"
+      "total": 65
     },
     "0013028579": {
+      "name": "iPad 11 WiFi 256 藍 MD4H4",
       "stores": {
         "47": 3,
         "51": 4,
@@ -1422,10 +1423,10 @@
         "116": 1,
         "821": 2
       },
-      "total": 68,
-      "name": "iPad 11 WiFi 256 藍 MD4H4"
+      "total": 68
     },
     "0013028580": {
+      "name": "iPad 11 WiFi 256 黃 MD4J4",
       "stores": {
         "47": 2,
         "61": 1,
@@ -1436,10 +1437,10 @@
         "115": 2,
         "117": 1
       },
-      "total": 11,
-      "name": "iPad 11 WiFi 256 黃 MD4J4"
+      "total": 11
     },
     "0013028581": {
+      "name": "iPad 11 WiFi 256 粉 MD4P4",
       "stores": {
         "47": 5,
         "51": 3,
@@ -1450,31 +1451,31 @@
         "89": 1,
         "116": 1
       },
-      "total": 17,
-      "name": "iPad 11 WiFi 256 粉 MD4P4"
+      "total": 17
     },
     "0013028586": {
+      "name": "iPad 11 CL 128GB 銀 MD7F4",
       "stores": {
         "880": 5
       },
-      "total": 5,
-      "name": "iPad 11 CL 128GB 銀 MD7F4"
+      "total": 5
     },
     "0013028589": {
+      "name": "iPad 11 CL 128GB 粉 MD7J4",
       "stores": {
         "821": 1
       },
-      "total": 1,
-      "name": "iPad 11 CL 128GB 粉 MD7J4"
+      "total": 1
     },
     "0013028591": {
+      "name": "iPad 11 CL 256GB 藍 MD7L4",
       "stores": {
         "115": 5
       },
-      "total": 5,
-      "name": "iPad 11 CL 256GB 藍 MD7L4"
+      "total": 5
     },
     "0013028598": {
+      "name": "iPad Air 11 WF 128 灰 MC9W4",
       "stores": {
         "45": 7,
         "47": 1,
@@ -1497,10 +1498,10 @@
         "820": 2,
         "821": 5
       },
-      "total": 84,
-      "name": "iPad Air 11 WF 128 灰 MC9W4"
+      "total": 84
     },
     "0013028599": {
+      "name": "iPad Air 11 WF 128 藍 MC9X4",
       "stores": {
         "45": 8,
         "47": 5,
@@ -1523,10 +1524,10 @@
         "820": 2,
         "821": 5
       },
-      "total": 86,
-      "name": "iPad Air 11 WF 128 藍 MC9X4"
+      "total": 86
     },
     "0013028600": {
+      "name": "iPad Air 11 WF 128 星 MC9Y4",
       "stores": {
         "45": 3,
         "47": 2,
@@ -1549,10 +1550,10 @@
         "117": 2,
         "821": 4
       },
-      "total": 80,
-      "name": "iPad Air 11 WF 128 星 MC9Y4"
+      "total": 80
     },
     "0013028601": {
+      "name": "iPad Air 11 WF 128 紫 MCA04",
       "stores": {
         "47": 6,
         "48": 10,
@@ -1574,10 +1575,10 @@
         "117": 4,
         "821": 2
       },
-      "total": 113,
-      "name": "iPad Air 11 WF 128 紫 MCA04"
+      "total": 113
     },
     "0013028602": {
+      "name": "iPad Air 11 WF 256 灰 MCA14",
       "stores": {
         "45": 7,
         "47": 2,
@@ -1600,10 +1601,10 @@
         "820": 3,
         "821": 3
       },
-      "total": 51,
-      "name": "iPad Air 11 WF 256 灰 MCA14"
+      "total": 51
     },
     "0013028603": {
+      "name": "iPad Air 11 WF 256 藍 MCA34",
       "stores": {
         "47": 2,
         "48": 1,
@@ -1625,10 +1626,10 @@
         "117": 9,
         "821": 2
       },
-      "total": 94,
-      "name": "iPad Air 11 WF 256 藍 MCA34"
+      "total": 94
     },
     "0013028604": {
+      "name": "iPad Air 11 WF 256 星 MCA44",
       "stores": {
         "45": 8,
         "47": 6,
@@ -1650,10 +1651,10 @@
         "117": 2,
         "821": 5
       },
-      "total": 101,
-      "name": "iPad Air 11 WF 256 星 MCA44"
+      "total": 101
     },
     "0013028605": {
+      "name": "iPad Air 11 WF 256 紫 MCA64",
       "stores": {
         "45": 6,
         "47": 4,
@@ -1674,172 +1675,172 @@
         "117": 6,
         "821": 3
       },
-      "total": 77,
-      "name": "iPad Air 11 WF 256 紫 MCA64"
+      "total": 77
     },
     "0013028607": {
+      "name": "iPad Air 11 WF 512 藍 MCA94",
       "stores": {
         "97": 1,
         "821": 1,
         "880": 3
       },
-      "total": 5,
-      "name": "iPad Air 11 WF 512 藍 MCA94"
+      "total": 5
     },
     "0013028609": {
+      "name": "iPad Air 11 WF 512 紫 MCAE4",
       "stores": {
         "48": 1,
         "86": 1,
         "115": 1
       },
-      "total": 3,
-      "name": "iPad Air 11 WF 512 紫 MCAE4"
+      "total": 3
     },
     "0013028610": {
+      "name": "iPad Air 11 WF 1TB 灰 MCAH4",
       "stores": {
         "86": 1,
         "880": 1
       },
-      "total": 2,
-      "name": "iPad Air 11 WF 1TB 灰 MCAH4"
+      "total": 2
     },
     "0013028611": {
+      "name": "iPad Air 11 WF 1TB 藍 MCAJ4",
       "stores": {
         "45": 1,
         "75": 1,
         "86": 1
       },
-      "total": 3,
-      "name": "iPad Air 11 WF 1TB 藍 MCAJ4"
+      "total": 3
     },
     "0013028612": {
+      "name": "iPad Air 11 WF 1TB 星 MCAQ4",
       "stores": {
         "45": 1,
         "51": 1,
         "86": 1
       },
-      "total": 3,
-      "name": "iPad Air 11 WF 1TB 星 MCAQ4"
+      "total": 3
     },
     "0013028613": {
+      "name": "iPad Air 11 WF 1TB 紫 MCAU4",
       "stores": {
         "51": 1,
         "75": 1,
         "821": 1,
         "880": 1
       },
-      "total": 4,
-      "name": "iPad Air 11 WF 1TB 紫 MCAU4"
+      "total": 4
     },
     "0013028618": {
+      "name": "iPad Air 11 CL 256 灰 MCG04",
       "stores": {
         "880": 4
       },
-      "total": 4,
-      "name": "iPad Air 11 CL 256 灰 MCG04"
+      "total": 4
     },
     "0013028619": {
+      "name": "iPad Air 11 CL 256 藍 MCG14",
       "stores": {
         "821": 1
       },
-      "total": 1,
-      "name": "iPad Air 11 CL 256 藍 MCG14"
+      "total": 1
     },
     "0013028623": {
+      "name": "iPad Air 11 CL 512 藍 MCG54",
       "stores": {
         "880": 5
       },
-      "total": 5,
-      "name": "iPad Air 11 CL 512 藍 MCG54"
+      "total": 5
     },
     "0013028624": {
+      "name": "iPad Air 11 CL 512 星 MCG64",
       "stores": {
         "880": 2
       },
-      "total": 2,
-      "name": "iPad Air 11 CL 512 星 MCG64"
+      "total": 2
     },
     "0013028630": {
+      "name": "iPad Air 13 CL 128 灰 MCJ14",
       "stores": {
         "86": 1,
         "880": 1
       },
-      "total": 2,
-      "name": "iPad Air 13 CL 128 灰 MCJ14"
+      "total": 2
     },
     "0013028631": {
+      "name": "iPad Air 13 CL 128 藍 MCJ24",
       "stores": {
         "86": 1,
         "880": 1
       },
-      "total": 2,
-      "name": "iPad Air 13 CL 128 藍 MCJ24"
+      "total": 2
     },
     "0013028632": {
+      "name": "iPad Air 13 CL 128 星 MCJ34",
       "stores": {
         "51": 1,
         "86": 1,
         "880": 1
       },
-      "total": 3,
-      "name": "iPad Air 13 CL 128 星 MCJ34"
+      "total": 3
     },
     "0013028633": {
+      "name": "iPad Air 13 CL 128 紫 MCJ44",
       "stores": {
         "880": 1
       },
-      "total": 1,
-      "name": "iPad Air 13 CL 128 紫 MCJ44"
+      "total": 1
     },
     "0013028634": {
+      "name": "iPad Air 13 CL 256 灰 MCJ54",
       "stores": {
         "45": 1,
         "880": 1
       },
-      "total": 2,
-      "name": "iPad Air 13 CL 256 灰 MCJ54"
+      "total": 2
     },
     "0013028635": {
+      "name": "iPad Air 13 CL 256 藍 MCJ64",
       "stores": {
         "45": 1,
         "86": 1,
         "880": 1
       },
-      "total": 3,
-      "name": "iPad Air 13 CL 256 藍 MCJ64"
+      "total": 3
     },
     "0013028636": {
+      "name": "iPad Air 13 CL 256 星 MCJ74",
       "stores": {
         "45": 1,
         "51": 1,
         "880": 1
       },
-      "total": 3,
-      "name": "iPad Air 13 CL 256 星 MCJ74"
+      "total": 3
     },
     "0013028637": {
+      "name": "iPad Air 13 CL 256 紫 MCJ84",
       "stores": {
         "86": 1
       },
-      "total": 1,
-      "name": "iPad Air 13 CL 256 紫 MCJ84"
+      "total": 1
     },
     "0013028639": {
+      "name": "iPad Air 13 CL 512 藍 MCJA4",
       "stores": {
         "45": 1,
         "51": 1
       },
-      "total": 2,
-      "name": "iPad Air 13 CL 512 藍 MCJA4"
+      "total": 2
     },
     "0013028640": {
+      "name": "iPad Air 13 CL 512 星 MCJC4",
       "stores": {
         "51": 1
       },
-      "total": 1,
-      "name": "iPad Air 13 CL 512 星 MCJC4"
+      "total": 1
     },
     "0013028646": {
+      "name": "iPad Air 13 WF 128 灰 MCNH4",
       "stores": {
         "45": 4,
         "47": 4,
@@ -1861,10 +1862,10 @@
         "821": 3,
         "880": 7
       },
-      "total": 58,
-      "name": "iPad Air 13 WF 128 灰 MCNH4"
+      "total": 58
     },
     "0013028647": {
+      "name": "iPad Air 13 WF 128 藍 MCNJ4",
       "stores": {
         "45": 4,
         "47": 3,
@@ -1884,10 +1885,10 @@
         "116": 1,
         "821": 2
       },
-      "total": 40,
-      "name": "iPad Air 13 WF 128 藍 MCNJ4"
+      "total": 40
     },
     "0013028648": {
+      "name": "iPad Air 13 WF 128 星 MCNK4",
       "stores": {
         "47": 2,
         "57": 2,
@@ -1901,10 +1902,10 @@
         "117": 1,
         "821": 1
       },
-      "total": 15,
-      "name": "iPad Air 13 WF 128 星 MCNK4"
+      "total": 15
     },
     "0013028649": {
+      "name": "iPad Air 13 WF 128 紫 MCNL4",
       "stores": {
         "45": 6,
         "47": 7,
@@ -1928,10 +1929,10 @@
         "821": 1,
         "880": 4
       },
-      "total": 71,
-      "name": "iPad Air 13 WF 128 紫 MCNL4"
+      "total": 71
     },
     "0013028650": {
+      "name": "iPad Air 13 WF 256 灰 MCNN4",
       "stores": {
         "45": 3,
         "47": 1,
@@ -1948,10 +1949,10 @@
         "821": 1,
         "880": 1
       },
-      "total": 23,
-      "name": "iPad Air 13 WF 256 灰 MCNN4"
+      "total": 23
     },
     "0013028651": {
+      "name": "iPad Air 13 WF 256 藍 MCNP4",
       "stores": {
         "45": 1,
         "47": 2,
@@ -1968,10 +1969,10 @@
         "117": 2,
         "821": 1
       },
-      "total": 22,
-      "name": "iPad Air 13 WF 256 藍 MCNP4"
+      "total": 22
     },
     "0013028652": {
+      "name": "iPad Air 13 WF 256 星 MCNQ4",
       "stores": {
         "57": 2,
         "65": 1,
@@ -1981,10 +1982,10 @@
         "115": 1,
         "117": 1
       },
-      "total": 8,
-      "name": "iPad Air 13 WF 256 星 MCNQ4"
+      "total": 8
     },
     "0013028653": {
+      "name": "iPad Air 13 WF 256 紫 MCNR4",
       "stores": {
         "45": 1,
         "47": 4,
@@ -2005,32 +2006,32 @@
         "821": 1,
         "880": 3
       },
-      "total": 32,
-      "name": "iPad Air 13 WF 256 紫 MCNR4"
+      "total": 32
     },
     "0013028654": {
+      "name": "iPad Air 13 WF 512 灰 MCNT4",
       "stores": {
         "45": 1,
         "880": 3
       },
-      "total": 4,
-      "name": "iPad Air 13 WF 512 灰 MCNT4"
+      "total": 4
     },
     "0013028657": {
+      "name": "iPad Air 13 WF 512 紫 MCNY4",
       "stores": {
         "75": 1
       },
-      "total": 1,
-      "name": "iPad Air 13 WF 512 紫 MCNY4"
+      "total": 1
     },
     "0013028659": {
+      "name": "iPad Air 13 WF 1TB 藍 MCQ14",
       "stores": {
         "821": 1
       },
-      "total": 1,
-      "name": "iPad Air 13 WF 1TB 藍 MCQ14"
+      "total": 1
     },
     "0013028691": {
+      "name": "3N671 iPad Air 11 WF 128 藍",
       "stores": {
         "47": 1,
         "48": 1,
@@ -2045,19 +2046,19 @@
         "116": 1,
         "117": 1
       },
-      "total": 12,
-      "name": "3N671 iPad Air 11 WF 128 藍"
+      "total": 12
     },
     "0013028692": {
+      "name": "3N672 iPad Air 11 WF 128 星",
       "stores": {
         "51": 1,
         "81": 1,
         "117": 1
       },
-      "total": 3,
-      "name": "3N672 iPad Air 11 WF 128 星"
+      "total": 3
     },
     "0013028693": {
+      "name": "3N673 iPad Air 11 WF 128 紫",
       "stores": {
         "45": 1,
         "47": 1,
@@ -2077,19 +2078,19 @@
         "116": 1,
         "117": 1
       },
-      "total": 17,
-      "name": "3N673 iPad Air 11 WF 128 紫"
+      "total": 17
     },
     "0013028696": {
+      "name": "3N730 iPad Air 13 WF 128 紫",
       "stores": {
         "51": 1,
         "81": 1,
         "117": 1
       },
-      "total": 3,
-      "name": "3N730 iPad Air 13 WF 128 紫"
+      "total": 3
     },
     "0013028697": {
+      "name": "3N789 iPad 11 WF 128 銀",
       "stores": {
         "47": 1,
         "48": 1,
@@ -2098,10 +2099,10 @@
         "84": 1,
         "117": 1
       },
-      "total": 6,
-      "name": "3N789 iPad 11 WF 128 銀"
+      "total": 6
     },
     "0013028698": {
+      "name": "3N790 iPad 11 WF 128 藍",
       "stores": {
         "45": 1,
         "47": 1,
@@ -2121,10 +2122,10 @@
         "116": 1,
         "117": 1
       },
-      "total": 17,
-      "name": "3N790 iPad 11 WF 128 藍"
+      "total": 17
     },
     "0013028731": {
+      "name": "3N727 iPad Air 13 WF 128 灰",
       "stores": {
         "45": 1,
         "47": 1,
@@ -2144,76 +2145,76 @@
         "116": 1,
         "117": 1
       },
-      "total": 17,
-      "name": "3N727 iPad Air 13 WF 128 灰"
+      "total": 17
     },
     "0013029061": {
+      "name": "北 3N305 iPad mini WF 128G 紫",
       "stores": {
         "97": 1
       },
-      "total": 1,
-      "name": "北 3N305 iPad mini WF 128G 紫"
+      "total": 1
     },
     "0013029062": {
+      "name": "北 3N789 iPad 11 WF 128 銀",
       "stores": {
         "97": 2
       },
-      "total": 2,
-      "name": "北 3N789 iPad 11 WF 128 銀"
+      "total": 2
     },
     "0013029063": {
+      "name": "北 3N790 iPad 11 WF 128 藍",
       "stores": {
         "75": 1,
         "97": 1
       },
-      "total": 2,
-      "name": "北 3N790 iPad 11 WF 128 藍"
+      "total": 2
     },
     "0013029064": {
+      "name": "北 3N671 iPad Air 11 WF 128 藍",
       "stores": {
         "97": 1
       },
-      "total": 1,
-      "name": "北 3N671 iPad Air 11 WF 128 藍"
+      "total": 1
     },
     "0013029065": {
+      "name": "北 3N673 iPad Air 11 WF 128 紫",
       "stores": {
         "75": 1,
         "97": 1
       },
-      "total": 2,
-      "name": "北 3N673 iPad Air 11 WF 128 紫"
+      "total": 2
     },
     "0013029066": {
+      "name": "北 3N727 iPad Air 13 WF 128 灰",
       "stores": {
         "75": 1,
         "97": 1
       },
-      "total": 2,
-      "name": "北 3N727 iPad Air 13 WF 128 灰"
+      "total": 2
     },
     "0013029067": {
+      "name": "北 3M773 iPad Pro 11 WF 256 銀",
       "stores": {
         "880": 1
       },
-      "total": 1,
-      "name": "北 3M773 iPad Pro 11 WF 256 銀"
+      "total": 1
     },
     "0013029068": {
+      "name": "北 3M780 iPad Pro 13 WF 256 黑",
       "stores": {
         "880": 1
       },
-      "total": 1,
-      "name": "北 3M780 iPad Pro 13 WF 256 黑"
+      "total": 1
     },
     "0013030467": {
+      "name": "北 MD4D4D iPad 11 WiFi 128 黃",
       "stores": {
         "97": 1
       },
-      "total": 1,
-      "name": "北 MD4D4D iPad 11 WiFi 128 黃"
+      "total": 1
     },
     "0013030488": {
+      "name": "iPad Pro 11 WIFI 256 黑 MDWK4",
       "stores": {
         "45": 3,
         "47": 1,
@@ -2232,10 +2233,10 @@
         "116": 2,
         "117": 2
       },
-      "total": 29,
-      "name": "iPad Pro 11 WIFI 256 黑 MDWK4"
+      "total": 29
     },
     "0013030489": {
+      "name": "iPad Pro 11 WIFI 256 銀 MDWL4",
       "stores": {
         "45": 1,
         "47": 2,
@@ -2252,42 +2253,42 @@
         "97": 3,
         "115": 5
       },
-      "total": 35,
-      "name": "iPad Pro 11 WIFI 256 銀 MDWL4"
+      "total": 35
     },
     "0013030490": {
+      "name": "iPad Pro 11 WIFI 512 黑 MDWM4",
       "stores": {
         "48": 1,
         "51": 1
       },
-      "total": 2,
-      "name": "iPad Pro 11 WIFI 512 黑 MDWM4"
+      "total": 2
     },
     "0013030491": {
+      "name": "iPad Pro 11 WIFI 512 銀 MDWN4",
       "stores": {
         "48": 2,
         "75": 3
       },
-      "total": 5,
-      "name": "iPad Pro 11 WIFI 512 銀 MDWN4"
+      "total": 5
     },
     "0013030494": {
+      "name": "iPad Pro 11 WF 1T NTG 黑 MDWR4",
       "stores": {
         "51": 1,
         "880": 1
       },
-      "total": 2,
-      "name": "iPad Pro 11 WF 1T NTG 黑 MDWR4"
+      "total": 2
     },
     "0013030495": {
+      "name": "iPad Pro 11 WF 1T NTG 銀 MDWT4",
       "stores": {
         "51": 1,
         "880": 1
       },
-      "total": 2,
-      "name": "iPad Pro 11 WF 1T NTG 銀 MDWT4"
+      "total": 2
     },
     "0013030500": {
+      "name": "iPad Pro 13 WIFI 256 黑 MDYJ4",
       "stores": {
         "45": 1,
         "47": 2,
@@ -2308,10 +2309,10 @@
         "116": 3,
         "117": 1
       },
-      "total": 53,
-      "name": "iPad Pro 13 WIFI 256 黑 MDYJ4"
+      "total": 53
     },
     "0013030501": {
+      "name": "iPad Pro 13 WIFI 256 銀 MDYK4",
       "stores": {
         "45": 3,
         "51": 2,
@@ -2327,10 +2328,10 @@
         "116": 1,
         "117": 1
       },
-      "total": 34,
-      "name": "iPad Pro 13 WIFI 256 銀 MDYK4"
+      "total": 34
     },
     "0013030502": {
+      "name": "iPad Pro 13 WIFI 512 黑 MDYL4",
       "stores": {
         "51": 1,
         "57": 4,
@@ -2341,10 +2342,10 @@
         "88": 1,
         "89": 1
       },
-      "total": 14,
-      "name": "iPad Pro 13 WIFI 512 黑 MDYL4"
+      "total": 14
     },
     "0013030503": {
+      "name": "iPad Pro 13 WIFI 512 銀 MDYM4",
       "stores": {
         "45": 1,
         "51": 1,
@@ -2355,114 +2356,114 @@
         "86": 2,
         "88": 1
       },
-      "total": 10,
-      "name": "iPad Pro 13 WIFI 512 銀 MDYM4"
+      "total": 10
     },
     "0013030504": {
+      "name": "iPad Pro 13 WIFI 1TB 黑 MDYN4",
       "stores": {
         "45": 1,
         "75": 1
       },
-      "total": 2,
-      "name": "iPad Pro 13 WIFI 1TB 黑 MDYN4"
+      "total": 2
     },
     "0013030507": {
+      "name": "iPad Pro 13 WF 1T NTG 銀 MDYR4",
       "stores": {
         "880": 1
       },
-      "total": 1,
-      "name": "iPad Pro 13 WF 1T NTG 銀 MDYR4"
+      "total": 1
     },
     "0013030512": {
+      "name": "iPad Pro 11 CL 256 黑 ME2N4",
       "stores": {
         "48": 6,
         "880": 4
       },
-      "total": 10,
-      "name": "iPad Pro 11 CL 256 黑 ME2N4"
+      "total": 10
     },
     "0013030513": {
+      "name": "iPad Pro 11 CL 256 銀 ME2P4",
       "stores": {
         "48": 2,
         "880": 3
       },
-      "total": 5,
-      "name": "iPad Pro 11 CL 256 銀 ME2P4"
+      "total": 5
     },
     "0013030524": {
+      "name": "iPad Pro 13 CL 256 黑 ME7W4",
       "stores": {
         "48": 4,
         "880": 1
       },
-      "total": 5,
-      "name": "iPad Pro 13 CL 256 黑 ME7W4"
+      "total": 5
     },
     "0013030526": {
+      "name": "iPad Pro 13 CL 512 黑 ME7Y4",
       "stores": {
         "48": 1,
         "880": 1
       },
-      "total": 2,
-      "name": "iPad Pro 13 CL 512 黑 ME7Y4"
+      "total": 2
     },
     "0013023243": {
+      "name": "@@M2 2023 Mac mini 256G MMFJ3",
       "stores": {
         "880": 10
       },
-      "total": 10,
-      "name": "@@M2 2023 Mac mini 256G MMFJ3"
+      "total": 10
     },
     "0013023244": {
+      "name": "@@M2 2023 Mac mini 512G MMFK3",
       "stores": {
         "880": 7
       },
-      "total": 7,
-      "name": "@@M2 2023 Mac mini 512G MMFK3"
+      "total": 7
     },
     "0013023245": {
+      "name": "@@M2P 2023 Mac mini 512G MNH73",
       "stores": {
         "880": 5
       },
-      "total": 5,
-      "name": "@@M2P 2023 Mac mini 512G MNH73"
+      "total": 5
     },
     "0013025702": {
+      "name": "@@M3 iMac 24 10核 256 粉 MQRT3",
       "stores": {
         "880": 2
       },
-      "total": 2,
-      "name": "@@M3 iMac 24 10核 256 粉 MQRT3"
+      "total": 2
     },
     "0013025711": {
+      "name": "MQRQ3D M3 iMac 24 10C 256 藍",
       "stores": {
         "880": 1
       },
-      "total": 1,
-      "name": "MQRQ3D M3 iMac 24 10C 256 藍"
+      "total": 1
     },
     "0013028133": {
+      "name": "M4 iMac 24 8C 256 銀 MWUC3",
       "stores": {
         "51": 1,
         "86": 1
       },
-      "total": 2,
-      "name": "M4 iMac 24 8C 256 銀 MWUC3"
+      "total": 2
     },
     "0013028141": {
+      "name": "M4 iMac 24 10 16 256NT銀 MD3H4",
       "stores": {
         "51": 1
       },
-      "total": 1,
-      "name": "M4 iMac 24 10 16 256NT銀 MD3H4"
+      "total": 1
     },
     "0013028144": {
+      "name": "M4 iMac 24 10C 16 512 藍 MWV33",
       "stores": {
         "75": 1
       },
-      "total": 1,
-      "name": "M4 iMac 24 10C 16 512 藍 MWV33"
+      "total": 1
     },
     "0013028159": {
+      "name": "M4 Mac mini 10核 16 256 MU9D3",
       "stores": {
         "45": 4,
         "47": 2,
@@ -2486,10 +2487,10 @@
         "821": 2,
         "880": 1
       },
-      "total": 48,
-      "name": "M4 Mac mini 10核 16 256 MU9D3"
+      "total": 48
     },
     "0013028160": {
+      "name": "M4 Mac mini 10核 16 512 MU9E3",
       "stores": {
         "45": 1,
         "47": 1,
@@ -2501,10 +2502,10 @@
         "115": 1,
         "821": 1
       },
-      "total": 9,
-      "name": "M4 Mac mini 10核 16 512 MU9E3"
+      "total": 9
     },
     "0013028161": {
+      "name": "M4 Mac mini 10核 24 512 MCYT4",
       "stores": {
         "45": 1,
         "48": 1,
@@ -2515,202 +2516,202 @@
         "88": 1,
         "115": 1
       },
-      "total": 8,
-      "name": "M4 Mac mini 10核 24 512 MCYT4"
+      "total": 8
     },
     "0013029053": {
+      "name": "北 MWV13D M4 iMac 10 16 256 藍",
       "stores": {
         "97": 1
       },
-      "total": 1,
-      "name": "北 MWV13D M4 iMac 10 16 256 藍"
+      "total": 1
     },
     "0013029054": {
+      "name": "北 MU9D3D M4 Mac mn 10C 16 256",
       "stores": {
         "97": 1
       },
-      "total": 1,
-      "name": "北 MU9D3D M4 Mac mn 10C 16 256"
+      "total": 1
     },
     "0013029126": {
+      "name": "M4 iMac 24 10C 16 256 藍 Z1EP",
       "stores": {
         "880": 1
       },
-      "total": 1,
-      "name": "M4 iMac 24 10C 16 256 藍 Z1EP"
+      "total": 1
     },
     "0013029127": {
+      "name": "M4 iMac 24 10C 16 256 黃 Z1EK",
       "stores": {
         "880": 1
       },
-      "total": 1,
-      "name": "M4 iMac 24 10C 16 256 黃 Z1EK"
+      "total": 1
     },
     "0013024964": {
+      "name": "@@AW SE 44 午鋁/午帶 S/M MRE73",
       "stores": {
         "880": 1
       },
-      "total": 1,
-      "name": "@@AW SE 44 午鋁/午帶 S/M MRE73"
+      "total": 1
     },
     "0013024993": {
+      "name": "@@AW S9 41 午鋁/午環 MR8Y3",
       "stores": {
         "45": 1
       },
-      "total": 1,
-      "name": "@@AW S9 41 午鋁/午環 MR8Y3"
+      "total": 1
     },
     "0013025054": {
+      "name": "@@AW S9 41 紅鋁/紅帶 S/M MRXG3",
       "stores": {
         "45": 2,
         "880": 1
       },
-      "total": 3,
-      "name": "@@AW S9 41 紅鋁/紅帶 S/M MRXG3"
+      "total": 3
     },
     "0013027419": {
+      "name": "@@AW SE 40 午鋁/午帶 S/M MXE73",
       "stores": {
         "84": 1,
         "97": 1
       },
-      "total": 2,
-      "name": "@@AW SE 40 午鋁/午帶 S/M MXE73"
+      "total": 2
     },
     "0013027420": {
+      "name": "@@AW SE 40 午鋁/午帶 M/L MXE93",
       "stores": {
         "84": 1
       },
-      "total": 1,
-      "name": "@@AW SE 40 午鋁/午帶 M/L MXE93"
+      "total": 1
     },
     "0013027421": {
+      "name": "@@AW SE 40 午鋁/午夜環 MXEA3",
       "stores": {
         "61": 2
       },
-      "total": 2,
-      "name": "@@AW SE 40 午鋁/午夜環 MXEA3"
+      "total": 2
     },
     "0013027423": {
+      "name": "@@AW SE 40 銀鋁/寧帶 M/L MXED3",
       "stores": {
         "84": 2
       },
-      "total": 2,
-      "name": "@@AW SE 40 銀鋁/寧帶 M/L MXED3"
+      "total": 2
     },
     "0013027424": {
+      "name": "@@AW SE 40 銀鋁/青雲環 MXEE3",
       "stores": {
         "57": 1
       },
-      "total": 1,
-      "name": "@@AW SE 40 銀鋁/青雲環 MXEE3"
+      "total": 1
     },
     "0013027425": {
+      "name": "@@AW SE 40 星鋁/星帶 S/M MXEF3",
       "stores": {
         "97": 1
       },
-      "total": 1,
-      "name": "@@AW SE 40 星鋁/星帶 S/M MXEF3"
+      "total": 1
     },
     "0013027426": {
+      "name": "@@AW SE 40 星鋁/星帶 M/L MXEG3",
       "stores": {
         "84": 1
       },
-      "total": 1,
-      "name": "@@AW SE 40 星鋁/星帶 M/L MXEG3"
+      "total": 1
     },
     "0013027427": {
+      "name": "@@AW SE 40 星鋁/湖綠環 MXEH3",
       "stores": {
         "97": 1
       },
-      "total": 1,
-      "name": "@@AW SE 40 星鋁/湖綠環 MXEH3"
+      "total": 1
     },
     "0013027433": {
+      "name": "@@AW SE 44 銀鋁/青雲環 MXET3",
       "stores": {
         "45": 1,
         "57": 1
       },
-      "total": 2,
-      "name": "@@AW SE 44 銀鋁/青雲環 MXET3"
+      "total": 2
     },
     "0013027434": {
+      "name": "@@AW SE 44 星鋁/星帶 S/M MXEU3",
       "stores": {
         "57": 1
       },
-      "total": 1,
-      "name": "@@AW SE 44 星鋁/星帶 S/M MXEU3"
+      "total": 1
     },
     "0013027435": {
+      "name": "@@AW SE 44 星鋁/星帶 M/L MXEV3",
       "stores": {
         "61": 1
       },
-      "total": 1,
-      "name": "@@AW SE 44 星鋁/星帶 M/L MXEV3"
+      "total": 1
     },
     "0013027457": {
+      "name": "@@AW S10 CL 46 金鈦/米 S MC7T4",
       "stores": {
         "89": 1
       },
-      "total": 1,
-      "name": "@@AW S10 CL 46 金鈦/米 S MC7T4"
+      "total": 1
     },
     "0013027471": {
+      "name": "@@AW S10 46 黑鋁/黑帶 ML MWWQ3",
       "stores": {
         "45": 1
       },
-      "total": 1,
-      "name": "@@AW S10 46 黑鋁/黑帶 ML MWWQ3"
+      "total": 1
     },
     "0013027489": {
+      "name": "@@AW S10 CL 42 石鈦/黑 L MWXH3",
       "stores": {
         "89": 1
       },
-      "total": 1,
-      "name": "@@AW S10 CL 42 石鈦/黑 L MWXH3"
+      "total": 1
     },
     "0013027492": {
+      "name": "@@AW S10 CL 46 銀鋁/青環 MWY23",
       "stores": {
         "89": 1
       },
-      "total": 1,
-      "name": "@@AW S10 CL 46 銀鋁/青環 MWY23"
+      "total": 1
     },
     "0013027498": {
+      "name": "@@AW S10 CL 46 金鋁/梅環 MWY83",
       "stores": {
         "117": 1
       },
-      "total": 1,
-      "name": "@@AW S10 CL 46 金鋁/梅環 MWY83"
+      "total": 1
     },
     "0013027504": {
+      "name": "@@AW S10 CL 46 石鈦/米 L MWYW3",
       "stores": {
         "61": 1
       },
-      "total": 1,
-      "name": "@@AW S10 CL 46 石鈦/米 L MWYW3"
+      "total": 1
     },
     "0013027507": {
+      "name": "@@AW S10 CL 46 金鈦/米 L MX003",
       "stores": {
         "89": 1
       },
-      "total": 1,
-      "name": "@@AW S10 CL 46 金鈦/米 L MX003"
+      "total": 1
     },
     "0013027510": {
+      "name": "@@AW S10 CL 42 金鈦/星 L MX073",
       "stores": {
         "820": 1
       },
-      "total": 1,
-      "name": "@@AW S10 CL 42 金鈦/星 L MX073"
+      "total": 1
     },
     "0013027517": {
+      "name": "@@AW Ultra 原鈦/越藍環 L MX4L3",
       "stores": {
         "48": 1
       },
-      "total": 1,
-      "name": "@@AW Ultra 原鈦/越藍環 L MX4L3"
+      "total": 1
     },
     "0013029819": {
+      "name": "AW SE 40 星鋁/星帶 S MEH34",
       "stores": {
         "47": 4,
         "48": 5,
@@ -2732,10 +2733,10 @@
         "820": 4,
         "821": 6
       },
-      "total": 123,
-      "name": "AW SE 40 星鋁/星帶 S MEH34"
+      "total": 123
     },
     "0013029820": {
+      "name": "AW SE 40 星鋁/星帶 L MEH54",
       "stores": {
         "51": 2,
         "57": 2,
@@ -2746,10 +2747,10 @@
         "97": 1,
         "115": 2
       },
-      "total": 24,
-      "name": "AW SE 40 星鋁/星帶 L MEH54"
+      "total": 24
     },
     "0013029821": {
+      "name": "AW SE 40 午鋁/午帶 S MEH94",
       "stores": {
         "47": 1,
         "51": 1,
@@ -2766,10 +2767,10 @@
         "820": 2,
         "821": 3
       },
-      "total": 29,
-      "name": "AW SE 40 午鋁/午帶 S MEH94"
+      "total": 29
     },
     "0013029822": {
+      "name": "AW SE 40 午鋁/午帶 L MEHC4",
       "stores": {
         "45": 3,
         "51": 4,
@@ -2787,10 +2788,10 @@
         "115": 4,
         "116": 4
       },
-      "total": 46,
-      "name": "AW SE 40 午鋁/午帶 L MEHC4"
+      "total": 46
     },
     "0013029823": {
+      "name": "AW SE 44 星鋁/星帶 S MEHG4",
       "stores": {
         "45": 8,
         "47": 3,
@@ -2806,10 +2807,10 @@
         "820": 2,
         "821": 6
       },
-      "total": 50,
-      "name": "AW SE 44 星鋁/星帶 S MEHG4"
+      "total": 50
     },
     "0013029824": {
+      "name": "AW SE 44 星鋁/星帶 L MEHJ4",
       "stores": {
         "45": 5,
         "47": 3,
@@ -2829,10 +2830,10 @@
         "820": 3,
         "821": 3
       },
-      "total": 51,
-      "name": "AW SE 44 星鋁/星帶 L MEHJ4"
+      "total": 51
     },
     "0013029825": {
+      "name": "AW SE 44 午鋁/午帶 S MEHN4",
       "stores": {
         "47": 6,
         "51": 1,
@@ -2851,10 +2852,10 @@
         "820": 3,
         "821": 2
       },
-      "total": 38,
-      "name": "AW SE 44 午鋁/午帶 S MEHN4"
+      "total": 38
     },
     "0013029826": {
+      "name": "AW SE 44 午鋁/午帶 L MEHQ4",
       "stores": {
         "45": 10,
         "47": 2,
@@ -2876,64 +2877,64 @@
         "820": 5,
         "821": 6
       },
-      "total": 107,
-      "name": "AW SE 44 午鋁/午帶 L MEHQ4"
+      "total": 107
     },
     "0013029828": {
+      "name": "AW SE CL 40 星鋁/星帶 L MEP74",
       "stores": {
         "45": 1,
         "86": 5
       },
-      "total": 6,
-      "name": "AW SE CL 40 星鋁/星帶 L MEP74"
+      "total": 6
     },
     "0013029829": {
+      "name": "AW SE CL 40 午鋁/午帶 S MEP94",
       "stores": {
         "86": 6
       },
-      "total": 6,
-      "name": "AW SE CL 40 午鋁/午帶 S MEP94"
+      "total": 6
     },
     "0013029830": {
+      "name": "AW SE CL 40 午鋁/午帶 L MEPC4",
       "stores": {
         "86": 5,
         "880": 3
       },
-      "total": 8,
-      "name": "AW SE CL 40 午鋁/午帶 L MEPC4"
+      "total": 8
     },
     "0013029831": {
+      "name": "AW SE CL 44 星鋁/星帶 S MEPE4",
       "stores": {
         "45": 2,
         "86": 1
       },
-      "total": 3,
-      "name": "AW SE CL 44 星鋁/星帶 S MEPE4"
+      "total": 3
     },
     "0013029832": {
+      "name": "AW SE CL 44 星鋁/星帶 L MEPF4",
       "stores": {
         "45": 2,
         "86": 2
       },
-      "total": 4,
-      "name": "AW SE CL 44 星鋁/星帶 L MEPF4"
+      "total": 4
     },
     "0013029833": {
+      "name": "AW SE CL 44 午鋁/午帶 S MEPH4",
       "stores": {
         "45": 1
       },
-      "total": 1,
-      "name": "AW SE CL 44 午鋁/午帶 S MEPH4"
+      "total": 1
     },
     "0013029834": {
+      "name": "AW SE CL 44 午鋁/午帶 L MEPJ4",
       "stores": {
         "45": 3,
         "86": 1
       },
-      "total": 4,
-      "name": "AW SE CL 44 午鋁/午帶 L MEPJ4"
+      "total": 4
     },
     "0013029835": {
+      "name": "AW S11 42 黑鋁/黑帶 S MEQT4",
       "stores": {
         "45": 1,
         "48": 2,
@@ -2950,18 +2951,18 @@
         "820": 2,
         "821": 2
       },
-      "total": 29,
-      "name": "AW S11 42 黑鋁/黑帶 S MEQT4"
+      "total": 29
     },
     "0013029836": {
+      "name": "AW S11 42 黑鋁/黑帶 L MEQU4",
       "stores": {
         "75": 3,
         "115": 1
       },
-      "total": 4,
-      "name": "AW S11 42 黑鋁/黑帶 L MEQU4"
+      "total": 4
     },
     "0013029837": {
+      "name": "AW S11 42 灰鋁/黑帶 S MEQW4",
       "stores": {
         "47": 2,
         "57": 1,
@@ -2979,17 +2980,17 @@
         "820": 5,
         "821": 5
       },
-      "total": 35,
-      "name": "AW S11 42 灰鋁/黑帶 S MEQW4"
+      "total": 35
     },
     "0013029838": {
+      "name": "AW S11 42 灰鋁/黑帶 L MEQX4",
       "stores": {
         "75": 1
       },
-      "total": 1,
-      "name": "AW S11 42 灰鋁/黑帶 L MEQX4"
+      "total": 1
     },
     "0013029839": {
+      "name": "AW S11 42 金鋁/粉帶 S MEU04",
       "stores": {
         "45": 29,
         "48": 1,
@@ -3011,20 +3012,20 @@
         "820": 5,
         "821": 2
       },
-      "total": 199,
-      "name": "AW S11 42 金鋁/粉帶 S MEU04"
+      "total": 199
     },
     "0013029840": {
+      "name": "AW S11 42 金鋁/粉帶 L MEU44",
       "stores": {
         "47": 1,
         "77": 1,
         "81": 1,
         "86": 2
       },
-      "total": 5,
-      "name": "AW S11 42 金鋁/粉帶 L MEU44"
+      "total": 5
     },
     "0013029841": {
+      "name": "AW S11 42 銀鋁/紫帶 S MEU64",
       "stores": {
         "47": 2,
         "51": 1,
@@ -3038,17 +3039,17 @@
         "115": 6,
         "116": 5
       },
-      "total": 46,
-      "name": "AW S11 42 銀鋁/紫帶 S MEU64"
+      "total": 46
     },
     "0013029842": {
+      "name": "AW S11 42 銀鋁/紫帶 L MEU74",
       "stores": {
         "75": 2
       },
-      "total": 2,
-      "name": "AW S11 42 銀鋁/紫帶 L MEU74"
+      "total": 2
     },
     "0013029843": {
+      "name": "AW S11 46 黑鋁/黑帶 S MEUW4",
       "stores": {
         "45": 5,
         "47": 4,
@@ -3070,10 +3071,10 @@
         "820": 5,
         "821": 3
       },
-      "total": 75,
-      "name": "AW S11 46 黑鋁/黑帶 S MEUW4"
+      "total": 75
     },
     "0013029844": {
+      "name": "AW S11 46 黑鋁/黑帶 L MEUX4",
       "stores": {
         "45": 27,
         "47": 6,
@@ -3097,10 +3098,10 @@
         "820": 6,
         "821": 11
       },
-      "total": 241,
-      "name": "AW S11 46 黑鋁/黑帶 L MEUX4"
+      "total": 241
     },
     "0013029845": {
+      "name": "AW S11 46 灰鋁/黑帶 S MEV04",
       "stores": {
         "47": 3,
         "48": 3,
@@ -3119,10 +3120,10 @@
         "820": 2,
         "821": 2
       },
-      "total": 38,
-      "name": "AW S11 46 灰鋁/黑帶 S MEV04"
+      "total": 38
     },
     "0013029846": {
+      "name": "AW S11 46 灰鋁/黑帶 L MEV44",
       "stores": {
         "45": 3,
         "47": 8,
@@ -3144,10 +3145,10 @@
         "820": 3,
         "821": 5
       },
-      "total": 78,
-      "name": "AW S11 46 灰鋁/黑帶 L MEV44"
+      "total": 78
     },
     "0013029847": {
+      "name": "AW S11 46 金鋁/粉帶 S MEV64",
       "stores": {
         "45": 6,
         "47": 1,
@@ -3168,10 +3169,10 @@
         "820": 1,
         "821": 2
       },
-      "total": 90,
-      "name": "AW S11 46 金鋁/粉帶 S MEV64"
+      "total": 90
     },
     "0013029848": {
+      "name": "AW S11 46 金鋁/粉帶 L MEV74",
       "stores": {
         "45": 2,
         "47": 2,
@@ -3192,10 +3193,10 @@
         "820": 3,
         "821": 5
       },
-      "total": 73,
-      "name": "AW S11 46 金鋁/粉帶 L MEV74"
+      "total": 73
     },
     "0013029849": {
+      "name": "AW S11 46 銀鋁/紫帶 S MEV94",
       "stores": {
         "45": 3,
         "47": 3,
@@ -3212,10 +3213,10 @@
         "117": 1,
         "821": 2
       },
-      "total": 31,
-      "name": "AW S11 46 銀鋁/紫帶 S MEV94"
+      "total": 31
     },
     "0013029850": {
+      "name": "AW S11 46 銀鋁/紫帶 L MEVA4",
       "stores": {
         "45": 2,
         "47": 4,
@@ -3237,64 +3238,64 @@
         "117": 5,
         "821": 4
       },
-      "total": 92,
-      "name": "AW S11 46 銀鋁/紫帶 L MEVA4"
+      "total": 92
     },
     "0013029851": {
+      "name": "AW S11 CL 42 黑鋁/黑帶 S MF834",
       "stores": {
         "880": 1
       },
-      "total": 1,
-      "name": "AW S11 CL 42 黑鋁/黑帶 S MF834"
+      "total": 1
     },
     "0013029852": {
+      "name": "AW S11 CL 42 黑鋁/黑帶 L MF854",
       "stores": {
         "45": 1
       },
-      "total": 1,
-      "name": "AW S11 CL 42 黑鋁/黑帶 L MF854"
+      "total": 1
     },
     "0013029853": {
+      "name": "AW S11 CL 42 灰鋁/黑帶 S MF8A4",
       "stores": {
         "45": 1
       },
-      "total": 1,
-      "name": "AW S11 CL 42 灰鋁/黑帶 S MF8A4"
+      "total": 1
     },
     "0013029854": {
+      "name": "AW S11 CL 42 灰鋁/黑帶 L MF8C4",
       "stores": {
         "86": 1
       },
-      "total": 1,
-      "name": "AW S11 CL 42 灰鋁/黑帶 L MF8C4"
+      "total": 1
     },
     "0013029857": {
+      "name": "AW S11 CL 42 銀鋁/紫帶 S MF8H4",
       "stores": {
         "75": 1,
         "86": 1
       },
-      "total": 2,
-      "name": "AW S11 CL 42 銀鋁/紫帶 S MF8H4"
+      "total": 2
     },
     "0013029858": {
+      "name": "AW S11 CL 42 銀鋁/紫帶 L MF8J4",
       "stores": {
         "45": 1,
         "86": 3
       },
-      "total": 4,
-      "name": "AW S11 CL 42 銀鋁/紫帶 L MF8J4"
+      "total": 4
     },
     "0013029859": {
+      "name": "AW S11 CL 42 原鈦/灰帶 S MF8M4",
       "stores": {
         "45": 1,
         "51": 1,
         "75": 1,
         "86": 2
       },
-      "total": 5,
-      "name": "AW S11 CL 42 原鈦/灰帶 S MF8M4"
+      "total": 5
     },
     "0013029860": {
+      "name": "AW S11 CL 42 原鈦/灰帶 L MF8N4",
       "stores": {
         "45": 1,
         "51": 1,
@@ -3302,120 +3303,120 @@
         "86": 1,
         "880": 2
       },
-      "total": 6,
-      "name": "AW S11 CL 42 原鈦/灰帶 L MF8N4"
+      "total": 6
     },
     "0013029861": {
+      "name": "AW S11 CL 42 原鈦/原米 MF8P4",
       "stores": {
         "880": 3
       },
-      "total": 3,
-      "name": "AW S11 CL 42 原鈦/原米 MF8P4"
+      "total": 3
     },
     "0013029862": {
+      "name": "AW S11 CL 42 石鈦/黑帶 S MF8R4",
       "stores": {
         "45": 1,
         "86": 1
       },
-      "total": 2,
-      "name": "AW S11 CL 42 石鈦/黑帶 S MF8R4"
+      "total": 2
     },
     "0013029863": {
+      "name": "AW S11 CL 42 石鈦/黑帶 L MF8T4",
       "stores": {
         "45": 1,
         "51": 1,
         "75": 1,
         "880": 2
       },
-      "total": 5,
-      "name": "AW S11 CL 42 石鈦/黑帶 L MF8T4"
+      "total": 5
     },
     "0013029864": {
+      "name": "AW S11 CL 42 石鈦/石米 MF8U4",
       "stores": {
         "86": 2,
         "880": 4
       },
-      "total": 6,
-      "name": "AW S11 CL 42 石鈦/石米 MF8U4"
+      "total": 6
     },
     "0013029866": {
+      "name": "AW S11 CL 42 金鈦/粉帶 L MF8X4",
       "stores": {
         "45": 1,
         "86": 1,
         "880": 2
       },
-      "total": 4,
-      "name": "AW S11 CL 42 金鈦/粉帶 L MF8X4"
+      "total": 4
     },
     "0013029876": {
+      "name": "AW S11 CL 46 原鈦/灰帶 S MFCW4",
       "stores": {
         "45": 1
       },
-      "total": 1,
-      "name": "AW S11 CL 46 原鈦/灰帶 S MFCW4"
+      "total": 1
     },
     "0013029877": {
+      "name": "AW S11 CL 46 原鈦/灰帶 L MFCX4",
       "stores": {
         "880": 2
       },
-      "total": 2,
-      "name": "AW S11 CL 46 原鈦/灰帶 L MFCX4"
+      "total": 2
     },
     "0013029879": {
+      "name": "AW S11 CL 46 原鈦/原米 L MFD04",
       "stores": {
         "45": 1,
         "48": 1,
         "880": 3
       },
-      "total": 5,
-      "name": "AW S11 CL 46 原鈦/原米 L MFD04"
+      "total": 5
     },
     "0013029882": {
+      "name": "AW S11 CL 46 石鈦/石米 S MFD34",
       "stores": {
         "77": 1
       },
-      "total": 1,
-      "name": "AW S11 CL 46 石鈦/石米 S MFD34"
+      "total": 1
     },
     "0013029883": {
+      "name": "AW S11 CL 46 石鈦/石米 L MFD44",
       "stores": {
         "77": 1,
         "880": 1
       },
-      "total": 2,
-      "name": "AW S11 CL 46 石鈦/石米 L MFD44"
+      "total": 2
     },
     "0013029884": {
+      "name": "AW S11 CL 46 金鈦/粉帶 S MFD54",
       "stores": {
         "86": 1
       },
-      "total": 1,
-      "name": "AW S11 CL 46 金鈦/粉帶 S MFD54"
+      "total": 1
     },
     "0013029885": {
+      "name": "AW S11 CL 46 金鈦/粉帶 L MFD64",
       "stores": {
         "45": 1,
         "86": 1
       },
-      "total": 2,
-      "name": "AW S11 CL 46 金鈦/粉帶 L MFD64"
+      "total": 2
     },
     "0013029886": {
+      "name": "AW S11 CL 46 金鈦/金米 S MFD74",
       "stores": {
         "57": 1,
         "880": 4
       },
-      "total": 5,
-      "name": "AW S11 CL 46 金鈦/金米 S MFD74"
+      "total": 5
     },
     "0013029887": {
+      "name": "AW S11 CL 46 金鈦/金米 L MFD84",
       "stores": {
         "880": 3
       },
-      "total": 3,
-      "name": "AW S11 CL 46 金鈦/金米 L MFD84"
+      "total": 3
     },
     "0013029888": {
+      "name": "AW Ultra 原鈦/海洋藍 MEWH4",
       "stores": {
         "45": 7,
         "47": 6,
@@ -3435,20 +3436,20 @@
         "820": 1,
         "821": 2
       },
-      "total": 90,
-      "name": "AW Ultra 原鈦/海洋藍 MEWH4"
+      "total": 90
     },
     "0013029889": {
+      "name": "AW Ultra 原鈦/高山藍環 S MEWK4",
       "stores": {
         "45": 1,
         "47": 1,
         "51": 1,
         "75": 1
       },
-      "total": 4,
-      "name": "AW Ultra 原鈦/高山藍環 S MEWK4"
+      "total": 4
     },
     "0013029890": {
+      "name": "AW Ultra 原鈦/高山藍環 M MEWM4",
       "stores": {
         "45": 2,
         "51": 2,
@@ -3458,18 +3459,18 @@
         "86": 2,
         "115": 1
       },
-      "total": 10,
-      "name": "AW Ultra 原鈦/高山藍環 M MEWM4"
+      "total": 10
     },
     "0013029891": {
+      "name": "AW Ultra 原鈦/高山藍環 L MEWP4",
       "stores": {
         "57": 1,
         "86": 7
       },
-      "total": 8,
-      "name": "AW Ultra 原鈦/高山藍環 L MEWP4"
+      "total": 8
     },
     "0013029892": {
+      "name": "AW Ultra 原鈦/越野藍環 S MEWR4",
       "stores": {
         "45": 1,
         "57": 2,
@@ -3477,10 +3478,10 @@
         "86": 1,
         "88": 1
       },
-      "total": 6,
-      "name": "AW Ultra 原鈦/越野藍環 S MEWR4"
+      "total": 6
     },
     "0013029893": {
+      "name": "AW Ultra 原鈦/越野藍環 L MEWU4",
       "stores": {
         "45": 3,
         "48": 2,
@@ -3497,19 +3498,19 @@
         "820": 1,
         "821": 1
       },
-      "total": 36,
-      "name": "AW Ultra 原鈦/越野藍環 L MEWU4"
+      "total": 36
     },
     "0013029894": {
+      "name": "AW Ultra 原鈦/原米蘭環 S MEWW4",
       "stores": {
         "51": 4,
         "75": 2,
         "86": 1
       },
-      "total": 7,
-      "name": "AW Ultra 原鈦/原米蘭環 S MEWW4"
+      "total": 7
     },
     "0013029895": {
+      "name": "AW Ultra 原鈦/原米蘭環 M MEWY4",
       "stores": {
         "45": 3,
         "48": 1,
@@ -3517,10 +3518,10 @@
         "77": 1,
         "115": 1
       },
-      "total": 8,
-      "name": "AW Ultra 原鈦/原米蘭環 M MEWY4"
+      "total": 8
     },
     "0013029896": {
+      "name": "AW Ultra 原鈦/原米蘭環 L MF0E4",
       "stores": {
         "51": 4,
         "75": 1,
@@ -3528,10 +3529,10 @@
         "86": 1,
         "115": 1
       },
-      "total": 8,
-      "name": "AW Ultra 原鈦/原米蘭環 L MF0E4"
+      "total": 8
     },
     "0013029897": {
+      "name": "AW Ultra 黑鈦/海洋黑 MF0J4",
       "stores": {
         "47": 10,
         "48": 1,
@@ -3553,17 +3554,17 @@
         "820": 2,
         "821": 8
       },
-      "total": 101,
-      "name": "AW Ultra 黑鈦/海洋黑 MF0J4"
+      "total": 101
     },
     "0013029898": {
+      "name": "AW Ultra 黑鈦/高山黑環 S MF0Q4",
       "stores": {
         "57": 1
       },
-      "total": 1,
-      "name": "AW Ultra 黑鈦/高山黑環 S MF0Q4"
+      "total": 1
     },
     "0013029899": {
+      "name": "AW Ultra 黑鈦/高山黑環 M MF0V4",
       "stores": {
         "45": 1,
         "47": 1,
@@ -3582,19 +3583,19 @@
         "820": 1,
         "821": 1
       },
-      "total": 31,
-      "name": "AW Ultra 黑鈦/高山黑環 M MF0V4"
+      "total": 31
     },
     "0013029901": {
+      "name": "AW Ultra 黑鈦/越野黑環 S MF1D4",
       "stores": {
         "57": 1,
         "76": 1,
         "86": 1
       },
-      "total": 3,
-      "name": "AW Ultra 黑鈦/越野黑環 S MF1D4"
+      "total": 3
     },
     "0013029902": {
+      "name": "AW Ultra 黑鈦/越野黑環 L MF1H4",
       "stores": {
         "45": 8,
         "47": 2,
@@ -3613,10 +3614,10 @@
         "820": 3,
         "821": 3
       },
-      "total": 49,
-      "name": "AW Ultra 黑鈦/越野黑環 L MF1H4"
+      "total": 49
     },
     "0013029903": {
+      "name": "AW Ultra 黑鈦/黑米蘭環 S MF1N4",
       "stores": {
         "47": 1,
         "51": 2,
@@ -3625,10 +3626,10 @@
         "86": 3,
         "115": 2
       },
-      "total": 10,
-      "name": "AW Ultra 黑鈦/黑米蘭環 S MF1N4"
+      "total": 10
     },
     "0013029904": {
+      "name": "AW Ultra 黑鈦/黑米蘭環 M MF1Q4",
       "stores": {
         "47": 1,
         "57": 1,
@@ -3636,34 +3637,34 @@
         "86": 2,
         "115": 2
       },
-      "total": 7,
-      "name": "AW Ultra 黑鈦/黑米蘭環 M MF1Q4"
+      "total": 7
     },
     "0013020027": {
+      "name": "3J599 41 星光 運動錶帶",
       "stores": {
         "51": 1,
         "88": 1,
         "880": 2
       },
-      "total": 4,
-      "name": "3J599 41 星光 運動錶帶"
+      "total": 4
     },
     "0013020028": {
+      "name": "3J600 41 紅色 運動錶帶",
       "stores": {
         "51": 1,
         "880": 6
       },
-      "total": 7,
-      "name": "3J600 41 紅色 運動錶帶"
+      "total": 7
     },
     "0013020029": {
+      "name": "3J605 45 三葉草 運動錶帶",
       "stores": {
         "51": 1
       },
-      "total": 1,
-      "name": "3J605 45 三葉草 運動錶帶"
+      "total": 1
     },
     "0013020030": {
+      "name": "3J606 45 午夜 運動錶帶",
       "stores": {
         "45": 2,
         "51": 1,
@@ -3672,156 +3673,156 @@
         "117": 1,
         "880": 7
       },
-      "total": 13,
-      "name": "3J606 45 午夜 運動錶帶"
+      "total": 13
     },
     "0013020032": {
+      "name": "3J609 45 深淵藍 運動錶帶",
       "stores": {
         "51": 1
       },
-      "total": 1,
-      "name": "3J609 45 深淵藍 運動錶帶"
+      "total": 1
     },
     "0013020033": {
+      "name": "3J695 41 N 白黑 運動錶帶",
       "stores": {
         "51": 1,
         "880": 5
       },
-      "total": 6,
-      "name": "3J695 41 N 白黑 運動錶帶"
+      "total": 6
     },
     "0013021632": {
+      "name": "3K596 AW SE 40 星鋁",
       "stores": {
         "51": 1,
         "84": 1,
         "88": 1,
         "880": 15
       },
-      "total": 18,
-      "name": "3K596 AW SE 40 星鋁"
+      "total": 18
     },
     "0013021636": {
+      "name": "3K789 AW SE 4G 44 午鋁",
       "stores": {
         "51": 1,
         "88": 1,
         "880": 11
       },
-      "total": 13,
-      "name": "3K789 AW SE 4G 44 午鋁"
+      "total": 13
     },
     "0013025369": {
+      "name": "3M579 AW Ultra 49 高山藍錶環 M",
       "stores": {
         "880": 1
       },
-      "total": 1,
-      "name": "3M579 AW Ultra 49 高山藍錶環 M"
+      "total": 1
     },
     "0013025373": {
+      "name": "3M580 AW Ultra 49 越綠灰環 S/M",
       "stores": {
         "51": 1,
         "88": 1,
         "880": 7
       },
-      "total": 9,
-      "name": "3M580 AW Ultra 49 越綠灰環 S/M"
+      "total": 9
     },
     "0013027548": {
+      "name": "3N492 AW S10 42 金鋁/梅李環",
       "stores": {
         "51": 1,
         "88": 1,
         "880": 11
       },
-      "total": 13,
-      "name": "3N492 AW S10 42 金鋁/梅李環"
+      "total": 13
     },
     "0013027549": {
+      "name": "3N498 AW S10 46 黑鋁/墨水環",
       "stores": {
         "51": 1,
         "88": 1,
         "880": 11
       },
-      "total": 13,
-      "name": "3N498 AW S10 46 黑鋁/墨水環"
+      "total": 13
     },
     "0013027550": {
+      "name": "3N499 AW S10 46 金鋁/胭粉帶",
       "stores": {
         "51": 1,
         "88": 1,
         "880": 9
       },
-      "total": 11,
-      "name": "3N499 AW S10 46 金鋁/胭粉帶"
+      "total": 11
     },
     "0013027551": {
+      "name": "3N459 AW Ultra 黑鈦/高山黑",
       "stores": {
         "51": 1,
         "88": 1,
         "880": 8
       },
-      "total": 10,
-      "name": "3N459 AW Ultra 黑鈦/高山黑"
+      "total": 10
     },
     "0013027552": {
+      "name": "3N457 AW Ultra 黑鈦/海洋黑",
       "stores": {
         "84": 1,
         "880": 2
       },
-      "total": 3,
-      "name": "3N457 AW Ultra 黑鈦/海洋黑"
+      "total": 3
     },
     "0013027613": {
+      "name": "3N496 AW 10 46 曜石黑鋁/黑帶",
       "stores": {
         "84": 1,
         "880": 3
       },
-      "total": 4,
-      "name": "3N496 AW 10 46 曜石黑鋁/黑帶"
+      "total": 4
     },
     "0013028748": {
+      "name": "教 3N588 AW S10 CL 46 黑/黑 S",
       "stores": {
         "45": 1,
         "75": 1,
         "115": 1
       },
-      "total": 3,
-      "name": "教 3N588 AW S10 CL 46 黑/黑 S"
+      "total": 3
     },
     "0013029080": {
+      "name": "北 3K596 AW SE 40 星鋁",
       "stores": {
         "880": 1
       },
-      "total": 1,
-      "name": "北 3K596 AW SE 40 星鋁"
+      "total": 1
     },
     "0013029082": {
+      "name": "北 3K789 AW SE 4G 44 午鋁",
       "stores": {
         "880": 1
       },
-      "total": 1,
-      "name": "北 3K789 AW SE 4G 44 午鋁"
+      "total": 1
     },
     "0013029083": {
+      "name": "北 3N492 AW S10 42 金鋁/梅李環",
       "stores": {
         "880": 1
       },
-      "total": 1,
-      "name": "北 3N492 AW S10 42 金鋁/梅李環"
+      "total": 1
     },
     "0013029086": {
+      "name": "北 3N459 AW Ultra 黑鈦/高山黑",
       "stores": {
         "880": 1
       },
-      "total": 1,
-      "name": "北 3N459 AW Ultra 黑鈦/高山黑"
+      "total": 1
     },
     "0013029087": {
+      "name": "北 3N668 AW Ultra 原鈦",
       "stores": {
         "880": 1
       },
-      "total": 1,
-      "name": "北 3N668 AW Ultra 原鈦"
+      "total": 1
     },
     "0013029919": {
+      "name": "3P331 AW SE 40 星鋁/星帶 S",
       "stores": {
         "45": 1,
         "47": 1,
@@ -3843,10 +3844,10 @@
         "116": 1,
         "117": 1
       },
-      "total": 19,
-      "name": "3P331 AW SE 40 星鋁/星帶 S"
+      "total": 19
     },
     "0013029920": {
+      "name": "3P333 AW SE 44 午鋁/午帶 L",
       "stores": {
         "45": 1,
         "51": 1,
@@ -3863,10 +3864,10 @@
         "116": 1,
         "117": 1
       },
-      "total": 14,
-      "name": "3P333 AW SE 44 午鋁/午帶 L"
+      "total": 14
     },
     "0013029921": {
+      "name": "3P306 AW S11 42 金鋁/粉帶 S",
       "stores": {
         "45": 1,
         "51": 1,
@@ -3883,10 +3884,10 @@
         "116": 1,
         "117": 1
       },
-      "total": 14,
-      "name": "3P306 AW S11 42 金鋁/粉帶 S"
+      "total": 14
     },
     "0013029922": {
+      "name": "3P315 AW S11 46 黑鋁/黑帶 L",
       "stores": {
         "51": 1,
         "57": 1,
@@ -3901,10 +3902,10 @@
         "116": 1,
         "117": 1
       },
-      "total": 12,
-      "name": "3P315 AW S11 46 黑鋁/黑帶 L"
+      "total": 12
     },
     "0013029923": {
+      "name": "3P317 AW S11 46 灰鋁/黑帶 L",
       "stores": {
         "45": 1,
         "47": 1,
@@ -3926,10 +3927,10 @@
         "116": 1,
         "117": 1
       },
-      "total": 19,
-      "name": "3P317 AW S11 46 灰鋁/黑帶 L"
+      "total": 19
     },
     "0013029924": {
+      "name": "3P337 AW Ultra 原鈦/海洋藍",
       "stores": {
         "51": 1,
         "57": 1,
@@ -3944,10 +3945,10 @@
         "116": 1,
         "117": 1
       },
-      "total": 12,
-      "name": "3P337 AW Ultra 原鈦/海洋藍"
+      "total": 12
     },
     "0013029925": {
+      "name": "3P339 AW Ultra 黑鈦/海洋黑",
       "stores": {
         "45": 1,
         "47": 1,
@@ -3969,136 +3970,136 @@
         "116": 1,
         "117": 1
       },
-      "total": 19,
-      "name": "3P339 AW Ultra 黑鈦/海洋黑"
+      "total": 19
     },
     "0013006853": {
+      "name": "@@40mm 運動錶帶 木瓜 MV742",
       "stores": {
         "880": 1
       },
-      "total": 1,
-      "name": "@@40mm 運動錶帶 木瓜 MV742"
+      "total": 1
     },
     "0013018924": {
+      "name": "@@41mm 運動錶帶 金盞黃 MKUF3",
       "stores": {
         "880": 10
       },
-      "total": 10,
-      "name": "@@41mm 運動錶帶 金盞黃 MKUF3"
+      "total": 10
     },
     "0013020866": {
+      "name": "@@41mm 運動錶環 牡丹桃 MN5N3",
       "stores": {
         "880": 1
       },
-      "total": 1,
-      "name": "@@41mm 運動錶環 牡丹桃 MN5N3"
+      "total": 1
     },
     "0013021639": {
+      "name": "3K926 41mm 運動錶帶 白色",
       "stores": {
         "880": 8
       },
-      "total": 8,
-      "name": "3K926 41mm 運動錶帶 白色"
+      "total": 8
     },
     "0013021640": {
+      "name": "3K929 41mm 運動錶帶 紅色",
       "stores": {
         "880": 8
       },
-      "total": 8,
-      "name": "3K929 41mm 運動錶帶 紅色"
+      "total": 8
     },
     "0013023412": {
+      "name": "@@41mm 運動錶帶 鮮橙色 MR2N3",
       "stores": {
         "880": 9
       },
-      "total": 9,
-      "name": "@@41mm 運動錶帶 鮮橙色 MR2N3"
+      "total": 9
     },
     "0013025225": {
+      "name": "@@41mm 運動錶帶 星光 S/M MT2U3",
       "stores": {
         "51": 1
       },
-      "total": 1,
-      "name": "@@41mm 運動錶帶 星光 S/M MT2U3"
+      "total": 1
     },
     "0013025260": {
+      "name": "@@45mm 運動錶環 午夜 MT593",
       "stores": {
         "116": 1
       },
-      "total": 1,
-      "name": "@@45mm 運動錶環 午夜 MT593"
+      "total": 1
     },
     "0013026045": {
+      "name": "@@41mm 運動錶環 薄荷 MW4M3",
       "stores": {
         "77": 2
       },
-      "total": 2,
-      "name": "@@41mm 運動錶環 薄荷 MW4M3"
+      "total": 2
     },
     "0013027620": {
+      "name": "40mm 運動錶帶 胭脂粉 S/M MAXC4",
       "stores": {
         "88": 1,
         "115": 2,
         "116": 1
       },
-      "total": 4,
-      "name": "40mm 運動錶帶 胭脂粉 S/M MAXC4"
+      "total": 4
     },
     "0013027629": {
+      "name": "@@40 N 運動錶環 灰藍 MC1G4",
       "stores": {
         "77": 1
       },
-      "total": 1,
-      "name": "@@40 N 運動錶環 灰藍 MC1G4"
+      "total": 1
     },
     "0013027636": {
+      "name": "@@40 N 運動錶帶 純鉑 S/M MC1V4",
       "stores": {
         "81": 3
       },
-      "total": 3,
-      "name": "@@40 N 運動錶帶 純鉑 S/M MC1V4"
+      "total": 3
     },
     "0013027655": {
+      "name": "@@49 黑鈦米蘭錶環 M MXKG3",
       "stores": {
         "76": 3
       },
-      "total": 3,
-      "name": "@@49 黑鈦米蘭錶環 M MXKG3"
+      "total": 3
     },
     "0013027658": {
+      "name": "@@42 運動錶環 青雲色 MXKX3",
       "stores": {
         "77": 1,
         "84": 2,
         "88": 1
       },
-      "total": 4,
-      "name": "@@42 運動錶環 青雲色 MXKX3"
+      "total": 4
     },
     "0013027662": {
+      "name": "@@46 運動錶環 墨水色 MXL33",
       "stores": {
         "51": 1,
         "65": 1,
         "81": 1
       },
-      "total": 3,
-      "name": "@@46 運動錶環 墨水色 MXL33"
+      "total": 3
     },
     "0013027664": {
+      "name": "@@46 運動錶環 青雲色 MXL53",
       "stores": {
         "81": 1
       },
-      "total": 1,
-      "name": "@@46 運動錶環 青雲色 MXL53"
+      "total": 1
     },
     "0013027667": {
+      "name": "@@46 運動錶環 湖綠 MXL83",
       "stores": {
         "57": 1,
         "116": 1
       },
-      "total": 2,
-      "name": "@@46 運動錶環 湖綠 MXL83"
+      "total": 2
     },
     "0013027678": {
+      "name": "42mm 運動錶帶 星光色 S/M MXLL3",
       "stores": {
         "57": 3,
         "76": 4,
@@ -4110,10 +4111,10 @@
         "117": 2,
         "880": 1
       },
-      "total": 17,
-      "name": "42mm 運動錶帶 星光色 S/M MXLL3"
+      "total": 17
     },
     "0013027680": {
+      "name": "42mm 運動錶帶 胭脂粉 S/M MXLN3",
       "stores": {
         "48": 1,
         "57": 1,
@@ -4128,26 +4129,26 @@
         "116": 1,
         "117": 1
       },
-      "total": 19,
-      "name": "42mm 運動錶帶 胭脂粉 S/M MXLN3"
+      "total": 19
     },
     "0013027688": {
+      "name": "46mm 運動錶帶 石灰色 S/M MXLX3",
       "stores": {
         "45": 4,
         "75": 4
       },
-      "total": 8,
-      "name": "46mm 運動錶帶 石灰色 S/M MXLX3"
+      "total": 8
     },
     "0013027690": {
+      "name": "46mm 運動錶帶 黑色 S/M MXM23",
       "stores": {
         "116": 2,
         "117": 1
       },
-      "total": 3,
-      "name": "46mm 運動錶帶 黑色 S/M MXM23"
+      "total": 3
     },
     "0013027691": {
+      "name": "46mm 運動錶帶 黑色 M/L MXM43",
       "stores": {
         "57": 2,
         "65": 2,
@@ -4159,10 +4160,10 @@
         "116": 2,
         "117": 2
       },
-      "total": 21,
-      "name": "46mm 運動錶帶 黑色 M/L MXM43"
+      "total": 21
     },
     "0013027693": {
+      "name": "46mm 運動錶帶 星光色 S/M MXM63",
       "stores": {
         "45": 2,
         "48": 2,
@@ -4176,31 +4177,31 @@
         "97": 2,
         "117": 3
       },
-      "total": 25,
-      "name": "46mm 運動錶帶 星光色 S/M MXM63"
+      "total": 25
     },
     "0013027694": {
+      "name": "46mm 運動錶帶 星光色 M/L MXM73",
       "stores": {
         "45": 1
       },
-      "total": 1,
-      "name": "46mm 運動錶帶 星光色 M/L MXM73"
+      "total": 1
     },
     "0013027695": {
+      "name": "46mm 運動錶帶 胭脂粉 S/M MXM83",
       "stores": {
         "45": 3
       },
-      "total": 3,
-      "name": "46mm 運動錶帶 胭脂粉 S/M MXM83"
+      "total": 3
     },
     "0013027712": {
+      "name": "@@49 原鈦海洋錶帶 冰藍色 MXTF3",
       "stores": {
         "45": 1
       },
-      "total": 1,
-      "name": "@@49 原鈦海洋錶帶 冰藍色 MXTF3"
+      "total": 1
     },
     "0013027720": {
+      "name": "@@42 N 運動錶環 灰藍 MXTX3",
       "stores": {
         "45": 4,
         "86": 2,
@@ -4208,44 +4209,44 @@
         "115": 1,
         "117": 2
       },
-      "total": 10,
-      "name": "@@42 N 運動錶環 灰藍 MXTX3"
+      "total": 10
     },
     "0013027721": {
+      "name": "@@42 N 運動錶環 綠灰 MXTY3",
       "stores": {
         "45": 1,
         "57": 1,
         "77": 2
       },
-      "total": 4,
-      "name": "@@42 N 運動錶環 綠灰 MXTY3"
+      "total": 4
     },
     "0013027724": {
+      "name": "@@46 N 運動錶環 綠灰 MXU33",
       "stores": {
         "51": 1,
         "57": 2,
         "81": 1,
         "88": 1
       },
-      "total": 5,
-      "name": "@@46 N 運動錶環 綠灰 MXU33"
+      "total": 5
     },
     "0013027736": {
+      "name": "40mm 運動錶帶 星光色 S/M MYJ33",
       "stores": {
         "45": 4
       },
-      "total": 4,
-      "name": "40mm 運動錶帶 星光色 S/M MYJ33"
+      "total": 4
     },
     "0013027740": {
+      "name": "@@40 運動錶環 墨水色 MYJ73",
       "stores": {
         "97": 2,
         "115": 1
       },
-      "total": 3,
-      "name": "@@40 運動錶環 墨水色 MYJ73"
+      "total": 3
     },
     "0013027743": {
+      "name": "@@42 N 運動錶環 黑藍 MYJA3",
       "stores": {
         "47": 1,
         "57": 2,
@@ -4253,36 +4254,36 @@
         "89": 1,
         "115": 1
       },
-      "total": 7,
-      "name": "@@42 N 運動錶環 黑藍 MYJA3"
+      "total": 7
     },
     "0013027744": {
+      "name": "@@42 N 運動錶環 星粉 MYJC3",
       "stores": {
         "76": 1,
         "88": 1,
         "115": 2,
         "116": 1
       },
-      "total": 5,
-      "name": "@@42 N 運動錶環 星粉 MYJC3"
+      "total": 5
     },
     "0013027746": {
+      "name": "@@46 N 運動錶環 星粉 MYJE3",
       "stores": {
         "47": 1,
         "57": 2
       },
-      "total": 3,
-      "name": "@@46 N 運動錶環 星粉 MYJE3"
+      "total": 3
     },
     "0013027771": {
+      "name": "@@49 黑鈦海洋錶帶 冰藍色 MYP83",
       "stores": {
         "45": 1,
         "57": 2
       },
-      "total": 3,
-      "name": "@@49 黑鈦海洋錶帶 冰藍色 MYP83"
+      "total": 3
     },
     "0013028674": {
+      "name": "@@42 運動錶帶 青綠色 S/M MDT34",
       "stores": {
         "45": 1,
         "81": 2,
@@ -4290,56 +4291,56 @@
         "116": 2,
         "117": 3
       },
-      "total": 9,
-      "name": "@@42 運動錶帶 青綠色 S/M MDT34"
+      "total": 9
     },
     "0013028680": {
+      "name": "@@46 運動錶帶 青綠色 S/M MDT94",
       "stores": {
         "88": 2
       },
-      "total": 2,
-      "name": "@@46 運動錶帶 青綠色 S/M MDT94"
+      "total": 2
     },
     "0013028686": {
+      "name": "@@46 運動錶環 鼠尾草 MDV44",
       "stores": {
         "89": 2,
         "116": 1
       },
-      "total": 3,
-      "name": "@@46 運動錶環 鼠尾草 MDV44"
+      "total": 3
     },
     "0013029081": {
+      "name": "北 MYJ33D 40 運動錶帶 星光 SM",
       "stores": {
         "880": 1
       },
-      "total": 1,
-      "name": "北 MYJ33D 40 運動錶帶 星光 SM"
+      "total": 1
     },
     "0013029987": {
+      "name": "40 運動錶環 錨藍 MFF64",
       "stores": {
         "51": 1
       },
-      "total": 1,
-      "name": "40 運動錶環 錨藍 MFF64"
+      "total": 1
     },
     "0013029989": {
+      "name": "40 運動錶環 霧紫 MFF84",
       "stores": {
         "76": 1,
         "77": 1,
         "81": 1
       },
-      "total": 3,
-      "name": "40 運動錶環 霧紫 MFF84"
+      "total": 3
     },
     "0013029992": {
+      "name": "42 運動錶環 錨藍 MFFC4",
       "stores": {
         "88": 1,
         "89": 1
       },
-      "total": 2,
-      "name": "42 運動錶環 錨藍 MFFC4"
+      "total": 2
     },
     "0013029993": {
+      "name": "42 運動錶環 森林 MFFD4",
       "stores": {
         "47": 2,
         "48": 2,
@@ -4349,10 +4350,10 @@
         "89": 2,
         "117": 2
       },
-      "total": 14,
-      "name": "42 運動錶環 森林 MFFD4"
+      "total": 14
     },
     "0013029996": {
+      "name": "42 運動錶環 深灰 MFFG4",
       "stores": {
         "48": 2,
         "57": 2,
@@ -4363,17 +4364,17 @@
         "116": 1,
         "117": 2
       },
-      "total": 12,
-      "name": "42 運動錶環 深灰 MFFG4"
+      "total": 12
     },
     "0013029997": {
+      "name": "46 運動錶環 錨藍 MFFH4",
       "stores": {
         "88": 1
       },
-      "total": 1,
-      "name": "46 運動錶環 錨藍 MFFH4"
+      "total": 1
     },
     "0013029998": {
+      "name": "46 運動錶環 森林 MFFJ4",
       "stores": {
         "48": 2,
         "51": 1,
@@ -4385,10 +4386,10 @@
         "97": 3,
         "115": 2
       },
-      "total": 22,
-      "name": "46 運動錶環 森林 MFFJ4"
+      "total": 22
     },
     "0013030001": {
+      "name": "46 運動錶環 深灰 MFFM4",
       "stores": {
         "47": 2,
         "76": 1,
@@ -4399,56 +4400,56 @@
         "115": 1,
         "116": 2
       },
-      "total": 12,
-      "name": "46 運動錶環 深灰 MFFM4"
+      "total": 12
     },
     "0013030005": {
+      "name": "40 運動錶帶 錨藍 SM MFFV4",
       "stores": {
         "97": 1,
         "116": 1,
         "117": 1
       },
-      "total": 3,
-      "name": "40 運動錶帶 錨藍 SM MFFV4"
+      "total": 3
     },
     "0013030007": {
+      "name": "40 運動錶帶 霧紫 SM MFFX4",
       "stores": {
         "88": 1,
         "97": 1,
         "117": 1
       },
-      "total": 3,
-      "name": "40 運動錶帶 霧紫 SM MFFX4"
+      "total": 3
     },
     "0013030014": {
+      "name": "42 運動錶帶 霧紫 ML MFGH4",
       "stores": {
         "51": 1,
         "75": 1,
         "76": 1
       },
-      "total": 3,
-      "name": "42 運動錶帶 霧紫 ML MFGH4"
+      "total": 3
     },
     "0013030015": {
+      "name": "46 運動錶帶 霓虹黃 SM MFGV4",
       "stores": {
         "45": 1,
         "51": 1,
         "57": 1,
         "75": 1
       },
-      "total": 4,
-      "name": "46 運動錶帶 霓虹黃 SM MFGV4"
+      "total": 4
     },
     "0013030016": {
+      "name": "46 運動錶帶 霓虹黃 ML MFGW4",
       "stores": {
         "51": 1,
         "76": 1,
         "77": 1
       },
-      "total": 3,
-      "name": "46 運動錶帶 霓虹黃 ML MFGW4"
+      "total": 3
     },
     "0013030018": {
+      "name": "46 運動錶帶 錨藍 ML MFGY4",
       "stores": {
         "45": 4,
         "51": 1,
@@ -4456,163 +4457,163 @@
         "77": 2,
         "86": 3
       },
-      "total": 11,
-      "name": "46 運動錶帶 錨藍 ML MFGY4"
+      "total": 11
     },
     "0013030020": {
+      "name": "46 運動錶帶 霧紫 ML MFH14",
       "stores": {
         "88": 1
       },
-      "total": 1,
-      "name": "46 運動錶帶 霧紫 ML MFH14"
+      "total": 1
     },
     "0013030053": {
+      "name": "40 N 運動錶帶 午夜黑 SM MG9X4",
       "stores": {
         "97": 1,
         "115": 1,
         "116": 1,
         "117": 1
       },
-      "total": 4,
-      "name": "40 N 運動錶帶 午夜黑 SM MG9X4"
+      "total": 4
     },
     "0013030057": {
+      "name": "40 N 運動錶帶 峰霞粉 SM MGA44",
       "stores": {
         "75": 3,
         "76": 1
       },
-      "total": 4,
-      "name": "40 N 運動錶帶 峰霞粉 SM MGA44"
+      "total": 4
     },
     "0013030060": {
+      "name": "40 N 運動錶帶 藍帶 ML MGA84",
       "stores": {
         "81": 1,
         "88": 1
       },
-      "total": 2,
-      "name": "40 N 運動錶帶 藍帶 ML MGA84"
+      "total": 2
     },
     "0013030064": {
+      "name": "42 N 運動錶帶 午夜黑 ML MGAF4",
       "stores": {
         "57": 1,
         "75": 4,
         "76": 1
       },
-      "total": 6,
-      "name": "42 N 運動錶帶 午夜黑 ML MGAF4"
+      "total": 6
     },
     "0013030066": {
+      "name": "42 N 運動錶帶 朦朧灰 ML MGAJ4",
       "stores": {
         "51": 3
       },
-      "total": 3,
-      "name": "42 N 運動錶帶 朦朧灰 ML MGAJ4"
+      "total": 3
     },
     "0013030070": {
+      "name": "42 N 運動錶帶 藍帶 ML MGAX4",
       "stores": {
         "51": 1,
         "77": 1,
         "81": 1,
         "86": 1
       },
-      "total": 4,
-      "name": "42 N 運動錶帶 藍帶 ML MGAX4"
+      "total": 4
     },
     "0013030072": {
+      "name": "46 N 運動錶帶 螢光綠 ML MGC14",
       "stores": {
         "88": 1,
         "115": 1
       },
-      "total": 2,
-      "name": "46 N 運動錶帶 螢光綠 ML MGC14"
+      "total": 2
     },
     "0013030073": {
+      "name": "46 N 運動錶帶 午夜黑 SM MGC24",
       "stores": {
         "51": 1
       },
-      "total": 1,
-      "name": "46 N 運動錶帶 午夜黑 SM MGC24"
+      "total": 1
     },
     "0013030074": {
+      "name": "46 N 運動錶帶 午夜黑 ML MGC34",
       "stores": {
         "51": 1,
         "116": 1
       },
-      "total": 2,
-      "name": "46 N 運動錶帶 午夜黑 ML MGC34"
+      "total": 2
     },
     "0013030075": {
+      "name": "46 N 運動錶帶 朦朧灰 SM MGC44",
       "stores": {
         "77": 1
       },
-      "total": 1,
-      "name": "46 N 運動錶帶 朦朧灰 SM MGC44"
+      "total": 1
     },
     "0013030076": {
+      "name": "46 N 運動錶帶 朦朧灰 ML MGC54",
       "stores": {
         "45": 2,
         "51": 2
       },
-      "total": 4,
-      "name": "46 N 運動錶帶 朦朧灰 ML MGC54"
+      "total": 4
     },
     "0013030077": {
+      "name": "46 N 運動錶帶 峰霞粉 SM MGC64",
       "stores": {
         "51": 3
       },
-      "total": 3,
-      "name": "46 N 運動錶帶 峰霞粉 SM MGC64"
+      "total": 3
     },
     "0013030081": {
+      "name": "49 原鈦海洋錶帶 錨藍 MGCC4",
       "stores": {
         "45": 1,
         "51": 1,
         "86": 1
       },
-      "total": 3,
-      "name": "49 原鈦海洋錶帶 錨藍 MGCC4"
+      "total": 3
     },
     "0013030090": {
+      "name": "40 N 運動錶環 午夜黑 MGCP4",
       "stores": {
         "86": 3
       },
-      "total": 3,
-      "name": "40 N 運動錶環 午夜黑 MGCP4"
+      "total": 3
     },
     "0013030091": {
+      "name": "40 N 運動錶環 朦朧灰 MGCQ4",
       "stores": {
         "45": 1,
         "51": 1
       },
-      "total": 2,
-      "name": "40 N 運動錶環 朦朧灰 MGCQ4"
+      "total": 2
     },
     "0013030092": {
+      "name": "40 N 運動錶環 峰霞粉 MGCR4",
       "stores": {
         "57": 1,
         "76": 1
       },
-      "total": 2,
-      "name": "40 N 運動錶環 峰霞粉 MGCR4"
+      "total": 2
     },
     "0013030095": {
+      "name": "42 N 運動錶環 午夜黑 MGCX4",
       "stores": {
         "51": 4,
         "75": 1,
         "86": 4
       },
-      "total": 9,
-      "name": "42 N 運動錶環 午夜黑 MGCX4"
+      "total": 9
     },
     "0013030096": {
+      "name": "42 N 運動錶環 朦朧灰 MGCY4",
       "stores": {
         "45": 1,
         "51": 1
       },
-      "total": 2,
-      "name": "42 N 運動錶環 朦朧灰 MGCY4"
+      "total": 2
     },
     "0013030097": {
+      "name": "42 N 運動錶環 峰霞粉 MGD04",
       "stores": {
         "45": 4,
         "51": 3,
@@ -4626,19 +4627,19 @@
         "97": 2,
         "115": 2
       },
-      "total": 26,
-      "name": "42 N 運動錶環 峰霞粉 MGD04"
+      "total": 26
     },
     "0013030098": {
+      "name": "42 N 運動錶環 藍帶 MGD14",
       "stores": {
         "81": 1,
         "86": 1,
         "88": 1
       },
-      "total": 3,
-      "name": "42 N 運動錶環 藍帶 MGD14"
+      "total": 3
     },
     "0013030100": {
+      "name": "46 N 運動錶環 午夜黑 MGD34",
       "stores": {
         "57": 1,
         "61": 2,
@@ -4651,100 +4652,100 @@
         "115": 2,
         "116": 1
       },
-      "total": 16,
-      "name": "46 N 運動錶環 午夜黑 MGD34"
+      "total": 16
     },
     "0013030101": {
+      "name": "46 N 運動錶環 朦朧灰 MGD44",
       "stores": {
         "47": 1,
         "51": 1,
         "76": 4
       },
-      "total": 6,
-      "name": "46 N 運動錶環 朦朧灰 MGD44"
+      "total": 6
     },
     "0013030102": {
+      "name": "46 N 運動錶環 峰霞粉 MGD54",
       "stores": {
         "97": 1,
         "117": 1
       },
-      "total": 2,
-      "name": "46 N 運動錶環 峰霞粉 MGD54"
+      "total": 2
     },
     "0013030103": {
+      "name": "46 N 運動錶環 藍帶 MGD64",
       "stores": {
         "88": 1,
         "89": 1
       },
-      "total": 2,
-      "name": "46 N 運動錶環 藍帶 MGD64"
+      "total": 2
     },
     "0013028958": {
+      "name": "Studio Display 標準斜高 MYJF3",
       "stores": {
         "880": 1
       },
-      "total": 1,
-      "name": "Studio Display 標準斜高 MYJF3"
+      "total": 1
     },
     "0013028959": {
+      "name": "Studio Display 標準斜 MYJG3",
       "stores": {
         "75": 1,
         "86": 1,
         "115": 1
       },
-      "total": 3,
-      "name": "Studio Display 標準斜 MYJG3"
+      "total": 3
     },
     "0013029088": {
+      "name": "北 MYJG3D Studio Display 標斜",
       "stores": {
         "97": 1
       },
-      "total": 1,
-      "name": "北 MYJG3D Studio Display 標斜"
+      "total": 1
     },
     "0024881395": {
+      "name": "ME177D TIME CAPSULE 2TB",
       "stores": {
         "57": 1,
         "75": 1
       },
-      "total": 2,
-      "name": "ME177D TIME CAPSULE 2TB"
+      "total": 2
     },
     "0013002097": {
+      "name": "@@EarPods For 3.5mm MNHF2",
       "stores": {
         "88": 1
       },
-      "total": 1,
-      "name": "@@EarPods For 3.5mm MNHF2"
+      "total": 1
     },
     "0013004042": {
+      "name": "MK0C2D Apple Pencil 1代",
       "stores": {
         "48": 1,
         "57": 1
       },
-      "total": 2,
-      "name": "MK0C2D Apple Pencil 1代"
+      "total": 2
     },
     "0013006171": {
+      "name": "@@Apple Pencil 2代 MU8F2",
       "stores": {
         "51": 1,
         "76": 1,
         "88": 1,
         "880": 5
       },
-      "total": 8,
-      "name": "@@Apple Pencil 2代 MU8F2"
+      "total": 8
     },
     "0013006206": {
+      "name": "MU8F2D Apple Pencil 2代",
       "stores": {
         "48": 1,
         "84": 1,
         "830": 1
       },
-      "total": 3,
-      "name": "MU8F2D Apple Pencil 2代"
+      "total": 3
     },
     "0013007925": {
+      "name": "@@AW 磁性充電連接線 1m MX2E2",
       "stores": {
         "48": 1,
         "65": 1,
@@ -4752,47 +4753,47 @@
         "116": 2,
         "830": 6
       },
-      "total": 11,
-      "name": "@@AW 磁性充電連接線 1m MX2E2"
+      "total": 11
     },
     "0013009223": {
+      "name": "@@iPad 9th 聰穎鍵盤 中 MX3L2",
       "stores": {
         "880": 1
       },
-      "total": 1,
-      "name": "@@iPad 9th 聰穎鍵盤 中 MX3L2"
+      "total": 1
     },
     "0013009230": {
+      "name": "12.9 6th 聰穎鍵盤 中 MXNL2",
       "stores": {
         "48": 5,
         "880": 15
       },
-      "total": 20,
-      "name": "12.9 6th 聰穎鍵盤 中 MXNL2"
+      "total": 20
     },
     "0013009323": {
+      "name": "MXNK2D 11 4th/Air 5 聰穎鍵 中",
       "stores": {
         "76": 1
       },
-      "total": 1,
-      "name": "MXNK2D 11 4th/Air 5 聰穎鍵 中"
+      "total": 1
     },
     "0013009325": {
+      "name": "MXQT2D 11 4th/Air 5 巧控鍵 中",
       "stores": {
         "47": 1
       },
-      "total": 1,
-      "name": "MXQT2D 11 4th/Air 5 巧控鍵 中"
+      "total": 1
     },
     "0013015730": {
+      "name": "12W USB Power Adapter MGN03",
       "stores": {
         "51": 1,
         "77": 1
       },
-      "total": 2,
-      "name": "12W USB Power Adapter MGN03"
+      "total": 2
     },
     "0013018202": {
+      "name": "AirTag 一入 MX532",
       "stores": {
         "48": 3,
         "57": 9,
@@ -4808,10 +4809,10 @@
         "117": 1,
         "821": 3
       },
-      "total": 65,
-      "name": "AirTag 一入 MX532"
+      "total": 65
     },
     "0013018203": {
+      "name": "AirTag 四入 MX542",
       "stores": {
         "47": 11,
         "48": 1,
@@ -4829,80 +4830,80 @@
         "117": 4,
         "821": 6
       },
-      "total": 67,
-      "name": "AirTag 四入 MX542"
+      "total": 67
     },
     "0013018204": {
+      "name": "@@AirTag 掛環 海軍藍 MHJ03",
       "stores": {
         "820": 3
       },
-      "total": 3,
-      "name": "@@AirTag 掛環 海軍藍 MHJ03"
+      "total": 3
     },
     "0013018205": {
+      "name": "@@AirTag 掛環 向日葵 MK0W3",
       "stores": {
         "820": 5
       },
-      "total": 5,
-      "name": "@@AirTag 掛環 向日葵 MK0W3"
+      "total": 5
     },
     "0013018206": {
+      "name": "@@AirTag 掛環 電光橙 MK0X3",
       "stores": {
         "820": 4
       },
-      "total": 4,
-      "name": "@@AirTag 掛環 電光橙 MK0X3"
+      "total": 4
     },
     "0013018211": {
+      "name": "AirTag 皮掛環 紅 MK0V3",
       "stores": {
         "820": 6
       },
-      "total": 6,
-      "name": "AirTag 皮掛環 紅 MK0V3"
+      "total": 6
     },
     "0013018212": {
+      "name": "@@AirTag 皮掛環 棕 MX4A2",
       "stores": {
         "820": 2
       },
-      "total": 2,
-      "name": "@@AirTag 皮掛環 棕 MX4A2"
+      "total": 2
     },
     "0013018323": {
+      "name": "@@12.9 6th 巧控鍵 中黑 MJQK3",
       "stores": {
         "880": 7
       },
-      "total": 7,
-      "name": "@@12.9 6th 巧控鍵 中黑 MJQK3"
+      "total": 7
     },
     "0013018324": {
+      "name": "@@12.9 6th 巧控鍵 中白 MJQL3",
       "stores": {
         "880": 21
       },
-      "total": 21,
-      "name": "@@12.9 6th 巧控鍵 中白 MJQL3"
+      "total": 21
     },
     "0013018336": {
+      "name": "MJQJ3D 11 4th/Air5 巧控鍵 中白",
       "stores": {
         "880": 24
       },
-      "total": 24,
-      "name": "MJQJ3D 11 4th/Air5 巧控鍵 中白"
+      "total": 24
     },
     "0013018337": {
+      "name": "MJQK3D 12.9 6th 巧控鍵 中黑",
       "stores": {
         "880": 14
       },
-      "total": 14,
-      "name": "MJQK3D 12.9 6th 巧控鍵 中黑"
+      "total": 14
     },
     "0013018338": {
+      "name": "MJQL3D 12.9 6th 巧控鍵 中白",
       "stores": {
         "880": 18
       },
-      "total": 18,
-      "name": "MJQL3D 12.9 6th 巧控鍵 中白"
+      "total": 18
     },
     "0013022823": {
+      "name": "Apple TV 4K WiFi 64 MN873",
       "stores": {
         "47": 1,
         "51": 1,
@@ -4910,10 +4911,10 @@
         "76": 3,
         "89": 1
       },
-      "total": 8,
-      "name": "Apple TV 4K WiFi 64 MN873"
+      "total": 8
     },
     "0013022824": {
+      "name": "Apple TV 4K 乙太 128 MN893",
       "stores": {
         "45": 6,
         "47": 10,
@@ -4929,10 +4930,10 @@
         "820": 2,
         "821": 1
       },
-      "total": 83,
-      "name": "Apple TV 4K 乙太 128 MN893"
+      "total": 83
     },
     "0013022825": {
+      "name": "@@Apple TV Siri 遙控器 MNC73",
       "stores": {
         "51": 7,
         "75": 3,
@@ -4941,45 +4942,45 @@
         "89": 20,
         "97": 12
       },
-      "total": 52,
-      "name": "@@Apple TV Siri 遙控器 MNC73"
+      "total": 52
     },
     "0013022826": {
+      "name": "iPad 10th 巧控鍵盤 中 MQDP3",
       "stores": {
         "115": 1
       },
-      "total": 1,
-      "name": "iPad 10th 巧控鍵盤 中 MQDP3"
+      "total": 1
     },
     "0013022835": {
+      "name": "@@Apple Pencil 1代 MQLY3",
       "stores": {
         "880": 2
       },
-      "total": 2,
-      "name": "@@Apple Pencil 1代 MQLY3"
+      "total": 2
     },
     "0013023742": {
+      "name": "@@70W USBC Power Adapter MQLN3",
       "stores": {
         "88": 3
       },
-      "total": 3,
-      "name": "@@70W USBC Power Adapter MQLN3"
+      "total": 3
     },
     "0013025178": {
+      "name": "@@MagSafe 織紋卡套 黑 MT2N3",
       "stores": {
         "880": 2
       },
-      "total": 2,
-      "name": "@@MagSafe 織紋卡套 黑 MT2N3"
+      "total": 2
     },
     "0013025200": {
+      "name": "@@Thunderbolt 4  Pro 1m MU883",
       "stores": {
         "77": 7
       },
-      "total": 7,
-      "name": "@@Thunderbolt 4  Pro 1m MU883"
+      "total": 7
     },
     "0013025609": {
+      "name": "Apple Pencil USB-C MUWA3",
       "stores": {
         "45": 8,
         "47": 9,
@@ -5003,10 +5004,10 @@
         "820": 5,
         "821": 5
       },
-      "total": 310,
-      "name": "Apple Pencil USB-C MUWA3"
+      "total": 310
     },
     "0013025673": {
+      "name": "AW USB-C 磁性快充線 1m MT0H3",
       "stores": {
         "45": 27,
         "47": 12,
@@ -5029,10 +5030,10 @@
         "821": 9,
         "830": 2
       },
-      "total": 289,
-      "name": "AW USB-C 磁性快充線 1m MT0H3"
+      "total": 289
     },
     "0013026024": {
+      "name": "USB-C to Lightning 1m MUQ93",
       "stores": {
         "45": 115,
         "47": 13,
@@ -5056,10 +5057,10 @@
         "821": 6,
         "830": 7
       },
-      "total": 850,
-      "name": "USB-C to Lightning 1m MUQ93"
+      "total": 850
     },
     "0013026025": {
+      "name": "Lightning to USB 1m MUQW3",
       "stores": {
         "45": 49,
         "47": 18,
@@ -5082,17 +5083,17 @@
         "117": 14,
         "821": 8
       },
-      "total": 346,
-      "name": "Lightning to USB 1m MUQW3"
+      "total": 346
     },
     "0013026042": {
+      "name": "@@30W USB-C Adapter MW2G3",
       "stores": {
         "45": 5
       },
-      "total": 5,
-      "name": "@@30W USB-C Adapter MW2G3"
+      "total": 5
     },
     "0013026043": {
+      "name": "35W 雙 USB-C 充電器 MW2K3",
       "stores": {
         "45": 1,
         "57": 2,
@@ -5103,10 +5104,10 @@
         "115": 2,
         "116": 7
       },
-      "total": 36,
-      "name": "35W 雙 USB-C 充電器 MW2K3"
+      "total": 36
     },
     "0013026076": {
+      "name": "20W USB-C Adapter MWVV3",
       "stores": {
         "45": 278,
         "47": 44,
@@ -5130,10 +5131,10 @@
         "821": 16,
         "830": 8
       },
-      "total": 2138,
-      "name": "20W USB-C Adapter MWVV3"
+      "total": 2138
     },
     "0013026218": {
+      "name": "35W 雙 USB-C 小型充電器 MW2H3",
       "stores": {
         "45": 13,
         "47": 9,
@@ -5155,10 +5156,10 @@
         "821": 5,
         "830": 2
       },
-      "total": 193,
-      "name": "35W 雙 USB-C 小型充電器 MW2H3"
+      "total": 193
     },
     "0013026219": {
+      "name": "96W USB-C Power Adapter MW2L3",
       "stores": {
         "45": 1,
         "51": 5,
@@ -5167,10 +5168,10 @@
         "97": 3,
         "115": 3
       },
-      "total": 16,
-      "name": "96W USB-C Power Adapter MW2L3"
+      "total": 16
     },
     "0013026220": {
+      "name": "140W USB-C Adapter MW2M3",
       "stores": {
         "45": 3,
         "76": 5,
@@ -5181,10 +5182,10 @@
         "115": 2,
         "117": 4
       },
-      "total": 24,
-      "name": "140W USB-C Adapter MW2M3"
+      "total": 24
     },
     "0013026364": {
+      "name": "Apple Pencil Pro MX2D3",
       "stores": {
         "45": 44,
         "47": 46,
@@ -5208,10 +5209,10 @@
         "820": 14,
         "821": 21
       },
-      "total": 733,
-      "name": "Apple Pencil Pro MX2D3"
+      "total": 733
     },
     "0013026365": {
+      "name": "Pro 11 M4 巧控鍵盤 白 MWR03",
       "stores": {
         "47": 1,
         "61": 1,
@@ -5226,10 +5227,10 @@
         "117": 1,
         "820": 1
       },
-      "total": 17,
-      "name": "Pro 11 M4 巧控鍵盤 白 MWR03"
+      "total": 17
     },
     "0013026366": {
+      "name": "Pro 11 M4 巧控鍵盤 黑 MWR23",
       "stores": {
         "47": 2,
         "48": 1,
@@ -5241,10 +5242,10 @@
         "115": 1,
         "821": 2
       },
-      "total": 14,
-      "name": "Pro 11 M4 巧控鍵盤 黑 MWR23"
+      "total": 14
     },
     "0013026367": {
+      "name": "Pro 13 M4 巧控鍵盤 白 MWR43",
       "stores": {
         "45": 2,
         "47": 2,
@@ -5256,10 +5257,10 @@
         "84": 1,
         "86": 4
       },
-      "total": 28,
-      "name": "Pro 13 M4 巧控鍵盤 白 MWR43"
+      "total": 28
     },
     "0013026368": {
+      "name": "Pro 13 M4 巧控鍵盤 黑 MWR53",
       "stores": {
         "45": 3,
         "47": 2,
@@ -5272,25 +5273,25 @@
         "86": 2,
         "88": 2
       },
-      "total": 18,
-      "name": "Pro 13 M4 巧控鍵盤 黑 MWR53"
+      "total": 18
     },
     "0013026373": {
+      "name": "3M682 iPad Air 13 WF 128 灰",
       "stores": {
         "880": 1
       },
-      "total": 1,
-      "name": "3M682 iPad Air 13 WF 128 灰"
+      "total": 1
     },
     "0013026375": {
+      "name": "3M772 iPad Pro 11 WF 256 黑",
       "stores": {
         "51": 1,
         "81": 1
       },
-      "total": 2,
-      "name": "3M772 iPad Pro 11 WF 256 黑"
+      "total": 2
     },
     "0013026376": {
+      "name": "3M773 iPad Pro 11 WF 256 銀",
       "stores": {
         "45": 1,
         "51": 1,
@@ -5303,10 +5304,10 @@
         "116": 1,
         "880": 6
       },
-      "total": 15,
-      "name": "3M773 iPad Pro 11 WF 256 銀"
+      "total": 15
     },
     "0013026377": {
+      "name": "3M780 iPad Pro 13 WF 256 黑",
       "stores": {
         "48": 1,
         "51": 1,
@@ -5321,19 +5322,19 @@
         "116": 1,
         "880": 6
       },
-      "total": 17,
-      "name": "3M780 iPad Pro 13 WF 256 黑"
+      "total": 17
     },
     "0013026378": {
+      "name": "3M781 iPad Pro 13 WF 256 銀",
       "stores": {
         "51": 1,
         "81": 1,
         "880": 1
       },
-      "total": 3,
-      "name": "3M781 iPad Pro 13 WF 256 銀"
+      "total": 3
     },
     "0013026708": {
+      "name": "USB-C to 3.5mm 孔 轉接器 MW2Q3",
       "stores": {
         "45": 40,
         "47": 12,
@@ -5357,10 +5358,10 @@
         "821": 9,
         "830": 1
       },
-      "total": 301,
-      "name": "USB-C to 3.5mm 孔 轉接器 MW2Q3"
+      "total": 301
     },
     "0013026709": {
+      "name": "USB-C to Lightning 2m MW2R3",
       "stores": {
         "45": 18,
         "47": 18,
@@ -5385,10 +5386,10 @@
         "821": 10,
         "830": 1
       },
-      "total": 224,
-      "name": "USB-C to Lightning 2m MW2R3"
+      "total": 224
     },
     "0013026711": {
+      "name": "USB-C Digital AV MW5M3",
       "stores": {
         "47": 1,
         "48": 2,
@@ -5401,10 +5402,10 @@
         "116": 2,
         "117": 2
       },
-      "total": 54,
-      "name": "USB-C Digital AV MW5M3"
+      "total": 54
     },
     "0013026712": {
+      "name": "USB-C to SD 讀卡機 MW653",
       "stores": {
         "45": 9,
         "48": 4,
@@ -5423,10 +5424,10 @@
         "115": 3,
         "116": 1
       },
-      "total": 122,
-      "name": "USB-C to SD 讀卡機 MW653"
+      "total": 122
     },
     "0013026714": {
+      "name": "EarPods For Lightning MWTY3",
       "stores": {
         "45": 148,
         "47": 11,
@@ -5450,10 +5451,10 @@
         "821": 16,
         "830": 8
       },
-      "total": 755,
-      "name": "EarPods For Lightning MWTY3"
+      "total": 755
     },
     "0013026715": {
+      "name": "EarPods For 3.5mm MWU53",
       "stores": {
         "45": 13,
         "47": 10,
@@ -5477,10 +5478,10 @@
         "821": 10,
         "830": 4
       },
-      "total": 297,
-      "name": "EarPods For 3.5mm MWU53"
+      "total": 297
     },
     "0013026814": {
+      "name": "USB-C Charge Cable (1m) MW493",
       "stores": {
         "45": 122,
         "47": 26,
@@ -5504,10 +5505,10 @@
         "821": 14,
         "830": 11
       },
-      "total": 1056,
-      "name": "USB-C Charge Cable (1m) MW493"
+      "total": 1056
     },
     "0013026816": {
+      "name": "70W USB-C Power Adapter MXN53",
       "stores": {
         "77": 3,
         "88": 2,
@@ -5515,10 +5516,10 @@
         "97": 4,
         "117": 2
       },
-      "total": 12,
-      "name": "70W USB-C Power Adapter MXN53"
+      "total": 12
     },
     "0013026818": {
+      "name": "USB-C Charge Cable (2m) MYQT3",
       "stores": {
         "45": 50,
         "47": 14,
@@ -5541,10 +5542,10 @@
         "117": 26,
         "821": 7
       },
-      "total": 603,
-      "name": "USB-C Charge Cable (2m) MYQT3"
+      "total": 603
     },
     "0013026819": {
+      "name": "EarPods for USB-C MYQY3",
       "stores": {
         "45": 83,
         "47": 41,
@@ -5567,32 +5568,32 @@
         "821": 26,
         "830": 10
       },
-      "total": 749,
-      "name": "EarPods for USB-C MYQY3"
+      "total": 749
     },
     "0013026820": {
+      "name": "Apple TV Siri 遙控器 MW5G3",
       "stores": {
         "48": 1,
         "115": 1
       },
-      "total": 2,
-      "name": "Apple TV Siri 遙控器 MW5G3"
+      "total": 2
     },
     "0013027611": {
+      "name": "@@MagSafe 充電器 1M MX6X3",
       "stores": {
         "48": 1
       },
-      "total": 1,
-      "name": "@@MagSafe 充電器 1M MX6X3"
+      "total": 1
     },
     "0013027612": {
+      "name": "@@MagSafe 充電器 2M MX6Y3",
       "stores": {
         "88": 1
       },
-      "total": 1,
-      "name": "@@MagSafe 充電器 2M MX6Y3"
+      "total": 1
     },
     "0013028058": {
+      "name": "3M682 iPad Air 13 WF 128 灰-新",
       "stores": {
         "77": 1,
         "81": 1,
@@ -5600,29 +5601,29 @@
         "89": 1,
         "116": 1
       },
-      "total": 5,
-      "name": "3M682 iPad Air 13 WF 128 灰-新"
+      "total": 5
     },
     "0013028163": {
+      "name": "Thunderbolt 5 Pro 1m MC9C4",
       "stores": {
         "77": 4,
         "86": 2,
         "830": 2
       },
-      "total": 8,
-      "name": "Thunderbolt 5 Pro 1m MC9C4"
+      "total": 8
     },
     "0013028324": {
+      "name": "USB-C to MagSafe 3 2m MW613",
       "stores": {
         "45": 3,
         "75": 16,
         "77": 4,
         "89": 1
       },
-      "total": 24,
-      "name": "USB-C to MagSafe 3 2m MW613"
+      "total": 24
     },
     "0013028325": {
+      "name": "Apple Pencil 替換筆尖 MX763",
       "stores": {
         "45": 44,
         "47": 19,
@@ -5646,17 +5647,17 @@
         "821": 10,
         "830": 2
       },
-      "total": 261,
-      "name": "Apple Pencil 替換筆尖 MX763"
+      "total": 261
     },
     "0013028489": {
+      "name": "AW 磁性充電連接線 1m MW6A3",
       "stores": {
         "830": 2
       },
-      "total": 2,
-      "name": "AW 磁性充電連接線 1m MW6A3"
+      "total": 2
     },
     "0013028662": {
+      "name": "Air 11 M2/3 巧控鍵盤 白 MDFV4",
       "stores": {
         "45": 5,
         "47": 2,
@@ -5671,10 +5672,10 @@
         "97": 2,
         "115": 4
       },
-      "total": 39,
-      "name": "Air 11 M2/3 巧控鍵盤 白 MDFV4"
+      "total": 39
     },
     "0013028663": {
+      "name": "Air 13 M2/3 巧控鍵盤 白 MDFW4",
       "stores": {
         "45": 5,
         "47": 4,
@@ -5688,19 +5689,19 @@
         "115": 2,
         "821": 5
       },
-      "total": 50,
-      "name": "Air 13 M2/3 巧控鍵盤 白 MDFW4"
+      "total": 50
     },
     "0013028752": {
+      "name": "教 3M780 iPad Pro 13 WF 256 黑",
       "stores": {
         "45": 1,
         "75": 1,
         "115": 1
       },
-      "total": 3,
-      "name": "教 3M780 iPad Pro 13 WF 256 黑"
+      "total": 3
     },
     "0013028784": {
+      "name": "USB-C to 3.5 mm Cable MDV84",
       "stores": {
         "45": 4,
         "51": 2,
@@ -5710,74 +5711,74 @@
         "86": 2,
         "830": 2
       },
-      "total": 29,
-      "name": "USB-C to 3.5 mm Cable MDV84"
+      "total": 29
     },
     "0013029091": {
+      "name": "北 MQDP3D iPad 10th 巧控鍵 中",
       "stores": {
         "97": 1
       },
-      "total": 1,
-      "name": "北 MQDP3D iPad 10th 巧控鍵 中"
+      "total": 1
     },
     "0013029092": {
+      "name": "北 MDFV4D Air 11 M2/3 巧控鍵",
       "stores": {
         "75": 1,
         "97": 2
       },
-      "total": 3,
-      "name": "北 MDFV4D Air 11 M2/3 巧控鍵"
+      "total": 3
     },
     "0013029093": {
+      "name": "北 MDFW4D Air 13 M2/3 巧控鍵",
       "stores": {
         "880": 2
       },
-      "total": 2,
-      "name": "北 MDFW4D Air 13 M2/3 巧控鍵"
+      "total": 2
     },
     "0013029094": {
+      "name": "北 MWR03D Pro 11 M4 巧控鍵 白",
       "stores": {
         "97": 1
       },
-      "total": 1,
-      "name": "北 MWR03D Pro 11 M4 巧控鍵 白"
+      "total": 1
     },
     "0013029095": {
+      "name": "北 MWR53D Pro 13 M4 巧控鍵 黑",
       "stores": {
         "97": 1
       },
-      "total": 1,
-      "name": "北 MWR53D Pro 13 M4 巧控鍵 黑"
+      "total": 1
     },
     "0013029096": {
+      "name": "北 MUWA3D Apple Pencil USB-C",
       "stores": {
         "97": 1
       },
-      "total": 1,
-      "name": "北 MUWA3D Apple Pencil USB-C"
+      "total": 1
     },
     "0013029097": {
+      "name": "北 MX2D3D Apple Pencil Pro",
       "stores": {
         "97": 6
       },
-      "total": 6,
-      "name": "北 MX2D3D Apple Pencil Pro"
+      "total": 6
     },
     "0013029100": {
+      "name": "北 MN893D Apple TV 4K 乙太 128",
       "stores": {
         "97": 1
       },
-      "total": 1,
-      "name": "北 MN893D Apple TV 4K 乙太 128"
+      "total": 1
     },
     "0013029101": {
+      "name": "北 MX6X3D MagSafe 充電器 1M",
       "stores": {
         "880": 1
       },
-      "total": 1,
-      "name": "北 MX6X3D MagSafe 充電器 1M"
+      "total": 1
     },
     "0013029963": {
+      "name": "iPhone 織紋卡套 狐橙 MGH64",
       "stores": {
         "48": 2,
         "51": 1,
@@ -5786,49 +5787,49 @@
         "115": 1,
         "821": 2
       },
-      "total": 11,
-      "name": "iPhone 織紋卡套 狐橙 MGH64"
+      "total": 11
     },
     "0013029966": {
+      "name": "iPhone 織紋卡套 軍藍 MGH94",
       "stores": {
         "75": 1,
         "76": 2
       },
-      "total": 3,
-      "name": "iPhone 織紋卡套 軍藍 MGH94"
+      "total": 3
     },
     "0013029967": {
+      "name": "iPhone 織紋卡套 黑 MGHA4",
       "stores": {
         "48": 1,
         "86": 2
       },
-      "total": 3,
-      "name": "iPhone 織紋卡套 黑 MGHA4"
+      "total": 3
     },
     "0013029971": {
+      "name": "斜背掛繩 藍 MGGG4",
       "stores": {
         "45": 1,
         "57": 1
       },
-      "total": 2,
-      "name": "斜背掛繩 藍 MGGG4"
+      "total": 2
     },
     "0013029975": {
+      "name": "斜背掛繩 黑 MGGL4",
       "stores": {
         "821": 1
       },
-      "total": 1,
-      "name": "斜背掛繩 黑 MGGL4"
+      "total": 1
     },
     "0013029977": {
+      "name": "斜背掛繩 赭褐 MGGN4",
       "stores": {
         "51": 5,
         "75": 3
       },
-      "total": 8,
-      "name": "斜背掛繩 赭褐 MGGN4"
+      "total": 8
     },
     "0013029983": {
+      "name": "40W 電源轉接器 MGKQ4",
       "stores": {
         "45": 78,
         "47": 19,
@@ -5853,10 +5854,10 @@
         "821": 22,
         "830": 10
       },
-      "total": 1086,
-      "name": "40W 電源轉接器 MGKQ4"
+      "total": 1086
     },
     "0013029984": {
+      "name": "MagSafe 充電器 1m MGD74",
       "stores": {
         "47": 4,
         "48": 4,
@@ -5866,29 +5867,29 @@
         "115": 1,
         "821": 6
       },
-      "total": 28,
-      "name": "MagSafe 充電器 1m MGD74"
+      "total": 28
     },
     "0013029986": {
+      "name": "iPhone Air MagSafe 電池 MGPG4",
       "stores": {
         "45": 1,
         "57": 1,
         "89": 1,
         "820": 1
       },
-      "total": 4,
-      "name": "iPhone Air MagSafe 電池 MGPG4"
+      "total": 4
     },
     "0013030541": {
+      "name": "3P001 iPad Pro 11 WF 256 黑",
       "stores": {
         "51": 1,
         "81": 1,
         "117": 1
       },
-      "total": 3,
-      "name": "3P001 iPad Pro 11 WF 256 黑"
+      "total": 3
     },
     "0013030542": {
+      "name": "3P002 iPad Pro 11 WF 256 銀",
       "stores": {
         "45": 1,
         "47": 1,
@@ -5909,10 +5910,10 @@
         "115": 1,
         "116": 1
       },
-      "total": 18,
-      "name": "3P002 iPad Pro 11 WF 256 銀"
+      "total": 18
     },
     "0013030543": {
+      "name": "3P009 iPad Pro 13 WF 256 黑",
       "stores": {
         "45": 1,
         "47": 1,
@@ -5933,48 +5934,48 @@
         "116": 1,
         "117": 1
       },
-      "total": 18,
-      "name": "3P009 iPad Pro 13 WF 256 黑"
+      "total": 18
     },
     "0013030544": {
+      "name": "3P010 iPad Pro 13 WF 256 銀",
       "stores": {
         "51": 1,
         "81": 1,
         "117": 1
       },
-      "total": 3,
-      "name": "3P010 iPad Pro 13 WF 256 銀"
+      "total": 3
     },
     "0024854442": {
+      "name": "Lightning to VGA Adapter MD825",
       "stores": {
         "45": 9
       },
-      "total": 9,
-      "name": "Lightning to VGA Adapter MD825"
+      "total": 9
     },
     "0013006836": {
+      "name": "@@AirPods 2 單無線充電盒 MR8U2",
       "stores": {
         "880": 11
       },
-      "total": 11,
-      "name": "@@AirPods 2 單無線充電盒 MR8U2"
+      "total": 11
     },
     "0013018072": {
+      "name": "MGYH3D AirPods Max 灰",
       "stores": {
         "880": 16
       },
-      "total": 16,
-      "name": "MGYH3D AirPods Max 灰"
+      "total": 16
     },
     "0013025202": {
+      "name": "@@AirPods Pro 2 USB-C MTJV3",
       "stores": {
         "76": 1,
         "830": 1
       },
-      "total": 2,
-      "name": "@@AirPods Pro 2 USB-C MTJV3"
+      "total": 2
     },
     "0013027950": {
+      "name": "AirPods 第四代 MXP63",
       "stores": {
         "45": 37,
         "47": 8,
@@ -5994,10 +5995,10 @@
         "821": 3,
         "830": 1
       },
-      "total": 155,
-      "name": "AirPods 第四代 MXP63"
+      "total": 155
     },
     "0013027951": {
+      "name": "AirPods 第四代 降噪 MXP93",
       "stores": {
         "45": 5,
         "47": 16,
@@ -6022,10 +6023,10 @@
         "821": 20,
         "830": 10
       },
-      "total": 508,
-      "name": "AirPods 第四代 降噪 MXP93"
+      "total": 508
     },
     "0013027952": {
+      "name": "AirPods Max 午夜 MWW43",
       "stores": {
         "45": 7,
         "47": 4,
@@ -6047,10 +6048,10 @@
         "117": 3,
         "821": 3
       },
-      "total": 88,
-      "name": "AirPods Max 午夜 MWW43"
+      "total": 88
     },
     "0013027953": {
+      "name": "AirPods Max 星光 MWW53",
       "stores": {
         "45": 2,
         "47": 2,
@@ -6071,10 +6072,10 @@
         "116": 2,
         "821": 1
       },
-      "total": 45,
-      "name": "AirPods Max 星光 MWW53"
+      "total": 45
     },
     "0013027954": {
+      "name": "AirPods Max 藍 MWW63",
       "stores": {
         "45": 3,
         "47": 2,
@@ -6095,20 +6096,20 @@
         "117": 1,
         "821": 2
       },
-      "total": 31,
-      "name": "AirPods Max 藍 MWW63"
+      "total": 31
     },
     "0013027955": {
+      "name": "AirPods Max 橙 MWW73",
       "stores": {
         "45": 1,
         "57": 1,
         "75": 1,
         "86": 1
       },
-      "total": 4,
-      "name": "AirPods Max 橙 MWW73"
+      "total": 4
     },
     "0013027956": {
+      "name": "AirPods Max 紫 MWW83",
       "stores": {
         "45": 1,
         "47": 1,
@@ -6123,17 +6124,17 @@
         "117": 1,
         "821": 1
       },
-      "total": 15,
-      "name": "AirPods Max 紫 MWW83"
+      "total": 15
     },
     "0013029098": {
+      "name": "北 MWW43D AirPods Max 午夜",
       "stores": {
         "97": 1
       },
-      "total": 1,
-      "name": "北 MWW43D AirPods Max 午夜"
+      "total": 1
     },
     "0013029775": {
+      "name": "AirPods Pro 3 MFHP4",
       "stores": {
         "45": 134,
         "47": 53,
@@ -6159,25 +6160,25 @@
         "830": 5,
         "880": 171
       },
-      "total": 1986,
-      "name": "AirPods Pro 3 MFHP4"
+      "total": 1986
     },
     "0013016758": {
+      "name": "HomePod mini 白 MY5H2",
       "stores": {
         "45": 2
       },
-      "total": 2,
-      "name": "HomePod mini 白 MY5H2"
+      "total": 2
     },
     "0013016795": {
+      "name": "3G955 HomePod mini 灰",
       "stores": {
         "75": 1,
         "81": 1
       },
-      "total": 2,
-      "name": "3G955 HomePod mini 灰"
+      "total": 2
     },
     "0013016796": {
+      "name": "3G956 HomePod mini 白",
       "stores": {
         "45": 1,
         "47": 1,
@@ -6198,86 +6199,86 @@
         "116": 1,
         "117": 1
       },
-      "total": 18,
-      "name": "3G956 HomePod mini 白"
+      "total": 18
     },
     "0013023258": {
+      "name": "@@HomePod 午夜 MQJ73",
       "stores": {
         "65": 1
       },
-      "total": 1,
-      "name": "@@HomePod 午夜 MQJ73"
+      "total": 1
     },
     "0013023259": {
+      "name": "@@HomePod 白色 MQJ83",
       "stores": {
         "81": 1
       },
-      "total": 1,
-      "name": "@@HomePod 白色 MQJ83"
+      "total": 1
     },
     "0013029099": {
+      "name": "北 MQJ73D HomePod 午夜",
       "stores": {
         "97": 1
       },
-      "total": 1,
-      "name": "北 MQJ73D HomePod 午夜"
+      "total": 1
     },
     "0013002673": {
+      "name": "@@Magic KB 含數字 中 MQ052",
       "stores": {
         "77": 2,
         "880": 2
       },
-      "total": 4,
-      "name": "@@Magic KB 含數字 中 MQ052"
+      "total": 4
     },
     "0013018674": {
+      "name": "@@Magic KB Touch ID 數 MK2C3",
       "stores": {
         "77": 5,
         "880": 2
       },
-      "total": 7,
-      "name": "@@Magic KB Touch ID 數 MK2C3"
+      "total": 7
     },
     "0013018675": {
+      "name": "@@Magic Keyboard 2 MK2A3",
       "stores": {
         "77": 3
       },
-      "total": 3,
-      "name": "@@Magic Keyboard 2 MK2A3"
+      "total": 3
     },
     "0013018676": {
+      "name": "@@Magic Trackpad 2 MK2D3",
       "stores": {
         "77": 4,
         "880": 1
       },
-      "total": 5,
-      "name": "@@Magic Trackpad 2 MK2D3"
+      "total": 5
     },
     "0013020103": {
+      "name": "@@擦拭布 MM6F3",
       "stores": {
         "51": 17,
         "77": 30
       },
-      "total": 47,
-      "name": "@@擦拭布 MM6F3"
+      "total": 47
     },
     "0013020852": {
+      "name": "@@Magic Mouse 2 黑 MMMQ3",
       "stores": {
         "77": 5,
         "880": 1
       },
-      "total": 6,
-      "name": "@@Magic Mouse 2 黑 MMMQ3"
+      "total": 6
     },
     "0013028150": {
+      "name": "Magic Keyboard Touch ID MXCK3",
       "stores": {
         "75": 5,
         "880": 5
       },
-      "total": 10,
-      "name": "Magic Keyboard Touch ID MXCK3"
+      "total": 10
     },
     "0013028151": {
+      "name": "Magic Keyboard MXCL3",
       "stores": {
         "45": 2,
         "48": 2,
@@ -6287,10 +6288,10 @@
         "89": 1,
         "821": 10
       },
-      "total": 22,
-      "name": "Magic Keyboard MXCL3"
+      "total": 22
     },
     "0013028152": {
+      "name": "Magic Mouse 白 MXK53",
       "stores": {
         "45": 8,
         "47": 9,
@@ -6313,10 +6314,10 @@
         "820": 4,
         "821": 4
       },
-      "total": 106,
-      "name": "Magic Mouse 白 MXK53"
+      "total": 106
     },
     "0013028153": {
+      "name": "Magic Mouse 黑 MXK63",
       "stores": {
         "45": 4,
         "51": 4,
@@ -6331,10 +6332,10 @@
         "821": 1,
         "880": 5
       },
-      "total": 36,
-      "name": "Magic Mouse 黑 MXK63"
+      "total": 36
     },
     "0013028154": {
+      "name": "Magic Keyboard 數 ID 白 MXK73",
       "stores": {
         "47": 1,
         "51": 2,
@@ -6349,18 +6350,18 @@
         "115": 3,
         "117": 1
       },
-      "total": 22,
-      "name": "Magic Keyboard 數 ID 白 MXK73"
+      "total": 22
     },
     "0013028155": {
+      "name": "Magic Keyboard 數 ID 黑 MXK83",
       "stores": {
         "47": 1,
         "97": 1
       },
-      "total": 2,
-      "name": "Magic Keyboard 數 ID 黑 MXK83"
+      "total": 2
     },
     "0013028156": {
+      "name": "Magic Trackpad 白 MXK93",
       "stores": {
         "45": 10,
         "48": 1,
@@ -6377,10 +6378,10 @@
         "117": 1,
         "821": 2
       },
-      "total": 53,
-      "name": "Magic Trackpad 白 MXK93"
+      "total": 53
     },
     "0013028487": {
+      "name": "Magic Keyboard 數 MXCJ3",
       "stores": {
         "45": 7,
         "51": 1,
@@ -6392,24 +6393,24 @@
         "97": 2,
         "115": 1
       },
-      "total": 27,
-      "name": "Magic Keyboard 數 MXCJ3"
+      "total": 27
     },
     "0013029089": {
+      "name": "北 MXK83D Magic KB 數字鍵 黑",
       "stores": {
         "97": 1
       },
-      "total": 1,
-      "name": "北 MXK83D Magic KB 數字鍵 黑"
+      "total": 1
     },
     "0013029090": {
+      "name": "北 MXK63D Magic Mouse 黑",
       "stores": {
         "97": 1
       },
-      "total": 1,
-      "name": "北 MXK63D Magic Mouse 黑"
+      "total": 1
     },
     "0013030536": {
+      "name": "Air 11 M2/3 巧控鍵盤 黑 MGYX4",
       "stores": {
         "45": 11,
         "47": 3,
@@ -6429,10 +6430,10 @@
         "116": 4,
         "117": 2
       },
-      "total": 77,
-      "name": "Air 11 M2/3 巧控鍵盤 黑 MGYX4"
+      "total": 77
     },
     "0013030537": {
+      "name": "Air 13 M2/3 巧控鍵盤 黑 MGYY4",
       "stores": {
         "47": 1,
         "48": 5,
@@ -6444,10 +6445,10 @@
         "86": 8,
         "115": 1
       },
-      "total": 30,
-      "name": "Air 13 M2/3 巧控鍵盤 黑 MGYY4"
+      "total": 30
     },
     "0013030546": {
+      "name": "MGYY4D Air 13 M2/3 巧控鍵盤 黑",
       "stores": {
         "45": 1,
         "47": 1,
@@ -6470,47 +6471,47 @@
         "117": 1,
         "880": 1
       },
-      "total": 20,
-      "name": "MGYY4D Air 13 M2/3 巧控鍵盤 黑"
+      "total": 20
     },
     "0024838073": {
+      "name": "APPLE USB SUPERDRIVE MD564",
       "stores": {
         "75": 1
       },
-      "total": 1,
-      "name": "APPLE USB SUPERDRIVE MD564"
+      "total": 1
     },
     "0013022879": {
+      "name": "MPU13D iPhone 14 透明殼",
       "stores": {
         "880": 1
       },
-      "total": 1,
-      "name": "MPU13D iPhone 14 透明殼"
+      "total": 1
     },
     "0013027557": {
+      "name": "Beats iPhone 16 磁吸殼 頂峰石",
       "stores": {
         "821": 29,
         "880": 1
       },
-      "total": 30,
-      "name": "Beats iPhone 16 磁吸殼 頂峰石"
+      "total": 30
     },
     "0013027571": {
+      "name": "iPhone 16 透明殼 MA6A4",
       "stores": {
         "88": 1,
         "821": 22
       },
-      "total": 23,
-      "name": "iPhone 16 透明殼 MA6A4"
+      "total": 23
     },
     "0013027572": {
+      "name": "iPhone 16+ 透明殼 MA7D4",
       "stores": {
         "86": 1
       },
-      "total": 1,
-      "name": "iPhone 16+ 透明殼 MA7D4"
+      "total": 1
     },
     "0013027573": {
+      "name": "iPhone 16 Pro 透明殼 MA7E4",
       "stores": {
         "47": 11,
         "48": 3,
@@ -6521,49 +6522,49 @@
         "116": 4,
         "117": 3
       },
-      "total": 39,
-      "name": "iPhone 16 Pro 透明殼 MA7E4"
+      "total": 39
     },
     "0013027577": {
+      "name": "iPhone 16 矽膠殼 吊鐘 MYY53",
       "stores": {
         "821": 9
       },
-      "total": 9,
-      "name": "iPhone 16 矽膠殼 吊鐘 MYY53"
+      "total": 9
     },
     "0013027583": {
+      "name": "iPhone 16+ 矽膠殼 黑色 MYY93",
       "stores": {
         "77": 1,
         "86": 1
       },
-      "total": 2,
-      "name": "iPhone 16+ 矽膠殼 黑色 MYY93"
+      "total": 2
     },
     "0013027585": {
+      "name": "iPhone 16+ 矽膠殼 吊鐘 MYYE3",
       "stores": {
         "115": 1
       },
-      "total": 1,
-      "name": "iPhone 16+ 矽膠殼 吊鐘 MYYE3"
+      "total": 1
     },
     "0013027587": {
+      "name": "iPhone 16+ 矽膠殼 梅李 MYYD3",
       "stores": {
         "77": 1
       },
-      "total": 1,
-      "name": "iPhone 16+ 矽膠殼 梅李 MYYD3"
+      "total": 1
     },
     "0013027598": {
+      "name": "@@iPhone 16P 矽膠殼 湛藍 MYYP3",
       "stores": {
         "61": 2,
         "77": 12,
         "115": 2,
         "117": 2
       },
-      "total": 18,
-      "name": "@@iPhone 16P 矽膠殼 湛藍 MYYP3"
+      "total": 18
     },
     "0013029927": {
+      "name": "iPhone 17 透明殼 MGF24",
       "stores": {
         "45": 6,
         "47": 5,
@@ -6575,10 +6576,10 @@
         "115": 1,
         "116": 10
       },
-      "total": 43,
-      "name": "iPhone 17 透明殼 MGF24"
+      "total": 43
     },
     "0013029928": {
+      "name": "iPhone 17P 透明殼 MGFT4",
       "stores": {
         "76": 3,
         "77": 3,
@@ -6592,10 +6593,10 @@
         "117": 8,
         "821": 13
       },
-      "total": 85,
-      "name": "iPhone 17P 透明殼 MGFT4"
+      "total": 85
     },
     "0013029929": {
+      "name": "iPhone 17PM 透明殼 MGFW4",
       "stores": {
         "47": 3,
         "57": 5,
@@ -6609,51 +6610,51 @@
         "117": 8,
         "821": 10
       },
-      "total": 61,
-      "name": "iPhone 17PM 透明殼 MGFW4"
+      "total": 61
     },
     "0013029934": {
+      "name": "iPhone 17 矽膠殼 黑 MGF14",
       "stores": {
         "76": 2,
         "86": 5
       },
-      "total": 7,
-      "name": "iPhone 17 矽膠殼 黑 MGF14"
+      "total": 7
     },
     "0013029936": {
+      "name": "iPhone Air 保護殼 冰霜 MGH34",
       "stores": {
         "45": 3,
         "51": 5,
         "86": 3
       },
-      "total": 11,
-      "name": "iPhone Air 保護殼 冰霜 MGH34"
+      "total": 11
     },
     "0013029937": {
+      "name": "iPhone Air 防護邊框 黑 MH004",
       "stores": {
         "76": 2
       },
-      "total": 2,
-      "name": "iPhone Air 防護邊框 黑 MH004"
+      "total": 2
     },
     "0013029941": {
+      "name": "iPhone 17P 矽膠殼 橙 MGFE4",
       "stores": {
         "76": 4,
         "821": 2
       },
-      "total": 6,
-      "name": "iPhone 17P 矽膠殼 橙 MGFE4"
+      "total": 6
     },
     "0013029943": {
+      "name": "iPhone 17P 矽膠殼 紫 MGFG4",
       "stores": {
         "61": 2,
         "65": 1,
         "117": 1
       },
-      "total": 4,
-      "name": "iPhone 17P 矽膠殼 紫 MGFG4"
+      "total": 4
     },
     "0013029944": {
+      "name": "iPhone 17P 矽膠殼 午 MGFH4",
       "stores": {
         "45": 4,
         "48": 3,
@@ -6662,10 +6663,10 @@
         "86": 8,
         "821": 2
       },
-      "total": 25,
-      "name": "iPhone 17P 矽膠殼 午 MGFH4"
+      "total": 25
     },
     "0013029945": {
+      "name": "iPhone 17P 矽膠殼 陶 MGFJ4",
       "stores": {
         "47": 1,
         "51": 1,
@@ -6673,131 +6674,131 @@
         "76": 1,
         "821": 2
       },
-      "total": 6,
-      "name": "iPhone 17P 矽膠殼 陶 MGFJ4"
+      "total": 6
     },
     "0013029946": {
+      "name": "iPhone 17P 矽膠殼 黑 MGFK4",
       "stores": {
         "76": 4
       },
-      "total": 4,
-      "name": "iPhone 17P 矽膠殼 黑 MGFK4"
+      "total": 4
     },
     "0013029950": {
+      "name": "iPhone 17P 織紋殼 褐 MGF64",
       "stores": {
         "48": 2,
         "86": 1
       },
-      "total": 3,
-      "name": "iPhone 17P 織紋殼 褐 MGF64"
+      "total": 3
     },
     "0013029951": {
+      "name": "iPhone 17P 織紋殼 綠 MGF74",
       "stores": {
         "65": 1,
         "821": 1
       },
-      "total": 2,
-      "name": "iPhone 17P 織紋殼 綠 MGF74"
+      "total": 2
     },
     "0013029952": {
+      "name": "iPhone 17PM 矽膠殼 橙 MGFL4",
       "stores": {
         "821": 1
       },
-      "total": 1,
-      "name": "iPhone 17PM 矽膠殼 橙 MGFL4"
+      "total": 1
     },
     "0013029955": {
+      "name": "iPhone 17PM 矽膠殼 午 MGFP4",
       "stores": {
         "51": 4,
         "89": 1,
         "821": 3
       },
-      "total": 8,
-      "name": "iPhone 17PM 矽膠殼 午 MGFP4"
+      "total": 8
     },
     "0013029956": {
+      "name": "iPhone 17PM 矽膠殼 陶 MGFQ4",
       "stores": {
         "48": 2,
         "57": 5,
         "821": 2
       },
-      "total": 9,
-      "name": "iPhone 17PM 矽膠殼 陶 MGFQ4"
+      "total": 9
     },
     "0013029957": {
+      "name": "iPhone 17PM 矽膠殼 黑 MGFR4",
       "stores": {
         "51": 4
       },
-      "total": 4,
-      "name": "iPhone 17PM 矽膠殼 黑 MGFR4"
+      "total": 4
     },
     "0013029958": {
+      "name": "iPhone 17PM 織紋殼 黑 MGF84",
       "stores": {
         "76": 8,
         "115": 1
       },
-      "total": 9,
-      "name": "iPhone 17PM 織紋殼 黑 MGF84"
+      "total": 9
     },
     "0024956457": {
+      "name": "3A652 IPOD TOUCH 6 16GB 灰",
       "stores": {
         "76": 1
       },
-      "total": 1,
-      "name": "3A652 IPOD TOUCH 6 16GB 灰"
+      "total": 1
     },
     "0024740867": {
+      "name": "@@ Apple Care for Mac Pro",
       "stores": {
         "880": 3
       },
-      "total": 3,
-      "name": "@@ Apple Care for Mac Pro"
+      "total": 3
     },
     "0024778919": {
+      "name": "@@Apple Care for iPad MC593",
       "stores": {
         "880": 7
       },
-      "total": 7,
-      "name": "@@Apple Care for iPad MC593"
+      "total": 7
     },
     "0024788407": {
+      "name": "@@Apple Care for iMac MD007",
       "stores": {
         "880": 5
       },
-      "total": 5,
-      "name": "@@Apple Care for iMac MD007"
+      "total": 5
     },
     "0024788411": {
+      "name": "@@Apple Care for MBP MD013",
       "stores": {
         "880": 7
       },
-      "total": 7,
-      "name": "@@Apple Care for MBP MD013"
+      "total": 7
     },
     "0013003108": {
+      "name": "3D067 iPhone 8 Plus 64GB 金",
       "stores": {
         "76": 1
       },
-      "total": 1,
-      "name": "3D067 iPhone 8 Plus 64GB 金"
+      "total": 1
     },
     "0013005031": {
+      "name": "3D824 iPhone XR 64 白",
       "stores": {
         "51": 1
       },
-      "total": 1,
-      "name": "3D824 iPhone XR 64 白"
+      "total": 1
     },
     "0013009414": {
+      "name": "3G357 iPhone SE 64 白",
       "stores": {
         "57": 1,
         "75": 1,
         "116": 1
       },
-      "total": 3,
-      "name": "3G357 iPhone SE 64 白"
+      "total": 3
     },
     "0013009415": {
+      "name": "3G358 iPhone SE 64 紅",
       "stores": {
         "51": 1,
         "81": 1,
@@ -6805,91 +6806,91 @@
         "115": 1,
         "117": 1
       },
-      "total": 5,
-      "name": "3G358 iPhone SE 64 紅"
+      "total": 5
     },
     "0013018751": {
+      "name": "@@iPhone 13 128 粉 MLPH3",
       "stores": {
         "45": 1
       },
-      "total": 1,
-      "name": "@@iPhone 13 128 粉 MLPH3"
+      "total": 1
     },
     "0013018821": {
+      "name": "3J833 iPhone 13 128 星光白",
       "stores": {
         "89": 1,
         "115": 1
       },
-      "total": 2,
-      "name": "3J833 iPhone 13 128 星光白"
+      "total": 2
     },
     "0013018827": {
+      "name": "3J868 iPhone 13 Pro 128 金",
       "stores": {
         "84": 1
       },
-      "total": 1,
-      "name": "3J868 iPhone 13 Pro 128 金"
+      "total": 1
     },
     "0013021529": {
+      "name": "@@iPhone 14 Pro 256GB 金 MQ183",
       "stores": {
         "880": 1
       },
-      "total": 1,
-      "name": "@@iPhone 14 Pro 256GB 金 MQ183"
+      "total": 1
     },
     "0013021542": {
+      "name": "@@iPhone 14 PM 128GB 紫 MQ9T3",
       "stores": {
         "880": 1
       },
-      "total": 1,
-      "name": "@@iPhone 14 PM 128GB 紫 MQ9T3"
+      "total": 1
     },
     "0013021618": {
+      "name": "3L238 iPhone 14 128GB 藍色",
       "stores": {
         "51": 1
       },
-      "total": 1,
-      "name": "3L238 iPhone 14 128GB 藍色"
+      "total": 1
     },
     "0013025080": {
+      "name": "@@iPhone 15 128GB 黑 MTP03",
       "stores": {
         "821": 1
       },
-      "total": 1,
-      "name": "@@iPhone 15 128GB 黑 MTP03"
+      "total": 1
     },
     "0013025116": {
+      "name": "@@iPhone 15 Pro 256G 原 MTV53",
       "stores": {
         "880": 1
       },
-      "total": 1,
-      "name": "@@iPhone 15 Pro 256G 原 MTV53"
+      "total": 1
     },
     "0013025209": {
+      "name": "3M423 iPhone 15 128GB 粉",
       "stores": {
         "88": 1
       },
-      "total": 1,
-      "name": "3M423 iPhone 15 128GB 粉"
+      "total": 1
     },
     "0013025211": {
+      "name": "3M425 iPhone 15 128GB 藍",
       "stores": {
         "47": 1,
         "88": 1,
         "117": 1
       },
-      "total": 3,
-      "name": "3M425 iPhone 15 128GB 藍"
+      "total": 3
     },
     "0013025215": {
+      "name": "3M462 iPhone 15+ 128GB 黑色",
       "stores": {
         "88": 1,
         "880": 1
       },
-      "total": 2,
-      "name": "3M462 iPhone 15+ 128GB 黑色"
+      "total": 2
     },
     "0013027361": {
+      "name": "iPhone 16 128GB 黑 MYE73",
       "stores": {
         "45": 10,
         "48": 1,
@@ -6902,10 +6903,10 @@
         "820": 5,
         "821": 5
       },
-      "total": 98,
-      "name": "iPhone 16 128GB 黑 MYE73"
+      "total": 98
     },
     "0013027362": {
+      "name": "iPhone 16 128GB 白 MYE93",
       "stores": {
         "45": 8,
         "51": 20,
@@ -6918,10 +6919,10 @@
         "820": 5,
         "821": 4
       },
-      "total": 82,
-      "name": "iPhone 16 128GB 白 MYE93"
+      "total": 82
     },
     "0013027363": {
+      "name": "iPhone 16 128GB 粉 MYEA3",
       "stores": {
         "45": 1,
         "51": 2,
@@ -6929,72 +6930,72 @@
         "820": 1,
         "821": 2
       },
-      "total": 8,
-      "name": "iPhone 16 128GB 粉 MYEA3"
+      "total": 8
     },
     "0013027364": {
+      "name": "iPhone 16 128GB 藍 MYEC3",
       "stores": {
         "45": 1,
         "820": 5,
         "821": 2
       },
-      "total": 8,
-      "name": "iPhone 16 128GB 藍 MYEC3"
+      "total": 8
     },
     "0013027365": {
+      "name": "iPhone 16 128GB 綠 MYED3",
       "stores": {
         "47": 1,
         "820": 4,
         "821": 3
       },
-      "total": 8,
-      "name": "iPhone 16 128GB 綠 MYED3"
+      "total": 8
     },
     "0013027370": {
+      "name": "@@iPhone 16 256G 綠 MYEJ3",
       "stores": {
         "88": 1,
         "820": 1
       },
-      "total": 2,
-      "name": "@@iPhone 16 256G 綠 MYEJ3"
+      "total": 2
     },
     "0013027376": {
+      "name": "iPhone 16+ 128GB 黑 MXVU3",
       "stores": {
         "115": 1
       },
-      "total": 1,
-      "name": "iPhone 16+ 128GB 黑 MXVU3"
+      "total": 1
     },
     "0013027379": {
+      "name": "iPhone 16+ 128GB 藍 MXVX3",
       "stores": {
         "45": 1
       },
-      "total": 1,
-      "name": "iPhone 16+ 128GB 藍 MXVX3"
+      "total": 1
     },
     "0013027380": {
+      "name": "iPhone 16+ 128GB 綠 MXVY3",
       "stores": {
         "45": 1,
         "61": 1
       },
-      "total": 2,
-      "name": "iPhone 16+ 128GB 綠 MXVY3"
+      "total": 2
     },
     "0013027381": {
+      "name": "iPhone 16+ 256GB 黑 MXWN3",
       "stores": {
         "57": 1
       },
-      "total": 1,
-      "name": "iPhone 16+ 256GB 黑 MXWN3"
+      "total": 1
     },
     "0013027383": {
+      "name": "iPhone 16+ 256GB 粉 MXY13",
       "stores": {
         "45": 1
       },
-      "total": 1,
-      "name": "iPhone 16+ 256GB 粉 MXY13"
+      "total": 1
     },
     "0013027391": {
+      "name": "@@iPhone 16 Pro 128G 黑 MYND3",
       "stores": {
         "45": 10,
         "48": 3,
@@ -7012,10 +7013,10 @@
         "821": 10,
         "880": 184
       },
-      "total": 277,
-      "name": "@@iPhone 16 Pro 128G 黑 MYND3"
+      "total": 277
     },
     "0013027392": {
+      "name": "@@iPhone 16 Pro 128G 白 MYNE3",
       "stores": {
         "45": 6,
         "48": 2,
@@ -7033,10 +7034,10 @@
         "821": 5,
         "880": 16
       },
-      "total": 66,
-      "name": "@@iPhone 16 Pro 128G 白 MYNE3"
+      "total": 66
     },
     "0013027393": {
+      "name": "@@iPhone 16 Pro 128G 沙 MYNF3",
       "stores": {
         "45": 10,
         "48": 3,
@@ -7054,10 +7055,10 @@
         "821": 10,
         "880": 137
       },
-      "total": 230,
-      "name": "@@iPhone 16 Pro 128G 沙 MYNF3"
+      "total": 230
     },
     "0013027394": {
+      "name": "@@iPhone 16 Pro 128G 原 MYNG3",
       "stores": {
         "45": 6,
         "48": 2,
@@ -7075,10 +7076,10 @@
         "821": 5,
         "880": 14
       },
-      "total": 65,
-      "name": "@@iPhone 16 Pro 128G 原 MYNG3"
+      "total": 65
     },
     "0013027395": {
+      "name": "@@iPhone 16 Pro 256G 黑 MYNH3",
       "stores": {
         "45": 4,
         "51": 4,
@@ -7091,10 +7092,10 @@
         "821": 5,
         "880": 103
       },
-      "total": 129,
-      "name": "@@iPhone 16 Pro 256G 黑 MYNH3"
+      "total": 129
     },
     "0013027396": {
+      "name": "@@iPhone 16 Pro 256G 白 MYNJ3",
       "stores": {
         "45": 4,
         "51": 2,
@@ -7106,10 +7107,10 @@
         "821": 5,
         "880": 108
       },
-      "total": 131,
-      "name": "@@iPhone 16 Pro 256G 白 MYNJ3"
+      "total": 131
     },
     "0013027397": {
+      "name": "@@iPhone 16 Pro 256G 沙 MYNK3",
       "stores": {
         "45": 6,
         "48": 3,
@@ -7129,10 +7130,10 @@
         "821": 5,
         "880": 25
       },
-      "total": 88,
-      "name": "@@iPhone 16 Pro 256G 沙 MYNK3"
+      "total": 88
     },
     "0013027398": {
+      "name": "@@iPhone 16 Pro 256G 原 MYNL3",
       "stores": {
         "45": 3,
         "48": 2,
@@ -7148,10 +7149,10 @@
         "117": 2,
         "880": 22
       },
-      "total": 48,
-      "name": "@@iPhone 16 Pro 256G 原 MYNL3"
+      "total": 48
     },
     "0013027399": {
+      "name": "@@iPhone 16 Pro 512G 黑 MYNM3",
       "stores": {
         "45": 10,
         "48": 3,
@@ -7169,10 +7170,10 @@
         "821": 5,
         "880": 30
       },
-      "total": 113,
-      "name": "@@iPhone 16 Pro 512G 黑 MYNM3"
+      "total": 113
     },
     "0013027400": {
+      "name": "@@iPhone 16 Pro 512G 白 MYNN3",
       "stores": {
         "45": 5,
         "48": 2,
@@ -7190,10 +7191,10 @@
         "821": 5,
         "880": 21
       },
-      "total": 70,
-      "name": "@@iPhone 16 Pro 512G 白 MYNN3"
+      "total": 70
     },
     "0013027401": {
+      "name": "@@iPhone 16 Pro 512G 沙 MYNP3",
       "stores": {
         "45": 6,
         "48": 1,
@@ -7212,10 +7213,10 @@
         "821": 5,
         "880": 13
       },
-      "total": 61,
-      "name": "@@iPhone 16 Pro 512G 沙 MYNP3"
+      "total": 61
     },
     "0013027402": {
+      "name": "@@iPhone 16 Pro 512G 原 MYNQ3",
       "stores": {
         "45": 6,
         "48": 2,
@@ -7233,10 +7234,10 @@
         "821": 5,
         "880": 17
       },
-      "total": 68,
-      "name": "@@iPhone 16 Pro 512G 原 MYNQ3"
+      "total": 68
     },
     "0013027403": {
+      "name": "@@iPhone 16 Pro 1T 黑 MYNR3",
       "stores": {
         "45": 10,
         "48": 3,
@@ -7254,10 +7255,10 @@
         "821": 10,
         "880": 90
       },
-      "total": 183,
-      "name": "@@iPhone 16 Pro 1T 黑 MYNR3"
+      "total": 183
     },
     "0013027404": {
+      "name": "@@iPhone 16 Pro 1T 白 MYNT3",
       "stores": {
         "45": 5,
         "48": 1,
@@ -7275,10 +7276,10 @@
         "821": 5,
         "880": 40
       },
-      "total": 85,
-      "name": "@@iPhone 16 Pro 1T 白 MYNT3"
+      "total": 85
     },
     "0013027405": {
+      "name": "@@iPhone 16 Pro 1T 沙 MYNW3",
       "stores": {
         "45": 6,
         "48": 1,
@@ -7296,10 +7297,10 @@
         "821": 5,
         "880": 14
       },
-      "total": 60,
-      "name": "@@iPhone 16 Pro 1T 沙 MYNW3"
+      "total": 60
     },
     "0013027406": {
+      "name": "@@iPhone 16 Pro 1T 原 MYNX3",
       "stores": {
         "45": 5,
         "48": 1,
@@ -7317,57 +7318,57 @@
         "821": 5,
         "880": 12
       },
-      "total": 55,
-      "name": "@@iPhone 16 Pro 1T 原 MYNX3"
+      "total": 55
     },
     "0013027407": {
+      "name": "@@iPhone 16 PM 256G 黑 MYWV3",
       "stores": {
         "57": 1,
         "81": 1
       },
-      "total": 2,
-      "name": "@@iPhone 16 PM 256G 黑 MYWV3"
+      "total": 2
     },
     "0013027408": {
+      "name": "@@iPhone 16 PM 256G 白 MYWW3",
       "stores": {
         "51": 1,
         "84": 2
       },
-      "total": 3,
-      "name": "@@iPhone 16 PM 256G 白 MYWW3"
+      "total": 3
     },
     "0013027409": {
+      "name": "@@iPhone 16 PM 256G 沙 MYWX3",
       "stores": {
         "51": 2,
         "61": 1,
         "88": 2
       },
-      "total": 5,
-      "name": "@@iPhone 16 PM 256G 沙 MYWX3"
+      "total": 5
     },
     "0013027410": {
+      "name": "@@iPhone 16 PM 256G 原 MYWY3",
       "stores": {
         "45": 1,
         "51": 2
       },
-      "total": 3,
-      "name": "@@iPhone 16 PM 256G 原 MYWY3"
+      "total": 3
     },
     "0013027411": {
+      "name": "@@iPhone 16 PM 512G 黑 MYX03",
       "stores": {
         "88": 1
       },
-      "total": 1,
-      "name": "@@iPhone 16 PM 512G 黑 MYX03"
+      "total": 1
     },
     "0013027414": {
+      "name": "@@iPhone 16 PM 512G 原 MYX33",
       "stores": {
         "97": 1
       },
-      "total": 1,
-      "name": "@@iPhone 16 PM 512G 原 MYX33"
+      "total": 1
     },
     "0013027533": {
+      "name": "3N399 iPhone 16 128GB 藍",
       "stores": {
         "45": 3,
         "51": 1,
@@ -7385,46 +7386,46 @@
         "117": 1,
         "880": 3
       },
-      "total": 19,
-      "name": "3N399 iPhone 16 128GB 藍"
+      "total": 19
     },
     "0013027534": {
+      "name": "3N400 iPhone 16 128GB 綠",
       "stores": {
         "45": 4,
         "51": 1,
         "88": 1
       },
-      "total": 6,
-      "name": "3N400 iPhone 16 128GB 綠"
+      "total": 6
     },
     "0013027535": {
+      "name": "3N348 iPhone 16+ 128GB 黑",
       "stores": {
         "45": 4,
         "88": 1,
         "880": 5
       },
-      "total": 10,
-      "name": "3N348 iPhone 16+ 128GB 黑"
+      "total": 10
     },
     "0013027537": {
+      "name": "3N350 iPhone 16+ 128GB 粉",
       "stores": {
         "45": 1,
         "84": 1,
         "88": 1,
         "880": 2
       },
-      "total": 5,
-      "name": "3N350 iPhone 16+ 128GB 粉"
+      "total": 5
     },
     "0013027541": {
+      "name": "3N752 iPhone 16 Pro 256GB 白色",
       "stores": {
         "45": 4,
         "880": 1
       },
-      "total": 5,
-      "name": "3N752 iPhone 16 Pro 256GB 白色"
+      "total": 5
     },
     "0013027543": {
+      "name": "3N754 iPhone 16 Pro 256GB 原色",
       "stores": {
         "45": 4,
         "47": 1,
@@ -7432,44 +7433,44 @@
         "88": 1,
         "880": 2
       },
-      "total": 9,
-      "name": "3N754 iPhone 16 Pro 256GB 原色"
+      "total": 9
     },
     "0013027544": {
+      "name": "3N532 iPhone 16 PM 256GB 黑色",
       "stores": {
         "45": 2,
         "88": 2,
         "880": 1
       },
-      "total": 5,
-      "name": "3N532 iPhone 16 PM 256GB 黑色"
+      "total": 5
     },
     "0013027546": {
+      "name": "3N534 iPhone 16 PM 256GB 沙色",
       "stores": {
         "45": 2,
         "84": 1,
         "88": 1,
         "880": 2
       },
-      "total": 6,
-      "name": "3N534 iPhone 16 PM 256GB 沙色"
+      "total": 6
     },
     "0013028504": {
+      "name": "iPhone 16e 128GB 黑 MD1Q4",
       "stores": {
         "61": 1
       },
-      "total": 1,
-      "name": "iPhone 16e 128GB 黑 MD1Q4"
+      "total": 1
     },
     "0013028508": {
+      "name": "iPhone 16e 512GB 黑 MD1X4",
       "stores": {
         "51": 3,
         "86": 2
       },
-      "total": 5,
-      "name": "iPhone 16e 512GB 黑 MD1X4"
+      "total": 5
     },
     "0013028511": {
+      "name": "3N762 iPhone 16e 128GB 黑",
       "stores": {
         "45": 1,
         "47": 1,
@@ -7489,98 +7490,98 @@
         "116": 1,
         "117": 1
       },
-      "total": 17,
-      "name": "3N762 iPhone 16e 128GB 黑"
+      "total": 17
     },
     "0013028751": {
+      "name": "教 3N532 iPhone 16 PM 256GB 黑",
       "stores": {
         "45": 1,
         "75": 1,
         "115": 1
       },
-      "total": 3,
-      "name": "教 3N532 iPhone 16 PM 256GB 黑"
+      "total": 3
     },
     "0013029069": {
+      "name": "北 3M425 iPhone 15 128G 藍",
       "stores": {
         "97": 1
       },
-      "total": 1,
-      "name": "北 3M425 iPhone 15 128G 藍"
+      "total": 1
     },
     "0013029070": {
+      "name": "北 3M462 iPhone 15+ 128G 黑",
       "stores": {
         "880": 1
       },
-      "total": 1,
-      "name": "北 3M462 iPhone 15+ 128G 黑"
+      "total": 1
     },
     "0013029071": {
+      "name": "北 3N399 iPhone 16 128G 藍",
       "stores": {
         "97": 1,
         "880": 1
       },
-      "total": 2,
-      "name": "北 3N399 iPhone 16 128G 藍"
+      "total": 2
     },
     "0013029072": {
+      "name": "北 3N400 iPhone 16 128G 綠",
       "stores": {
         "880": 2
       },
-      "total": 2,
-      "name": "北 3N400 iPhone 16 128G 綠"
+      "total": 2
     },
     "0013029073": {
+      "name": "北 3N348 iPhone 16+ 128G 黑",
       "stores": {
         "880": 2
       },
-      "total": 2,
-      "name": "北 3N348 iPhone 16+ 128G 黑"
+      "total": 2
     },
     "0013029074": {
+      "name": "北 3N350 iPhone 16+ 128G 粉",
       "stores": {
         "880": 2
       },
-      "total": 2,
-      "name": "北 3N350 iPhone 16+ 128G 粉"
+      "total": 2
     },
     "0013029075": {
+      "name": "北 3N752 iPhone 16 Pro 256G 白",
       "stores": {
         "880": 1
       },
-      "total": 1,
-      "name": "北 3N752 iPhone 16 Pro 256G 白"
+      "total": 1
     },
     "0013029076": {
+      "name": "北 3N754 iPhone 16 Pro 256G 原",
       "stores": {
         "880": 1
       },
-      "total": 1,
-      "name": "北 3N754 iPhone 16 Pro 256G 原"
+      "total": 1
     },
     "0013029077": {
+      "name": "北 3N532 iPhone 16 PM 256G 黑",
       "stores": {
         "880": 2
       },
-      "total": 2,
-      "name": "北 3N532 iPhone 16 PM 256G 黑"
+      "total": 2
     },
     "0013029078": {
+      "name": "北 3N534 iPhone 16 PM 256G 沙",
       "stores": {
         "880": 1
       },
-      "total": 1,
-      "name": "北 3N534 iPhone 16 PM 256G 沙"
+      "total": 1
     },
     "0013029079": {
+      "name": "北 3N762 iPhone 16e 128G 黑",
       "stores": {
         "75": 1,
         "97": 1
       },
-      "total": 2,
-      "name": "北 3N762 iPhone 16e 128G 黑"
+      "total": 2
     },
     "0013029776": {
+      "name": "iPhone 17 256G 黑 MG6J4",
       "stores": {
         "45": 8,
         "47": 9,
@@ -7604,10 +7605,10 @@
         "821": 14,
         "880": 2
       },
-      "total": 240,
-      "name": "iPhone 17 256G 黑 MG6J4"
+      "total": 240
     },
     "0013029777": {
+      "name": "iPhone 17 256G 白 MG6K4",
       "stores": {
         "45": 33,
         "47": 9,
@@ -7632,10 +7633,10 @@
         "821": 12,
         "880": 10
       },
-      "total": 399,
-      "name": "iPhone 17 256G 白 MG6K4"
+      "total": 399
     },
     "0013029778": {
+      "name": "iPhone 17 256G 霧藍 MG6L4",
       "stores": {
         "45": 39,
         "47": 18,
@@ -7660,10 +7661,10 @@
         "821": 13,
         "880": 71
       },
-      "total": 462,
-      "name": "iPhone 17 256G 霧藍 MG6L4"
+      "total": 462
     },
     "0013029779": {
+      "name": "iPhone 17 256G 薰衣紫 MG6M4",
       "stores": {
         "45": 25,
         "47": 27,
@@ -7688,10 +7689,10 @@
         "821": 15,
         "880": 350
       },
-      "total": 748,
-      "name": "iPhone 17 256G 薰衣紫 MG6M4"
+      "total": 748
     },
     "0013029780": {
+      "name": "iPhone 17 256G 鼠尾綠 MG6N4",
       "stores": {
         "45": 19,
         "47": 10,
@@ -7715,35 +7716,35 @@
         "820": 10,
         "821": 18
       },
-      "total": 265,
-      "name": "iPhone 17 256G 鼠尾綠 MG6N4"
+      "total": 265
     },
     "0013029781": {
+      "name": "iPhone 17 512G 黑 MG6P4",
       "stores": {
         "48": 1
       },
-      "total": 1,
-      "name": "iPhone 17 512G 黑 MG6P4"
+      "total": 1
     },
     "0013029782": {
+      "name": "iPhone 17 512G 白 MG6Q4",
       "stores": {
         "51": 1,
         "75": 1,
         "86": 2,
         "88": 2
       },
-      "total": 6,
-      "name": "iPhone 17 512G 白 MG6Q4"
+      "total": 6
     },
     "0013029784": {
+      "name": "iPhone 17 512G 薰衣紫 MG6U4",
       "stores": {
         "51": 1,
         "75": 1
       },
-      "total": 2,
-      "name": "iPhone 17 512G 薰衣紫 MG6U4"
+      "total": 2
     },
     "0013029786": {
+      "name": "iPhone Air 256G 太空黑 MG2L4",
       "stores": {
         "45": 4,
         "47": 1,
@@ -7762,10 +7763,10 @@
         "820": 2,
         "821": 3
       },
-      "total": 34,
-      "name": "iPhone Air 256G 太空黑 MG2L4"
+      "total": 34
     },
     "0013029787": {
+      "name": "iPhone Air 256G 雲白 MG2M4",
       "stores": {
         "45": 3,
         "48": 3,
@@ -7780,10 +7781,10 @@
         "820": 2,
         "821": 2
       },
-      "total": 23,
-      "name": "iPhone Air 256G 雲白 MG2M4"
+      "total": 23
     },
     "0013029788": {
+      "name": "iPhone Air 256G 淺金 MG2N4",
       "stores": {
         "45": 2,
         "51": 1,
@@ -7798,10 +7799,10 @@
         "116": 1,
         "820": 2
       },
-      "total": 17,
-      "name": "iPhone Air 256G 淺金 MG2N4"
+      "total": 17
     },
     "0013029789": {
+      "name": "iPhone Air 256G 天藍 MG2P4",
       "stores": {
         "45": 6,
         "47": 3,
@@ -7826,20 +7827,20 @@
         "821": 5,
         "880": 10
       },
-      "total": 150,
-      "name": "iPhone Air 256G 天藍 MG2P4"
+      "total": 150
     },
     "0013029790": {
+      "name": "iPhone Air 512G 太空黑 MG2Q4",
       "stores": {
         "57": 2,
         "76": 1,
         "97": 1,
         "115": 1
       },
-      "total": 5,
-      "name": "iPhone Air 512G 太空黑 MG2Q4"
+      "total": 5
     },
     "0013029791": {
+      "name": "iPhone Air 512G 雲白 MG2T4",
       "stores": {
         "45": 2,
         "48": 1,
@@ -7856,10 +7857,10 @@
         "97": 2,
         "117": 1
       },
-      "total": 24,
-      "name": "iPhone Air 512G 雲白 MG2T4"
+      "total": 24
     },
     "0013029792": {
+      "name": "iPhone Air 512G 淺金 MG2U4",
       "stores": {
         "45": 4,
         "47": 2,
@@ -7874,10 +7875,10 @@
         "820": 2,
         "821": 2
       },
-      "total": 22,
-      "name": "iPhone Air 512G 淺金 MG2U4"
+      "total": 22
     },
     "0013029793": {
+      "name": "iPhone Air 512G 天藍 MG2V4",
       "stores": {
         "45": 3,
         "47": 2,
@@ -7898,10 +7899,10 @@
         "820": 1,
         "821": 1
       },
-      "total": 34,
-      "name": "iPhone Air 512G 天藍 MG2V4"
+      "total": 34
     },
     "0013029794": {
+      "name": "iPhone Air 1T 太空黑 MG2W4",
       "stores": {
         "45": 1,
         "57": 1,
@@ -7911,10 +7912,10 @@
         "115": 1,
         "880": 1
       },
-      "total": 7,
-      "name": "iPhone Air 1T 太空黑 MG2W4"
+      "total": 7
     },
     "0013029795": {
+      "name": "iPhone Air 1T 雲白 MG2X4",
       "stores": {
         "51": 1,
         "57": 1,
@@ -7925,10 +7926,10 @@
         "115": 1,
         "880": 1
       },
-      "total": 8,
-      "name": "iPhone Air 1T 雲白 MG2X4"
+      "total": 8
     },
     "0013029796": {
+      "name": "iPhone Air 1T 淺金 MG2Y4",
       "stores": {
         "45": 1,
         "51": 1,
@@ -7937,10 +7938,10 @@
         "115": 1,
         "880": 1
       },
-      "total": 6,
-      "name": "iPhone Air 1T 淺金 MG2Y4"
+      "total": 6
     },
     "0013029797": {
+      "name": "iPhone Air 1T 天藍 MG304",
       "stores": {
         "51": 1,
         "75": 1,
@@ -7948,10 +7949,10 @@
         "97": 1,
         "117": 1
       },
-      "total": 5,
-      "name": "iPhone Air 1T 天藍 MG304"
+      "total": 5
     },
     "0013029798": {
+      "name": "iPhone 17 Pro 256G 銀 MG8G4",
       "stores": {
         "45": 16,
         "47": 30,
@@ -7976,10 +7977,10 @@
         "821": 11,
         "880": 101
       },
-      "total": 674,
-      "name": "iPhone 17 Pro 256G 銀 MG8G4"
+      "total": 674
     },
     "0013029799": {
+      "name": "iPhone 17 Pro 256G 橙 MG8H4",
       "stores": {
         "45": 43,
         "47": 25,
@@ -8004,10 +8005,10 @@
         "821": 30,
         "880": 93
       },
-      "total": 640,
-      "name": "iPhone 17 Pro 256G 橙 MG8H4"
+      "total": 640
     },
     "0013029800": {
+      "name": "iPhone 17 Pro 256G 藏藍 MG8J4",
       "stores": {
         "45": 32,
         "47": 17,
@@ -8032,10 +8033,10 @@
         "821": 33,
         "880": 41
       },
-      "total": 465,
-      "name": "iPhone 17 Pro 256G 藏藍 MG8J4"
+      "total": 465
     },
     "0013029801": {
+      "name": "iPhone 17 Pro 512G 銀 MG8K4",
       "stores": {
         "45": 1,
         "47": 4,
@@ -8057,10 +8058,10 @@
         "820": 4,
         "821": 3
       },
-      "total": 54,
-      "name": "iPhone 17 Pro 512G 銀 MG8K4"
+      "total": 54
     },
     "0013029802": {
+      "name": "iPhone 17 Pro 512G 橙 MG8M4",
       "stores": {
         "45": 13,
         "51": 11,
@@ -8071,19 +8072,19 @@
         "820": 1,
         "821": 3
       },
-      "total": 62,
-      "name": "iPhone 17 Pro 512G 橙 MG8M4"
+      "total": 62
     },
     "0013029803": {
+      "name": "iPhone 17 Pro 512G 藏藍 MG8N4",
       "stores": {
         "75": 1,
         "76": 9,
         "81": 7
       },
-      "total": 17,
-      "name": "iPhone 17 Pro 512G 藏藍 MG8N4"
+      "total": 17
     },
     "0013029804": {
+      "name": "iPhone 17 Pro 1T 銀 MG8P4",
       "stores": {
         "45": 1,
         "47": 2,
@@ -8095,26 +8096,26 @@
         "820": 5,
         "821": 5
       },
-      "total": 26,
-      "name": "iPhone 17 Pro 1T 銀 MG8P4"
+      "total": 26
     },
     "0013029805": {
+      "name": "iPhone 17 Pro 1T 橙 MG8Q4",
       "stores": {
         "880": 10
       },
-      "total": 10,
-      "name": "iPhone 17 Pro 1T 橙 MG8Q4"
+      "total": 10
     },
     "0013029806": {
+      "name": "iPhone 17 Pro 1T 藏藍 MG8R4",
       "stores": {
         "51": 7,
         "75": 2,
         "880": 10
       },
-      "total": 19,
-      "name": "iPhone 17 Pro 1T 藏藍 MG8R4"
+      "total": 19
     },
     "0013029807": {
+      "name": "iPhone 17 PM 256G 銀 MFYM4",
       "stores": {
         "45": 66,
         "47": 35,
@@ -8139,10 +8140,10 @@
         "821": 15,
         "880": 50
       },
-      "total": 758,
-      "name": "iPhone 17 PM 256G 銀 MFYM4"
+      "total": 758
     },
     "0013029808": {
+      "name": "iPhone 17 PM 256G 橙 MFYN4",
       "stores": {
         "45": 9,
         "47": 3,
@@ -8167,10 +8168,10 @@
         "821": 3,
         "880": 110
       },
-      "total": 363,
-      "name": "iPhone 17 PM 256G 橙 MFYN4"
+      "total": 363
     },
     "0013029809": {
+      "name": "iPhone 17 PM 256G 藏藍 MFYP4",
       "stores": {
         "45": 2,
         "47": 13,
@@ -8193,10 +8194,10 @@
         "820": 8,
         "821": 3
       },
-      "total": 149,
-      "name": "iPhone 17 PM 256G 藏藍 MFYP4"
+      "total": 149
     },
     "0013029810": {
+      "name": "iPhone 17 PM 512G 銀 MFYQ4",
       "stores": {
         "45": 2,
         "47": 3,
@@ -8218,10 +8219,10 @@
         "820": 3,
         "821": 3
       },
-      "total": 56,
-      "name": "iPhone 17 PM 512G 銀 MFYQ4"
+      "total": 56
     },
     "0013029811": {
+      "name": "iPhone 17 PM 512G 橙 MFYT4",
       "stores": {
         "45": 8,
         "47": 3,
@@ -8245,10 +8246,10 @@
         "820": 3,
         "821": 3
       },
-      "total": 93,
-      "name": "iPhone 17 PM 512G 橙 MFYT4"
+      "total": 93
     },
     "0013029812": {
+      "name": "iPhone 17 PM 512G 藏藍 MFYU4",
       "stores": {
         "45": 15,
         "47": 4,
@@ -8267,10 +8268,10 @@
         "115": 9,
         "880": 1
       },
-      "total": 87,
-      "name": "iPhone 17 PM 512G 藏藍 MFYU4"
+      "total": 87
     },
     "0013029813": {
+      "name": "iPhone 17 PM 1T 銀 MFYV4",
       "stores": {
         "48": 10,
         "61": 1,
@@ -8279,33 +8280,33 @@
         "97": 2,
         "116": 5
       },
-      "total": 20,
-      "name": "iPhone 17 PM 1T 銀 MFYV4"
+      "total": 20
     },
     "0013029814": {
+      "name": "iPhone 17 PM 1T 橙 MFYW4",
       "stores": {
         "77": 1,
         "116": 1
       },
-      "total": 2,
-      "name": "iPhone 17 PM 1T 橙 MFYW4"
+      "total": 2
     },
     "0013029815": {
+      "name": "iPhone 17 PM 1T 藏藍 MFYX4",
       "stores": {
         "45": 1,
         "51": 1
       },
-      "total": 2,
-      "name": "iPhone 17 PM 1T 藏藍 MFYX4"
+      "total": 2
     },
     "0013029818": {
+      "name": "iPhone 17 PM 2T 藏藍 MG014",
       "stores": {
         "57": 1
       },
-      "total": 1,
-      "name": "iPhone 17 PM 2T 藏藍 MG014"
+      "total": 1
     },
     "0013029906": {
+      "name": "3P195 iPhone 17 256G 白",
       "stores": {
         "51": 1,
         "57": 1,
@@ -8318,10 +8319,10 @@
         "97": 1,
         "117": 1
       },
-      "total": 10,
-      "name": "3P195 iPhone 17 256G 白"
+      "total": 10
     },
     "0013029907": {
+      "name": "3P196 iPhone 17 256G 霧藍",
       "stores": {
         "51": 1,
         "57": 1,
@@ -8337,10 +8338,10 @@
         "116": 1,
         "117": 1
       },
-      "total": 13,
-      "name": "3P196 iPhone 17 256G 霧藍"
+      "total": 13
     },
     "0013029908": {
+      "name": "3P197 iPhone 17 256G 薰衣紫",
       "stores": {
         "45": 1,
         "47": 1,
@@ -8362,10 +8363,10 @@
         "116": 1,
         "117": 1
       },
-      "total": 19,
-      "name": "3P197 iPhone 17 256G 薰衣紫"
+      "total": 19
     },
     "0013029909": {
+      "name": "3P198 iPhone 17 256G 鼠尾綠",
       "stores": {
         "51": 1,
         "57": 1,
@@ -8378,10 +8379,10 @@
         "97": 1,
         "117": 1
       },
-      "total": 10,
-      "name": "3P198 iPhone 17 256G 鼠尾綠"
+      "total": 10
     },
     "0013029910": {
+      "name": "3P149 iPhone Air 256G 太空黑",
       "stores": {
         "51": 1,
         "57": 1,
@@ -8395,10 +8396,10 @@
         "97": 2,
         "117": 1
       },
-      "total": 15,
-      "name": "3P149 iPhone Air 256G 太空黑"
+      "total": 15
     },
     "0013029911": {
+      "name": "3P150 iPhone Air 256G 雲白",
       "stores": {
         "51": 1,
         "57": 1,
@@ -8411,10 +8412,10 @@
         "97": 1,
         "117": 1
       },
-      "total": 10,
-      "name": "3P150 iPhone Air 256G 雲白"
+      "total": 10
     },
     "0013029912": {
+      "name": "3P151 iPhone Air 256G 淺金",
       "stores": {
         "51": 1,
         "57": 1,
@@ -8429,10 +8430,10 @@
         "116": 1,
         "117": 1
       },
-      "total": 12,
-      "name": "3P151 iPhone Air 256G 淺金"
+      "total": 12
     },
     "0013029913": {
+      "name": "3P152 iPhone Air 256G 天藍",
       "stores": {
         "45": 1,
         "47": 1,
@@ -8454,10 +8455,10 @@
         "116": 1,
         "117": 1
       },
-      "total": 19,
-      "name": "3P152 iPhone Air 256G 天藍"
+      "total": 19
     },
     "0013029914": {
+      "name": "3P170 iPhone 17 Pro 256G 銀",
       "stores": {
         "51": 1,
         "57": 1,
@@ -8472,10 +8473,10 @@
         "116": 1,
         "117": 2
       },
-      "total": 19,
-      "name": "3P170 iPhone 17 Pro 256G 銀"
+      "total": 19
     },
     "0013029915": {
+      "name": "3P171 iPhone 17 Pro 256G 藏藍",
       "stores": {
         "45": 1,
         "47": 1,
@@ -8497,10 +8498,10 @@
         "116": 1,
         "117": 2
       },
-      "total": 29,
-      "name": "3P171 iPhone 17 Pro 256G 藏藍"
+      "total": 29
     },
     "0013029916": {
+      "name": "3P128 iPhone 17 PM 256G 銀",
       "stores": {
         "45": 1,
         "75": 1,
@@ -8509,10 +8510,10 @@
         "88": 1,
         "97": 1
       },
-      "total": 6,
-      "name": "3P128 iPhone 17 PM 256G 銀"
+      "total": 6
     },
     "0013029917": {
+      "name": "3P129 iPhone 17 PM 256G 藏藍",
       "stores": {
         "51": 2,
         "57": 2,
@@ -8528,10 +8529,10 @@
         "116": 1,
         "117": 2
       },
-      "total": 22,
-      "name": "3P129 iPhone 17 PM 256G 藏藍"
+      "total": 22
     },
     "0013029918": {
+      "name": "3P130 iPhone 17 PM 256G 橙",
       "stores": {
         "45": 1,
         "47": 1,
@@ -8553,53 +8554,53 @@
         "116": 1,
         "117": 2
       },
-      "total": 29,
-      "name": "3P130 iPhone 17 PM 256G 橙"
+      "total": 29
     },
     "0013008982": {
+      "name": "MV722D Beats Powerbeats Pro 白",
       "stores": {
         "81": 1
       },
-      "total": 1,
-      "name": "MV722D Beats Powerbeats Pro 白"
+      "total": 1
     },
     "0013020606": {
+      "name": "Beats Fit Pro 白 MK2G3",
       "stores": {
         "45": 1
       },
-      "total": 1,
-      "name": "Beats Fit Pro 白 MK2G3"
+      "total": 1
     },
     "0013023571": {
+      "name": "Beats Studio Buds 透明 MQLK3",
       "stores": {
         "45": 1
       },
-      "total": 1,
-      "name": "Beats Studio Buds 透明 MQLK3"
+      "total": 1
     },
     "0013023788": {
+      "name": "Beats Studio Pro WL 黑 MQTP3",
       "stores": {
         "45": 1
       },
-      "total": 1,
-      "name": "Beats Studio Pro WL 黑 MQTP3"
+      "total": 1
     },
     "0013023789": {
+      "name": "Beats Studio Pro WL 藍 MQTQ3",
       "stores": {
         "45": 1
       },
-      "total": 1,
-      "name": "Beats Studio Pro WL 藍 MQTQ3"
+      "total": 1
     },
     "0013023791": {
+      "name": "Beats Studio Pro WL 棕 MQTT3",
       "stores": {
         "45": 1,
         "57": 1
       },
-      "total": 2,
-      "name": "Beats Studio Pro WL 棕 MQTT3"
+      "total": 2
     },
     "0013026360": {
+      "name": "Beats Solo Buds 黑 MUVW3",
       "stores": {
         "51": 2,
         "81": 2,
@@ -8608,10 +8609,10 @@
         "116": 2,
         "821": 1
       },
-      "total": 14,
-      "name": "Beats Solo Buds 黑 MUVW3"
+      "total": 14
     },
     "0013026362": {
+      "name": "Beats Solo Buds 灰 MUVY3",
       "stores": {
         "45": 3,
         "51": 2,
@@ -8621,24 +8622,24 @@
         "117": 2,
         "821": 3
       },
-      "total": 17,
-      "name": "Beats Solo Buds 灰 MUVY3"
+      "total": 17
     },
     "0013026478": {
+      "name": "Beats Pill 黑 MW443",
       "stores": {
         "75": 2
       },
-      "total": 2,
-      "name": "Beats Pill 黑 MW443"
+      "total": 2
     },
     "0013026479": {
+      "name": "Beats Pill 金 MW463",
       "stores": {
         "76": 2
       },
-      "total": 2,
-      "name": "Beats Pill 金 MW463"
+      "total": 2
     },
     "0013026480": {
+      "name": "Beats Pill 紅 MWQW3",
       "stores": {
         "45": 1,
         "51": 1,
@@ -8648,8 +8649,7 @@
         "116": 1,
         "117": 1
       },
-      "total": 7,
-      "name": "Beats Pill 紅 MWQW3"
+      "total": 7
     }
   }
 }
