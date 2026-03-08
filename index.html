@@ -1351,6 +1351,38 @@
       letter-spacing: 0.05em;
     }
 
+    /* 🆕 可排序的表格標題 */
+    th.sortable {
+      cursor: pointer;
+      user-select: none;
+      position: relative;
+      transition: all 0.2s ease;
+    }
+
+    th.sortable:hover {
+      background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+      color: #0c4a6e;
+    }
+
+    /* 🆕 排序圖示 */
+    .sort-icon {
+      display: inline-block;
+      margin-left: 6px;
+      font-size: 14px;
+      color: #94a3b8;
+      transition: color 0.2s ease;
+    }
+
+    /* 🆕 已排序狀態 */
+    th.sortable.sorted .sort-icon {
+      color: #3b82f6;
+      font-weight: 700;
+    }
+
+    th.sortable:hover .sort-icon {
+      color: #0c4a6e;
+    }
+
     tbody tr { 
       transition: all 0.2s ease;
     }
@@ -1742,19 +1774,31 @@
               <thead>
                 <tr>
                   <th>型號</th>
-                  <th>Code</th>
-                  <th>產品名稱</th>
+                  <th class="sortable" data-column="code">
+                    Code
+                    <span class="sort-icon">⇅</span>
+                  </th>
+                  <th class="sortable" data-column="name">
+                    產品名稱
+                    <span class="sort-icon">⇅</span>
+                  </th>
                   <th>大分類</th>
                   <th>中分類</th>
                   <th>小分類</th>
-                  <th id="totalStockHeader" style="display: none;">總庫存</th>
+                  <th id="totalStockHeader" class="sortable" data-column="totalStock" style="display: none;">
+                    總庫存
+                    <span class="sort-icon">⇅</span>
+                  </th>
                   <th id="stockHeader" style="display: none;">
                     庫存
                     <select id="storeSelector" style="display: block; margin-top: 4px; padding: 4px 8px; border-radius: 6px; border: 1px solid #cbd5e1; font-size: 12px; background: white; cursor: pointer;">
                       <option value="75">75</option>
                     </select>
                   </th>
-                  <th>備註</th>
+                  <th class="sortable" data-column="remark">
+                    備註
+                    <span class="sort-icon">⇅</span>
+                  </th>
                 </tr>
               </thead>
               <tbody>
@@ -2121,6 +2165,10 @@
     let userRole = 'none'; // 🆕 使用者身份
     let canSwitchStore = false; // 🆕 是否可以切換店別
     
+    // 🆕 排序狀態變數
+    let currentSortColumn = null; // 當前排序的欄位
+    let currentSortOrder = 'none'; // 排序順序：'none', 'asc', 'desc'
+    
     // 🆕 權限分組系統
     const USER_PERMISSIONS = {
       // 管理員：完整權限
@@ -2413,7 +2461,16 @@
         );
       }
       
-      renderTable(filtered);
+      // 🆕 儲存篩選後的資料到 data（供排序使用）
+      data = filtered;
+      
+      // 🆕 如果有排序狀態，重新應用排序
+      if (currentSortColumn && currentSortOrder !== 'none') {
+        sortTable(currentSortColumn);
+      } else {
+        renderTable(filtered);
+      }
+      
       updateFilterInfo();
     }
 
@@ -2518,6 +2575,12 @@
       showQuickSubcategoryButtons('');
       updateSubcategoryOptions('');
       
+      // 🆕 清除排序狀態
+      currentSortColumn = null;
+      currentSortOrder = 'none';
+      updateSortIcons();
+      
+      data = originalData;
       renderTable(originalData);
       updateFilterInfo();
     }
@@ -3070,6 +3133,99 @@
       updateFilterInfo();
     }
 
+    // 🆕 排序表格資料
+    function sortTable(column) {
+      // 切換排序順序：none -> asc -> desc -> none
+      if (currentSortColumn === column) {
+        if (currentSortOrder === 'none') {
+          currentSortOrder = 'asc';
+        } else if (currentSortOrder === 'asc') {
+          currentSortOrder = 'desc';
+        } else {
+          currentSortOrder = 'none';
+          currentSortColumn = null;
+        }
+      } else {
+        currentSortColumn = column;
+        currentSortOrder = 'asc';
+      }
+
+      // 更新所有排序圖示
+      updateSortIcons();
+
+      // 取得當前顯示的資料（考慮篩選）
+      let dataToSort = [...data];
+
+      // 如果排序狀態為 none，恢復原始順序
+      if (currentSortOrder === 'none') {
+        renderTable(dataToSort);
+        return;
+      }
+
+      // 執行排序
+      dataToSort.sort((a, b) => {
+        let aValue, bValue;
+
+        switch(column) {
+          case 'code':
+            aValue = a[columnMapping['Code']] || '';
+            bValue = b[columnMapping['Code']] || '';
+            break;
+          case 'name':
+            aValue = a[columnMapping['product_name']] || '';
+            bValue = b[columnMapping['product_name']] || '';
+            break;
+          case 'totalStock':
+            const aCode = a[columnMapping['Code']] || '';
+            const bCode = b[columnMapping['Code']] || '';
+            aValue = inventoryData[aCode]?.total || 0;
+            bValue = inventoryData[bCode]?.total || 0;
+            break;
+          case 'remark':
+            aValue = parseFloat(a[columnMapping['Remark']] || 0);
+            bValue = parseFloat(b[columnMapping['Remark']] || 0);
+            break;
+          default:
+            return 0;
+        }
+
+        // 數字排序
+        if (typeof aValue === 'number' && typeof bValue === 'number') {
+          return currentSortOrder === 'asc' ? aValue - bValue : bValue - aValue;
+        }
+
+        // 文字排序
+        const comparison = String(aValue).localeCompare(String(bValue), 'zh-TW');
+        return currentSortOrder === 'asc' ? comparison : -comparison;
+      });
+
+      renderTable(dataToSort);
+    }
+
+    // 🆕 更新排序圖示
+    function updateSortIcons() {
+      // 清除所有 sorted 類別
+      document.querySelectorAll('th.sortable').forEach(th => {
+        th.classList.remove('sorted');
+        const icon = th.querySelector('.sort-icon');
+        if (icon) {
+          icon.textContent = '⇅';
+        }
+      });
+
+      // 如果有排序，更新對應的圖示
+      if (currentSortColumn && currentSortOrder !== 'none') {
+        const th = document.querySelector(`th.sortable[data-column="${currentSortColumn}"]`);
+        if (th) {
+          th.classList.add('sorted');
+          const icon = th.querySelector('.sort-icon');
+          if (icon) {
+            icon.textContent = currentSortOrder === 'asc' ? '↑' : '↓';
+          }
+        }
+      }
+    }
+
     // 🆕 渲染表格（含庫存）
     function renderTable(filteredData) {
       const tbody = document.querySelector('#resultTable tbody');
@@ -3348,6 +3504,7 @@
           return;
         }
 
+        data = originalData; // 🆕 初始化 data 變數
         renderTable(originalData);
         initializeFilters();
         
@@ -3516,6 +3673,14 @@
           const subcategory = e.target.getAttribute('data-subcategory');
           quickSubcategoryFilter(subcategory);
         }
+      });
+
+      // 🆕 表格排序功能
+      document.querySelectorAll('th.sortable').forEach(th => {
+        th.addEventListener('click', function() {
+          const column = this.getAttribute('data-column');
+          sortTable(column);
+        });
       });
 
       // 🆕 低庫存警報事件監聽
