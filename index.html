@@ -2083,11 +2083,7 @@
           btn.innerHTML = originalText;
           btn.disabled = false;
           return;
-        }
-
-        console.log('登入成功:', user.email);
-        
-      } catch (error) {
+        }      } catch (error) {
         console.error('登入錯誤:', error);
         
         if (error.code === 'auth/popup-closed-by-user') {
@@ -2118,15 +2114,7 @@
         userRole = permissions.role;
         hasInventoryPermission = permissions.canViewInventory;
         canSwitchStore = permissions.canSwitchStore;
-        selectedStore = permissions.defaultStore;
-        
-        console.log(`👤 使用者: ${user.email}`);
-        console.log(`👔 身份: ${userRole}`);
-        console.log(`📊 庫存權限: ${hasInventoryPermission ? '✅ 有' : '❌ 無'}`);
-        console.log(`🏪 預設店別: ${selectedStore}`);
-        console.log(`🔄 切換店別: ${canSwitchStore ? '✅ 可以' : '❌ 不可'}`);
-        
-        // 🆕 初始化介面（顯示/隱藏庫存欄位、設定店別選單）
+        selectedStore = permissions.defaultStore;        // 🆕 初始化介面（顯示/隱藏庫存欄位、設定店別選單）
         initializeInventoryUI();
         
         // 登入後載入資料
@@ -2135,9 +2123,7 @@
             // 只有有權限的使用者才載入庫存
             if (hasInventoryPermission) {
               window.loadInventory();
-            } else {
-              console.log('⚠️ 此帳號無庫存查看權限');
-            }
+            } else {            }
           });
         }
       } else {
@@ -2178,11 +2164,7 @@
             key.startsWith('firebase:')
           );
           firebaseKeys.forEach(key => localStorage.removeItem(key));
-        }
-        
-        console.log('✅ 已完整登出');
-        
-        // 4. 重新載入頁面以完全清除狀態
+        }        // 4. 重新載入頁面以完全清除狀態
         setTimeout(() => {
           window.location.reload();
         }, 500);
@@ -2609,215 +2591,190 @@
       applyFilters();
     }
 
+    // 🆕 輔助函數：從產品名稱提取 Apple Watch 尺寸
+    function extractWatchSize(productName) {
+      const sizes = new Set();
+      
+      // 先抓有 mm 的尺寸（40mm, 42mm, 44mm 等）
+      const mmPattern = /\b(\d+)\s?mm\b/gi;
+      let match;
+      while ((match = mmPattern.exec(productName)) !== null) {
+        const size = parseInt(match[1]);
+        if (size >= 38 && size <= 50) {
+          sizes.add(size + 'mm');
+        }
+      }
+      
+      // 再抓純數字尺寸（AW SE 40, AW S11 42 等）
+      const pureNumPattern = /\bAW\s+\S+\s+(\d{2})\b/gi;
+      while ((match = pureNumPattern.exec(productName)) !== null) {
+        const size = parseInt(match[1]);
+        if (size >= 38 && size <= 50) {
+          sizes.add(size + 'mm');
+        }
+      }
+      
+      return sizes;
+    }
+
+    // 🆕 輔助函數：從產品名稱提取儲存容量
+    function extractStorageCapacity(productName) {
+      const capacities = new Set();
+      
+      // 抓 TB 容量（1TB, 2TB, 4TB 等）
+      const tbPattern = /\b(\d+(?:\.\d+)?)\s?TB?\b/gi;
+      let match;
+      while ((match = tbPattern.exec(productName)) !== null) {
+        capacities.add(match[1] + 'TB');
+      }
+      
+      // 先抓有 GB 的
+      const gbPattern = /\b(\d+)\s?GB\b/gi;
+      while ((match = gbPattern.exec(productName)) !== null) {
+        const size = parseInt(match[1]);
+        if (size >= 64 && ![8, 16, 24, 32, 48].includes(size)) {
+          capacities.add(size + '');
+        }
+      }
+      
+      // 再抓有單獨 G 的（後面不是 B）
+      const gPattern = /\b(\d+)\s?G\b(?!B)/gi;
+      while ((match = gPattern.exec(productName)) !== null) {
+        const size = parseInt(match[1]);
+        if (size >= 64 && ![8, 16, 24, 32, 48].includes(size)) {
+          capacities.add(size + '');
+        }
+      }
+      
+      // 最後抓純數字容量（64, 128, 256, 512, 1024）
+      const pureNumPattern = /\b(64|128|256|512|1024)\b(?!\s?(G|GB|TB|mm|in))/gi;
+      while ((match = pureNumPattern.exec(productName)) !== null) {
+        const size = parseInt(match[1]);
+        capacities.add(size + '');
+      }
+      
+      return capacities;
+    }
+
     // 🆕 顯示容量篩選按鈕（根據當前篩選結果動態生成）
     function showQuickCapacityButtons() {
       const quickCapacityRow = document.getElementById('quickCapacityRow');
       const quickCapacityButtons = document.getElementById('quickCapacityButtons');
       const quickCapacityLabel = document.getElementById('quickCapacityLabel');
       
-      // 取得當前篩選後的資料
-      let currentData = originalData;
-      
-      // 應用大分類篩選
-      if (activeQuickFilter) {
-        currentData = currentData.filter(row => 
-          row[columnMapping['大分類']] === activeQuickFilter
-        );
-      }
-      
-      // 應用中分類篩選
-      if (activeQuickSubcategory) {
-        currentData = currentData.filter(row => 
-          row[columnMapping['中分類']] === activeQuickSubcategory
-        );
-      }
-      
-      // 🆕 判斷當前篩選的產品類型，決定要抓什麼容量
-      const currentCategory = activeQuickFilter || '';
-      
-      // 🆕 根據分類動態更新標籤文字
-      if (currentCategory === 'Apple Watch') {
-        quickCapacityLabel.textContent = '尺寸篩選：';
-      } else {
-        quickCapacityLabel.textContent = '容量篩選：';
-      }
-      
-      // 從當前資料中提取容量
-      const capacities = new Set();
-      
-      if (currentCategory === 'Apple Watch') {
-        // 🆕 Apple Watch：只抓錶殼尺寸（mm）
-        currentData.forEach(row => {
-          const productName = row[columnMapping['product_name']] || '';
-          // 🆕 只從產品名稱提取尺寸
-          
-          // 先抓有 mm 的尺寸（40mm, 42mm, 44mm 等）
-          const mmPattern = /\b(\d+)\s?mm\b/gi;
-          let match;
-          while ((match = mmPattern.exec(productName)) !== null) {
-            const size = parseInt(match[1]);
-            if (size >= 38 && size <= 50) {
-              capacities.add(size + 'mm');
-            }
-          }
-          
-          // 🆕 再抓純數字尺寸（AW SE 40, AW S11 42 等）
-          // 匹配格式：AW 後面跟著兩位數字（38-50）
-          const pureNumPattern = /\bAW\s+\S+\s+(\d{2})\b/gi;
-          while ((match = pureNumPattern.exec(productName)) !== null) {
-            const size = parseInt(match[1]);
-            if (size >= 38 && size <= 50) {
-              capacities.add(size + 'mm');
-            }
-          }
-        });
-      } else if (currentCategory === 'CPU' || currentCategory === 'iPad' || currentCategory === 'iPhone') {
-        // 🆕 CPU/iPad/iPhone：只抓儲存容量（G/TB）
-        currentData.forEach(row => {
-          const productName = row[columnMapping['product_name']] || '';
-          // 🆕 只從產品名稱提取容量
-          
-          // 抓 TB 容量（1TB, 2TB, 4TB 等）
-          const tbPattern = /\b(\d+(?:\.\d+)?)\s?TB?\b/gi;
-          let match;
-          while ((match = tbPattern.exec(productName)) !== null) {
-            capacities.add(match[1] + 'TB');
-          }
-          
-          // 🆕 先抓有 GB 的
-          const gbPattern = /\b(\d+)\s?GB\b/gi;
-          while ((match = gbPattern.exec(productName)) !== null) {
-            const size = parseInt(match[1]);
-            if (size >= 64 && ![8, 16, 24, 32, 48].includes(size)) {
-              capacities.add(size + '');
-            }
-          }
-          
-          // 🆕 再抓有單獨 G 的（後面不是 B）
-          const gPattern = /\b(\d+)\s?G\b(?!B)/gi;
-          while ((match = gPattern.exec(productName)) !== null) {
-            const size = parseInt(match[1]);
-            if (size >= 64 && ![8, 16, 24, 32, 48].includes(size)) {
-              capacities.add(size + '');
-            }
-          }
-          
-          // 🆕 最後抓純數字（128, 256, 512 等）
-          // 條件：數字在 64-1024 之間，且後面不是 G/GB/TB/mm/in
-          const pureNumPattern = /\b(64|128|256|512|1024)\b(?!\s?(G|GB|TB|mm|in))/gi;
-          while ((match = pureNumPattern.exec(productName)) !== null) {
-            const size = parseInt(match[1]);
-            capacities.add(size + '');
-          }
-        });
-      } else if (currentCategory) {
-        // 🆕 其他分類（Audio, Accy, Care）：不顯示容量篩選
-        quickCapacityRow.classList.remove('active');
-        quickCapacityButtons.innerHTML = '';
-        return;
-      } else {
-        // 🆕 沒有選擇大分類：顯示所有產品的容量（CPU/iPad/iPhone 的儲存容量）
-        currentData.forEach(row => {
-          const category = row[columnMapping['大分類']] || '';
-          const productName = row[columnMapping['product_name']] || '';
-          // 🆕 只從產品名稱提取
-          
-          if (category === 'CPU' || category === 'iPad' || category === 'iPhone') {
-            // 抓 TB
-            const tbPattern = /\b(\d+(?:\.\d+)?)\s?TB?\b/gi;
-            let match;
-            while ((match = tbPattern.exec(productName)) !== null) {
-              capacities.add(match[1] + 'TB');
-            }
-            
-            // 先抓 GB
-            const gbPattern = /\b(\d+)\s?GB\b/gi;
-            while ((match = gbPattern.exec(productName)) !== null) {
-              const size = parseInt(match[1]);
-              if (size >= 64 && ![8, 16, 24, 32, 48].includes(size)) {
-                capacities.add(size + '');
-              }
-            }
-            
-            // 再抓 G（後面不是 B）
-            const gPattern = /\b(\d+)\s?G\b(?!B)/gi;
-            while ((match = gPattern.exec(productName)) !== null) {
-              const size = parseInt(match[1]);
-              if (size >= 64 && ![8, 16, 24, 32, 48].includes(size)) {
-                capacities.add(size + '');
-              }
-            }
-            
-            // 最後抓純數字（64, 128, 256, 512, 1024）
-            const pureNumPattern = /\b(64|128|256|512|1024)\b(?!\s?(G|GB|TB|mm|in))/gi;
-            while ((match = pureNumPattern.exec(productName)) !== null) {
-              const size = parseInt(match[1]);
-              capacities.add(size + '');
-            }
-          } else if (category === 'Apple Watch') {
-            // 先抓有 mm 的
-            const mmPattern = /\b(\d+)\s?mm\b/gi;
-            let match;
-            while ((match = mmPattern.exec(productName)) !== null) {
-              const size = parseInt(match[1]);
-              if (size >= 38 && size <= 50) {
-                capacities.add(size + 'mm');
-              }
-            }
-            
-            // 再抓純數字尺寸（AW SE 40, AW S11 42 等）
-            const pureNumPattern = /\bAW\s+\S+\s+(\d{2})\b/gi;
-            while ((match = pureNumPattern.exec(productName)) !== null) {
-              const size = parseInt(match[1]);
-              if (size >= 38 && size <= 50) {
-                capacities.add(size + 'mm');
-              }
-            }
-          }
-        });
-      }
-      
-      // 如果沒有容量資料，隱藏容量篩選列
-      if (capacities.size === 0) {
-        quickCapacityRow.classList.remove('active');
-        quickCapacityButtons.innerHTML = '';
-        return;
-      }
-      
-      // 🆕 排序容量（數字由小到大）
-      const sortedCapacities = Array.from(capacities).sort((a, b) => {
-        const aNum = parseFloat(a);
-        const bNum = parseFloat(b);
+      try {
+        // 取得當前篩選後的資料
+        let currentData = originalData;
         
-        // 如果都是數字，按數值排序
-        if (!isNaN(aNum) && !isNaN(bNum)) {
-          // TB 轉換為 G 來比較
-          const aValue = a.includes('TB') ? aNum * 1024 : aNum;
-          const bValue = b.includes('TB') ? bNum * 1024 : bNum;
-          return aValue - bValue;
+        // 應用大分類篩選
+        if (activeQuickFilter) {
+          currentData = currentData.filter(row => 
+            row[columnMapping['大分類']] === activeQuickFilter
+          );
         }
         
-        return a.localeCompare(b);
-      });
-      
-      // 顯示容量篩選列
-      quickCapacityRow.classList.add('active');
-      quickCapacityButtons.innerHTML = '';
-      
-      sortedCapacities.forEach(capacity => {
-        const button = document.createElement('button');
-        button.className = 'quick-capacity-btn';
-        button.textContent = capacity;
-        button.setAttribute('data-capacity', capacity);
-        
-        // 如果是當前選擇的容量，加上 active 類別
-        if (activeQuickCapacity === capacity) {
-          button.classList.add('active');
+        // 應用中分類篩選
+        if (activeQuickSubcategory) {
+          currentData = currentData.filter(row => 
+            row[columnMapping['中分類']] === activeQuickSubcategory
+          );
         }
         
-        quickCapacityButtons.appendChild(button);
-      });
+        // 判斷當前篩選的產品類型，決定要抓什麼容量
+        const currentCategory = activeQuickFilter || '';
+        
+        // 根據分類動態更新標籤文字
+        if (currentCategory === 'Apple Watch') {
+          quickCapacityLabel.textContent = '尺寸篩選：';
+        } else {
+          quickCapacityLabel.textContent = '容量篩選：';
+        }
+        
+        // 從當前資料中提取容量（使用輔助函數）
+        const capacities = new Set();
+        
+        if (currentCategory === 'Apple Watch') {
+          // Apple Watch：只抓錶殼尺寸
+          currentData.forEach(row => {
+            const productName = row[columnMapping['product_name']] || '';
+            const sizes = extractWatchSize(productName);
+            sizes.forEach(size => capacities.add(size));
+          });
+        } else if (currentCategory === 'CPU' || currentCategory === 'iPad' || currentCategory === 'iPhone') {
+          // CPU/iPad/iPhone：只抓儲存容量
+          currentData.forEach(row => {
+            const productName = row[columnMapping['product_name']] || '';
+            const caps = extractStorageCapacity(productName);
+            caps.forEach(cap => capacities.add(cap));
+          });
+        } else if (currentCategory) {
+          // 其他分類：不顯示容量篩選
+          quickCapacityRow.classList.remove('active');
+          quickCapacityButtons.innerHTML = '';
+          return;
+        } else {
+          // 沒有選擇大分類：顯示所有產品的容量
+          currentData.forEach(row => {
+            const category = row[columnMapping['大分類']] || '';
+            const productName = row[columnMapping['product_name']] || '';
+            
+            if (category === 'Apple Watch') {
+              const sizes = extractWatchSize(productName);
+              sizes.forEach(size => capacities.add(size));
+            } else if (category === 'CPU' || category === 'iPad' || category === 'iPhone') {
+              const caps = extractStorageCapacity(productName);
+              caps.forEach(cap => capacities.add(cap));
+            }
+          });
+        }
+        
+        // 如果沒有容量資料，隱藏容量篩選列
+        if (capacities.size === 0) {
+          quickCapacityRow.classList.remove('active');
+          quickCapacityButtons.innerHTML = '';
+          return;
+        }
+        
+        // 排序容量（數字由小到大）
+        const sortedCapacities = Array.from(capacities).sort((a, b) => {
+          const aNum = parseFloat(a);
+          const bNum = parseFloat(b);
+          
+          if (!isNaN(aNum) && !isNaN(bNum)) {
+            // TB 轉換為 G 來比較
+            const aValue = a.includes('TB') ? aNum * 1024 : aNum;
+            const bValue = b.includes('TB') ? bNum * 1024 : bNum;
+            return aValue - bValue;
+          }
+          
+          return a.localeCompare(b);
+        });
+        
+        // 顯示容量篩選列
+        quickCapacityRow.classList.add('active');
+        quickCapacityButtons.innerHTML = '';
+        
+        sortedCapacities.forEach(capacity => {
+          const button = document.createElement('button');
+          button.className = 'quick-capacity-btn';
+          button.textContent = capacity;
+          button.setAttribute('data-capacity', capacity);
+          
+          if (activeQuickCapacity === capacity) {
+            button.classList.add('active');
+          }
+          
+          quickCapacityButtons.appendChild(button);
+        });
+        
+      } catch (error) {
+        console.error('❌ 容量篩選錯誤:', error);
+        // 發生錯誤時隱藏容量篩選列
+        quickCapacityRow.classList.remove('active');
+        quickCapacityButtons.innerHTML = '';
+      }
     }
+
 
     // 🆕 容量快速篩選
     function quickCapacityFilter(capacity) {
@@ -2906,9 +2863,7 @@
 
     function initializeLowStockAlert() {
       // 🆕 權限檢查：只有有庫存權限的使用者才能使用
-      if (!hasInventoryPermission) {
-        console.log('⚠️ 此帳號無庫存查看權限，無法使用低庫存警報');
-        const lowstockContainer = document.querySelector('.lowstock-container');
+      if (!hasInventoryPermission) {        const lowstockContainer = document.querySelector('.lowstock-container');
         if (lowstockContainer) {
           lowstockContainer.innerHTML = `
             <div class="lowstock-empty">
@@ -2965,11 +2920,7 @@
 
     function loadLowStockData() {
       const storeFilter = document.getElementById('lowstockStoreFilter').value;
-      const threshold = parseFloat(document.getElementById('lowstockThreshold').value);
-      
-      console.log(`🔄 載入低庫存資料：門市=${storeFilter}, 閾值=${threshold * 100}%, 分類=${activeLowStockCategory}`);
-      
-      const lowStockItems = [];
+      const threshold = parseFloat(document.getElementById('lowstockThreshold').value);      const lowStockItems = [];
       
       // 遍歷所有產品
       for (const [code, product] of Object.entries(inventoryData)) {
@@ -3045,11 +2996,7 @@
       lowStockItems.sort((a, b) => {
         const categoryOrder = { 'CPU': 1, 'iPad': 2, 'iPhone': 3, 'Apple Watch': 4 };
         return categoryOrder[a.category] - categoryOrder[b.category];
-      });
-      
-      console.log(`✅ 找到 ${lowStockItems.length} 個低庫存商品`);
-      
-      // 🆕 儲存原始順序和當前資料
+      });      // 🆕 儲存原始順序和當前資料
       originalLowStockItems = JSON.parse(JSON.stringify(lowStockItems)); // 深拷貝
       currentLowStockItems = lowStockItems;
       
@@ -3423,10 +3370,7 @@
       link.style.visibility = 'hidden';
       document.body.appendChild(link);
       link.click();
-      document.body.removeChild(link);
-      
-      console.log(`✅ 已匯出 ${lowStockItems.length} 筆低庫存資料`);
-    }
+      document.body.removeChild(link);    }
 
     function clearAllFilters() {
       document.getElementById('searchInput').value = '';
@@ -3669,9 +3613,7 @@
         if (storeSelector) {
           if (canSwitchStore) {
             // 可以切換店別：顯示選單
-            storeSelector.style.display = 'block';
-            console.log('✅ 店別選單已啟用');
-          } else {
+            storeSelector.style.display = 'block';          } else {
             // 不能切換店別：隱藏選單，只顯示固定店別
             storeSelector.style.display = 'none';
             
@@ -3682,14 +3624,8 @@
             // 如果還沒有 span，創建一個
             if (!stockHeader.querySelector('span')) {
               stockHeader.innerHTML = `庫存<br><span style="font-size: 11px; font-weight: 400; opacity: 0.8;">${storeName}</span>`;
-            }
-            
-            console.log(`🔒 店別選單已鎖定為: ${selectedStore}`);
-          }
-        }
-        
-        console.log('✅ 庫存欄位已啟用');
-      } else {
+            }          }
+        }      } else {
         // 隱藏庫存欄位
         if (totalStockHeader) totalStockHeader.style.display = 'none';
         if (stockHeader) stockHeader.style.display = 'none';
@@ -3698,33 +3634,21 @@
         // 🆕 隱藏低庫存警報按鈕
         if (lowstockNavBtn) {
           lowstockNavBtn.style.display = 'none';
-        }
-        
-        console.log('⚠️ 庫存欄位已隱藏');
-      }
+        }      }
     }
 
     // 🆕 載入庫存資料
     async function loadInventory() {
-      try {
-        console.log('🔄 開始載入庫存資料...');
-        const response = await fetch('inventory.json?v=' + new Date().getTime());
+      try {        const response = await fetch('inventory.json?v=' + new Date().getTime());
         
-        if (!response.ok) {
-          console.log('⚠️ 找不到 inventory.json，將顯示無庫存');
-          return;
+        if (!response.ok) {          return;
         }
         
         const data = await response.json();
         inventoryData = data.inventory || {};
         storeInfo = data.storeInfo || {};
         
-        console.log(`✅ 庫存資料載入成功！`);
-        console.log(`   產品數: ${Object.keys(inventoryData).length}`);
-        console.log(`   店別數: ${Object.keys(storeInfo).length}`);
-        console.log(`   最後更新: ${data.lastUpdate}`);
-        
-        // 🆕 初始化店別選單
+        // 初始化店別選單
         initializeStoreSelector();
         
         // 🆕 初始化低庫存警報
@@ -3773,12 +3697,8 @@
       // 監聽選擇變化（只有 canSwitchStore 為 true 時才會看到選單）
       selector.addEventListener('change', function() {
         selectedStore = this.value;
-        console.log(`📍 切換到: ${selectedStore === 'total' ? '總庫存' : '店別 ' + selectedStore}`);
         applyFilters(); // 重新渲染表格
       });
-      
-      console.log(`✅ 店別選單已初始化 (${sortedStores.length} 個店別)`);
-      console.log(`📍 預設顯示: 店別 ${selectedStore}`);
     }
 
     // 載入產品資料
@@ -3806,10 +3726,7 @@
           if (code) {
             productDataMap.set(code, row);
           }
-        });
-        console.log(`✅ 建立產品查找表，共 ${productDataMap.size} 個產品`);
-
-        const headers = Object.keys(originalData[0]);
+        });        const headers = Object.keys(originalData[0]);
         const mappingSuccess = createColumnMapping(headers);
         
         if (!mappingSuccess) {
