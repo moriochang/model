@@ -2498,7 +2498,13 @@
           const subCategory = row[columnMapping['小分類']] || '';
           const textToSearch = productName + ' ' + subCategory;
           
-          // 檢查是否包含選擇的容量
+          // 🆕 如果是純數字（如 "128"），匹配 "128G" 或 "128GB"
+          if (!activeQuickCapacity.includes('mm') && !activeQuickCapacity.includes('TB')) {
+            const regex = new RegExp(`\\b${activeQuickCapacity}\\s?GB?\\b`, 'i');
+            return regex.test(textToSearch);
+          }
+          
+          // 如果是 TB 或 mm，直接匹配
           return textToSearch.includes(activeQuickCapacity);
         });
       }
@@ -2644,13 +2650,13 @@
             capacities.add(match[1] + 'TB');
           }
           
-          // 抓 G 容量（64G, 128G, 256G, 512G 等）
+          // 🆕 抓 G 容量（支援 128G 和 128GB 兩種格式）
           const gbPattern = /\b(\d+)\s?GB?\b/gi;
           while ((match = gbPattern.exec(textToSearch)) !== null) {
             const size = parseInt(match[1]);
-            // 🆕 只接受常見的儲存容量，排除記憶體（8G, 16G, 24G, 32G）
-            if (size >= 64) {
-              capacities.add(size + 'G');
+            // 🆕 只接受常見的儲存容量，排除記憶體（8G, 16G, 24G, 32G, 48G）
+            if (size >= 64 && size !== 8 && size !== 16 && size !== 24 && size !== 32 && size !== 48) {
+              capacities.add(size + ''); // 🆕 只儲存數字，不加 G
             }
           }
         });
@@ -2675,12 +2681,12 @@
               capacities.add(match[1] + 'TB');
             }
             
-            // 抓 G（64G 以上）
+            // 抓 G（64G 以上，排除記憶體）
             const gbPattern = /\b(\d+)\s?GB?\b/gi;
             while ((match = gbPattern.exec(textToSearch)) !== null) {
               const size = parseInt(match[1]);
-              if (size >= 64) {
-                capacities.add(size + 'G');
+              if (size >= 64 && size !== 8 && size !== 16 && size !== 24 && size !== 32 && size !== 48) {
+                capacities.add(size + ''); // 🆕 只儲存數字
               }
             }
           } else if (category === 'Apple Watch') {
