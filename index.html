@@ -2606,35 +2606,96 @@
         );
       }
       
-      // 從當前資料中提取所有容量
-      const capacities = new Set();
-      const capacityPattern = /(\d+(?:\.\d+)?)(G|GB|T|TB|mm)/gi;
+      // 🆕 判斷當前篩選的產品類型，決定要抓什麼容量
+      const currentCategory = activeQuickFilter || '';
       
-      currentData.forEach(row => {
-        const productName = row[columnMapping['product_name']] || '';
-        const subCategory = row[columnMapping['小分類']] || '';
-        const textToSearch = productName + ' ' + subCategory;
-        
-        let match;
-        while ((match = capacityPattern.exec(textToSearch)) !== null) {
-          const value = match[1];
-          const unit = match[2].toUpperCase();
+      // 從當前資料中提取容量
+      const capacities = new Set();
+      
+      if (currentCategory === 'Apple Watch') {
+        // 🆕 Apple Watch：只抓錶殼尺寸（mm）
+        currentData.forEach(row => {
+          const productName = row[columnMapping['product_name']] || '';
+          const subCategory = row[columnMapping['小分類']] || '';
+          const textToSearch = productName + ' ' + subCategory;
           
-          // 標準化單位
-          let standardized;
-          if (unit === 'T' || unit === 'TB') {
-            standardized = value + 'TB';
-          } else if (unit === 'G' || unit === 'GB') {
-            standardized = value + 'G';
-          } else if (unit === 'MM') {
-            standardized = value + 'mm';
+          // 只抓 40mm, 42mm, 44mm, 46mm, 49mm 等錶殼尺寸
+          const mmPattern = /\b(\d+)mm\b/gi;
+          let match;
+          while ((match = mmPattern.exec(textToSearch)) !== null) {
+            const size = parseInt(match[1]);
+            // 只接受合理的錶殼尺寸範圍（38mm - 50mm）
+            if (size >= 38 && size <= 50) {
+              capacities.add(size + 'mm');
+            }
+          }
+        });
+      } else if (currentCategory === 'CPU' || currentCategory === 'iPad' || currentCategory === 'iPhone') {
+        // 🆕 CPU/iPad/iPhone：只抓儲存容量（G/TB）
+        currentData.forEach(row => {
+          const productName = row[columnMapping['product_name']] || '';
+          const subCategory = row[columnMapping['小分類']] || '';
+          const textToSearch = productName + ' ' + subCategory;
+          
+          // 抓 TB 容量（1TB, 2TB, 4TB 等）
+          const tbPattern = /\b(\d+(?:\.\d+)?)\s?TB?\b/gi;
+          let match;
+          while ((match = tbPattern.exec(textToSearch)) !== null) {
+            capacities.add(match[1] + 'TB');
           }
           
-          if (standardized) {
-            capacities.add(standardized);
+          // 抓 G 容量（64G, 128G, 256G, 512G 等）
+          const gbPattern = /\b(\d+)\s?GB?\b/gi;
+          while ((match = gbPattern.exec(textToSearch)) !== null) {
+            const size = parseInt(match[1]);
+            // 🆕 只接受常見的儲存容量，排除記憶體（8G, 16G, 24G, 32G）
+            if (size >= 64) {
+              capacities.add(size + 'G');
+            }
           }
-        }
-      });
+        });
+      } else if (currentCategory) {
+        // 🆕 其他分類（Audio, Accy, Care）：不顯示容量篩選
+        quickCapacityRow.classList.remove('active');
+        quickCapacityButtons.innerHTML = '';
+        return;
+      } else {
+        // 🆕 沒有選擇大分類：顯示所有產品的容量（CPU/iPad/iPhone 的儲存容量）
+        currentData.forEach(row => {
+          const category = row[columnMapping['大分類']] || '';
+          const productName = row[columnMapping['product_name']] || '';
+          const subCategory = row[columnMapping['小分類']] || '';
+          const textToSearch = productName + ' ' + subCategory;
+          
+          if (category === 'CPU' || category === 'iPad' || category === 'iPhone') {
+            // 抓 TB
+            const tbPattern = /\b(\d+(?:\.\d+)?)\s?TB?\b/gi;
+            let match;
+            while ((match = tbPattern.exec(textToSearch)) !== null) {
+              capacities.add(match[1] + 'TB');
+            }
+            
+            // 抓 G（64G 以上）
+            const gbPattern = /\b(\d+)\s?GB?\b/gi;
+            while ((match = gbPattern.exec(textToSearch)) !== null) {
+              const size = parseInt(match[1]);
+              if (size >= 64) {
+                capacities.add(size + 'G');
+              }
+            }
+          } else if (category === 'Apple Watch') {
+            // 抓 mm
+            const mmPattern = /\b(\d+)mm\b/gi;
+            let match;
+            while ((match = mmPattern.exec(textToSearch)) !== null) {
+              const size = parseInt(match[1]);
+              if (size >= 38 && size <= 50) {
+                capacities.add(size + 'mm');
+              }
+            }
+          }
+        });
+      }
       
       // 如果沒有容量資料，隱藏容量篩選列
       if (capacities.size === 0) {
@@ -2643,7 +2704,7 @@
         return;
       }
       
-      // 排序容量（數字由小到大）
+      // 🆕 排序容量（數字由小到大）
       const sortedCapacities = Array.from(capacities).sort((a, b) => {
         const aNum = parseFloat(a);
         const bNum = parseFloat(b);
