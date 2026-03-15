@@ -2651,11 +2651,17 @@
           }
           
           // 🆕 抓 G 容量（支援 128G 和 128GB 兩種格式）
-          const gbPattern = /\b(\d+)\s?GB?\b/gi;
+          // 改用更精確的模式：後面必須接 G 或 GB
+          const gbPattern = /\b(\d+)\s?(GB?)\b/gi;
           while ((match = gbPattern.exec(textToSearch)) !== null) {
             const size = parseInt(match[1]);
-            // 🆕 只接受常見的儲存容量，排除記憶體（8G, 16G, 24G, 32G, 48G）
-            if (size >= 64 && size !== 8 && size !== 16 && size !== 24 && size !== 32 && size !== 48) {
+            const unit = match[2].toUpperCase();
+            
+            // 🆕 只接受常見的儲存容量，排除記憶體和螢幕尺寸
+            // 儲存容量：64, 128, 256, 512（必須後面有 G 或 GB）
+            // 排除：8, 16, 24, 32, 48（記憶體）
+            // 排除：11, 13, 15, 16（螢幕尺寸，但這些後面不會有 G）
+            if ((unit === 'G' || unit === 'GB') && size >= 64 && ![8, 16, 24, 32, 48].includes(size)) {
               capacities.add(size + ''); // 🆕 只儲存數字，不加 G
             }
           }
@@ -2681,11 +2687,14 @@
               capacities.add(match[1] + 'TB');
             }
             
-            // 抓 G（64G 以上，排除記憶體）
-            const gbPattern = /\b(\d+)\s?GB?\b/gi;
+            // 抓 G（必須後面有 G 或 GB）
+            const gbPattern = /\b(\d+)\s?(GB?)\b/gi;
             while ((match = gbPattern.exec(textToSearch)) !== null) {
               const size = parseInt(match[1]);
-              if (size >= 64 && size !== 8 && size !== 16 && size !== 24 && size !== 32 && size !== 48) {
+              const unit = match[2].toUpperCase();
+              
+              // 只接受儲存容量（64G 以上，且後面有 G 或 GB）
+              if ((unit === 'G' || unit === 'GB') && size >= 64 && ![8, 16, 24, 32, 48].includes(size)) {
                 capacities.add(size + ''); // 🆕 只儲存數字
               }
             }
