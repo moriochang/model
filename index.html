@@ -1259,6 +1259,34 @@
       box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
     }
 
+    /* 🆕 容量篩選按鈕樣式（與中分類按鈕相同） */
+    .quick-capacity-btn {
+      padding: 8px 16px;
+      background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+      border: 2px solid #fbbf24;
+      border-radius: 10px;
+      color: #92400e;
+      font-weight: 600;
+      font-size: 13px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+      white-space: nowrap;
+    }
+
+    .quick-capacity-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      border-color: #f59e0b;
+    }
+
+    .quick-capacity-btn.active {
+      background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+      color: white;
+      border-color: #f59e0b;
+      box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
+    }
+
     .quick-filter-label {
       font-size: 12px;
       color: #6b7280;
@@ -1762,6 +1790,12 @@
                 <div class="quick-filter-label">中分類：</div>
                 <div id="quickSubcategoryButtons"></div>
               </div>
+
+              <!-- 🆕 容量篩選 -->
+              <div class="quick-filter-row" id="quickCapacityRow">
+                <div class="quick-filter-label">容量篩選：</div>
+                <div id="quickCapacityButtons"></div>
+              </div>
             </div>
           </div>
         </div>
@@ -2157,6 +2191,7 @@
     let allSubcategories = new Set();
     let activeQuickFilter = null;
     let activeQuickSubcategory = null;
+    let activeQuickCapacity = null; // 🆕 當前選擇的容量
     let inventoryData = {}; // 🆕 儲存庫存資料
     let storeInfo = {}; // 🆕 店別資訊
     let selectedStore = '75'; // 🆕 當前選擇的店別（預設：75店）
@@ -2378,6 +2413,9 @@
         option.textContent = subcategory;
         subcategorySelect.appendChild(option);
       });
+      
+      // 🆕 初始化容量篩選按鈕
+      showQuickCapacityButtons();
     }
 
     function updateSubcategoryOptions(selectedCategory) {
@@ -2453,6 +2491,18 @@
         );
       }
       
+      // 🆕 容量篩選
+      if (activeQuickCapacity) {
+        filtered = filtered.filter(row => {
+          const productName = row[columnMapping['product_name']] || '';
+          const subCategory = row[columnMapping['小分類']] || '';
+          const textToSearch = productName + ' ' + subCategory;
+          
+          // 檢查是否包含選擇的容量
+          return textToSearch.includes(activeQuickCapacity);
+        });
+      }
+      
       if (keyword) {
         filtered = filtered.filter(row =>
           Object.values(row).some(value =>
@@ -2520,11 +2570,127 @@
       
       if (activeQuickSubcategory === subcategory) {
         activeQuickSubcategory = null;
+        activeQuickCapacity = null; // 🆕 清除容量篩選
         subcategorySelect.value = '';
       } else {
         activeQuickSubcategory = subcategory;
+        activeQuickCapacity = null; // 🆕 清除容量篩選
         subcategorySelect.value = subcategory;
         const activeBtn = document.querySelector(`.quick-subcategory-btn[data-subcategory="${subcategory}"]`);
+        if (activeBtn) activeBtn.classList.add('active');
+      }
+      
+      showQuickCapacityButtons(); // 🆕 更新容量按鈕
+      applyFilters();
+    }
+
+    // 🆕 顯示容量篩選按鈕（根據當前篩選結果動態生成）
+    function showQuickCapacityButtons() {
+      const quickCapacityRow = document.getElementById('quickCapacityRow');
+      const quickCapacityButtons = document.getElementById('quickCapacityButtons');
+      
+      // 取得當前篩選後的資料
+      let currentData = originalData;
+      
+      // 應用大分類篩選
+      if (activeQuickFilter) {
+        currentData = currentData.filter(row => 
+          row[columnMapping['大分類']] === activeQuickFilter
+        );
+      }
+      
+      // 應用中分類篩選
+      if (activeQuickSubcategory) {
+        currentData = currentData.filter(row => 
+          row[columnMapping['中分類']] === activeQuickSubcategory
+        );
+      }
+      
+      // 從當前資料中提取所有容量
+      const capacities = new Set();
+      const capacityPattern = /(\d+(?:\.\d+)?)(G|GB|T|TB|mm)/gi;
+      
+      currentData.forEach(row => {
+        const productName = row[columnMapping['product_name']] || '';
+        const subCategory = row[columnMapping['小分類']] || '';
+        const textToSearch = productName + ' ' + subCategory;
+        
+        let match;
+        while ((match = capacityPattern.exec(textToSearch)) !== null) {
+          const value = match[1];
+          const unit = match[2].toUpperCase();
+          
+          // 標準化單位
+          let standardized;
+          if (unit === 'T' || unit === 'TB') {
+            standardized = value + 'TB';
+          } else if (unit === 'G' || unit === 'GB') {
+            standardized = value + 'G';
+          } else if (unit === 'MM') {
+            standardized = value + 'mm';
+          }
+          
+          if (standardized) {
+            capacities.add(standardized);
+          }
+        }
+      });
+      
+      // 如果沒有容量資料，隱藏容量篩選列
+      if (capacities.size === 0) {
+        quickCapacityRow.classList.remove('active');
+        quickCapacityButtons.innerHTML = '';
+        return;
+      }
+      
+      // 排序容量（數字由小到大）
+      const sortedCapacities = Array.from(capacities).sort((a, b) => {
+        const aNum = parseFloat(a);
+        const bNum = parseFloat(b);
+        
+        // 如果都是數字，按數值排序
+        if (!isNaN(aNum) && !isNaN(bNum)) {
+          // TB 轉換為 G 來比較
+          const aValue = a.includes('TB') ? aNum * 1024 : aNum;
+          const bValue = b.includes('TB') ? bNum * 1024 : bNum;
+          return aValue - bValue;
+        }
+        
+        return a.localeCompare(b);
+      });
+      
+      // 顯示容量篩選列
+      quickCapacityRow.classList.add('active');
+      quickCapacityButtons.innerHTML = '';
+      
+      sortedCapacities.forEach(capacity => {
+        const button = document.createElement('button');
+        button.className = 'quick-capacity-btn';
+        button.textContent = capacity;
+        button.setAttribute('data-capacity', capacity);
+        
+        // 如果是當前選擇的容量，加上 active 類別
+        if (activeQuickCapacity === capacity) {
+          button.classList.add('active');
+        }
+        
+        quickCapacityButtons.appendChild(button);
+      });
+    }
+
+    // 🆕 容量快速篩選
+    function quickCapacityFilter(capacity) {
+      const buttons = document.querySelectorAll('.quick-capacity-btn');
+      
+      buttons.forEach(btn => btn.classList.remove('active'));
+      
+      if (activeQuickCapacity === capacity) {
+        // 取消選擇
+        activeQuickCapacity = null;
+      } else {
+        // 選擇新容量
+        activeQuickCapacity = capacity;
+        const activeBtn = document.querySelector(`.quick-capacity-btn[data-capacity="${capacity}"]`);
         if (activeBtn) activeBtn.classList.add('active');
       }
       
@@ -2541,18 +2707,22 @@
       if (activeQuickFilter === category) {
         activeQuickFilter = null;
         activeQuickSubcategory = null;
+        activeQuickCapacity = null; // 🆕 清除容量篩選
         categorySelect.value = '';
         subcategorySelect.value = '';
         updateSubcategoryOptions('');
         showQuickSubcategoryButtons('');
+        showQuickCapacityButtons(); // 🆕 更新容量按鈕
       } else {
         activeQuickFilter = category;
         activeQuickSubcategory = null;
+        activeQuickCapacity = null; // 🆕 清除容量篩選
         categorySelect.value = category;
         subcategorySelect.value = '';
         
         updateSubcategoryOptions(category);
         showQuickSubcategoryButtons(category);
+        showQuickCapacityButtons(); // 🆕 顯示容量按鈕
         
         const activeBtn = document.querySelector(`.quick-filter-btn[data-category="${category}"]`);
         if (activeBtn) activeBtn.classList.add('active');
@@ -2568,12 +2738,14 @@
       
       activeQuickFilter = null;
       activeQuickSubcategory = null;
+      activeQuickCapacity = null; // 🆕 清除容量篩選
       document.querySelectorAll('.quick-filter-btn').forEach(btn => {
         btn.classList.remove('active');
       });
       
       showQuickSubcategoryButtons('');
       updateSubcategoryOptions('');
+      showQuickCapacityButtons(); // 🆕 更新容量按鈕
       
       // 🆕 清除排序狀態
       currentSortColumn = null;
@@ -3672,6 +3844,14 @@
         if (e.target.classList.contains('quick-subcategory-btn')) {
           const subcategory = e.target.getAttribute('data-subcategory');
           quickSubcategoryFilter(subcategory);
+        }
+      });
+
+      // 🆕 容量篩選按鈕事件監聽
+      document.getElementById('quickCapacityButtons').addEventListener('click', function(e) {
+        if (e.target.classList.contains('quick-capacity-btn')) {
+          const capacity = e.target.getAttribute('data-capacity');
+          quickCapacityFilter(capacity);
         }
       });
 
