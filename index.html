@@ -2605,8 +2605,9 @@
         }
       }
       
-      // 再抓純數字尺寸（AW SE 40, AW S11 42 等）
-      const pureNumPattern = /\bAW\s+\S+\s+(\d{2})\b/gi;
+      // 再抓純數字尺寸（AW SE 40, AW S11 42, AW SE CL 40 等）
+      // 匹配格式：AW 後面可能有多個單字，然後是兩位數字
+      const pureNumPattern = /\bAW\s+(?:\S+\s+)*?(\d{2})\b/gi;
       while ((match = pureNumPattern.exec(productName)) !== null) {
         const size = parseInt(match[1]);
         if (size >= 38 && size <= 50) {
