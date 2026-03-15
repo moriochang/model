@@ -2495,17 +2495,16 @@
       if (activeQuickCapacity) {
         filtered = filtered.filter(row => {
           const productName = row[columnMapping['product_name']] || '';
-          const subCategory = row[columnMapping['小分類']] || '';
-          const textToSearch = productName + ' ' + subCategory;
+          // 🆕 只從產品名稱搜尋容量
           
           // 🆕 如果是純數字（如 "128"），匹配 "128G" 或 "128GB"
           if (!activeQuickCapacity.includes('mm') && !activeQuickCapacity.includes('TB')) {
             const regex = new RegExp(`\\b${activeQuickCapacity}\\s?GB?\\b`, 'i');
-            return regex.test(textToSearch);
+            return regex.test(productName);
           }
           
           // 如果是 TB 或 mm，直接匹配
-          return textToSearch.includes(activeQuickCapacity);
+          return productName.includes(activeQuickCapacity);
         });
       }
       
@@ -2622,13 +2621,12 @@
         // 🆕 Apple Watch：只抓錶殼尺寸（mm）
         currentData.forEach(row => {
           const productName = row[columnMapping['product_name']] || '';
-          const subCategory = row[columnMapping['小分類']] || '';
-          const textToSearch = productName + ' ' + subCategory;
+          // 🆕 只從產品名稱提取尺寸
           
           // 只抓 40mm, 42mm, 44mm, 46mm, 49mm 等錶殼尺寸
           const mmPattern = /\b(\d+)mm\b/gi;
           let match;
-          while ((match = mmPattern.exec(textToSearch)) !== null) {
+          while ((match = mmPattern.exec(productName)) !== null) {
             const size = parseInt(match[1]);
             // 只接受合理的錶殼尺寸範圍（38mm - 50mm）
             if (size >= 38 && size <= 50) {
@@ -2640,29 +2638,27 @@
         // 🆕 CPU/iPad/iPhone：只抓儲存容量（G/TB）
         currentData.forEach(row => {
           const productName = row[columnMapping['product_name']] || '';
-          const subCategory = row[columnMapping['小分類']] || '';
-          const textToSearch = productName + ' ' + subCategory;
+          // 🆕 只從產品名稱提取容量
           
           // 抓 TB 容量（1TB, 2TB, 4TB 等）
           const tbPattern = /\b(\d+(?:\.\d+)?)\s?TB?\b/gi;
           let match;
-          while ((match = tbPattern.exec(textToSearch)) !== null) {
+          while ((match = tbPattern.exec(productName)) !== null) {
             capacities.add(match[1] + 'TB');
           }
           
           // 🆕 抓 G 容量（支援 128G 和 128GB 兩種格式）
-          // 改用更精確的模式：後面必須接 G 或 GB
+          // 必須後面接 G 或 GB
           const gbPattern = /\b(\d+)\s?(GB?)\b/gi;
-          while ((match = gbPattern.exec(textToSearch)) !== null) {
+          while ((match = gbPattern.exec(productName)) !== null) {
             const size = parseInt(match[1]);
             const unit = match[2].toUpperCase();
             
-            // 🆕 只接受常見的儲存容量，排除記憶體和螢幕尺寸
+            // 🆕 只接受常見的儲存容量
             // 儲存容量：64, 128, 256, 512（必須後面有 G 或 GB）
             // 排除：8, 16, 24, 32, 48（記憶體）
-            // 排除：11, 13, 15, 16（螢幕尺寸，但這些後面不會有 G）
             if ((unit === 'G' || unit === 'GB') && size >= 64 && ![8, 16, 24, 32, 48].includes(size)) {
-              capacities.add(size + ''); // 🆕 只儲存數字，不加 G
+              capacities.add(size + ''); // 只儲存數字
             }
           }
         });
@@ -2676,33 +2672,32 @@
         currentData.forEach(row => {
           const category = row[columnMapping['大分類']] || '';
           const productName = row[columnMapping['product_name']] || '';
-          const subCategory = row[columnMapping['小分類']] || '';
-          const textToSearch = productName + ' ' + subCategory;
+          // 🆕 只從產品名稱提取
           
           if (category === 'CPU' || category === 'iPad' || category === 'iPhone') {
             // 抓 TB
             const tbPattern = /\b(\d+(?:\.\d+)?)\s?TB?\b/gi;
             let match;
-            while ((match = tbPattern.exec(textToSearch)) !== null) {
+            while ((match = tbPattern.exec(productName)) !== null) {
               capacities.add(match[1] + 'TB');
             }
             
             // 抓 G（必須後面有 G 或 GB）
             const gbPattern = /\b(\d+)\s?(GB?)\b/gi;
-            while ((match = gbPattern.exec(textToSearch)) !== null) {
+            while ((match = gbPattern.exec(productName)) !== null) {
               const size = parseInt(match[1]);
               const unit = match[2].toUpperCase();
               
               // 只接受儲存容量（64G 以上，且後面有 G 或 GB）
               if ((unit === 'G' || unit === 'GB') && size >= 64 && ![8, 16, 24, 32, 48].includes(size)) {
-                capacities.add(size + ''); // 🆕 只儲存數字
+                capacities.add(size + '');
               }
             }
           } else if (category === 'Apple Watch') {
             // 抓 mm
             const mmPattern = /\b(\d+)mm\b/gi;
             let match;
-            while ((match = mmPattern.exec(textToSearch)) !== null) {
+            while ((match = mmPattern.exec(productName)) !== null) {
               const size = parseInt(match[1]);
               if (size >= 38 && size <= 50) {
                 capacities.add(size + 'mm');
