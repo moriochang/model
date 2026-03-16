@@ -2491,22 +2491,35 @@
       if (activeQuickCapacity) {
         filtered = filtered.filter(row => {
           const productName = row[columnMapping['product_name']] || '';
-          // 🆕 只從產品名稱搜尋容量
           
-          // 🆕 如果是純數字（如 "128"），匹配多種格式
-          if (!activeQuickCapacity.includes('mm') && !activeQuickCapacity.includes('TB')) {
-            // 匹配：128, 128G, 128GB, 128 G, 128 GB
+          // 如果是 Apple Watch 尺寸（包含 mm）
+          if (activeQuickCapacity.includes('mm')) {
+            const sizeNum = activeQuickCapacity.replace('mm', '');
+            
+            // 匹配兩種格式：
+            // 1. 44mm（完整格式）
+            // 2. AW SE 44, AW S11 44（純數字格式）
             const patterns = [
-              new RegExp(`\\b${activeQuickCapacity}\\s?GB\\b`, 'i'),      // 128GB
-              new RegExp(`\\b${activeQuickCapacity}\\s?G\\b(?!B)`, 'i'),  // 128G (後面不是B)
-              new RegExp(`\\b${activeQuickCapacity}\\b(?!\\s?(G|GB|TB|mm|in))`, 'i') // 純數字 128
+              new RegExp(`\\b${sizeNum}\\s?mm\\b`, 'i'),                  // 44mm
+              new RegExp(`\\bAW\\s+(?:\\S+\\s+)*?${sizeNum}\\b`, 'i')     // AW SE 44
             ];
             
             return patterns.some(regex => regex.test(productName));
           }
           
-          // 如果是 TB 或 mm，直接匹配
-          return productName.includes(activeQuickCapacity);
+          // 如果是 TB 容量
+          if (activeQuickCapacity.includes('TB')) {
+            return productName.includes(activeQuickCapacity);
+          }
+          
+          // 如果是純數字容量（128, 256, 512 等）
+          const patterns = [
+            new RegExp(`\\b${activeQuickCapacity}\\s?GB\\b`, 'i'),      // 128GB
+            new RegExp(`\\b${activeQuickCapacity}\\s?G\\b(?!B)`, 'i'),  // 128G (後面不是B)
+            new RegExp(`\\b${activeQuickCapacity}\\b(?!\\s?(G|GB|TB|mm|in))`, 'i') // 純數字 128
+          ];
+          
+          return patterns.some(regex => regex.test(productName));
         });
       }
       
