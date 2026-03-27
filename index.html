@@ -2507,9 +2507,19 @@
             return patterns.some(regex => regex.test(productName));
           }
           
-          // 如果是 TB 容量
+          // 如果是 TB 容量（1TB, 2TB 等）
           if (activeQuickCapacity.includes('TB')) {
-            return productName.includes(activeQuickCapacity);
+            const tbNum = activeQuickCapacity.replace('TB', '');  // "1TB" → "1"
+            
+            // 匹配兩種格式：
+            // 1. 1TB（完整格式，如 MBA 13 1TB）
+            // 2. 1T（簡寫格式，如 iPhone 17 Pro 1T）
+            const patterns = [
+              new RegExp(`\\b${tbNum}TB\\b`, 'i'),      // 1TB
+              new RegExp(`\\b${tbNum}T\\b(?!B)`, 'i')   // 1T (後面不是B)
+            ];
+            
+            return patterns.some(regex => regex.test(productName));
           }
           
           // 如果是純數字容量（128, 256, 512 等）
