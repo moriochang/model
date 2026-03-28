@@ -3416,19 +3416,20 @@
 
     // 🆕 排序表格資料
     function sortTable(column) {
-      // 切換排序順序：none -> asc -> desc -> none
+      // 切換排序順序：第1次降序 ↓ -> 第2次升序 ↑ -> 第3次取消排序 ⇅
       if (currentSortColumn === column) {
-        if (currentSortOrder === 'none') {
+        if (currentSortOrder === 'desc') {
           currentSortOrder = 'asc';
         } else if (currentSortOrder === 'asc') {
-          currentSortOrder = 'desc';
-        } else {
           currentSortOrder = 'none';
           currentSortColumn = null;
+        } else {
+          currentSortOrder = 'desc';
         }
       } else {
+        // 新欄位，第一次點擊為降序
         currentSortColumn = column;
-        currentSortOrder = 'asc';
+        currentSortOrder = 'desc';
       }
 
       // 更新所有排序圖示
