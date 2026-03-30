@@ -2200,9 +2200,6 @@
     let currentSortColumn = null; // 當前排序的欄位
     let currentSortOrder = 'none'; // 排序順序：'none', 'asc', 'desc'
     
-    // ⚡ DOM 快取（效能優化：減少重複查詢）
-    let cachedElements = null;
-    
     // 🆕 權限分組系統
     const USER_PERMISSIONS = {
       // 管理員：完整權限
@@ -2685,10 +2682,9 @@
 
     // 🆕 顯示容量篩選按鈕（根據當前篩選結果動態生成）
     function showQuickCapacityButtons() {
-      // ⚡ 使用快取的 DOM 元素
-      const quickCapacityRow = cachedElements?.quickCapacityRow || document.getElementById('quickCapacityRow');
-      const quickCapacityButtons = cachedElements?.quickCapacityButtons || document.getElementById('quickCapacityButtons');
-      const quickCapacityLabel = cachedElements?.quickCapacityLabel || document.getElementById('quickCapacityLabel');
+      const quickCapacityRow = document.getElementById('quickCapacityRow');
+      const quickCapacityButtons = document.getElementById('quickCapacityButtons');
+      const quickCapacityLabel = document.getElementById('quickCapacityLabel');
       
       try {
         // 取得當前篩選後的資料
@@ -3514,8 +3510,7 @@
 
     // 🆕 渲染表格（含庫存）
     function renderTable(filteredData) {
-      // ⚡ 使用快取的 tbody（如果存在）
-      const tbody = cachedElements?.tbody || document.querySelector('#resultTable tbody');
+      const tbody = document.querySelector('#resultTable tbody');
       tbody.innerHTML = '';
       
       // 🆕 根據權限決定 colspan（有權限時多兩欄：總庫存 + 店別庫存）
@@ -3864,27 +3859,7 @@
       }
     });
 
-    // ⚡ 初始化 DOM 快取（效能優化）
-    function initializeDOMCache() {
-      cachedElements = {
-        tbody: document.querySelector('#resultTable tbody'),
-        searchInput: document.getElementById('searchInput'),
-        categoryFilter: document.getElementById('categoryFilter'),
-        subcategoryFilter: document.getElementById('subcategoryFilter'),
-        clearFilters: document.getElementById('clearFilters'),
-        quickFilterButtons: document.getElementById('quickFilterButtons'),
-        quickSubcategoryButtons: document.getElementById('quickSubcategoryButtons'),
-        quickCapacityButtons: document.getElementById('quickCapacityButtons'),
-        quickCapacityRow: document.getElementById('quickCapacityRow'),
-        quickCapacityLabel: document.getElementById('quickCapacityLabel'),
-        storeSelector: document.getElementById('storeSelector')
-      };
-    }
-
     function initializeEventListeners() {
-      // ⚡ 初始化 DOM 快取
-      initializeDOMCache();
-      
       document.getElementById('searchInput').addEventListener('input', applyFilters);
       
       document.getElementById('categoryFilter').addEventListener('change', function() {
