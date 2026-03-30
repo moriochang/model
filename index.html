@@ -3526,9 +3526,6 @@
         return;
       }
 
-      // ⚡ 效能優化：使用 DocumentFragment 批次插入，減少 DOM 重排
-      const fragment = document.createDocumentFragment();
-
       filteredData.forEach(row => {
         const code = row[columnMapping['Code']] || '';
         
@@ -3620,12 +3617,8 @@
           `;
         }
         
-        // ⚡ 先加到 fragment，不直接加到 DOM
-        fragment.appendChild(tr);
+        tbody.appendChild(tr);
       });
-      
-      // ⚡ 一次性將所有 tr 加到 tbody（只觸發一次重排）
-      tbody.appendChild(fragment);
     }
 
     // 🆕 根據權限初始化介面
