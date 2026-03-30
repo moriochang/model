@@ -1800,13 +1800,14 @@
                 <button class="quick-filter-btn" data-category="Apple Watch">Apple Watch</button>
               </div>
               
-              <div class="quick-filter-row" id="quickSubcategoryRow">
+              <!-- ⚡ 初始隱藏中分類（點擊大分類後才顯示） -->
+              <div class="quick-filter-row" id="quickSubcategoryRow" style="display: none;">
                 <div class="quick-filter-label">中分類：</div>
                 <div id="quickSubcategoryButtons"></div>
               </div>
 
-              <!-- 🆕 容量/尺寸篩選 -->
-              <div class="quick-filter-row" id="quickCapacityRow">
+              <!-- ⚡ 初始隱藏容量篩選（點擊大分類後才顯示） -->
+              <div class="quick-filter-row" id="quickCapacityRow" style="display: none;">
                 <div class="quick-filter-label" id="quickCapacityLabel">容量篩選：</div>
                 <div id="quickCapacityButtons"></div>
               </div>
@@ -2824,9 +2825,14 @@
       const subcategorySelect = document.getElementById('subcategoryFilter');
       const buttons = document.querySelectorAll('.quick-filter-btn');
       
+      // ⚡ 取得中分類和容量篩選的區域
+      const quickSubcategoryRow = document.getElementById('quickSubcategoryRow');
+      const quickCapacityRow = document.getElementById('quickCapacityRow');
+      
       buttons.forEach(btn => btn.classList.remove('active'));
       
       if (activeQuickFilter === category) {
+        // ⚡ 取消選擇時，隱藏中分類和容量篩選
         activeQuickFilter = null;
         activeQuickSubcategory = null;
         activeQuickCapacity = null; // 🆕 清除容量篩選
@@ -2835,7 +2841,12 @@
         updateSubcategoryOptions('');
         showQuickSubcategoryButtons('');
         showQuickCapacityButtons(); // 🆕 更新容量按鈕
+        
+        // ⚡ 隱藏中分類和容量篩選
+        quickSubcategoryRow.style.display = 'none';
+        quickCapacityRow.style.display = 'none';
       } else {
+        // ⚡ 點擊大分類時，顯示中分類和容量篩選
         activeQuickFilter = category;
         activeQuickSubcategory = null;
         activeQuickCapacity = null; // 🆕 清除容量篩選
@@ -2845,6 +2856,10 @@
         updateSubcategoryOptions(category);
         showQuickSubcategoryButtons(category);
         showQuickCapacityButtons(); // 🆕 顯示容量按鈕
+        
+        // ⚡ 顯示中分類和容量篩選
+        quickSubcategoryRow.style.display = 'flex';
+        quickCapacityRow.style.display = 'flex';
         
         const activeBtn = document.querySelector(`.quick-filter-btn[data-category="${category}"]`);
         if (activeBtn) activeBtn.classList.add('active');
@@ -2868,6 +2883,10 @@
       showQuickSubcategoryButtons('');
       updateSubcategoryOptions('');
       showQuickCapacityButtons(); // 🆕 更新容量按鈕
+      
+      // ⚡ 隱藏中分類和容量篩選
+      document.getElementById('quickSubcategoryRow').style.display = 'none';
+      document.getElementById('quickCapacityRow').style.display = 'none';
       
       // 🆕 清除排序狀態
       currentSortColumn = null;
