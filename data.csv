@@ -46,10 +46,10 @@ MXWR2FE/A,0013009666,44mm 運動錶帶 亞麻藍 MXWR2,Accy,*Apple Watch Accy,Ba
 2000130096834,0013009683,[i]Care iPad M/A/A16 兩年_2118,Care,iCPP,[i]Care iPad Mini/Air/A16 兩年期_2118,0
 2.00013E+12,0013009684,[i]Care EOL iPad Pro 一年_2590,Care,iCPP,[i]Care EOL iPad Pro 一年期_2590,0
 2.00013E+12,0013009685,[i]Care EOL iPad Pro 兩年_3960,Care,iCPP,[i]Care EOL iPad Pro 兩年期_3960,0
-2.00013E+12,0013009686,[i]Care AW S11 一年期_1690,Care,iCPP,[i]Care AW S4-S11 一年期_1690,0
-2.00013E+12,0013009687,[i]Care AW S11 兩年期_2536,Care,iCPP,[i]Care AW S4-S11 兩年期_2536,0
-2.00013E+12,0013009688,[i]Care AirPods 一年期_790,Care,iCPP,[i]Care AirPods 2/3/Pro 一年期_790,0
-2.00013E+12,0013009689,[i]Care AirPods 兩年期_990,Care,iCPP,[i]Care AirPods 2/3/Pro 兩年期_990,0
+2000130096865,0013009686,[i]Care AW S11 一年期_1690,Care,iCPP,[i]Care AW S4-S11 一年期_1690,0
+2000130096872,0013009687,[i]Care AW S11 兩年期_2536,Care,iCPP,[i]Care AW S4-S11 兩年期_2536,0
+2000130096889,0013009688,[i]Care AirPods 一年期_790,Care,iCPP,[i]Care AirPods 2/3/Pro 一年期_790,0
+2000130096896,0013009689,[i]Care AirPods 兩年期_990,Care,iCPP,[i]Care AirPods 2/3/Pro 兩年期_990,0
 2000130096902,0013009690,[i]Care MBA 一年期_4350,Care,iCPP,[i]Care MBA 一年期_4350,0
 2000130096919,0013009691,[i]Care M MBP 14 一年期_5090,Care,iCPP,[i]Care M1-M3 MBP 14 一年期_5090,0
 2000130096926,0013009692,[i]Care M MBP 16 一年期_6990,Care,iCPP,[i]Care M1-M3 MBP 16 一年期_6990,0
@@ -239,7 +239,6 @@ MN6M3FE/A,0013021295,41mm N 運動錶環 彩虹 MN6M3,Accy,*Apple Watch Accy,Ban
 MN6N3FE/A,0013021296,45mm N 運動錶環 彩虹 MN6N3,Accy,*Apple Watch Accy,Band 45mm Nike Sport,1600
 SF8C2ZX/A,0013021306,AC+ for MBA 13 M2 SF8C2,Care,ACPP+,13 MacBook Air ACPP+,5490
 SF932ZX/A,0013021307,AC+ for MBP 13 M2 SF932,Care,ACPP+,13 MacBook Pro ACPP+,7490
-2.00013E+12,0013021366,[i]Care M3/M4 MBA 三年期_6151,Care,iCPP,[i]Care M3/M4 MBA 三年期_6151,0
 MPU73FE/A,0013021701,iPhone 14 PM 透明 MPU73,Accy,iPhone Case,iPhone 14 Pro Max,1490
 MQE93FE/A,0013021756,49 海洋錶帶 白色 MQE93,Accy,*Apple Watch Accy,Band 49mm Ocean Band,3100
 MQEA3FE/A,0013021757,49 海洋錶帶 白 加長節 MQEA3,Accy,*Apple Watch Accy,Band 49mm Ocean Band,1600
@@ -254,8 +253,8 @@ SG2L2TA/A,0013021791,AC+ for AW S8 不鏽鋼 SG2L2,Care,ACPP+,AW S8 不鏽鋼 AC
 SG2U2TA/A,0013021792,AC+ for AW Ultra SG2U2,Care,ACPP+,AW Ultra ACPP+,3190
 2.00013E+12,0013022651,[i]Care 15/16 Plus 一年期_4290,Care,iCPP,[i]Care 15/16 Plus 一年期_4290,0
 2.00013E+12,0013022652,[i]Care 15/16 Plus 兩年期_5569,Care,iCPP,[i]Care 14-16 Plus 兩年期_5569,0
-2.00013E+12,0013022654,[i]Care AW Ultra 一年期_2290,Care,iCPP,[i]Care AW Ultra 一年期_2290,0
-2.00013E+12,0013022655,[i]Care AW Ultra 兩年期_3063,Care,iCPP,[i]Care AW Ultra 兩年期_3063,0
+2000130226545,0013022654,[i]Care AW Ultra 一年期_2290,Care,iCPP,[i]Care AW Ultra 一年期_2290,0
+2000130226552,0013022655,[i]Care AW Ultra 兩年期_3063,Care,iCPP,[i]Care AW Ultra 兩年期_3063,0
 MN873TA/A,0013022823,Apple TV 4K WiFi 64 MN873,Accy,Apple TV,Apple TV 4K 64G,4490
 MN893TA/A,0013022824,Apple TV 4K 乙太 128 MN893,Accy,Apple TV,Apple TV 4K 128G,4990
 MQDP3TA/A,0013022826,iPad 10th 巧控鍵盤 中 MQDP3,Accy,*iPad Accy,10.9 Keyboard,8790
@@ -271,7 +270,7 @@ MQLK3TA/A,0013023571,Beats Studio Buds 透明 MQLK3,Audio,Beats,Studio Buds,5990
 SJFY2TA/A,0013023743,AC+ for MBA 15 M2 SJFY2,Care,ACPP+,15 MacBook Air ACPP+,7290
 SJGC2TA/A,0013023744,AC+ for Mac Studio M2 SJGC2,Care,ACPP+,Mac Studio ACPP+,5290
 SJGQ2TA/A,0013023745,AC+ for Mac Pro M2 SJGQ2,Care,ACPP+,Mac Pro ACPP+,15490
-2.00013E+12,0013023775,[i]Care M MBA 15 三年期_7227,Care,iCPP,[i]Care M2-M4 MBA 15 三年期_7227,0
+2000130237756,0013023775,[i]Care M MBA 15 三年期_7227,Care,iCPP,[i]Care M2-M4 MBA 15 三年期_7227,0
 MQTP3ZP/A,0013023788,Beats Studio Pro WL 黑 MQTP3,Audio,Beats,Studio Pro,12490
 MQTQ3ZP/A,0013023789,Beats Studio Pro WL 藍 MQTQ3,Audio,Beats,Studio Pro,12490
 MQTR3ZP/A,0013023790,Beats Studio Pro WL 白 MQTR3,Audio,Beats,Studio Pro,12490
@@ -397,12 +396,12 @@ SM2X2TA/A,0013026387,AC+ for iPad Pro 11 5 SM2X2,Care,ACPP+,iPad Pro 11 5th ACPP
 MW443ZP/A,0013026478,Beats Pill 黑 MW443,Audio,Beats,Pill,5499
 MW463ZP/A,0013026479,Beats Pill 金 MW463,Audio,Beats,Pill,5499
 MWQW3ZP/A,0013026480,Beats Pill 紅 MWQW3,Audio,Beats,Pill,5499
-2.00013E+12,0013026482,[i]Care iPad Air 13 一年_2090,Care,iCPP,[i]Care iPad Air 13 一年期_2090,0
-2.00013E+12,0013026483,[i]Care iPad Air 13 兩年_3199,Care,iCPP,[i]Care iPad Air 13 兩年期_3199,0
-2.00013E+12,0013026484,[i]Care iPad Pro 11 一年_3190,Care,iCPP,[i]Care iPad Pro 11 5 一年期_3190,0
-2.00013E+12,0013026485,[i]Care iPad Pro 11 兩年_4653,Care,iCPP,[i]Care iPad Pro 11 5 兩年期_4653,0
-2.00013E+12,0013026486,[i]Care iPad Pro 13 一年_3390,Care,iCPP,[i]Care iPad Pro 13 7 一年期_3390,0
-2.00013E+12,0013026487,[i]Care iPad Pro 13 兩年_5445,Care,iCPP,[i]Care iPad Pro 13 7 兩年期_5445,0
+2000130264820,0013026482,[i]Care iPad Air 13 一年_2090,Care,iCPP,[i]Care iPad Air 13 一年期_2090,0
+2000130264837,0013026483,[i]Care iPad Air 13 兩年_3199,Care,iCPP,[i]Care iPad Air 13 兩年期_3199,0
+2000130264844,0013026484,[i]Care iPad Pro 11 一年_3190,Care,iCPP,[i]Care iPad Pro 11 5 一年期_3190,0
+2000130264851,0013026485,[i]Care iPad Pro 11 兩年_4653,Care,iCPP,[i]Care iPad Pro 11 5 兩年期_4653,0
+2000130264868,0013026486,[i]Care iPad Pro 13 一年_3390,Care,iCPP,[i]Care iPad Pro 13 7 一年期_3390,0
+2000130264875,0013026487,[i]Care iPad Pro 13 兩年_5445,Care,iCPP,[i]Care iPad Pro 13 7 兩年期_5445,0
 MW2P3FE/A,0013026707,Lightning Digital AV MW2P3,Accy,#Connector,Lightning,1490
 MW2Q3FE/A,0013026708,USB-C to 3.5mm 孔 轉接器 MW2Q3,Accy,EarPhone,3.5mm,290
 MW2R3ZA/A,0013026709,USB-C to Lightning 2m MW2R3,Accy,#Cable,USB-C to Lightning,990
@@ -1171,11 +1170,11 @@ MGYY4TA/A,0013030537,Air 13 M2/3 巧控鍵盤 黑 MGYY4,Accy,*iPad Accy,12.9 7th
 SXKH2TA/A,0013030538,AC+ for M5 MBP 14 SXKH2,Care,ACPP+,14 MacBook Pro ACPP+,8990
 SXT02TA/A,0013030539,AC+ for M5 iPad Pro 11 SXT02,Care,ACPP+,iPad Pro 11 5th ACPP+,4890
 SXT12TA/A,0013030540,AC+ for M5 iPad Pro 13 SXT02,Care,ACPP+,iPad Pro 13 7th ACPP+,5590
-2.00013E+12,0013030678,[i]Care iPhone 一年期_3290,Care,iCPP,[i]Care iPhone 一年期_3290,0
-2.00013E+12,0013030679,[i]Care iPhone 兩年期_4821,Care,iCPP,[i]Care iPhone 兩年期_4821,0
-2.00013E+12,0013030680,[i]Care iPhoneAr/Pr/PM一年4390,Care,iCPP,[i]Care iPhone Air/Pro/PM 一年期_4390,0
-2.00013E+12,0013030681,[i]Care iPhoneAr/Pr/PM兩年6197,Care,iCPP,[i]Care iPhone Air/Pro/PM 兩年期_6197,0
-2.00013E+12,0013030682,[i]Care Airpods Pro 兩年_1290,Care,iCPP,[i]Care Airpods Pro 兩年期_1290,0
+2000130306780,0013030678,[i]Care iPhone 一年期_3290,Care,iCPP,[i]Care iPhone 一年期_3290,0
+2000130306797,0013030679,[i]Care iPhone 兩年期_4821,Care,iCPP,[i]Care iPhone 兩年期_4821,0
+2000130306803,0013030680,[i]Care iPhoneAr/Pr/PM一年4390,Care,iCPP,[i]Care iPhone Air/Pro/PM 一年期_4390,0
+2000130306810,0013030681,[i]Care iPhoneAr/Pr/PM兩年6197,Care,iCPP,[i]Care iPhone Air/Pro/PM 兩年期_6197,0
+2000130306827,0013030682,[i]Care Airpods Pro 兩年_1290,Care,iCPP,[i]Care Airpods Pro 兩年期_1290,0
 Z1E70000Y,0013030766,M4 iMac 24 8C 16 256 紫 Z1E7,CPU,IMAC,iMac 24 M4 256G,45200
 Z1FT0001X,0013030768,M4M MBP 16 48G 1T 黑 Z1FT,CPU,MBP 16 M4 Pro&Max,MacBook Pro M4Max 48G 1TB 黑,134900
 Z1EH0000V,0013030805,M4 iMac 24 10C 16 512 銀 Z1EH,CPU,IMAC,iMac 24 M4 512G,56900
