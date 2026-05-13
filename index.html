@@ -3396,24 +3396,6 @@
       link.click();
       document.body.removeChild(link);    }
 
-    function clearAllFilters() {
-      document.getElementById('searchInput').value = '';
-      document.getElementById('categoryFilter').value = '';
-      document.getElementById('subcategoryFilter').value = '';
-      
-      activeQuickFilter = null;
-      activeQuickSubcategory = null;
-      document.querySelectorAll('.quick-filter-btn').forEach(btn => {
-        btn.classList.remove('active');
-      });
-      
-      showQuickSubcategoryButtons('');
-      updateSubcategoryOptions('');
-      
-      renderTable(originalData);
-      updateFilterInfo();
-    }
-
     // 🆕 排序表格資料
     function sortTable(column) {
       // 切換排序順序：第1次降序 ↓ -> 第2次升序 ↑ -> 第3次取消排序 ⇅
