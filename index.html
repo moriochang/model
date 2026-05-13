@@ -1911,6 +1911,15 @@
                 <div class="image-card-description">提供意外損壞保護和優先技術支援服務，讓您的 Apple 產品得到全方位保障</div>
               </div>
             </div>
+
+            <div class="image-card">
+              <img src="images/icare-insurance.jpg" alt="[i]Care 保險方案" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+              <div class="image-placeholder" style="display: none;">[i]Care 保險方案</div>
+              <div class="image-card-content">
+                <div class="image-card-title">[i]Care 保險方案</div>
+                <div class="image-card-description">iStore 專屬保險方案，提供完整的產品保障服務</div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -3395,6 +3404,24 @@
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);    }
+
+    function clearAllFilters() {
+      document.getElementById('searchInput').value = '';
+      document.getElementById('categoryFilter').value = '';
+      document.getElementById('subcategoryFilter').value = '';
+      
+      activeQuickFilter = null;
+      activeQuickSubcategory = null;
+      document.querySelectorAll('.quick-filter-btn').forEach(btn => {
+        btn.classList.remove('active');
+      });
+      
+      showQuickSubcategoryButtons('');
+      updateSubcategoryOptions('');
+      
+      renderTable(originalData);
+      updateFilterInfo();
+    }
 
     // 🆕 排序表格資料
     function sortTable(column) {
