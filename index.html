@@ -3676,8 +3676,8 @@
         // 初始化店別選單
         initializeStoreSelector();
         
-        // 🆕 初始化低庫存警報
-        initializeLowStockAlert();
+        // 低庫存警報改為點擊時才初始化（避免手機卡頓）
+        // initializeLowStockAlert() 移至 nav-btn 點擊事件
         
         // 顯示庫存狀態
         const statusDiv = document.getElementById('inventoryStatus');
@@ -3909,10 +3909,17 @@
       
       document.getElementById('clearFilters').addEventListener('click', clearAllFilters);
 
+      let lowStockInitialized = false; // 記錄是否已初始化
+
       document.querySelectorAll('.nav-btn').forEach(btn => {
         btn.addEventListener('click', function() {
           const pageName = this.getAttribute('data-page');
           showPage(pageName);
+          // 第一次點低庫存警報時才執行初始化
+          if (pageName === 'lowstock' && !lowStockInitialized) {
+            lowStockInitialized = true;
+            initializeLowStockAlert();
+          }
         });
       });
 
