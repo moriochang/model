@@ -798,14 +798,7 @@
 
     .lowstock-stock-cell.clickable {
       cursor: pointer;
-      transition: all 0.2s ease;
       font-weight: 600;
-    }
-
-    .lowstock-stock-cell.clickable:hover {
-      background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
-      color: #1e40af;
-      transform: scale(1.05);
     }
 
     .lowstock-ratio {
@@ -999,32 +992,6 @@
     /* 讓庫存數字可點擊 */
     .stock-cell.clickable {
       cursor: pointer;
-      position: relative;
-    }
-
-    .stock-cell.clickable span {
-      transition: all 0.2s ease;
-      display: inline-block;
-    }
-
-    .stock-cell.clickable:hover span {
-      transform: scale(1.15);
-      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    }
-
-    .stock-cell.clickable::after {
-      content: '🔍';
-      position: absolute;
-      right: 4px;
-      top: 50%;
-      transform: translateY(-50%);
-      font-size: 10px;
-      opacity: 0;
-      transition: opacity 0.2s ease;
-    }
-
-    .stock-cell.clickable:hover::after {
-      opacity: 0.6;
     }
 
     h1 { 
