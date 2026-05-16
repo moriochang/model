@@ -3221,18 +3221,7 @@
         
         tbody.appendChild(tr);
         
-        // 🆕 為 administrator 和 manager 添加點擊事件
-        if (canViewDetails) {
-          const stockCells = tr.querySelectorAll('.lowstock-stock-cell.clickable');
-          const productData = productDataMap.get(item.code);
-          
-          stockCells.forEach(cell => {
-            cell.addEventListener('click', function() {
-              const productCode = this.getAttribute('data-code');
-              showInventoryModal(productCode, productData);
-            });
-          });
-        }
+        // 點擊事件改用事件委派（initializeStockCellDelegation），不再每列加監聽器
       });
       
       // 🆕 為展開按鈕添加事件監聽器
@@ -3590,16 +3579,7 @@
             <td>${row[columnMapping['Remark']] || ''}</td>
           `;
           
-          // 🆕 為 administrator 和 manager 添加點擊事件
-          if (canViewDetails) {
-            const stockCells = tr.querySelectorAll('.stock-cell.clickable');
-            stockCells.forEach(cell => {
-              cell.addEventListener('click', function() {
-                const productCode = this.getAttribute('data-code');
-                showInventoryModal(productCode, row);
-              });
-            });
-          }
+          // 點擊事件改用事件委派（initializeStockCellDelegation），不再每列加監聽器
         } else {
           tr.innerHTML = `
             <td>${row[columnMapping['manufacture_style']] || ''}</td>
@@ -3623,6 +3603,9 @@
       const inventoryStatus = document.getElementById('inventoryStatus');
       const storeSelector = document.getElementById('storeSelector');
       const lowstockNavBtn = document.querySelector('.nav-btn[data-page="lowstock"]');
+      
+      // 🆕 啟用點擊查看詳情（事件委派，整個 tbody 共用一個監聽器）
+      initializeStockCellDelegation();
       
       if (hasInventoryPermission) {
         // 顯示庫存欄位
@@ -3858,6 +3841,38 @@
         closeInventoryModal();
       }
     });
+
+    // 🆕 事件委派：一次性在 tbody 上掛載點擊監聽，避免為每列加監聽器
+    function initializeStockCellDelegation() {
+      const canViewDetails = (userRole === 'administrator' || userRole === 'manager');
+      if (!canViewDetails) return;
+      
+      // 產品搜尋表格
+      const mainTbody = document.querySelector('#resultTable tbody');
+      if (mainTbody && !mainTbody.dataset.delegated) {
+        mainTbody.dataset.delegated = 'true';
+        mainTbody.addEventListener('click', function(e) {
+          const cell = e.target.closest('.stock-cell.clickable');
+          if (!cell) return;
+          const code = cell.getAttribute('data-code');
+          const rowData = productDataMap.get(code);
+          if (rowData) showInventoryModal(code, rowData);
+        });
+      }
+      
+      // 低庫存警報表格
+      const lowstockTbody = document.getElementById('lowstockTableBody');
+      if (lowstockTbody && !lowstockTbody.dataset.delegated) {
+        lowstockTbody.dataset.delegated = 'true';
+        lowstockTbody.addEventListener('click', function(e) {
+          const cell = e.target.closest('.lowstock-stock-cell.clickable');
+          if (!cell) return;
+          const code = cell.getAttribute('data-code');
+          const rowData = productDataMap.get(code);
+          if (rowData) showInventoryModal(code, rowData);
+        });
+      }
+    }
 
     function initializeEventListeners() {
       document.getElementById('searchInput').addEventListener('input', applyFilters);
