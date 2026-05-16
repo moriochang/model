@@ -1920,6 +1920,15 @@
                 <div class="image-card-description">提供意外損壞保護和優先技術支援服務，讓您的 Apple 產品得到全方位保障</div>
               </div>
             </div>
+
+            <div class="image-card">
+              <img src="images/icare-insurance.jpg" alt="[i]Care 保險方案" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+              <div class="image-placeholder" style="display: none;">[i]Care 保險方案</div>
+              <div class="image-card-content">
+                <div class="image-card-title">[i]Care 保險方案</div>
+                <div class="image-card-description">iStore 專屬保險方案，提供完整的產品保障服務</div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -3405,24 +3414,6 @@
       link.click();
       document.body.removeChild(link);    }
 
-    function clearAllFilters() {
-      document.getElementById('searchInput').value = '';
-      document.getElementById('categoryFilter').value = '';
-      document.getElementById('subcategoryFilter').value = '';
-      
-      activeQuickFilter = null;
-      activeQuickSubcategory = null;
-      document.querySelectorAll('.quick-filter-btn').forEach(btn => {
-        btn.classList.remove('active');
-      });
-      
-      showQuickSubcategoryButtons('');
-      updateSubcategoryOptions('');
-      
-      renderTable(originalData);
-      updateFilterInfo();
-    }
-
     // 🆕 排序表格資料
     function sortTable(column) {
       // 切換排序順序：第1次降序 ↓ -> 第2次升序 ↑ -> 第3次取消排序 ⇅
@@ -3685,8 +3676,8 @@
         // 初始化店別選單
         initializeStoreSelector();
         
-        // 🆕 初始化低庫存警報
-        initializeLowStockAlert();
+        // 低庫存警報改為點擊時才初始化（避免手機卡頓）
+        // initializeLowStockAlert() 移至 nav-btn 點擊事件
         
         // 顯示庫存狀態
         const statusDiv = document.getElementById('inventoryStatus');
@@ -3918,10 +3909,17 @@
       
       document.getElementById('clearFilters').addEventListener('click', clearAllFilters);
 
+      let lowStockInitialized = false; // 記錄是否已初始化
+
       document.querySelectorAll('.nav-btn').forEach(btn => {
         btn.addEventListener('click', function() {
           const pageName = this.getAttribute('data-page');
           showPage(pageName);
+          // 第一次點低庫存警報時才執行初始化
+          if (pageName === 'lowstock' && !lowStockInitialized) {
+            lowStockInitialized = true;
+            initializeLowStockAlert();
+          }
         });
       });
 
