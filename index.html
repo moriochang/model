@@ -2080,6 +2080,12 @@
             <button class="hotmodel-category-btn lowstock-category-btn" data-category="Apple Watch">Apple Watch</button>
           </div>
 
+          <!-- 🆕 機型快速篩選 -->
+          <div class="lowstock-quick-filters" id="hotmodelPresetRow">
+            <div class="quick-filter-label">機型：</div>
+            <div id="hotmodelPresetButtons" style="display: flex; flex-wrap: wrap; gap: 8px; flex: 1;"></div>
+          </div>
+
           <div class="lowstock-summary">
             <div class="summary-card">
               <div class="summary-icon">🔥</div>
@@ -3019,7 +3025,30 @@
         }
       }
 
+      renderHotmodelPresets();
       loadHotmodelData();
+    }
+
+    // 渲染機型快速篩選按鈕（依當前大分類）
+    function renderHotmodelPresets() {
+      const container = document.getElementById('hotmodelPresetButtons');
+      if (!container) return;
+      
+      const presets = activeHotmodelCategory === 'all'
+        ? HOT_MODEL_PRESETS
+        : HOT_MODEL_PRESETS.filter(p => p.category === activeHotmodelCategory);
+      
+      container.innerHTML = '';
+      presets.forEach(preset => {
+        const btn = document.createElement('button');
+        btn.className = 'hotmodel-preset-btn lowstock-category-btn';
+        if (activeHotmodelPreset === preset.id) btn.classList.add('active');
+        btn.setAttribute('data-preset-id', preset.id);
+        btn.textContent = preset.label;
+        btn.style.fontSize = '13px';
+        btn.style.padding = '8px 14px';
+        container.appendChild(btn);
+      });
     }
 
     // 計算缺貨主打商品
@@ -3028,6 +3057,11 @@
       const threshold = parseInt(document.getElementById('hotmodelThreshold').value);
       const hotmodelItems = [];
 
+      // 取出當前選擇的機型 preset
+      const preset = activeHotmodelPreset 
+        ? HOT_MODEL_PRESETS.find(p => p.id === activeHotmodelPreset) 
+        : null;
+
       // 遍歷主打商品清單
       hotmodelReference.forEach(refItem => {
         const code = refItem['Code'];
@@ -3035,6 +3069,12 @@
 
         // 大分類篩選
         if (activeHotmodelCategory !== 'all' && category !== activeHotmodelCategory) return;
+
+        // 🆕 機型篩選
+        if (preset) {
+          if (refItem['中分類'] !== preset.subcat) return;
+          if (!(refItem['product_name'] || '').includes(preset.kw)) return;
+        }
 
         const product = inventoryData[code];
         const totalStock = product?.total || 0;
@@ -3297,7 +3337,34 @@
     // 🆕 Hotmodel 主打商品功能
     let hotmodelReference = []; // 主打商品清單（從 hotmodel_reference.csv 載入）
     let activeHotmodelCategory = 'all';
+    let activeHotmodelPreset = null; // 機型快速篩選
     let currentHotmodelItems = [];
+
+    // 機型快速篩選預設清單
+    const HOT_MODEL_PRESETS = [
+      // CPU
+      { id: 'cpu_mba13_1tb', category: 'CPU', label: 'M5 MBA 13" 1TB', subcat: 'MBA 13 M5', kw: '1TB' },
+      { id: 'cpu_mba13_512', category: 'CPU', label: 'M5 MBA 13" 512G', subcat: 'MBA 13 M5', kw: '512' },
+      { id: 'cpu_mba15_512', category: 'CPU', label: 'M5 MBA 15" 512G', subcat: 'MBA 15 M5', kw: '512' },
+      { id: 'cpu_mbn_256', category: 'CPU', label: 'MBN 256G', subcat: 'MBN', kw: '256GB' },
+      { id: 'cpu_mbn_512', category: 'CPU', label: 'MBN 512G', subcat: 'MBN', kw: '512GB' },
+      { id: 'cpu_mbp14_1tb', category: 'CPU', label: 'M5 MBP 14" 1TB', subcat: 'MBP 14 M5', kw: '1TB' },
+      // iPad
+      { id: 'ipad_air11_128', category: 'iPad', label: 'M4 iPad Air 11" 128G', subcat: 'iPad Air 11in M4', kw: '128' },
+      { id: 'ipad_air11_256', category: 'iPad', label: 'M4 iPad Air 11" 256G', subcat: 'iPad Air 11in M4', kw: '256' },
+      { id: 'ipad_air13_256', category: 'iPad', label: 'M4 iPad Air 13" 256G', subcat: 'iPad Air 13in M4', kw: '256' },
+      { id: 'ipad_pro11_256', category: 'iPad', label: 'M5 iPad Pro 11" 256G', subcat: 'iPad Pro 11(M5)', kw: '256' },
+      { id: 'ipad_a16_128', category: 'iPad', label: 'iPad (A16) 128G', subcat: 'iPad(A16)', kw: '128' },
+      // iPhone
+      { id: 'iphone_17_256', category: 'iPhone', label: 'iPhone 17 256G', subcat: 'iPhone 17', kw: '256G' },
+      { id: 'iphone_17p_256', category: 'iPhone', label: 'iPhone 17 Pro 256G', subcat: 'iPhone 17 Pro', kw: '256G' },
+      { id: 'iphone_17pm_256', category: 'iPhone', label: 'iPhone 17 PM 256G', subcat: 'iPhone 17 Pro Max', kw: '256G' },
+      // Apple Watch
+      { id: 'aw_s11_42', category: 'Apple Watch', label: 'AW S11 GPS 42mm', subcat: 'S11-GPS', kw: ' 42 ' },
+      { id: 'aw_s11_46', category: 'Apple Watch', label: 'AW S11 GPS 46mm', subcat: 'S11-GPS', kw: ' 46 ' },
+      { id: 'aw_se3_40', category: 'Apple Watch', label: 'AW SE 3 GPS 40mm', subcat: 'SE 3-GPS', kw: ' 40 ' },
+      { id: 'aw_se3_44', category: 'Apple Watch', label: 'AW SE 3 GPS 44mm', subcat: 'SE 3-GPS', kw: ' 44 ' },
+    ];
 
     function initializeLowStockAlert() {
       // 🆕 權限檢查：只有有庫存權限的使用者才能使用
@@ -4516,9 +4583,38 @@
           document.querySelectorAll('.hotmodel-category-btn').forEach(b => b.classList.remove('active'));
           this.classList.add('active');
           activeHotmodelCategory = this.getAttribute('data-category');
+          
+          // 切換大分類時，重設機型篩選並重新渲染機型按鈕
+          activeHotmodelPreset = null;
+          renderHotmodelPresets();
+          
           loadHotmodelData();
         });
       });
+
+      // 🆕 Hotmodel 機型快速篩選（事件委派）
+      const presetContainer = document.getElementById('hotmodelPresetButtons');
+      if (presetContainer) {
+        presetContainer.addEventListener('click', function(e) {
+          const btn = e.target.closest('.hotmodel-preset-btn');
+          if (!btn) return;
+          
+          const presetId = btn.getAttribute('data-preset-id');
+          
+          if (activeHotmodelPreset === presetId) {
+            // 再按一次取消
+            activeHotmodelPreset = null;
+            btn.classList.remove('active');
+          } else {
+            // 切換選擇
+            document.querySelectorAll('.hotmodel-preset-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            activeHotmodelPreset = presetId;
+          }
+          
+          loadHotmodelData();
+        });
+      }
     }
 
     // 🆕 設為全域函式，供 Firebase 登入後呼叫
