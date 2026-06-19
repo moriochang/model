@@ -3274,17 +3274,18 @@
         return;
       }
 
+      // 🆕 CSV 欄位內換行（Excel/Sheets 自動分行顯示）
       let csv = '\uFEFF';
-      // 🆕 新表頭：以款式為單位
       csv += '門市,門市名稱,大分類,款式,SKU 數量,該店總庫存,SKU 明細,建議轉貨門市\n';
 
       currentHotmodelItems.forEach(item => {
-        // SKU 明細：CODE(庫存) 用分號分隔
+        // 🆕 SKU 明細：每個 SKU 一行，型號 + Code + 該店庫存
+        // 例：MDH84TA/A (0013031120) → 0
         const skuDetailStr = item.skuDetails
-          .map(s => `${s.code}(${s.stock})`)
-          .join('; ');
+          .map(s => `${s.model || '—'} (${s.code}) → ${s.stock}`)
+          .join('\n');
 
-        // 建議轉貨：店號(該款式總庫存) 用分號分隔
+        // 建議轉貨排序：880/820/821 優先，再按該款式總庫存遞減
         const priorityStores = ['880', '820', '821'];
         const sortedOthers = [...item.otherStoresStock].sort((a, b) => {
           const aP = priorityStores.indexOf(a.id);
@@ -3294,11 +3295,25 @@
           if (bP !== -1) return 1;
           return b.stock - a.stock;
         });
-        const suggestStr = sortedOthers
-          .map(s => `${s.id}(${s.stock})`)
-          .join('; ');
 
-        csv += `${item.storeId},"${item.storeName}","${item.category}","${item.presetLabel}",${item.skuDetails.length},${item.totalAtStore},"${skuDetailStr}","${suggestStr}"\n`;
+        // 🆕 建議轉貨：每店一行，店號 + 該款式總庫存
+        // 例：45 → 1
+        const suggestStr = sortedOthers
+          .map(s => `${s.id} → ${s.stock}`)
+          .join('\n');
+
+        // CSV 欄位若含換行/逗號/引號，需用引號包起，內部引號要 escape 成 ""
+        const esc = v => `"${String(v).replace(/"/g, '""')}"`;
+        csv += [
+          item.storeId,
+          esc(item.storeName),
+          esc(item.category),
+          esc(item.presetLabel),
+          item.skuDetails.length,
+          item.totalAtStore,
+          esc(skuDetailStr),
+          esc(suggestStr)
+        ].join(',') + '\n';
       });
 
       const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
