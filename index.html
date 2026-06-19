@@ -1724,6 +1724,7 @@
           <button class="nav-btn" data-page="care">CARE 保險</button>
           <button class="nav-btn" data-page="tradein">Trade in</button>
           <button class="nav-btn" data-page="lowstock" style="display: none;">低庫存警報</button>
+          <button class="nav-btn" data-page="hotmodel" style="display: none;">Hotmodel</button>
         </div>
       </div>
 
@@ -1908,7 +1909,7 @@
           
           <div class="image-gallery">
             <div class="image-card">
-              <img src="https://shoplineimg.com/6821688636dc6a002e92f1da/6a1416930f88a2eb5d8d1fad/2960x.webp?source_format=jpg" alt="Trade in 方案" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+              <img src="https://shoplineimg.com/6821688636dc6a002e92f1da/6a019c5ed82e0057d6e873fa/2960x.webp?source_format=jpg" alt="Trade in 方案" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
               <div class="image-placeholder" style="display: none;">Trade in 方案</div>
               <div class="image-card-content">
                 <div class="image-card-title">Apple Trade In 換購計畫</div>
@@ -2027,6 +2028,114 @@
             <div class="empty-icon">✅</div>
             <div class="empty-title">太棒了！目前沒有低庫存商品</div>
             <div class="empty-description">所有商品庫存狀況良好</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hotmodel 頁面 -->
+      <div id="hotmodelPage" class="page">
+        <div class="lowstock-container">
+          <div class="lowstock-header">
+            <h2 class="lowstock-title">🔥 Hotmodel 主打商品</h2>
+            <p class="lowstock-subtitle">監控主打商品缺貨狀況</p>
+          </div>
+
+          <div class="lowstock-controls">
+            <div class="control-group">
+              <label for="hotmodelStoreFilter">門市篩選：</label>
+              <select id="hotmodelStoreFilter" class="lowstock-select">
+                <option value="all">全部門市</option>
+              </select>
+            </div>
+            <div class="control-group">
+              <label for="hotmodelThreshold">款式缺貨判定：</label>
+              <select id="hotmodelThreshold" class="lowstock-select">
+                <option value="0">總庫存 = 0 (完全缺貨)</option>
+                <option value="2">總庫存 ≤ 2 (極低)</option>
+                <option value="5">總庫存 ≤ 5 (偏低)</option>
+              </select>
+            </div>
+            <button id="hotmodelRefresh" class="lowstock-btn lowstock-refresh">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.2"/>
+              </svg>
+              重新整理
+            </button>
+            <button id="hotmodelExportCSV" class="lowstock-btn lowstock-export">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="7 10 12 15 17 10"></polyline>
+                <line x1="12" y1="15" x2="12" y2="3"></line>
+              </svg>
+              匯出 CSV
+            </button>
+          </div>
+
+          <div class="lowstock-quick-filters">
+            <div class="quick-filter-label">大分類：</div>
+            <button class="hotmodel-category-btn lowstock-category-btn active" data-category="all">全部</button>
+            <button class="hotmodel-category-btn lowstock-category-btn" data-category="CPU">CPU</button>
+            <button class="hotmodel-category-btn lowstock-category-btn" data-category="iPad">iPad</button>
+            <button class="hotmodel-category-btn lowstock-category-btn" data-category="iPhone">iPhone</button>
+            <button class="hotmodel-category-btn lowstock-category-btn" data-category="Apple Watch">Apple Watch</button>
+          </div>
+
+          <!-- 🆕 機型快速篩選 -->
+          <div class="lowstock-quick-filters" id="hotmodelPresetRow">
+            <div class="quick-filter-label">機型：</div>
+            <div id="hotmodelPresetButtons" style="display: flex; flex-wrap: wrap; gap: 8px; flex: 1;"></div>
+          </div>
+
+          <div class="lowstock-summary">
+            <div class="summary-card">
+              <div class="summary-icon">🔥</div>
+              <div class="summary-content">
+                <div class="summary-label">缺貨主打商品數</div>
+                <div class="summary-value" id="hotmodelCount">0</div>
+              </div>
+            </div>
+            <div class="summary-card">
+              <div class="summary-icon">📦</div>
+              <div class="summary-content">
+                <div class="summary-label">需關注門市</div>
+                <div class="summary-value" id="hotmodelAffectedStores">0</div>
+              </div>
+            </div>
+            <div class="summary-card">
+              <div class="summary-icon">🕐</div>
+              <div class="summary-content">
+                <div class="summary-label">最後更新</div>
+                <div class="summary-value" id="hotmodelUpdateTime">--:--</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="lowstock-table-wrapper">
+            <table class="lowstock-table" id="hotmodelTable">
+              <thead>
+                <tr>
+                  <th>大分類</th>
+                  <th>款式</th>
+                  <th>門市</th>
+                  <th>SKU 詳情 (該店庫存)</th>
+                  <th>建議轉貨門市</th>
+                </tr>
+              </thead>
+              <tbody id="hotmodelTableBody">
+                <tr>
+                  <td colspan="5" class="loading">
+                    <div class="spinner"></div>
+                    載入中...
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div id="hotmodelEmpty" class="lowstock-empty" style="display: none;">
+            <div class="empty-icon">✅</div>
+            <div class="empty-title">太棒了！主打商品庫存充足</div>
+            <div class="empty-description">所有 Hotmodel 商品在此門市均有貨</div>
           </div>
         </div>
       </div>
@@ -2296,7 +2405,8 @@
         'education': 'educationPage',
         'care': 'carePage',
         'tradein': 'tradeinPage',
-        'lowstock': 'lowstockPage'
+        'lowstock': 'lowstockPage',
+        'hotmodel': 'hotmodelPage'
       };
       
       const pageId = pageMap[pageName];
@@ -2858,6 +2968,349 @@
       applyFilters();
     }
 
+    // ========== Hotmodel 主打商品功能 ==========
+    
+    // 載入 hotmodel_reference.csv
+    async function loadHotmodelReference() {
+      try {
+        const response = await fetch('hotmodel_reference.csv?v=' + new Date().getTime());
+        if (!response.ok) {
+          console.warn('hotmodel_reference.csv 未找到');
+          return;
+        }
+        const text = await response.text();
+        const parsed = await parseCSVWithPapa(text);
+        hotmodelReference = parsed.filter(row => row['Code']);
+        console.log(`Hotmodel 載入 ${hotmodelReference.length} 筆`);
+      } catch (error) {
+        console.error('❌ 載入 Hotmodel 失敗:', error);
+      }
+    }
+
+    // 初始化 Hotmodel 頁面
+    function initializeHotmodel() {
+      if (!hasInventoryPermission) {
+        const container = document.querySelector('#hotmodelPage .lowstock-container');
+        if (container) {
+          container.innerHTML = `
+            <div class="lowstock-empty">
+              <div class="empty-icon">🔒</div>
+              <div class="empty-title">無權限查看</div>
+              <div class="empty-description">您的帳號無庫存查看權限</div>
+            </div>`;
+        }
+        return;
+      }
+
+      // 初始化門市選單（依權限）
+      const storeSelector = document.getElementById('hotmodelStoreFilter');
+      if (storeSelector && Object.keys(storeInfo).length > 0) {
+        if (userRole === 'store_75') {
+          storeSelector.innerHTML = `<option value="75" selected>75 - ${storeInfo['75']}</option>`;
+          storeSelector.disabled = true;
+        } else if (userRole === 'store_77') {
+          storeSelector.innerHTML = `<option value="77" selected>77 - ${storeInfo['77']}</option>`;
+          storeSelector.disabled = true;
+        } else {
+          storeSelector.innerHTML = '<option value="all">全部門市</option>';
+          const sortedStores = Object.keys(storeInfo).sort((a, b) => parseInt(a) - parseInt(b));
+          sortedStores.forEach(storeId => {
+            const option = document.createElement('option');
+            option.value = storeId;
+            option.textContent = `${storeId} - ${storeInfo[storeId]}`;
+            storeSelector.appendChild(option);
+          });
+        }
+      }
+
+      renderHotmodelPresets();
+      loadHotmodelData();
+    }
+
+    // 渲染機型快速篩選按鈕（依當前大分類）
+    function renderHotmodelPresets() {
+      const container = document.getElementById('hotmodelPresetButtons');
+      if (!container) return;
+      
+      const presets = activeHotmodelCategory === 'all'
+        ? HOT_MODEL_PRESETS
+        : HOT_MODEL_PRESETS.filter(p => p.category === activeHotmodelCategory);
+      
+      container.innerHTML = '';
+      presets.forEach(preset => {
+        const btn = document.createElement('button');
+        btn.className = 'hotmodel-preset-btn lowstock-category-btn';
+        if (activeHotmodelPreset === preset.id) btn.classList.add('active');
+        btn.setAttribute('data-preset-id', preset.id);
+        btn.textContent = preset.label;
+        btn.style.fontSize = '13px';
+        btn.style.padding = '8px 14px';
+        container.appendChild(btn);
+      });
+    }
+
+    // 計算缺貨主打商品
+    function loadHotmodelData() {
+      const storeFilter = document.getElementById('hotmodelStoreFilter').value;
+      const threshold = parseInt(document.getElementById('hotmodelThreshold').value);
+      const hotmodelItems = [];
+
+      // 🆕 以「款式 (preset)」為單位，而非 SKU
+      // 篩選出要檢查的 preset 清單
+      const presetsToCheck = HOT_MODEL_PRESETS.filter(p => {
+        if (activeHotmodelCategory !== 'all' && p.category !== activeHotmodelCategory) return false;
+        if (activeHotmodelPreset && p.id !== activeHotmodelPreset) return false;
+        return true;
+      });
+
+      // 對每個款式，找出對應的所有 SKU 變體
+      presetsToCheck.forEach(preset => {
+        const matchingSkus = hotmodelReference.filter(r =>
+          r['中分類'] === preset.subcat &&
+          (r['product_name'] || '').includes(preset.kw)
+        );
+
+        if (matchingSkus.length === 0) return; // 此款式無對應 SKU，跳過
+
+        // 決定要檢查的門市清單
+        const storesToCheck = storeFilter === 'all'
+          ? Object.keys(storeInfo)
+          : [storeFilter];
+
+        storesToCheck.forEach(storeId => {
+          // 計算該店該款式所有 SKU 的庫存明細
+          const skuDetails = matchingSkus.map(sku => ({
+            code: sku['Code'],
+            model: sku['manufacture_style'] || '',
+            name: sku['product_name'] || '',
+            stock: inventoryData[sku['Code']]?.stores?.[storeId] || 0
+          }));
+
+          // 該款式在該店的總庫存（所有 SKU 加總）
+          const totalAtStore = skuDetails.reduce((sum, d) => sum + d.stock, 0);
+
+          // 🆕 款式缺貨判定：總庫存 ≤ threshold
+          // 預設 threshold = 0，代表「所有 SKU 都 = 0 才算款式缺貨」
+          if (totalAtStore <= threshold) {
+            // 計算其他門市該款式的總庫存（用於建議轉貨）
+            const otherStoresStock = [];
+            Object.keys(storeInfo).forEach(otherStoreId => {
+              if (otherStoreId === storeId) return;
+              let total = 0;
+              matchingSkus.forEach(sku => {
+                total += inventoryData[sku['Code']]?.stores?.[otherStoreId] || 0;
+              });
+              if (total > 0) {
+                otherStoresStock.push({ id: otherStoreId, stock: total });
+              }
+            });
+
+            hotmodelItems.push({
+              storeId,
+              storeName: storeInfo[storeId] || storeId,
+              category: preset.category,
+              presetId: preset.id,
+              presetLabel: preset.label,
+              skuDetails,
+              totalAtStore,
+              otherStoresStock
+            });
+          }
+        });
+      });
+
+      // 排序：大分類 → preset 順序 → 門市 ID
+      const categoryOrder = { 'CPU': 1, 'iPad': 2, 'iPhone': 3, 'Apple Watch': 4 };
+      const presetOrder = {};
+      HOT_MODEL_PRESETS.forEach((p, i) => { presetOrder[p.id] = i; });
+      hotmodelItems.sort((a, b) => {
+        const c = (categoryOrder[a.category] || 99) - (categoryOrder[b.category] || 99);
+        if (c !== 0) return c;
+        const p = (presetOrder[a.presetId] || 99) - (presetOrder[b.presetId] || 99);
+        if (p !== 0) return p;
+        return parseInt(a.storeId) - parseInt(b.storeId);
+      });
+
+      currentHotmodelItems = hotmodelItems;
+      updateHotmodelSummary(hotmodelItems, storeFilter);
+      renderHotmodelTable(hotmodelItems);
+    }
+
+    function updateHotmodelSummary(items, storeFilter) {
+      document.getElementById('hotmodelCount').textContent = items.length;
+      const affected = new Set(items.map(i => i.storeId));
+      document.getElementById('hotmodelAffectedStores').textContent =
+        storeFilter === 'all' ? affected.size : (items.length > 0 ? 1 : 0);
+      const now = new Date();
+      document.getElementById('hotmodelUpdateTime').textContent =
+        now.toLocaleTimeString('zh-TW', { hour: '2-digit', minute: '2-digit' });
+    }
+
+    function renderHotmodelTable(items) {
+      const tbody = document.getElementById('hotmodelTableBody');
+      const emptyDiv = document.getElementById('hotmodelEmpty');
+      const tableWrapper = document.querySelector('#hotmodelPage .lowstock-table-wrapper');
+
+      if (items.length === 0) {
+        tableWrapper.style.display = 'none';
+        emptyDiv.style.display = 'block';
+        return;
+      }
+
+      tableWrapper.style.display = 'block';
+      emptyDiv.style.display = 'none';
+      tbody.innerHTML = '';
+
+      const canViewDetails = (userRole === 'administrator' || userRole === 'manager');
+      const priorityStores = ['880', '820', '821'];
+
+      items.forEach((item, idx) => {
+        const tr = document.createElement('tr');
+
+        // 🆕 SKU 詳情：列出該款式每個 SKU 在該店的庫存
+        const skuListHtml = item.skuDetails.map(sku => {
+          const stockColor = sku.stock === 0 ? '#dc2626' : '#059669';
+          const stockWeight = sku.stock === 0 ? '700' : '600';
+          const codeCellStart = canViewDetails
+            ? `<span class="hm-sku-code" data-code="${sku.code}" style="font-family: monospace; color: #1e40af; cursor: pointer; text-decoration: underline; text-decoration-style: dotted;">`
+            : `<span style="font-family: monospace; color: #1e40af;">`;
+          return `<div style="font-size: 11px; padding: 3px 0; display: flex; align-items: center; gap: 8px;">
+            ${codeCellStart}${sku.code}</span>
+            <span style="color: #64748b; font-size: 10px; flex: 1;">${sku.model}</span>
+            <span style="color: ${stockColor}; font-weight: ${stockWeight}; min-width: 24px; text-align: right;">${sku.stock}</span>
+          </div>`;
+        }).join('');
+
+        // 🆕 建議轉貨門市：以「款式總庫存」排序
+        const sortedOthers = [...item.otherStoresStock].sort((a, b) => {
+          const aP = priorityStores.indexOf(a.id);
+          const bP = priorityStores.indexOf(b.id);
+          if (aP !== -1 && bP !== -1) return aP - bP;
+          if (aP !== -1) return -1;
+          if (bP !== -1) return 1;
+          return b.stock - a.stock;
+        });
+
+        let suggestedHtml = '';
+        if (sortedOthers.length > 0) {
+          const visible = sortedOthers.slice(0, 5);
+          const hidden = sortedOthers.slice(5);
+          const renderChip = s => `<div style="display: inline-block; margin: 2px 4px; padding: 4px 8px; background: #f0fdf4; border: 1px solid #86efac; border-radius: 6px; font-size: 11px;">
+              <span style="font-weight: 600; color: #166534;">${s.id}</span>
+              <span style="color: #16a34a; margin-left: 4px;">(${s.stock})</span>
+            </div>`;
+          const visibleHtml = visible.map(renderChip).join('');
+          if (hidden.length > 0) {
+            const hiddenHtml = hidden.map(renderChip).join('');
+            const uid = 'hm-stores-' + item.presetId + '-' + item.storeId;
+            suggestedHtml = `
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <div style="flex: 1;">
+                  ${visibleHtml}
+                  <div id="${uid}" style="display: none;">${hiddenHtml}</div>
+                </div>
+                <button class="expand-stores-btn" data-target="${uid}" style="flex-shrink: 0; padding: 4px 8px; background: #dbeafe; border: 1px solid #60a5fa; border-radius: 6px; font-size: 11px; color: #1e40af; cursor: pointer; font-weight: 600;">+${hidden.length}</button>
+              </div>`;
+          } else {
+            suggestedHtml = visibleHtml;
+          }
+        } else {
+          suggestedHtml = '<span style="color: #94a3b8; font-size: 11px;">無可轉貨門市</span>';
+        }
+
+        // 缺貨警示樣式（該店該款式總庫存 = 0）
+        const stockBadge = item.totalAtStore === 0
+          ? '<span style="display: inline-block; padding: 2px 6px; background: #fee2e2; color: #dc2626; border-radius: 4px; font-size: 10px; font-weight: 700; margin-left: 6px;">缺貨</span>'
+          : `<span style="display: inline-block; padding: 2px 6px; background: #fef3c7; color: #b45309; border-radius: 4px; font-size: 10px; font-weight: 700; margin-left: 6px;">${item.totalAtStore}</span>`;
+
+        tr.innerHTML = `
+          <td class="lowstock-category">${item.category}</td>
+          <td class="lowstock-model" style="font-weight: 600;">${item.presetLabel}${stockBadge}</td>
+          <td><span style="font-weight: 600; color: #1e40af;">${item.storeId}</span><br><span style="font-size: 11px; color: #64748b;">${item.storeName}</span></td>
+          <td style="padding: 6px 8px;">${skuListHtml}</td>
+          <td style="padding: 8px;">${suggestedHtml}</td>`;
+
+        tbody.appendChild(tr);
+      });
+
+      // 事件委派：展開按鈕 + 點 SKU code 看詳情
+      if (!tbody.dataset.delegated) {
+        tbody.dataset.delegated = 'true';
+        tbody.addEventListener('click', function(e) {
+          // 展開按鈕
+          const expandBtn = e.target.closest('.expand-stores-btn');
+          if (expandBtn) {
+            const targetId = expandBtn.getAttribute('data-target');
+            const targetDiv = document.getElementById(targetId);
+            if (targetDiv.style.display === 'none') {
+              targetDiv.style.display = 'inline';
+              expandBtn.innerHTML = '▲';
+              expandBtn.style.background = '#fee2e2'; expandBtn.style.borderColor = '#fca5a5'; expandBtn.style.color = '#dc2626';
+            } else {
+              targetDiv.style.display = 'none';
+              const count = targetDiv.querySelectorAll('div').length;
+              expandBtn.innerHTML = `+${count}`;
+              expandBtn.style.background = '#dbeafe'; expandBtn.style.borderColor = '#60a5fa'; expandBtn.style.color = '#1e40af';
+            }
+            return;
+          }
+          // SKU code 點擊（admin/manager 才能看詳情）
+          if (canViewDetails) {
+            const codeSpan = e.target.closest('.hm-sku-code');
+            if (codeSpan) {
+              const code = codeSpan.getAttribute('data-code');
+              const rowData = productDataMap.get(code);
+              if (rowData) showInventoryModal(code, rowData);
+            }
+          }
+        });
+      }
+    }
+
+    // 匯出 Hotmodel 為 CSV
+    function exportHotmodelCSV() {
+      if (currentHotmodelItems.length === 0) {
+        alert('目前沒有缺貨資料可匯出');
+        return;
+      }
+
+      let csv = '\uFEFF';
+      // 🆕 新表頭：以款式為單位
+      csv += '門市,門市名稱,大分類,款式,SKU 數量,該店總庫存,SKU 明細,建議轉貨門市\n';
+
+      currentHotmodelItems.forEach(item => {
+        // SKU 明細：CODE(庫存) 用分號分隔
+        const skuDetailStr = item.skuDetails
+          .map(s => `${s.code}(${s.stock})`)
+          .join('; ');
+
+        // 建議轉貨：店號(該款式總庫存) 用分號分隔
+        const priorityStores = ['880', '820', '821'];
+        const sortedOthers = [...item.otherStoresStock].sort((a, b) => {
+          const aP = priorityStores.indexOf(a.id);
+          const bP = priorityStores.indexOf(b.id);
+          if (aP !== -1 && bP !== -1) return aP - bP;
+          if (aP !== -1) return -1;
+          if (bP !== -1) return 1;
+          return b.stock - a.stock;
+        });
+        const suggestStr = sortedOthers
+          .map(s => `${s.id}(${s.stock})`)
+          .join('; ');
+
+        csv += `${item.storeId},"${item.storeName}","${item.category}","${item.presetLabel}",${item.skuDetails.length},${item.totalAtStore},"${skuDetailStr}","${suggestStr}"\n`;
+      });
+
+      const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      const dateStr = new Date().toISOString().slice(0, 10).replace(/-/g, '');
+      link.download = `Hotmodel缺貨_${dateStr}.csv`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+
     function clearAllFilters() {
       document.getElementById('searchInput').value = '';
       document.getElementById('categoryFilter').value = '';
@@ -2889,6 +3342,38 @@
     let lowStockSortOrder = 'none'; // 排序狀態：'none', 'asc', 'desc'
     let currentLowStockItems = []; // 儲存當前的低庫存資料
     let originalLowStockItems = []; // 🆕 儲存原始順序的低庫存資料
+
+    // 🆕 Hotmodel 主打商品功能
+    let hotmodelReference = []; // 主打商品清單（從 hotmodel_reference.csv 載入）
+    let activeHotmodelCategory = 'all';
+    let activeHotmodelPreset = null; // 機型快速篩選
+    let currentHotmodelItems = [];
+
+    // 機型快速篩選預設清單
+    const HOT_MODEL_PRESETS = [
+      // CPU
+      { id: 'cpu_mba13_1tb', category: 'CPU', label: 'M5 MBA 13" 1TB', subcat: 'MBA 13 M5', kw: '1TB' },
+      { id: 'cpu_mba13_512', category: 'CPU', label: 'M5 MBA 13" 512G', subcat: 'MBA 13 M5', kw: '512' },
+      { id: 'cpu_mba15_512', category: 'CPU', label: 'M5 MBA 15" 512G', subcat: 'MBA 15 M5', kw: '512' },
+      { id: 'cpu_mbn_256', category: 'CPU', label: 'MBN 256G', subcat: 'MBN', kw: '256GB' },
+      { id: 'cpu_mbn_512', category: 'CPU', label: 'MBN 512G', subcat: 'MBN', kw: '512GB' },
+      { id: 'cpu_mbp14_1tb', category: 'CPU', label: 'M5 MBP 14" 1TB', subcat: 'MBP 14 M5', kw: '1TB' },
+      // iPad
+      { id: 'ipad_air11_128', category: 'iPad', label: 'M4 iPad Air 11" 128G', subcat: 'iPad Air 11in M4', kw: '128' },
+      { id: 'ipad_air11_256', category: 'iPad', label: 'M4 iPad Air 11" 256G', subcat: 'iPad Air 11in M4', kw: '256' },
+      { id: 'ipad_air13_256', category: 'iPad', label: 'M4 iPad Air 13" 256G', subcat: 'iPad Air 13in M4', kw: '256' },
+      { id: 'ipad_pro11_256', category: 'iPad', label: 'M5 iPad Pro 11" 256G', subcat: 'iPad Pro 11(M5)', kw: '256' },
+      { id: 'ipad_a16_128', category: 'iPad', label: 'iPad (A16) 128G', subcat: 'iPad(A16)', kw: '128' },
+      // iPhone
+      { id: 'iphone_17_256', category: 'iPhone', label: 'iPhone 17 256G', subcat: 'iPhone 17', kw: '256G' },
+      { id: 'iphone_17p_256', category: 'iPhone', label: 'iPhone 17 Pro 256G', subcat: 'iPhone 17 Pro', kw: '256G' },
+      { id: 'iphone_17pm_256', category: 'iPhone', label: 'iPhone 17 PM 256G', subcat: 'iPhone 17 Pro Max', kw: '256G' },
+      // Apple Watch
+      { id: 'aw_s11_42', category: 'Apple Watch', label: 'AW S11 GPS 42mm', subcat: 'S11-GPS', kw: ' 42 ' },
+      { id: 'aw_s11_46', category: 'Apple Watch', label: 'AW S11 GPS 46mm', subcat: 'S11-GPS', kw: ' 46 ' },
+      { id: 'aw_se3_40', category: 'Apple Watch', label: 'AW SE 3 GPS 40mm', subcat: 'SE 3-GPS', kw: ' 40 ' },
+      { id: 'aw_se3_44', category: 'Apple Watch', label: 'AW SE 3 GPS 44mm', subcat: 'SE 3-GPS', kw: ' 44 ' },
+    ];
 
     function initializeLowStockAlert() {
       // 🆕 權限檢查：只有有庫存權限的使用者才能使用
@@ -3604,6 +4089,12 @@
           lowstockNavBtn.style.display = 'inline-block';
         }
         
+        // 🆕 顯示 Hotmodel 按鈕
+        const hotmodelNavBtn = document.querySelector('.nav-btn[data-page="hotmodel"]');
+        if (hotmodelNavBtn) {
+          hotmodelNavBtn.style.display = 'inline-block';
+        }
+        
         // 🆕 根據 canSwitchStore 控制店別選單
         if (storeSelector) {
           if (canSwitchStore) {
@@ -3629,6 +4120,12 @@
         // 🆕 隱藏低庫存警報按鈕
         if (lowstockNavBtn) {
           lowstockNavBtn.style.display = 'none';
+        }
+        
+        // 🆕 隱藏 Hotmodel 按鈕
+        const hotmodelNavBtn = document.querySelector('.nav-btn[data-page="hotmodel"]');
+        if (hotmodelNavBtn) {
+          hotmodelNavBtn.style.display = 'none';
         }      }
     }
 
@@ -3648,6 +4145,8 @@
         
         // 低庫存警報改為點擊時才初始化（避免手機卡頓）
         // initializeLowStockAlert() 移至 nav-btn 點擊事件
+        // Hotmodel 同樣延遲到點擊時才初始化
+        loadHotmodelReference(); // 但先在背景載入主打商品清單
         
         // 顯示庫存狀態
         const statusDiv = document.getElementById('inventoryStatus');
@@ -3912,6 +4411,7 @@
       document.getElementById('clearFilters').addEventListener('click', clearAllFilters);
 
       let lowStockInitialized = false; // 記錄是否已初始化
+      let hotmodelInitialized = false;
 
       document.querySelectorAll('.nav-btn').forEach(btn => {
         btn.addEventListener('click', function() {
@@ -3921,6 +4421,11 @@
           if (pageName === 'lowstock' && !lowStockInitialized) {
             lowStockInitialized = true;
             initializeLowStockAlert();
+          }
+          // 第一次點 Hotmodel 時才執行初始化
+          if (pageName === 'hotmodel' && !hotmodelInitialized) {
+            hotmodelInitialized = true;
+            initializeHotmodel();
           }
         });
       });
@@ -4036,12 +4541,12 @@
       }
 
       // 🆕 大分類快速篩選按鈕
-      document.querySelectorAll('.lowstock-category-btn').forEach(btn => {
+      document.querySelectorAll('.lowstock-category-btn:not(.hotmodel-category-btn)').forEach(btn => {
         btn.addEventListener('click', function() {
           const category = this.getAttribute('data-category');
           
-          // 移除其他按鈕的 active
-          document.querySelectorAll('.lowstock-category-btn').forEach(b => {
+          // 移除其他按鈕的 active（只處理低庫存的）
+          document.querySelectorAll('.lowstock-category-btn:not(.hotmodel-category-btn)').forEach(b => {
             b.classList.remove('active');
           });
           
@@ -4061,6 +4566,64 @@
           loadLowStockData();
         });
       });
+
+      // 🆕 Hotmodel 事件監聽
+      const hotmodelStoreFilter = document.getElementById('hotmodelStoreFilter');
+      const hotmodelThreshold = document.getElementById('hotmodelThreshold');
+      const hotmodelRefresh = document.getElementById('hotmodelRefresh');
+      const hotmodelExportBtn = document.getElementById('hotmodelExportCSV');
+
+      if (hotmodelStoreFilter) hotmodelStoreFilter.addEventListener('change', loadHotmodelData);
+      if (hotmodelThreshold) hotmodelThreshold.addEventListener('change', loadHotmodelData);
+      if (hotmodelRefresh) {
+        hotmodelRefresh.addEventListener('click', function() {
+          if (window.loadInventory) {
+            window.loadInventory().then(() => loadHotmodelData());
+          } else {
+            loadHotmodelData();
+          }
+        });
+      }
+      if (hotmodelExportBtn) hotmodelExportBtn.addEventListener('click', exportHotmodelCSV);
+
+      // Hotmodel 大分類快速篩選
+      document.querySelectorAll('.hotmodel-category-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+          document.querySelectorAll('.hotmodel-category-btn').forEach(b => b.classList.remove('active'));
+          this.classList.add('active');
+          activeHotmodelCategory = this.getAttribute('data-category');
+          
+          // 切換大分類時，重設機型篩選並重新渲染機型按鈕
+          activeHotmodelPreset = null;
+          renderHotmodelPresets();
+          
+          loadHotmodelData();
+        });
+      });
+
+      // 🆕 Hotmodel 機型快速篩選（事件委派）
+      const presetContainer = document.getElementById('hotmodelPresetButtons');
+      if (presetContainer) {
+        presetContainer.addEventListener('click', function(e) {
+          const btn = e.target.closest('.hotmodel-preset-btn');
+          if (!btn) return;
+          
+          const presetId = btn.getAttribute('data-preset-id');
+          
+          if (activeHotmodelPreset === presetId) {
+            // 再按一次取消
+            activeHotmodelPreset = null;
+            btn.classList.remove('active');
+          } else {
+            // 切換選擇
+            document.querySelectorAll('.hotmodel-preset-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            activeHotmodelPreset = presetId;
+          }
+          
+          loadHotmodelData();
+        });
+      }
     }
 
     // 🆕 設為全域函式，供 Firebase 登入後呼叫
