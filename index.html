@@ -3174,10 +3174,11 @@
           const codeCellStart = canViewDetails
             ? `<span class="hm-sku-code" data-code="${sku.code}" style="font-family: monospace; color: #1e40af; cursor: pointer; text-decoration: underline; text-decoration-style: dotted;">`
             : `<span style="font-family: monospace; color: #1e40af;">`;
-          return `<div style="font-size: 11px; padding: 3px 0; display: flex; align-items: center; gap: 8px;">
+          return `<div style="font-size: 11px; padding: 3px 0; display: flex; align-items: center; gap: 8px; overflow: hidden;">
             ${codeCellStart}${sku.code}</span>
-            <span style="color: #64748b; font-size: 10px; flex: 1;">${sku.model}</span>
-            <span style="color: ${stockColor}; font-weight: ${stockWeight}; min-width: 24px; text-align: right;">${sku.stock}</span>
+            <span style="color: #475569; font-size: 10px; font-family: monospace; white-space: nowrap; flex-shrink: 0;">${sku.model}</span>
+            <span style="color: #64748b; font-size: 10px; flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${sku.name}</span>
+            <span style="color: ${stockColor}; font-weight: ${stockWeight}; min-width: 24px; text-align: right; flex-shrink: 0;">${sku.stock}</span>
           </div>`;
         }).join('');
 
@@ -3279,10 +3280,10 @@
       csv += '門市,門市名稱,大分類,款式,SKU 數量,該店總庫存,SKU 明細,建議轉貨門市\n';
 
       currentHotmodelItems.forEach(item => {
-        // 🆕 SKU 明細：每個 SKU 一行，型號 + Code + 該店庫存
-        // 例：MDH84TA/A (0013031120) → 0
+        // SKU 明細：每個 SKU 一行，Code + 型號 + 產品名稱 + 該店庫存
+        // 例：0013031121  MDH84TA/A  M5 MBA 13 16G 1TB 銀  → 0
         const skuDetailStr = item.skuDetails
-          .map(s => `${s.model || '—'} (${s.code}) → ${s.stock}`)
+          .map(s => `${s.code}  ${s.model || '—'}  ${s.name || ''}  → ${s.stock}`)
           .join('\n');
 
         // 建議轉貨排序：880/820/821 優先，再按該款式總庫存遞減
