@@ -2303,6 +2303,7 @@
     let activeQuickCapacity = null; // 🆕 當前選擇的容量
     let inventoryData = {}; // 🆕 儲存庫存資料
     let storeInfo = {}; // 🆕 店別資訊
+    let inventoryLastUpdate = ''; // 🆕 inventory.json 的資料更新時間
     let selectedStore = '75'; // 🆕 當前選擇的店別（預設：75店）
     let currentUserEmail = ''; // 🆕 當前使用者 email
     let hasInventoryPermission = false; // 🆕 是否有庫存查看權限
@@ -2981,7 +2982,6 @@
         const text = await response.text();
         const parsed = await parseCSVWithPapa(text);
         hotmodelReference = parsed.filter(row => row['Code']);
-        console.log(`Hotmodel 載入 ${hotmodelReference.length} 筆`);
       } catch (error) {
         console.error('❌ 載入 Hotmodel 失敗:', error);
       }
@@ -3013,7 +3013,9 @@
           storeSelector.disabled = true;
         } else {
           storeSelector.innerHTML = '<option value="all">全部門市</option>';
-          const sortedStores = Object.keys(storeInfo).sort((a, b) => parseInt(a) - parseInt(b));
+          const sortedStores = Object.keys(storeInfo)
+            .filter(s => !HOTMODEL_EXCLUDED_STORES.includes(s))
+            .sort((a, b) => parseInt(a) - parseInt(b));
           sortedStores.forEach(storeId => {
             const option = document.createElement('option');
             option.value = storeId;
@@ -3024,7 +3026,15 @@
       }
 
       renderHotmodelPresets();
-      loadHotmodelData();
+
+      // 🆕 若 reference 尚未載入完成（背景載入中或先前失敗），先補載再渲染
+      if (hotmodelReference.length === 0) {
+        const tbody = document.getElementById('hotmodelTableBody');
+        if (tbody) tbody.innerHTML = '<tr><td colspan="5" class="loading">載入主打商品清單中...</td></tr>';
+        loadHotmodelReference().then(() => loadHotmodelData());
+      } else {
+        loadHotmodelData();
+      }
     }
 
     // 渲染機型快速篩選按鈕（依當前大分類）
@@ -3072,9 +3082,9 @@
 
         if (matchingSkus.length === 0) return; // 此款式無對應 SKU，跳過
 
-        // 決定要檢查的門市清單
+        // 決定要檢查的門市清單（排除非常態門市）
         const storesToCheck = storeFilter === 'all'
-          ? Object.keys(storeInfo)
+          ? Object.keys(storeInfo).filter(s => !HOTMODEL_EXCLUDED_STORES.includes(s))
           : [storeFilter];
 
         storesToCheck.forEach(storeId => {
@@ -3096,6 +3106,7 @@
             const otherStoresStock = [];
             Object.keys(storeInfo).forEach(otherStoreId => {
               if (otherStoreId === storeId) return;
+              if (HOTMODEL_EXCLUDED_STORES.includes(otherStoreId)) return; // 特賣會/維修中心不作為轉貨來源
               let total = 0;
               matchingSkus.forEach(sku => {
                 total += inventoryData[sku['Code']]?.stores?.[otherStoreId] || 0;
@@ -3136,14 +3147,23 @@
       renderHotmodelTable(hotmodelItems);
     }
 
+    // 🆕 摘要卡顯示 inventory.json 的資料更新時間（而非畫面渲染時間）
+    // "2026/07/12 16:56:23" → "07/12 16:56"；解析失敗則退回目前時間
+    function formatDataUpdateTime() {
+      if (inventoryLastUpdate) {
+        const m = inventoryLastUpdate.match(/\d{4}\/(\d{2}\/\d{2})\s+(\d{2}:\d{2})/);
+        if (m) return `${m[1]} ${m[2]}`;
+        return inventoryLastUpdate;
+      }
+      return new Date().toLocaleTimeString('zh-TW', { hour: '2-digit', minute: '2-digit' });
+    }
+
     function updateHotmodelSummary(items, storeFilter) {
       document.getElementById('hotmodelCount').textContent = items.length;
       const affected = new Set(items.map(i => i.storeId));
       document.getElementById('hotmodelAffectedStores').textContent =
         storeFilter === 'all' ? affected.size : (items.length > 0 ? 1 : 0);
-      const now = new Date();
-      document.getElementById('hotmodelUpdateTime').textContent =
-        now.toLocaleTimeString('zh-TW', { hour: '2-digit', minute: '2-digit' });
+      document.getElementById('hotmodelUpdateTime').textContent = formatDataUpdateTime();
     }
 
     function renderHotmodelTable(items) {
@@ -3366,6 +3386,9 @@
     let currentHotmodelItems = [];
 
     // 機型快速篩選預設清單
+    // 🆕 Hotmodel 缺貨掃描排除的門市（825 特賣會非常態門市、830 維修中心）
+    const HOTMODEL_EXCLUDED_STORES = ['825', '830'];
+
     const HOT_MODEL_PRESETS = [
       // CPU
       { id: 'cpu_mba13_1tb', category: 'CPU', label: 'M5 MBA 13" 1TB', subcat: 'MBA 13 M5', kw: '1TB' },
@@ -3562,10 +3585,8 @@
       document.getElementById('affectedStores').textContent = 
         storeFilter === 'all' ? affectedStoresSet.size : (items.length > 0 ? 1 : 0);
       
-      // 更新時間
-      const now = new Date();
-      const timeStr = now.toLocaleTimeString('zh-TW', { hour: '2-digit', minute: '2-digit' });
-      document.getElementById('lowstockUpdateTime').textContent = timeStr;
+      // 更新時間（顯示 inventory.json 資料時間）
+      document.getElementById('lowstockUpdateTime').textContent = formatDataUpdateTime();
     }
 
     function renderLowStockTable(items) {
@@ -3743,13 +3764,14 @@
       
       const lowStockItems = [];
       
-      // 🆕 定義固定的門市順序（所有 23 家門市）
+      // 🆕 門市順序動態產生：優先顯示 880/820/821/830，其餘按店號排序
+      // （避免 inventory.json 新增門市時漏掉，如 825 特賣會）
+      const priorityOrder = ['880', '820', '821', '830'];
       const fixedStoreOrder = [
-        '880', '820', '821', '830',  // 線上EC
-        '45', '47', '48', '51', '57', '61', '65',  // 北一、北二區
-        '75', '76', '77', '81', '84',  // 中區
-        '86', '88', '89', '97',  // 台南、高雄區
-        '115', '116', '117'  // 其他
+        ...priorityOrder.filter(s => storeInfo[s]),
+        ...Object.keys(storeInfo)
+          .filter(s => !priorityOrder.includes(s))
+          .sort((a, b) => parseInt(a) - parseInt(b))
       ];
       
       // 重新計算低庫存資料（與 loadLowStockData 相同邏輯）
@@ -4168,6 +4190,7 @@
         const statusDiv = document.getElementById('inventoryStatus');
         const updateTimeSpan = document.getElementById('inventoryUpdateTime');
         if (updateTimeSpan) updateTimeSpan.textContent = `(${data.lastUpdate})`;
+        inventoryLastUpdate = data.lastUpdate || '';
         if (statusDiv) statusDiv.classList.add('loaded');
         
         // 重新渲染表格
