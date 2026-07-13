@@ -1725,6 +1725,7 @@
           <button class="nav-btn" data-page="tradein">Trade in</button>
           <button class="nav-btn" data-page="lowstock" style="display: none;">低庫存警報</button>
           <button class="nav-btn" data-page="hotmodel" style="display: none;">Hotmodel</button>
+          <button class="nav-btn" data-page="overview" style="display: none;">庫存總覽</button>
         </div>
       </div>
 
@@ -2139,6 +2140,51 @@
           </div>
         </div>
       </div>
+
+      <!-- 🆕 庫存總覽頁（僅 administrator） -->
+      <div id="overviewPage" class="page">
+        <div class="lowstock-container">
+          <div class="lowstock-header">
+            <h2>📊 庫存總覽</h2>
+            <p class="lowstock-subtitle">門市 × 中分類庫存熱力表 <span id="overviewUpdateTime" style="font-size: 12px; color: #94a3b8;"></span></p>
+          </div>
+
+          <div class="lowstock-controls" style="flex-wrap: wrap; gap: 12px;">
+            <div class="control-group" style="flex-wrap: wrap;">
+              <label>大分類：</label>
+              <div id="overviewCategoryButtons" style="display: flex; flex-wrap: wrap; gap: 8px;"></div>
+            </div>
+            <div class="control-group">
+              <label for="overviewSortMode">門市排序：</label>
+              <select id="overviewSortMode" class="lowstock-select">
+                <option value="id">按店號</option>
+                <option value="total">按合計 (多→少)</option>
+              </select>
+            </div>
+            <button id="exportOverviewBtn" class="lowstock-btn lowstock-export">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="7 10 12 15 17 10"></polyline>
+                <line x1="12" y1="15" x2="12" y2="3"></line>
+              </svg>
+              匯出 CSV
+            </button>
+          </div>
+
+          <div style="display: flex; gap: 16px; margin: 12px 0; font-size: 12px; color: #64748b; flex-wrap: wrap;">
+            <span style="display: inline-flex; align-items: center; gap: 5px;"><span style="width: 12px; height: 12px; border-radius: 3px; background: #fee2e2; display: inline-block;"></span>0 缺貨</span>
+            <span style="display: inline-flex; align-items: center; gap: 5px;"><span style="width: 12px; height: 12px; border-radius: 3px; background: #fef3c7; display: inline-block;"></span>1–2 偏低</span>
+            <span style="display: inline-flex; align-items: center; gap: 5px;"><span style="width: 12px; height: 12px; border-radius: 3px; background: #f8fafc; border: 1px solid #e2e8f0; display: inline-block;"></span>3–5</span>
+            <span style="display: inline-flex; align-items: center; gap: 5px;"><span style="width: 12px; height: 12px; border-radius: 3px; background: #dcfce7; display: inline-block;"></span>6+ 充足</span>
+          </div>
+
+          <div class="lowstock-table-wrapper" style="overflow-x: auto;">
+            <div id="overviewTableContainer">
+              <div class="loading">載入中...</div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
     <footer class="footer">
@@ -2407,7 +2453,8 @@
         'care': 'carePage',
         'tradein': 'tradeinPage',
         'lowstock': 'lowstockPage',
-        'hotmodel': 'hotmodelPage'
+        'hotmodel': 'hotmodelPage',
+        'overview': 'overviewPage'
       };
       
       const pageId = pageMap[pageName];
@@ -3347,6 +3394,151 @@
       document.body.removeChild(link);
     }
 
+    // ========== 庫存總覽（僅 administrator） ==========
+    let activeOverviewCategory = 'CPU';
+    const OVERVIEW_CATEGORIES = ['CPU', 'iPad', 'iPhone', 'Apple Watch'];
+
+    function initializeOverview() {
+      if (userRole !== 'administrator') {
+        const container = document.querySelector('#overviewPage .lowstock-container');
+        if (container) {
+          container.innerHTML = `
+            <div class="lowstock-empty">
+              <div class="empty-icon">🔒</div>
+              <div class="empty-title">無權限查看</div>
+              <div class="empty-description">此功能僅限管理員使用</div>
+            </div>`;
+        }
+        return;
+      }
+
+      // 建立大分類按鈕
+      const btnContainer = document.getElementById('overviewCategoryButtons');
+      btnContainer.innerHTML = '';
+      OVERVIEW_CATEGORIES.forEach(cat => {
+        const btn = document.createElement('button');
+        btn.className = 'lowstock-category-btn' + (cat === activeOverviewCategory ? ' active' : '');
+        btn.textContent = cat;
+        btn.style.fontSize = '13px';
+        btn.style.padding = '8px 14px';
+        btn.addEventListener('click', () => {
+          activeOverviewCategory = cat;
+          btnContainer.querySelectorAll('button').forEach(b => b.classList.toggle('active', b.textContent === cat));
+          renderOverview();
+        });
+        btnContainer.appendChild(btn);
+      });
+
+      document.getElementById('overviewSortMode').addEventListener('change', renderOverview);
+      document.getElementById('exportOverviewBtn').addEventListener('click', exportOverviewCSV);
+      document.getElementById('overviewUpdateTime').textContent = `(資料時間 ${formatDataUpdateTime()})`;
+
+      renderOverview();
+    }
+
+    // 計算門市 × 中分類矩陣
+    function buildOverviewMatrix(category) {
+      // Code → 中分類（僅該大分類）
+      const codeToMid = new Map();
+      originalData.forEach(row => {
+        if ((row['大分類'] || '') !== category) return;
+        const code = row['Code'];
+        if (code) codeToMid.set(code, row['中分類'] || '未分類');
+      });
+
+      const stores = Object.keys(storeInfo)
+        .filter(s => !HOTMODEL_EXCLUDED_STORES.includes(s))
+        .sort((a, b) => parseInt(a) - parseInt(b));
+
+      // 累加庫存
+      const midTotals = {};
+      const cell = {}; // cell[storeId][mid] = qty
+      stores.forEach(s => cell[s] = {});
+
+      for (const [code, product] of Object.entries(inventoryData)) {
+        const mid = codeToMid.get(code);
+        if (!mid) continue;
+        for (const [sid, qty] of Object.entries(product.stores || {})) {
+          if (!cell[sid]) continue; // 排除的門市
+          cell[sid][mid] = (cell[sid][mid] || 0) + qty;
+          midTotals[mid] = (midTotals[mid] || 0) + qty;
+        }
+      }
+
+      // 中分類按全通路總量排序（量大在前）
+      const mids = Object.keys(midTotals).sort((a, b) => midTotals[b] - midTotals[a]);
+
+      const rows = stores.map(sid => {
+        const vals = mids.map(m => cell[sid][m] || 0);
+        return { id: sid, name: storeInfo[sid] || sid, vals, total: vals.reduce((a, b) => a + b, 0) };
+      });
+
+      return { mids, rows };
+    }
+
+    function overviewCellStyle(v) {
+      if (v === 0) return 'background: #fee2e2; color: #dc2626; font-weight: 600;';
+      if (v <= 2) return 'background: #fef3c7; color: #b45309;';
+      if (v <= 5) return 'color: #64748b;';
+      return 'background: #dcfce7; color: #15803d;';
+    }
+
+    function renderOverview() {
+      const container = document.getElementById('overviewTableContainer');
+      const { mids, rows } = buildOverviewMatrix(activeOverviewCategory);
+
+      if (mids.length === 0) {
+        container.innerHTML = '<div class="loading">此分類無庫存資料</div>';
+        return;
+      }
+
+      const sortMode = document.getElementById('overviewSortMode').value;
+      const sortedRows = sortMode === 'total'
+        ? [...rows].sort((a, b) => b.total - a.total)
+        : rows;
+
+      let h = `<table style="border-collapse: separate; border-spacing: 2px; width: 100%; font-size: 12px; min-width: ${140 + mids.length * 64}px;">`;
+      h += '<tr><th style="min-width: 130px; text-align: left; font-weight: 600; color: #94a3b8; font-size: 11px; padding: 4px 6px;">門市</th>';
+      mids.forEach(m => {
+        h += `<th style="font-weight: 600; color: #64748b; font-size: 11px; padding: 4px 3px; line-height: 1.3;">${m}</th>`;
+      });
+      h += '<th style="width: 48px; font-weight: 600; color: #94a3b8; font-size: 11px;">合計</th></tr>';
+
+      sortedRows.forEach(r => {
+        h += `<tr><td style="padding: 4px 6px; white-space: nowrap;"><span style="font-weight: 600; color: #1e40af;">${r.id}</span> <span style="color: #94a3b8; font-size: 11px;">${r.name.replace('iStore', '')}</span></td>`;
+        r.vals.forEach(v => {
+          h += `<td style="text-align: center; padding: 5px 3px; border-radius: 4px; ${overviewCellStyle(v)}">${v}</td>`;
+        });
+        h += `<td style="text-align: center; color: #94a3b8; font-weight: 600;">${r.total}</td></tr>`;
+      });
+      h += '</table>';
+      container.innerHTML = h;
+    }
+
+    function exportOverviewCSV() {
+      const { mids, rows } = buildOverviewMatrix(activeOverviewCategory);
+      if (mids.length === 0) {
+        alert('此分類無庫存資料可匯出');
+        return;
+      }
+
+      let csv = '\uFEFF';
+      const esc = v => `"${String(v).replace(/"/g, '""')}"`;
+      csv += ['門市', '門市名稱', ...mids.map(esc), '合計'].join(',') + '\n';
+      rows.forEach(r => {
+        csv += [r.id, esc(r.name), ...r.vals, r.total].join(',') + '\n';
+      });
+
+      const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      const dateStr = new Date().toISOString().slice(0, 10).replace(/-/g, '');
+      link.download = `庫存總覽_${activeOverviewCategory}_${dateStr}.csv`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+
     function clearAllFilters() {
       document.getElementById('searchInput').value = '';
       document.getElementById('categoryFilter').value = '';
@@ -4132,6 +4324,12 @@
         if (hotmodelNavBtn) {
           hotmodelNavBtn.style.display = 'inline-block';
         }
+
+        // 🆕 庫存總覽按鈕：僅 administrator 可見
+        const overviewNavBtn = document.querySelector('.nav-btn[data-page="overview"]');
+        if (overviewNavBtn) {
+          overviewNavBtn.style.display = (userRole === 'administrator') ? 'inline-block' : 'none';
+        }
         
         // 🆕 根據 canSwitchStore 控制店別選單
         if (storeSelector) {
@@ -4164,6 +4362,11 @@
         const hotmodelNavBtn = document.querySelector('.nav-btn[data-page="hotmodel"]');
         if (hotmodelNavBtn) {
           hotmodelNavBtn.style.display = 'none';
+        }
+        // 🆕 隱藏庫存總覽按鈕
+        const overviewNavBtn = document.querySelector('.nav-btn[data-page="overview"]');
+        if (overviewNavBtn) {
+          overviewNavBtn.style.display = 'none';
         }      }
     }
 
@@ -4451,6 +4654,7 @@
 
       let lowStockInitialized = false; // 記錄是否已初始化
       let hotmodelInitialized = false;
+      let overviewInitialized = false;
 
       document.querySelectorAll('.nav-btn').forEach(btn => {
         btn.addEventListener('click', function() {
@@ -4465,6 +4669,11 @@
           if (pageName === 'hotmodel' && !hotmodelInitialized) {
             hotmodelInitialized = true;
             initializeHotmodel();
+          }
+          // 第一次點庫存總覽時才執行初始化
+          if (pageName === 'overview' && !overviewInitialized) {
+            overviewInitialized = true;
+            initializeOverview();
           }
         });
       });
