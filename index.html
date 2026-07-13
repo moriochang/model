@@ -3497,15 +3497,24 @@
         ? [...rows].sort((a, b) => b.total - a.total)
         : rows;
 
-      let h = `<table style="border-collapse: separate; border-spacing: 2px; width: 100%; font-size: 12px; min-width: ${140 + mids.length * 64}px;">`;
-      h += '<tr><th style="min-width: 130px; text-align: left; font-weight: 600; color: #94a3b8; font-size: 11px; padding: 4px 6px;">門市</th>';
+      // 🆕 固定欄寬：門市 140px、中分類每欄 84px、合計 52px
+      // 切換大分類時欄數改變，但每一欄的寬度固定不變
+      const COL_STORE = 140, COL_MID = 84, COL_TOTAL = 52;
+      const tableWidth = COL_STORE + mids.length * COL_MID + COL_TOTAL;
+
+      let h = `<table style="border-collapse: separate; border-spacing: 2px; table-layout: fixed; width: ${tableWidth}px; font-size: 12px;">`;
+      h += `<colgroup><col style="width: ${COL_STORE}px;">`;
+      mids.forEach(() => { h += `<col style="width: ${COL_MID}px;">`; });
+      h += `<col style="width: ${COL_TOTAL}px;"></colgroup>`;
+
+      h += '<tr><th style="text-align: left; font-weight: 600; color: #94a3b8; font-size: 11px; padding: 4px 6px;">門市</th>';
       mids.forEach(m => {
-        h += `<th style="font-weight: 600; color: #64748b; font-size: 11px; padding: 4px 3px; line-height: 1.3;">${m}</th>`;
+        h += `<th style="font-weight: 600; color: #64748b; font-size: 11px; padding: 4px 3px; line-height: 1.3; word-break: break-word;">${m}</th>`;
       });
-      h += '<th style="width: 48px; font-weight: 600; color: #94a3b8; font-size: 11px;">合計</th></tr>';
+      h += '<th style="font-weight: 600; color: #94a3b8; font-size: 11px;">合計</th></tr>';
 
       sortedRows.forEach(r => {
-        h += `<tr><td style="padding: 4px 6px; white-space: nowrap;"><span style="font-weight: 600; color: #1e40af;">${r.id}</span> <span style="color: #94a3b8; font-size: 11px;">${r.name.replace('iStore', '')}</span></td>`;
+        h += `<tr><td style="padding: 4px 6px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"><span style="font-weight: 600; color: #1e40af;">${r.id}</span> <span style="color: #94a3b8; font-size: 11px;">${r.name.replace('iStore', '')}</span></td>`;
         r.vals.forEach(v => {
           h += `<td style="text-align: center; padding: 5px 3px; border-radius: 4px; ${overviewCellStyle(v)}">${v}</td>`;
         });
