@@ -2359,6 +2359,16 @@
     // 🆕 排序狀態變數
     let currentSortColumn = null; // 當前排序的欄位
     let currentSortOrder = 'none'; // 排序順序：'none', 'asc', 'desc'
+
+    // 🆕 庫存總覽功能白名單：administrator 以外可額外開放的帳號
+    const OVERVIEW_ALLOWED_EMAILS = [
+      'jimmy.chen@istore.com.tw'
+    ];
+
+    function canViewOverview() {
+      return userRole === 'administrator' ||
+        OVERVIEW_ALLOWED_EMAILS.includes((currentUserEmail || '').toLowerCase());
+    }
     
     // 🆕 權限分組系統
     const USER_PERMISSIONS = {
@@ -3399,7 +3409,7 @@
     const OVERVIEW_CATEGORIES = ['CPU', 'iPad', 'iPhone', 'Apple Watch'];
 
     function initializeOverview() {
-      if (userRole !== 'administrator') {
+      if (!canViewOverview()) {
         const container = document.querySelector('#overviewPage .lowstock-container');
         if (container) {
           container.innerHTML = `
@@ -4449,10 +4459,10 @@
           hotmodelNavBtn.style.display = 'inline-block';
         }
 
-        // 🆕 庫存總覽按鈕：僅 administrator 可見
+        // 🆕 庫存總覽按鈕：administrator 或白名單帳號可見
         const overviewNavBtn = document.querySelector('.nav-btn[data-page="overview"]');
         if (overviewNavBtn) {
-          overviewNavBtn.style.display = (userRole === 'administrator') ? 'inline-block' : 'none';
+          overviewNavBtn.style.display = canViewOverview() ? 'inline-block' : 'none';
         }
         
         // 🆕 根據 canSwitchStore 控制店別選單
