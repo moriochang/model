@@ -3515,13 +3515,23 @@
 
       sortedRows.forEach(r => {
         h += `<tr><td style="padding: 4px 6px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"><span style="font-weight: 600; color: #1e40af;">${r.id}</span> <span style="color: #94a3b8; font-size: 11px;">${r.name.replace('iStore', '')}</span></td>`;
-        r.vals.forEach(v => {
-          h += `<td style="text-align: center; padding: 5px 3px; border-radius: 4px; ${overviewCellStyle(v)}">${v}</td>`;
+        r.vals.forEach((v, i) => {
+          h += `<td class="overview-cell" data-store="${r.id}" data-mid="${mids[i]}" style="text-align: center; padding: 5px 3px; border-radius: 4px; cursor: pointer; ${overviewCellStyle(v)}">${v}</td>`;
         });
         h += `<td style="text-align: center; color: #94a3b8; font-weight: 600;">${r.total}</td></tr>`;
       });
       h += '</table>';
       container.innerHTML = h;
+
+      // 🆕 點格子鑽取 SKU 明細（事件委派，只綁一次）
+      if (!container.dataset.delegated) {
+        container.dataset.delegated = 'true';
+        container.addEventListener('click', function(e) {
+          const cell = e.target.closest('.overview-cell');
+          if (!cell) return;
+          showOverviewCellModal(cell.getAttribute('data-store'), cell.getAttribute('data-mid'));
+        });
+      }
     }
 
     function exportOverviewCSV() {
@@ -3546,6 +3556,70 @@
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
+    }
+
+    // 🆕 點總覽格子 → 顯示該店該中分類的 SKU 明細（複用 inventoryModal）
+    function showOverviewCellModal(storeId, mid) {
+      const modal = document.getElementById('inventoryModal');
+      const storeName = storeInfo[storeId] || storeId;
+
+      // 找出該中分類、有庫存追蹤的所有 SKU（與矩陣計算範圍一致）
+      const skus = [];
+      originalData.forEach(row => {
+        if ((row['大分類'] || '') !== activeOverviewCategory) return;
+        if ((row['中分類'] || '未分類') !== mid) return;
+        const code = row['Code'];
+        if (!code || !inventoryData[code]) return;
+        skus.push({
+          code,
+          name: row['product_name'] || '',
+          qty: inventoryData[code].stores?.[storeId] || 0
+        });
+      });
+
+      // 排序：庫存多在前，其次按 Code
+      skus.sort((a, b) => b.qty - a.qty || a.code.localeCompare(b.code));
+
+      const totalQty = skus.reduce((s, x) => s + x.qty, 0);
+      const zeroCount = skus.filter(x => x.qty === 0).length;
+
+      // 標題與統計
+      document.getElementById('modalProductName').textContent = mid;
+      document.getElementById('modalProductCode').textContent = `${storeId} ${storeName}`;
+      document.getElementById('modalSummaryLabel1').textContent = '該店庫存';
+      document.getElementById('modalSummaryLabel2').textContent = 'SKU 數';
+      document.getElementById('modalSummaryLabel3').textContent = '缺貨 SKU';
+      document.getElementById('modalTotalStock').textContent = totalQty;
+      document.getElementById('modalStoreCount').textContent = skus.length;
+      document.getElementById('modalOutOfStockCount').textContent = zeroCount;
+
+      // SKU 清單（點任一列 → 開該 SKU 的標準全門市分布檢視）
+      const listHtml = skus.map(s => {
+        const qtyColor = s.qty === 0 ? '#dc2626' : (s.qty <= 2 ? '#b45309' : '#15803d');
+        return `<div class="overview-sku-item" data-code="${s.code}" style="display: flex; align-items: center; gap: 8px; padding: 8px 10px; border-bottom: 1px solid #f1f5f9; cursor: pointer;">
+          <span style="font-family: monospace; font-size: 11px; color: #1e40af; flex-shrink: 0;">${s.code}</span>
+          <span style="flex: 1; min-width: 0; font-size: 12px; color: #334155; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${s.name}</span>
+          <span style="font-weight: 700; font-size: 13px; color: ${qtyColor}; flex-shrink: 0; min-width: 28px; text-align: right;">${s.qty === 0 ? '缺貨' : s.qty}</span>
+        </div>`;
+      }).join('');
+
+      document.getElementById('modalStoreList').innerHTML = listHtml ||
+        '<div class="no-inventory"><div class="no-inventory-icon">📦</div><div>此分類無庫存追蹤 SKU</div></div>';
+
+      // 點 SKU 列 → 切換為標準檢視（用事件委派，每次開啟重新綁定 onclick 即可）
+      document.getElementById('modalStoreList').onclick = function(e) {
+        const item = e.target.closest('.overview-sku-item');
+        if (!item) return;
+        this.onclick = null; // 移交給標準檢視前解除，避免殘留
+        const code = item.getAttribute('data-code');
+        const rowData = productDataMap.get(code);
+        if (rowData) showInventoryModal(code, rowData);
+      };
+
+      modal.style.display = 'block';
+      modal.onclick = function(event) {
+        if (event.target === modal) closeInventoryModal();
+      };
     }
 
     function clearAllFilters() {
@@ -4492,6 +4566,11 @@
     function showInventoryModal(productCode, rowData) {
       const modal = document.getElementById('inventoryModal');
       const productInventory = inventoryData[productCode];
+
+      // 重設統計標籤（可能被總覽鑽取模式改過）
+      document.getElementById('modalSummaryLabel1').textContent = '總庫存';
+      document.getElementById('modalSummaryLabel2').textContent = '有庫存門市';
+      document.getElementById('modalSummaryLabel3').textContent = '缺貨門市';
       
       // 設定產品資訊
       document.getElementById('modalProductName').textContent = rowData[columnMapping['product_name']] || '未知產品';
@@ -4522,13 +4601,13 @@
         // 生成門市清單
         const storeListHtml = [];
         
-        // 按指定順序排列店別
+        // 按指定順序排列店別（動態產生：優先 880/820/821/830，其餘按店號）
+        const modalPriority = ['880', '820', '821', '830'];
         const storeOrder = [
-          '880', '820', '821', '830',
-          '45', '47', '48', '51', '57', '61', '65',
-          '75', '76', '77', '81', '84',
-          '86', '88', '89', '97',
-          '115', '116', '117'
+          ...modalPriority.filter(s => storeInfo[s]),
+          ...Object.keys(storeInfo)
+            .filter(s => !modalPriority.includes(s))
+            .sort((a, b) => parseInt(a) - parseInt(b))
         ];
         
         storeOrder.forEach(storeId => {
@@ -4905,15 +4984,15 @@
       <div class="modal-body">
         <div class="modal-summary">
           <div class="summary-item">
-            <div class="summary-label">總庫存</div>
+            <div class="summary-label" id="modalSummaryLabel1">總庫存</div>
             <div class="summary-value" id="modalTotalStock">0</div>
           </div>
           <div class="summary-item">
-            <div class="summary-label">有庫存門市</div>
+            <div class="summary-label" id="modalSummaryLabel2">有庫存門市</div>
             <div class="summary-value" id="modalStoreCount">0</div>
           </div>
           <div class="summary-item">
-            <div class="summary-label">缺貨門市</div>
+            <div class="summary-label" id="modalSummaryLabel3">缺貨門市</div>
             <div class="summary-value" id="modalOutOfStockCount">0</div>
           </div>
         </div>
