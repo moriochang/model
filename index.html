@@ -3596,18 +3596,22 @@
       // SKU 清單（點任一列 → 開該 SKU 的標準全門市分布檢視）
       const listHtml = skus.map(s => {
         const qtyColor = s.qty === 0 ? '#dc2626' : (s.qty <= 2 ? '#b45309' : '#15803d');
-        return `<div class="overview-sku-item" data-code="${s.code}" style="display: flex; align-items: center; gap: 8px; padding: 8px 10px; border-bottom: 1px solid #f1f5f9; cursor: pointer;">
-          <span style="font-family: monospace; font-size: 11px; color: #1e40af; flex-shrink: 0;">${s.code}</span>
-          <span style="flex: 1; min-width: 0; font-size: 12px; color: #334155; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${s.name}</span>
-          <span style="font-weight: 700; font-size: 13px; color: ${qtyColor}; flex-shrink: 0; min-width: 28px; text-align: right;">${s.qty === 0 ? '缺貨' : s.qty}</span>
+        return `<div class="overview-sku-item" data-code="${s.code}" style="display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-bottom: 1px solid #f1f5f9; cursor: pointer;">
+          <div style="flex: 1; min-width: 0;">
+            <div style="font-size: 13px; color: #334155; line-height: 1.4;">${s.name}</div>
+            <div style="font-family: monospace; font-size: 11px; color: #64748b; margin-top: 2px;">${s.code}</div>
+          </div>
+          <span style="font-weight: 700; font-size: 14px; color: ${qtyColor}; flex-shrink: 0; min-width: 36px; text-align: right;">${s.qty === 0 ? '缺貨' : s.qty}</span>
         </div>`;
       }).join('');
 
-      document.getElementById('modalStoreList').innerHTML = listHtml ||
+      const listEl = document.getElementById('modalStoreList');
+      listEl.style.display = 'block'; // 覆蓋 .store-list 的 7 欄 grid，SKU 列表用單欄直列
+      listEl.innerHTML = listHtml ||
         '<div class="no-inventory"><div class="no-inventory-icon">📦</div><div>此分類無庫存追蹤 SKU</div></div>';
 
       // 點 SKU 列 → 切換為標準檢視（用事件委派，每次開啟重新綁定 onclick 即可）
-      document.getElementById('modalStoreList').onclick = function(e) {
+      listEl.onclick = function(e) {
         const item = e.target.closest('.overview-sku-item');
         if (!item) return;
         this.onclick = null; // 移交給標準檢視前解除，避免殘留
@@ -4571,6 +4575,7 @@
       document.getElementById('modalSummaryLabel1').textContent = '總庫存';
       document.getElementById('modalSummaryLabel2').textContent = '有庫存門市';
       document.getElementById('modalSummaryLabel3').textContent = '缺貨門市';
+      document.getElementById('modalStoreList').style.display = ''; // 還原 .store-list 的 grid 佈局
       
       // 設定產品資訊
       document.getElementById('modalProductName').textContent = rowData[columnMapping['product_name']] || '未知產品';
