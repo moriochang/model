@@ -2155,13 +2155,6 @@
               <label>大分類：</label>
               <div id="overviewCategoryButtons" style="display: flex; flex-wrap: wrap; gap: 8px;"></div>
             </div>
-            <div class="control-group">
-              <label for="overviewSortMode">門市排序：</label>
-              <select id="overviewSortMode" class="lowstock-select">
-                <option value="id">按店號</option>
-                <option value="total">按合計 (多→少)</option>
-              </select>
-            </div>
             <button id="exportOverviewBtn" class="lowstock-btn lowstock-export">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
@@ -3494,14 +3487,13 @@
         btnContainer.appendChild(btn);
       });
 
-      document.getElementById('overviewSortMode').addEventListener('change', renderOverview);
       document.getElementById('exportOverviewBtn').addEventListener('click', exportOverviewCSV);
       document.getElementById('overviewUpdateTime').textContent = `(資料時間 ${formatDataUpdateTime()})`;
 
       renderOverview();
     }
 
-    // 計算門市 × 中分類矩陣
+    // 計算中分類 × 門市矩陣（列 = 中分類，欄 = 門市）
     function buildOverviewMatrix(category) {
       // Code → 中分類（僅該大分類）
       const codeToMid = new Map();
@@ -3517,15 +3509,15 @@
 
       // 累加庫存
       const midTotals = {};
-      const cell = {}; // cell[storeId][mid] = qty
-      stores.forEach(s => cell[s] = {});
+      const cell = {}; // cell[mid][storeId] = qty
 
       for (const [code, product] of Object.entries(inventoryData)) {
         const mid = codeToMid.get(code);
         if (!mid) continue;
+        if (!cell[mid]) cell[mid] = {};
         for (const [sid, qty] of Object.entries(product.stores || {})) {
-          if (!cell[sid]) continue; // 排除的門市
-          cell[sid][mid] = (cell[sid][mid] || 0) + qty;
+          if (HOTMODEL_EXCLUDED_STORES.includes(sid)) continue;
+          cell[mid][sid] = (cell[mid][sid] || 0) + qty;
           midTotals[mid] = (midTotals[mid] || 0) + qty;
         }
       }
@@ -3533,12 +3525,12 @@
       // 中分類按全通路總量排序（量大在前）
       const mids = Object.keys(midTotals).sort((a, b) => midTotals[b] - midTotals[a]);
 
-      const rows = stores.map(sid => {
-        const vals = mids.map(m => cell[sid][m] || 0);
-        return { id: sid, name: storeInfo[sid] || sid, vals, total: vals.reduce((a, b) => a + b, 0) };
+      const rows = mids.map(mid => {
+        const vals = stores.map(sid => cell[mid][sid] || 0);
+        return { mid, vals, total: vals.reduce((a, b) => a + b, 0) };
       });
 
-      return { mids, rows };
+      return { stores, rows };
     }
 
     function overviewCellStyle(v) {
@@ -3550,38 +3542,32 @@
 
     function renderOverview() {
       const container = document.getElementById('overviewTableContainer');
-      const { mids, rows } = buildOverviewMatrix(activeOverviewCategory);
+      const { stores, rows } = buildOverviewMatrix(activeOverviewCategory);
 
-      if (mids.length === 0) {
+      if (rows.length === 0) {
         container.innerHTML = '<div class="loading">此分類無庫存資料</div>';
         return;
       }
 
-      const sortMode = document.getElementById('overviewSortMode').value;
-      const sortedRows = sortMode === 'total'
-        ? [...rows].sort((a, b) => b.total - a.total)
-        : rows;
-
-      // 🆕 固定欄寬：門市 140px、中分類每欄 84px、合計 52px
-      // 切換大分類時欄數改變，但每一欄的寬度固定不變
-      const COL_STORE = 140, COL_MID = 84, COL_TOTAL = 52;
-      const tableWidth = COL_STORE + mids.length * COL_MID + COL_TOTAL;
+      // 固定欄寬（與 Hotmodel 總覽一致）：商品 150px、每個門市 40px、合計 48px
+      const COL_LABEL = 150, COL_STORE = 40, COL_TOTAL = 48;
+      const tableWidth = COL_LABEL + stores.length * COL_STORE + COL_TOTAL;
 
       let h = `<table style="border-collapse: separate; border-spacing: 2px; table-layout: fixed; width: ${tableWidth}px; font-size: 12px;">`;
-      h += `<colgroup><col style="width: ${COL_STORE}px;">`;
-      mids.forEach(() => { h += `<col style="width: ${COL_MID}px;">`; });
+      h += `<colgroup><col style="width: ${COL_LABEL}px;">`;
+      stores.forEach(() => { h += `<col style="width: ${COL_STORE}px;">`; });
       h += `<col style="width: ${COL_TOTAL}px;"></colgroup>`;
 
-      h += '<tr><th style="text-align: left; font-weight: 600; color: #94a3b8; font-size: 11px; padding: 4px 6px;">門市</th>';
-      mids.forEach(m => {
-        h += `<th style="font-weight: 600; color: #64748b; font-size: 11px; padding: 4px 3px; line-height: 1.3; word-break: break-word;">${m}</th>`;
+      h += '<tr><th style="text-align: left; font-weight: 600; color: #94a3b8; font-size: 11px; padding: 4px 6px;">商品</th>';
+      stores.forEach(sid => {
+        h += `<th style="text-align: center; font-weight: 600; color: #64748b; font-size: 11px; padding: 4px 2px;" title="${storeInfo[sid] || sid}">${sid}</th>`;
       });
       h += '<th style="font-weight: 600; color: #94a3b8; font-size: 11px;">合計</th></tr>';
 
-      sortedRows.forEach(r => {
-        h += `<tr><td style="padding: 4px 6px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"><span style="font-weight: 600; color: #1e40af;">${r.id}</span> <span style="color: #94a3b8; font-size: 11px;">${r.name.replace('iStore', '')}</span></td>`;
+      rows.forEach(r => {
+        h += `<tr><td class="lowstock-model" style="padding: 4px 6px; line-height: 1.3; word-break: break-word;">${r.mid}</td>`;
         r.vals.forEach((v, i) => {
-          h += `<td class="overview-cell" data-store="${r.id}" data-mid="${mids[i]}" style="text-align: center; padding: 5px 3px; border-radius: 4px; cursor: pointer; ${overviewCellStyle(v)}">${v}</td>`;
+          h += `<td class="overview-cell" data-store="${stores[i]}" data-mid="${r.mid}" style="text-align: center; padding: 5px 2px; border-radius: 4px; cursor: pointer; ${overviewCellStyle(v)}">${v}</td>`;
         });
         h += `<td style="text-align: center; color: #94a3b8; font-weight: 600;">${r.total}</td></tr>`;
       });
@@ -3600,17 +3586,17 @@
     }
 
     function exportOverviewCSV() {
-      const { mids, rows } = buildOverviewMatrix(activeOverviewCategory);
-      if (mids.length === 0) {
+      const { stores, rows } = buildOverviewMatrix(activeOverviewCategory);
+      if (rows.length === 0) {
         alert('此分類無庫存資料可匯出');
         return;
       }
 
       let csv = '\uFEFF';
       const esc = v => `"${String(v).replace(/"/g, '""')}"`;
-      csv += ['門市', '門市名稱', ...mids.map(esc), '合計'].join(',') + '\n';
+      csv += ['商品', ...stores, '合計'].join(',') + '\n';
       rows.forEach(r => {
-        csv += [r.id, esc(r.name), ...r.vals, r.total].join(',') + '\n';
+        csv += [esc(r.mid), ...r.vals, r.total].join(',') + '\n';
       });
 
       const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
