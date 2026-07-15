@@ -3726,9 +3726,9 @@
       };
     }
 
-    // ========== Hotmodel 總覽（矩陣熱力表，權限同庫存總覽） ==========
+    // ========== Hotmodel 總覽（矩陣熱力表，開放全門市；補貨建議下拉依角色鎖定門市） ==========
     function initializeHotmodelMatrix() {
-      if (!canViewOverview()) {
+      if (!hasInventoryPermission) {
         const container = document.querySelector('#hotmodelMatrixPage .lowstock-container');
         if (container) {
           container.innerHTML = `
@@ -3744,18 +3744,25 @@
       document.getElementById('exportHotmodelMatrixBtn').addEventListener('click', exportHotmodelMatrixCSV);
       document.getElementById('hotmodelMatrixUpdateTime').textContent = `(資料時間 ${formatDataUpdateTime()})`;
 
-      // 🆕 補貨建議：填充門市下拉（排除 825/830）
+      // 🆕 補貨建議：門市下拉（單店角色鎖定自己門市，其餘可選全門市，排除 825/830）
       const restockSelect = document.getElementById('restockStoreFilter');
-      Object.keys(storeInfo)
-        .filter(s => !HOTMODEL_EXCLUDED_STORES.includes(s))
-        .sort((a, b) => parseInt(a) - parseInt(b))
-        .forEach(sid => {
-          const option = document.createElement('option');
-          option.value = sid;
-          option.textContent = `${sid} - ${storeInfo[sid]}`;
-          restockSelect.appendChild(option);
-        });
+      if (!canSwitchStore) {
+        // store_75 / store_77 等單店角色：直接鎖定顯示自己的店，不給切換
+        restockSelect.innerHTML = `<option value="${selectedStore}" selected>${selectedStore} - ${storeInfo[selectedStore] || ''}</option>`;
+        restockSelect.disabled = true;
+      } else {
+        Object.keys(storeInfo)
+          .filter(s => !HOTMODEL_EXCLUDED_STORES.includes(s))
+          .sort((a, b) => parseInt(a) - parseInt(b))
+          .forEach(sid => {
+            const option = document.createElement('option');
+            option.value = sid;
+            option.textContent = `${sid} - ${storeInfo[sid]}`;
+            restockSelect.appendChild(option);
+          });
+      }
       restockSelect.addEventListener('change', renderRestockSuggestions);
+      if (!canSwitchStore) renderRestockSuggestions(); // 單店角色直接顯示自己店的建議
 
       // reference 未載入時先補載（與 Hotmodel 頁相同的保護）
       if (hotmodelReference.length === 0) {
@@ -4845,10 +4852,10 @@
           overviewNavBtn.style.display = canViewOverview() ? 'inline-block' : 'none';
         }
 
-        // 🆕 Hotmodel 總覽按鈕：權限同庫存總覽
+        // 🆕 Hotmodel 總覽按鈕：開放全門市角色（與 Hotmodel 一般按鈕同權限）
         const hmMatrixNavBtn = document.querySelector('.nav-btn[data-page="hotmodelMatrix"]');
         if (hmMatrixNavBtn) {
-          hmMatrixNavBtn.style.display = canViewOverview() ? 'inline-block' : 'none';
+          hmMatrixNavBtn.style.display = 'inline-block';
         }
         
         // 🆕 根據 canSwitchStore 控制店別選單
