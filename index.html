@@ -3788,7 +3788,7 @@
       h += '<tr><th style="text-align: left; font-weight: 600; color: #94a3b8; font-size: 11px; padding: 4px 6px;">大分類</th>';
       h += '<th style="text-align: left; font-weight: 600; color: #94a3b8; font-size: 11px; padding: 4px 6px;">機型</th>';
       stores.forEach(sid => {
-        h += `<th style="font-weight: 600; color: #64748b; font-size: 11px; padding: 4px 2px;" title="${storeInfo[sid] || sid}">${sid}</th>`;
+        h += `<th style="text-align: center; font-weight: 600; color: #64748b; font-size: 11px; padding: 4px 2px;" title="${storeInfo[sid] || sid}">${sid}</th>`;
       });
       h += '<th style="font-weight: 600; color: #94a3b8; font-size: 11px;">合計</th></tr>';
 
@@ -3797,7 +3797,7 @@
         const showCat = r.category !== prevCategory;
         prevCategory = r.category;
         h += `<tr><td style="padding: 4px 6px; font-weight: 600; color: #64748b; font-size: 11px;">${showCat ? r.category : ''}</td>`;
-        h += `<td style="padding: 4px 6px; font-weight: 600; color: #1e40af; line-height: 1.3; word-break: break-word;">${r.label}</td>`;
+        h += `<td class="lowstock-model" style="padding: 4px 6px; line-height: 1.3; word-break: break-word;">${r.label}</td>`;
         r.vals.forEach((v, i) => {
           h += `<td class="hm-matrix-cell" data-store="${stores[i]}" data-preset="${r.presetId}" style="text-align: center; padding: 5px 2px; border-radius: 4px; cursor: pointer; ${overviewCellStyle(v)}">${v}</td>`;
         });
