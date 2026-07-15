@@ -3614,17 +3614,19 @@
       const modal = document.getElementById('inventoryModal');
       const storeName = storeInfo[storeId] || storeId;
 
-      // 找出該中分類、有庫存追蹤的所有 SKU（與矩陣計算範圍一致）
+      // 🆕 找出該中分類所有 SKU（含 inventory.json 尚無庫存記錄的款式，視為 0 並標註）
       const skus = [];
       originalData.forEach(row => {
         if ((row['大分類'] || '') !== activeOverviewCategory) return;
         if ((row['中分類'] || '未分類') !== mid) return;
         const code = row['Code'];
-        if (!code || !inventoryData[code]) return;
+        if (!code) return;
+        const hasData = !!inventoryData[code];
         skus.push({
           code,
           name: row['product_name'] || '',
-          qty: inventoryData[code].stores?.[storeId] || 0
+          qty: hasData ? (inventoryData[code].stores?.[storeId] || 0) : 0,
+          hasData
         });
       });
 
@@ -3674,6 +3676,16 @@
 
       // SKU 清單：分組標題 + 該組項目（點任一列 → 開該 SKU 的標準全門市分布檢視）
       const renderItem = s => {
+        if (!s.hasData) {
+          // 🆕 尚無庫存追蹤記錄（可能未到貨/未建檔），與「已知 0 台」區別顯示
+          return `<div class="overview-sku-item" data-code="${s.code}" style="display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-bottom: 1px solid #f1f5f9; cursor: pointer; opacity: 0.75;">
+            <div style="flex: 1; min-width: 0;">
+              <div style="font-size: 13px; color: #334155; line-height: 1.4;">${s.name}</div>
+              <div style="font-family: monospace; font-size: 11px; color: #64748b; margin-top: 2px;">${s.code}</div>
+            </div>
+            <span style="font-weight: 600; font-size: 11px; color: #94a3b8; flex-shrink: 0;">無庫存資料</span>
+          </div>`;
+        }
         const qtyColor = s.qty === 0 ? '#dc2626' : (s.qty <= 2 ? '#b45309' : '#15803d');
         return `<div class="overview-sku-item" data-code="${s.code}" style="display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-bottom: 1px solid #f1f5f9; cursor: pointer;">
           <div style="flex: 1; min-width: 0;">
