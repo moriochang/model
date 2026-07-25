@@ -2713,7 +2713,13 @@
       if (activeQuickCapacity) {
         filtered = filtered.filter(row => {
           const productName = row[columnMapping['product_name']] || '';
-          
+
+          // 🆕 Care 裝置類型篩選（device:Mac、device:iPad 等）
+          if (activeQuickCapacity.startsWith('device:')) {
+            const device = activeQuickCapacity.slice(7);
+            return classifyCareDevice(productName) === device;
+          }
+
           // 如果是 Apple Watch 尺寸（包含 mm）
           if (activeQuickCapacity.includes('mm')) {
             const sizeNum = activeQuickCapacity.replace('mm', '');
@@ -2837,6 +2843,18 @@
     }
 
     // 🆕 輔助函數：從產品名稱提取 Apple Watch 尺寸
+    // 🆕 Care（保固方案）產品：依名稱關鍵字判斷適用裝置類型
+    // 用固定 5 顆按鈕（Mac/iPad/iPhone/AW/AirPods）取代動態關鍵字抓取
+    function classifyCareDevice(productName) {
+      const name = productName || '';
+      if (/\bMac\b|MacBook|iMac|\bMB[APN]\b|Mac mini|Mac Studio|Pro Display|Studio Display|Display XDR|Display \(/i.test(name)) return 'Mac';
+      if (/ipad/i.test(name)) return 'iPad';
+      if (/iphone/i.test(name)) return 'iPhone';
+      if (/\bAW\b/.test(name)) return 'AW';
+      if (/airpods/i.test(name)) return 'AirPods';
+      return null;
+    }
+
     function extractWatchSize(productName) {
       const sizes = new Set();
       
@@ -2932,8 +2950,27 @@
         // 根據分類動態更新標籤文字
         if (currentCategory === 'Apple Watch') {
           quickCapacityLabel.textContent = '尺寸篩選：';
+        } else if (currentCategory === 'Care') {
+          quickCapacityLabel.textContent = '適用裝置：';
         } else {
           quickCapacityLabel.textContent = '容量篩選：';
+        }
+
+        // 🆕 Care：固定 5 顆裝置按鈕（取代動態關鍵字抓取），不受中分類篩選影響
+        if (currentCategory === 'Care') {
+          quickCapacityRow.classList.add('active');
+          quickCapacityButtons.innerHTML = '';
+          ['Mac', 'iPad', 'iPhone', 'AW', 'AirPods'].forEach(device => {
+            const button = document.createElement('button');
+            button.className = 'quick-capacity-btn';
+            button.textContent = device;
+            button.setAttribute('data-capacity', 'device:' + device);
+            if (activeQuickCapacity === 'device:' + device) {
+              button.classList.add('active');
+            }
+            quickCapacityButtons.appendChild(button);
+          });
+          return;
         }
         
         // 從當前資料中提取容量（使用輔助函數）
