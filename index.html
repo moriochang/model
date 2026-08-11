@@ -3755,7 +3755,7 @@
         this.onclick = null; // 移交給標準檢視前解除，避免殘留
         const code = item.getAttribute('data-code');
         const rowData = productDataMap.get(code);
-        if (rowData) showInventoryModal(code, rowData);
+        if (rowData) showInventoryModal(code, rowData, () => showOverviewCellModal(storeId, mid));
       };
 
       modal.style.display = 'block';
@@ -3942,7 +3942,7 @@
         this.onclick = null;
         const code = item.getAttribute('data-code');
         const rowData = productDataMap.get(code);
-        if (rowData) showInventoryModal(code, rowData);
+        if (rowData) showInventoryModal(code, rowData, () => showHotmodelCellModal(storeId, presetId));
       };
 
       modal.style.display = 'block';
@@ -5050,7 +5050,7 @@
     }
 
     // 🆕 顯示庫存詳情浮動視窗
-    function showInventoryModal(productCode, rowData) {
+    function showInventoryModal(productCode, rowData, returnTo = null) {
       const modal = document.getElementById('inventoryModal');
       const productInventory = inventoryData[productCode];
 
@@ -5059,6 +5059,18 @@
       document.getElementById('modalSummaryLabel2').textContent = '有庫存門市';
       document.getElementById('modalSummaryLabel3').textContent = '缺貨門市';
       document.getElementById('modalStoreList').style.display = ''; // 還原 .store-list 的 grid 佈局
+
+      // 🆕 返回按鈕：若是從門市鑽取畫面（Hotmodel 總覽 / 庫存總覽 / 補貨建議）點 SKU 進來，顯示返回
+      const backBtn = document.getElementById('modalBackBtn');
+      if (returnTo) {
+        backBtn.style.display = 'flex';
+        backBtn.onclick = function() {
+          returnTo();
+        };
+      } else {
+        backBtn.style.display = 'none';
+        backBtn.onclick = null;
+      }
       
       // 設定產品資訊
       document.getElementById('modalProductName').textContent = rowData[columnMapping['product_name']] || '未知產品';
@@ -5137,6 +5149,10 @@
     function closeInventoryModal() {
       const modal = document.getElementById('inventoryModal');
       modal.style.display = 'none';
+      // 重設返回按鈕，避免下次非鑽取方式開啟時殘留
+      const backBtn = document.getElementById('modalBackBtn');
+      backBtn.style.display = 'none';
+      backBtn.onclick = null;
     }
 
     // 🆕 ESC 鍵關閉浮動視窗
@@ -5473,6 +5489,7 @@
       <div class="modal-header">
         <div class="modal-title" id="modalProductName">產品名稱</div>
         <div class="modal-subtitle" id="modalProductCode">產品代碼</div>
+        <button class="modal-close" id="modalBackBtn" style="display: none; right: 64px;" title="返回">←</button>
         <button class="modal-close" onclick="closeInventoryModal()">×</button>
       </div>
       <div class="modal-body">
