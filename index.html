@@ -2178,6 +2178,25 @@
               <div class="loading">載入中...</div>
             </div>
           </div>
+
+          <!-- 🆕 門市補貨建議（依當前大分類，單位為中分類） -->
+          <div style="margin-top: 28px; padding-top: 20px; border-top: 2px solid #e2e8f0;">
+            <div class="lowstock-header" style="margin-bottom: 12px;">
+              <h2 style="font-size: 18px;">🚚 門市補貨建議</h2>
+              <p class="lowstock-subtitle">列出該店庫存 ≤ 1 的商品，每項建議全門市可轉貨最多的 2 個 SKU（依當前大分類）</p>
+            </div>
+            <div class="lowstock-controls" style="margin-bottom: 12px;">
+              <div class="control-group">
+                <label for="overviewRestockStoreFilter">選擇門市：</label>
+                <select id="overviewRestockStoreFilter" class="lowstock-select">
+                  <option value="">-- 請選擇 --</option>
+                </select>
+              </div>
+            </div>
+            <div id="overviewRestockContainer">
+              <div style="text-align: center; padding: 24px; color: #94a3b8; font-size: 13px;">請先選擇門市</div>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -3521,6 +3540,7 @@
           activeOverviewCategory = cat;
           btnContainer.querySelectorAll('button').forEach(b => b.classList.toggle('active', b.textContent === cat));
           renderOverview();
+          renderOverviewRestock(); // 🆕 補貨建議跟著大分類切換
         });
         btnContainer.appendChild(btn);
       });
@@ -3528,7 +3548,26 @@
       document.getElementById('exportOverviewBtn').addEventListener('click', exportOverviewCSV);
       document.getElementById('overviewUpdateTime').textContent = `(資料時間 ${formatDataUpdateTime()})`;
 
+      // 🆕 補貨建議：門市下拉（單店角色鎖定自己門市，排除 825/830）
+      const ovRestockSelect = document.getElementById('overviewRestockStoreFilter');
+      if (!canSwitchStore) {
+        ovRestockSelect.innerHTML = `<option value="${selectedStore}" selected>${selectedStore} - ${storeInfo[selectedStore] || ''}</option>`;
+        ovRestockSelect.disabled = true;
+      } else {
+        Object.keys(storeInfo)
+          .filter(s => !HOTMODEL_EXCLUDED_STORES.includes(s))
+          .sort((a, b) => parseInt(a) - parseInt(b))
+          .forEach(sid => {
+            const option = document.createElement('option');
+            option.value = sid;
+            option.textContent = `${sid} - ${storeInfo[sid]}`;
+            ovRestockSelect.appendChild(option);
+          });
+      }
+      ovRestockSelect.addEventListener('change', renderOverviewRestock);
+
       renderOverview();
+      if (!canSwitchStore) renderOverviewRestock(); // 單店角色直接顯示自己店的建議
     }
 
     // 計算中分類 × 門市矩陣（列 = 中分類，欄 = 門市）
@@ -3619,6 +3658,132 @@
           const cell = e.target.closest('.overview-cell');
           if (!cell) return;
           showOverviewCellModal(cell.getAttribute('data-store'), cell.getAttribute('data-mid'));
+        });
+      }
+    }
+
+    // 🆕 庫存總覽的門市補貨建議：該店中分類庫存 ≤ 1 的商品，各列可轉貨最多的 2 個 SKU
+    // 邏輯與 Hotmodel 總覽相同，差別在單位是「中分類」而非「機型 preset」，且範圍限當前大分類
+    function renderOverviewRestock() {
+      const container = document.getElementById('overviewRestockContainer');
+      const storeId = document.getElementById('overviewRestockStoreFilter').value;
+
+      if (!storeId) {
+        container.innerHTML = '<div style="text-align: center; padding: 24px; color: #94a3b8; font-size: 13px;">請先選擇門市</div>';
+        return;
+      }
+
+      // 收集當前大分類下：中分類 → 該中分類所有 SKU
+      const midToSkus = new Map();
+      originalData.forEach(row => {
+        if ((row['大分類'] || '') !== activeOverviewCategory) return;
+        const code = row['Code'];
+        if (!code || !inventoryData[code]) return; // 無庫存追蹤資料的 SKU 不納入轉貨計算
+        const mid = row['中分類'] || '未分類';
+        if (!midToSkus.has(mid)) midToSkus.set(mid, []);
+        midToSkus.get(mid).push({ code, name: row['product_name'] || '' });
+      });
+
+      const items = [];
+      midToSkus.forEach((skuList, mid) => {
+        // 該店該中分類總庫存
+        const totalAtStore = skuList.reduce((sum, s) =>
+          sum + (inventoryData[s.code]?.stores?.[storeId] || 0), 0);
+        if (totalAtStore > 1) return;
+
+        // 每個 SKU 的「其他門市合計」與來源門市（排除本店與 825/830）
+        const skuStats = skuList.map(s => {
+          const stores = inventoryData[s.code]?.stores || {};
+          const sources = [];
+          let othersTotal = 0;
+          for (const [sid, qty] of Object.entries(stores)) {
+            if (sid === storeId || HOTMODEL_EXCLUDED_STORES.includes(sid)) continue;
+            if (qty > 0) {
+              sources.push({ id: sid, qty });
+              othersTotal += qty;
+            }
+          }
+          sources.sort((a, b) => b.qty - a.qty); // 純按台數多→少
+          return { code: s.code, name: s.name, othersTotal, sources };
+        });
+
+        const top2 = skuStats
+          .filter(s => s.othersTotal > 0)
+          .sort((a, b) => b.othersTotal - a.othersTotal)
+          .slice(0, 2);
+
+        items.push({ mid, totalAtStore, top2 });
+      });
+
+      // 排序：缺貨(0) 優先，其次按可轉貨量多的在前
+      items.sort((a, b) => {
+        if (a.totalAtStore !== b.totalAtStore) return a.totalAtStore - b.totalAtStore;
+        const aMax = a.top2[0]?.othersTotal || 0;
+        const bMax = b.top2[0]?.othersTotal || 0;
+        return bMax - aMax;
+      });
+
+      if (items.length === 0) {
+        container.innerHTML = `
+          <div class="lowstock-empty">
+            <div class="empty-icon">✅</div>
+            <div class="empty-title">此門市 ${activeOverviewCategory} 庫存皆充足</div>
+            <div class="empty-description">沒有商品庫存 ≤ 1</div>
+          </div>`;
+        return;
+      }
+
+      const circled = ['①', '②'];
+      let h = '';
+      items.forEach(item => {
+        const badge = item.totalAtStore === 0
+          ? '<span style="padding: 2px 8px; background: #fee2e2; color: #dc2626; border-radius: 4px; font-size: 11px; font-weight: 700;">缺貨</span>'
+          : `<span style="padding: 2px 8px; background: #fef3c7; color: #b45309; border-radius: 4px; font-size: 11px; font-weight: 700;">剩 ${item.totalAtStore} 台</span>`;
+
+        let skuHtml = '';
+        if (item.top2.length === 0) {
+          skuHtml = '<div style="padding: 8px 12px; color: #94a3b8; font-size: 12px;">全門市皆無可轉貨庫存</div>';
+        } else {
+          skuHtml = item.top2.map((s, i) => {
+            const chips = s.sources.slice(0, 5).map(src =>
+              `<span style="display: inline-block; margin: 2px 3px 2px 0; padding: 3px 8px; background: #f0fdf4; border: 1px solid #86efac; border-radius: 6px; font-size: 11px;"><span style="font-weight: 600; color: #166534;">${src.id}</span><span style="color: #16a34a; margin-left: 3px;">(${src.qty})</span></span>`
+            ).join('');
+            const more = s.sources.length > 5
+              ? `<span style="font-size: 11px; color: #94a3b8; margin-left: 4px;">+${s.sources.length - 5} 家</span>` : '';
+            return `<div class="ov-restock-sku-item" data-code="${s.code}" style="padding: 8px 12px; border-top: 1px solid #f1f5f9; cursor: pointer;">
+              <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
+                <span style="color: #1e40af; font-weight: 700; flex-shrink: 0;">${circled[i]}</span>
+                <span style="flex: 1; min-width: 0; font-size: 13px; color: #334155;">${s.name}</span>
+                <span style="font-weight: 700; font-size: 13px; color: #15803d; flex-shrink: 0;">可轉 ${s.othersTotal} 台</span>
+              </div>
+              <div style="padding-left: 24px;">
+                <span style="font-family: monospace; font-size: 11px; color: #64748b; margin-right: 8px;">${s.code}</span>${chips}${more}
+              </div>
+            </div>`;
+          }).join('');
+        }
+
+        h += `<div style="background: #fff; border: 1px solid #e2e8f0; border-radius: 10px; margin-bottom: 12px; overflow: hidden;">
+          <div style="display: flex; align-items: center; gap: 10px; padding: 10px 12px; background: #f8fafc;">
+            <span style="font-size: 11px; font-weight: 600; color: #64748b; flex-shrink: 0;">${activeOverviewCategory}</span>
+            <span class="lowstock-model" style="flex: 1;">${item.mid}</span>
+            ${badge}
+          </div>
+          ${skuHtml}
+        </div>`;
+      });
+
+      container.innerHTML = h;
+
+      // 點 SKU → 標準全門市分布檢視（事件委派，只綁一次）
+      if (!container.dataset.delegated) {
+        container.dataset.delegated = 'true';
+        container.addEventListener('click', function(e) {
+          const item = e.target.closest('.ov-restock-sku-item');
+          if (!item) return;
+          const code = item.getAttribute('data-code');
+          const rowData = productDataMap.get(code);
+          if (rowData) showInventoryModal(code, rowData);
         });
       }
     }
