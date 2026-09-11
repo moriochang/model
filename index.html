@@ -2156,6 +2156,11 @@
               <label>大分類：</label>
               <div id="overviewCategoryButtons" style="display: flex; flex-wrap: wrap; gap: 8px;"></div>
             </div>
+            <div class="control-group">
+              <button id="overviewExpandBtn" class="lowstock-category-btn" style="font-size: 13px; padding: 8px 14px;">
+                <span id="overviewExpandIcon">▸</span> 展開 SKU
+              </button>
+            </div>
             <button id="exportOverviewBtn" class="lowstock-btn lowstock-export">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
@@ -3511,7 +3516,13 @@
 
     // ========== 庫存總覽（僅 administrator） ==========
     let activeOverviewCategory = 'CPU';
+    let overviewExpanded = false; // 🆕 是否展開為 SKU 級檢視
     const OVERVIEW_CATEGORIES = ['CPU', 'iPad', 'iPhone', 'Apple Watch'];
+
+    // 🆕 庫存總覽排除規則：iPad 的 Cellular 版本不納入（彙總與展開皆排除）
+    function isExcludedFromOverview(category, productName) {
+      return category === 'iPad' && /\sCL\s/.test(productName || '');
+    }
 
     function initializeOverview() {
       if (!canViewOverview()) {
@@ -3548,6 +3559,15 @@
       document.getElementById('exportOverviewBtn').addEventListener('click', exportOverviewCSV);
       document.getElementById('overviewUpdateTime').textContent = `(資料時間 ${formatDataUpdateTime()})`;
 
+      // 🆕 展開 / 收合 SKU 切換
+      const expandBtn = document.getElementById('overviewExpandBtn');
+      expandBtn.addEventListener('click', () => {
+        overviewExpanded = !overviewExpanded;
+        expandBtn.classList.toggle('active', overviewExpanded);
+        document.getElementById('overviewExpandIcon').textContent = overviewExpanded ? '▾' : '▸';
+        renderOverview();
+      });
+
       // 🆕 補貨建議：門市下拉（單店角色鎖定自己門市，排除 825/830）
       const ovRestockSelect = document.getElementById('overviewRestockStoreFilter');
       if (!canSwitchStore) {
@@ -3570,14 +3590,17 @@
       if (!canSwitchStore) renderOverviewRestock(); // 單店角色直接顯示自己店的建議
     }
 
-    // 計算中分類 × 門市矩陣（列 = 中分類，欄 = 門市）
+    // 計算中分類 × 門市矩陣（列 = 中分類，欄 = 門市），並附帶每個中分類的 SKU 級明細
     function buildOverviewMatrix(category) {
-      // Code → 中分類（僅該大分類）
-      const codeToMid = new Map();
+      // Code → { mid, name }（僅該大分類，且排除 iPad CL）
+      const codeMeta = new Map();
       originalData.forEach(row => {
-        if ((row['大分類'] || '') !== category) return;
         const code = row['Code'];
-        if (code) codeToMid.set(code, row['中分類'] || '未分類');
+        if (!code) return;
+        if ((row['大分類'] || '') !== category) return;
+        const name = row['product_name'] || '';
+        if (isExcludedFromOverview(category, name)) return; // 🆕 iPad CL 排除
+        codeMeta.set(code, { mid: row['中分類'] || '未分類', name });
       });
 
       const stores = Object.keys(storeInfo)
@@ -3586,17 +3609,23 @@
 
       // 累加庫存
       const midTotals = {};
-      const cell = {}; // cell[mid][storeId] = qty
+      const cell = {};      // cell[mid][storeId] = qty
+      const midSkus = {};   // midSkus[mid] = [{ code, name, byStore }]
 
       for (const [code, product] of Object.entries(inventoryData)) {
-        const mid = codeToMid.get(code);
-        if (!mid) continue;
-        if (!cell[mid]) cell[mid] = {};
+        const meta = codeMeta.get(code);
+        if (!meta) continue;
+        const mid = meta.mid;
+        if (!cell[mid]) { cell[mid] = {}; midSkus[mid] = []; }
+
+        const byStore = {};
         for (const [sid, qty] of Object.entries(product.stores || {})) {
           if (HOTMODEL_EXCLUDED_STORES.includes(sid)) continue;
           cell[mid][sid] = (cell[mid][sid] || 0) + qty;
           midTotals[mid] = (midTotals[mid] || 0) + qty;
+          byStore[sid] = qty;
         }
+        midSkus[mid].push({ code, name: meta.name, byStore });
       }
 
       // 中分類按全通路總量排序（量大在前）
@@ -3604,7 +3633,13 @@
 
       const rows = mids.map(mid => {
         const vals = stores.map(sid => cell[mid][sid] || 0);
-        return { mid, vals, total: vals.reduce((a, b) => a + b, 0) };
+        // SKU 級：各自的門市庫存陣列，按全通路總量多→少排序
+        const skus = (midSkus[mid] || []).map(s => {
+          const svals = stores.map(sid => s.byStore[sid] || 0);
+          return { code: s.code, name: s.name, vals: svals, total: svals.reduce((a, b) => a + b, 0) };
+        }).sort((a, b) => b.total - a.total || a.code.localeCompare(b.code));
+
+        return { mid, vals, total: vals.reduce((a, b) => a + b, 0), skus };
       });
 
       return { stores, rows };
@@ -3626,8 +3661,9 @@
         return;
       }
 
-      // 固定欄寬（與 Hotmodel 總覽一致）：商品 150px、每個門市 40px、合計 48px
-      const COL_LABEL = 150, COL_STORE = 40, COL_TOTAL = 48;
+      // 展開模式商品欄較寬（放得下完整品名）
+      const COL_LABEL = overviewExpanded ? 230 : 150;
+      const COL_STORE = 40, COL_TOTAL = 48;
       const tableWidth = COL_LABEL + stores.length * COL_STORE + COL_TOTAL;
 
       let h = `<table style="border-collapse: separate; border-spacing: 2px; table-layout: fixed; width: ${tableWidth}px; font-size: 12px;">`;
@@ -3642,19 +3678,42 @@
       h += '<th style="font-weight: 600; color: #94a3b8; font-size: 11px;">合計</th></tr>';
 
       rows.forEach(r => {
-        h += `<tr><td class="lowstock-model" style="padding: 4px 6px; line-height: 1.3; word-break: break-word;">${r.mid}</td>`;
+        // 中分類彙總列（展開模式下作為分組標題，底色區隔）
+        const rowBg = overviewExpanded ? 'background: #f1f5f9;' : '';
+        h += `<tr><td class="lowstock-model" style="padding: 4px 6px; line-height: 1.3; word-break: break-word; ${rowBg}">${r.mid}${overviewExpanded ? ` <span style="font-size: 11px; font-weight: 400; color: #94a3b8;">${r.skus.length} SKU</span>` : ''}</td>`;
         r.vals.forEach((v, i) => {
           h += `<td class="overview-cell" data-store="${stores[i]}" data-mid="${r.mid}" style="text-align: center; padding: 5px 2px; border-radius: 4px; cursor: pointer; ${overviewCellStyle(v)}">${v}</td>`;
         });
-        h += `<td style="text-align: center; color: #94a3b8; font-weight: 600;">${r.total}</td></tr>`;
+        h += `<td style="text-align: center; color: #94a3b8; font-weight: 600; ${rowBg}">${r.total}</td></tr>`;
+
+        // 🆕 展開模式：該中分類下的 SKU 明細列
+        if (overviewExpanded) {
+          r.skus.forEach(s => {
+            h += `<tr><td class="overview-sku-row" data-code="${s.code}" style="padding: 4px 6px 4px 16px; line-height: 1.3; word-break: break-word; cursor: pointer;">
+              <div style="font-size: 12px; color: #334155;">${s.name}</div>
+              <div style="font-family: monospace; font-size: 10px; color: #94a3b8;">${s.code}</div>
+            </td>`;
+            s.vals.forEach(v => {
+              h += `<td style="text-align: center; padding: 5px 2px; border-radius: 4px; ${overviewCellStyle(v)}">${v}</td>`;
+            });
+            h += `<td style="text-align: center; color: #94a3b8; font-weight: 600;">${s.total}</td></tr>`;
+          });
+        }
       });
       h += '</table>';
       container.innerHTML = h;
 
-      // 🆕 點格子鑽取 SKU 明細（事件委派，只綁一次）
+      // 🆕 點格子鑽取 SKU 明細 / 點 SKU 列開全門市分布（事件委派，只綁一次）
       if (!container.dataset.delegated) {
         container.dataset.delegated = 'true';
         container.addEventListener('click', function(e) {
+          const skuRow = e.target.closest('.overview-sku-row');
+          if (skuRow) {
+            const code = skuRow.getAttribute('data-code');
+            const rowData = productDataMap.get(code);
+            if (rowData) showInventoryModal(code, rowData);
+            return;
+          }
           const cell = e.target.closest('.overview-cell');
           if (!cell) return;
           showOverviewCellModal(cell.getAttribute('data-store'), cell.getAttribute('data-mid'));
@@ -3679,6 +3738,7 @@
         if ((row['大分類'] || '') !== activeOverviewCategory) return;
         const code = row['Code'];
         if (!code || !inventoryData[code]) return; // 無庫存追蹤資料的 SKU 不納入轉貨計算
+        if (isExcludedFromOverview(activeOverviewCategory, row['product_name'])) return; // 🆕 iPad CL 排除
         const mid = row['中分類'] || '未分類';
         if (!midToSkus.has(mid)) midToSkus.set(mid, []);
         midToSkus.get(mid).push({ code, name: row['product_name'] || '' });
@@ -3797,16 +3857,28 @@
 
       let csv = '\uFEFF';
       const esc = v => `"${String(v).replace(/"/g, '""')}"`;
-      csv += ['商品', ...stores, '合計'].join(',') + '\n';
-      rows.forEach(r => {
-        csv += [esc(r.mid), ...r.vals, r.total].join(',') + '\n';
-      });
+
+      if (overviewExpanded) {
+        // 🆕 展開模式：輸出 SKU 級明細（中分類彙總列 + 各 SKU 列）
+        csv += ['層級', '中分類', '產品名稱', 'Code', ...stores, '合計'].join(',') + '\n';
+        rows.forEach(r => {
+          csv += ['彙總', esc(r.mid), '', '', ...r.vals, r.total].join(',') + '\n';
+          r.skus.forEach(s => {
+            csv += ['SKU', esc(r.mid), esc(s.name), esc(s.code), ...s.vals, s.total].join(',') + '\n';
+          });
+        });
+      } else {
+        csv += ['商品', ...stores, '合計'].join(',') + '\n';
+        rows.forEach(r => {
+          csv += [esc(r.mid), ...r.vals, r.total].join(',') + '\n';
+        });
+      }
 
       const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
       const link = document.createElement('a');
       link.href = URL.createObjectURL(blob);
       const dateStr = new Date().toISOString().slice(0, 10).replace(/-/g, '');
-      link.download = `庫存總覽_${activeOverviewCategory}_${dateStr}.csv`;
+      link.download = `庫存總覽_${activeOverviewCategory}${overviewExpanded ? '_SKU' : ''}_${dateStr}.csv`;
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
@@ -3822,6 +3894,7 @@
       originalData.forEach(row => {
         if ((row['大分類'] || '') !== activeOverviewCategory) return;
         if ((row['中分類'] || '未分類') !== mid) return;
+        if (isExcludedFromOverview(activeOverviewCategory, row['product_name'])) return; // 🆕 iPad CL 排除
         const code = row['Code'];
         if (!code) return;
         const hasData = !!inventoryData[code];
