@@ -3638,33 +3638,42 @@
       // 累加庫存
       const midTotals = {};
       const cell = {};      // cell[mid][storeId] = qty
-      const midSkus = {};   // midSkus[mid] = [{ code, name, byStore }]
+      const midSkus = {};   // midSkus[mid] = [{ code, name, byStore, hasData }]
+      const trackedMids = new Set(); // 有庫存追蹤記錄的中分類
 
-      for (const [code, product] of Object.entries(inventoryData)) {
-        const meta = codeMeta.get(code);
-        if (!meta) continue;
+      // 🆕 從 data.csv 出發列出所有 SKU（含 inventory.json 尚無記錄者，視為 0）
+      // 否則未建檔的 SKU 會整列消失，SKU 數也會少算
+      for (const [code, meta] of codeMeta) {
         const mid = meta.mid;
         if (!cell[mid]) { cell[mid] = {}; midSkus[mid] = []; }
 
+        const product = inventoryData[code];
+        const hasData = !!product;
         const byStore = {};
-        for (const [sid, qty] of Object.entries(product.stores || {})) {
-          if (HOTMODEL_EXCLUDED_STORES.includes(sid)) continue;
-          cell[mid][sid] = (cell[mid][sid] || 0) + qty;
-          midTotals[mid] = (midTotals[mid] || 0) + qty;
-          byStore[sid] = qty;
+        if (hasData) {
+          trackedMids.add(mid);
+          for (const [sid, qty] of Object.entries(product.stores || {})) {
+            if (HOTMODEL_EXCLUDED_STORES.includes(sid)) continue;
+            cell[mid][sid] = (cell[mid][sid] || 0) + qty;
+            midTotals[mid] = (midTotals[mid] || 0) + qty;
+            byStore[sid] = qty;
+          }
         }
-        midSkus[mid].push({ code, name: meta.name, byStore });
+        midSkus[mid].push({ code, name: meta.name, byStore, hasData });
       }
 
-      // 中分類按全通路總量排序（量大在前）
-      const mids = Object.keys(midTotals).sort((a, b) => midTotals[b] - midTotals[a]);
+      // 中分類按全通路總量排序（量大在前）；只列有庫存追蹤的中分類
+      const mids = [...trackedMids].sort((a, b) => (midTotals[b] || 0) - (midTotals[a] || 0));
 
       const rows = mids.map(mid => {
         const vals = stores.map(sid => cell[mid][sid] || 0);
-        // SKU 級：各自的門市庫存陣列，按全通路總量多→少排序
+        // SKU 級：各自的門市庫存陣列
         const skus = (midSkus[mid] || []).map(s => {
           const svals = stores.map(sid => s.byStore[sid] || 0);
-          return { code: s.code, name: s.name, vals: svals, total: svals.reduce((a, b) => a + b, 0) };
+          return {
+            code: s.code, name: s.name, hasData: s.hasData,
+            vals: svals, total: svals.reduce((a, b) => a + b, 0)
+          };
         }).sort((a, b) => {
           // 🆕 排序層級：記憶體 → 容量（AW 為錶徑）→ 產品代碼
           // 最後用 Code 而非庫存量，同規格的顏色順序才會固定不跳動
@@ -3726,14 +3735,18 @@
         // 🆕 展開模式：該中分類下的 SKU 明細列
         if (overviewExpanded) {
           r.skus.forEach(s => {
-            h += `<tr><td class="overview-sku-row" data-code="${s.code}" style="padding: 4px 6px 4px 16px; line-height: 1.3; word-break: break-word; cursor: pointer;">
+            const noData = !s.hasData;
+            h += `<tr><td class="overview-sku-row" data-code="${s.code}" style="padding: 4px 6px 4px 16px; line-height: 1.3; word-break: break-word; cursor: pointer; ${noData ? 'opacity: 0.7;' : ''}">
               <div style="font-size: 12px; color: #334155;">${s.name}</div>
-              <div style="font-family: monospace; font-size: 10px; color: #94a3b8;">${s.code}</div>
+              <div style="font-family: monospace; font-size: 10px; color: #94a3b8;">${s.code}${noData ? ' <span style="font-family: inherit; color: #cbd5e1;">· 無庫存資料</span>' : ''}</div>
             </td>`;
             s.vals.forEach(v => {
-              h += `<td style="text-align: center; padding: 5px 2px; border-radius: 4px; ${overviewCellStyle(v)}">${v}</td>`;
+              const cellStyle = noData
+                ? 'color: #cbd5e1;' // 無庫存記錄：淡灰，與「已知 0 台」的紅色區隔
+                : overviewCellStyle(v);
+              h += `<td style="text-align: center; padding: 5px 2px; border-radius: 4px; ${cellStyle}">${noData ? '–' : v}</td>`;
             });
-            h += `<td style="text-align: center; color: #94a3b8; font-weight: 600;">${s.total}</td></tr>`;
+            h += `<td style="text-align: center; color: #94a3b8; font-weight: 600;">${noData ? '–' : s.total}</td></tr>`;
           });
         }
       });
@@ -3901,7 +3914,8 @@
         rows.forEach(r => {
           csv += ['彙總', esc(r.mid), '', '', ...r.vals, r.total].join(',') + '\n';
           r.skus.forEach(s => {
-            csv += ['SKU', esc(r.mid), esc(s.name), esc(s.code), ...s.vals, s.total].join(',') + '\n';
+            const vals = s.hasData ? s.vals : s.vals.map(() => '');
+            csv += ['SKU', esc(r.mid), esc(s.name), esc(s.code), ...vals, s.hasData ? s.total : '無庫存資料'].join(',') + '\n';
           });
         });
       } else {
