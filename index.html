@@ -3540,6 +3540,18 @@
       return Infinity;
     }
 
+    // 🆕 解析記憶體（RAM）大小，用於 Mac 類 SKU 排序
+    // 注意：「8GP」為 8 核 GPU，因 G 後緊接 P 無字界而不會被誤判為 8G 記憶體
+    const OVERVIEW_RAM_SIZES = new Set([8, 16, 18, 24, 32, 36, 48]);
+    function overviewRamWeight(productName) {
+      const matches = (productName || '').matchAll(/\b(\d+)\s?GB?\b/g);
+      for (const m of matches) {
+        const v = parseInt(m[1]);
+        if (OVERVIEW_RAM_SIZES.has(v)) return v;
+      }
+      return 0; // 無 RAM 標示（iPad / iPhone / AW）排最前，不影響容量排序
+    }
+
     function initializeOverview() {
       if (!canViewOverview()) {
         const container = document.querySelector('#overviewPage .lowstock-container');
@@ -3654,7 +3666,9 @@
           const svals = stores.map(sid => s.byStore[sid] || 0);
           return { code: s.code, name: s.name, vals: svals, total: svals.reduce((a, b) => a + b, 0) };
         }).sort((a, b) => {
-          // 🆕 依容量（AW 依錶徑）小→大排序，同容量再按庫存多→少
+          // 🆕 先比記憶體（Mac 類），再比容量（AW 為錶徑），最後按庫存多→少
+          const ra = overviewRamWeight(a.name), rb = overviewRamWeight(b.name);
+          if (ra !== rb) return ra - rb;
           const wa = overviewSkuWeight(category, a.name);
           const wb = overviewSkuWeight(category, b.name);
           if (wa !== wb) return wa - wb;
