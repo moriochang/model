@@ -3524,6 +3524,22 @@
       return category === 'iPad' && /\sCL\s/.test(productName || '');
     }
 
+    // 🆕 SKU 排序權重：換算成可比較的數值（AW 用錶徑 mm，其餘用容量 GB）
+    // 解析不出來的排最後，複用產品搜尋的解析函式確保與篩選邏輯一致
+    function overviewSkuWeight(category, productName) {
+      if (category === 'Apple Watch') {
+        const sizes = extractWatchSize(productName);
+        if (sizes.size > 0) return parseInt([...sizes][0]);
+        return Infinity;
+      }
+      const caps = extractStorageCapacity(productName);
+      if (caps.size > 0) {
+        const v = [...caps][0];
+        return v.endsWith('TB') ? parseFloat(v) * 1024 : parseInt(v);
+      }
+      return Infinity;
+    }
+
     function initializeOverview() {
       if (!canViewOverview()) {
         const container = document.querySelector('#overviewPage .lowstock-container');
@@ -3637,7 +3653,13 @@
         const skus = (midSkus[mid] || []).map(s => {
           const svals = stores.map(sid => s.byStore[sid] || 0);
           return { code: s.code, name: s.name, vals: svals, total: svals.reduce((a, b) => a + b, 0) };
-        }).sort((a, b) => b.total - a.total || a.code.localeCompare(b.code));
+        }).sort((a, b) => {
+          // 🆕 依容量（AW 依錶徑）小→大排序，同容量再按庫存多→少
+          const wa = overviewSkuWeight(category, a.name);
+          const wb = overviewSkuWeight(category, b.name);
+          if (wa !== wb) return wa - wb;
+          return b.total - a.total || a.code.localeCompare(b.code);
+        });
 
         return { mid, vals, total: vals.reduce((a, b) => a + b, 0), skus };
       });
