@@ -3666,13 +3666,14 @@
           const svals = stores.map(sid => s.byStore[sid] || 0);
           return { code: s.code, name: s.name, vals: svals, total: svals.reduce((a, b) => a + b, 0) };
         }).sort((a, b) => {
-          // 🆕 先比記憶體（Mac 類），再比容量（AW 為錶徑），最後按庫存多→少
+          // 🆕 排序層級：記憶體 → 容量（AW 為錶徑）→ 產品代碼
+          // 最後用 Code 而非庫存量，同規格的顏色順序才會固定不跳動
           const ra = overviewRamWeight(a.name), rb = overviewRamWeight(b.name);
           if (ra !== rb) return ra - rb;
           const wa = overviewSkuWeight(category, a.name);
           const wb = overviewSkuWeight(category, b.name);
           if (wa !== wb) return wa - wb;
-          return b.total - a.total || a.code.localeCompare(b.code);
+          return a.code.localeCompare(b.code);
         });
 
         return { mid, vals, total: vals.reduce((a, b) => a + b, 0), skus };
