@@ -2341,12 +2341,9 @@
         document.getElementById('userAvatar').src = user.photoURL || 'https://via.placeholder.com/36';
         
         // 🆕 從 Firebase custom claims 取得角色（唯一權限來源）
-        // 若 token 中還沒有 app_role（剛設定完 claims 的使用者），
-        // 強制刷新一次 token，省去請同事手動登出再登入
-        let tokenResult = await user.getIdTokenResult();
-        if (!tokenResult.claims.app_role) {
-          tokenResult = await user.getIdTokenResult(true);
-        }
+        // 一律強制刷新 token，確保剛設定或剛變更的 claims 立即生效，
+        // 不用請同事登出再登入。每次登入多一個網路請求，可忽略。
+        const tokenResult = await user.getIdTokenResult(true);
         
         currentUserEmail = user.email;
         const permissions = getUserPermissions(tokenResult.claims);
