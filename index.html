@@ -2332,7 +2332,7 @@
       }
     });
 
-    onAuthStateChanged(auth, (user) => {
+    onAuthStateChanged(auth, async (user) => {
       if (user && user.email.endsWith('@istore.com.tw')) {
         document.getElementById('loginPage').style.display = 'none';
         document.getElementById('mainContent').style.display = 'block';
@@ -2340,14 +2340,24 @@
         document.getElementById('userName').textContent = user.displayName || user.email;
         document.getElementById('userAvatar').src = user.photoURL || 'https://via.placeholder.com/36';
         
-        // 🆕 取得使用者權限設定
+        // 🆕 從 Firebase custom claims 取得角色（唯一權限來源）
+        // 若 token 中還沒有 app_role（剛設定完 claims 的使用者），
+        // 強制刷新一次 token，省去請同事手動登出再登入
+        let tokenResult = await user.getIdTokenResult();
+        if (!tokenResult.claims.app_role) {
+          tokenResult = await user.getIdTokenResult(true);
+        }
+        
         currentUserEmail = user.email;
-        const permissions = getUserPermissions(user.email);
+        const permissions = getUserPermissions(tokenResult.claims);
         
         userRole = permissions.role;
         hasInventoryPermission = permissions.canViewInventory;
         canSwitchStore = permissions.canSwitchStore;
-        selectedStore = permissions.defaultStore;        // 🆕 初始化介面（顯示/隱藏庫存欄位、設定店別選單）
+        selectedStore = permissions.defaultStore;
+        canViewOverviewFlag = permissions.canViewOverview;
+
+        // 🆕 初始化介面（顯示/隱藏庫存欄位、設定店別選單）
         initializeInventoryUI();
         
         // 登入後載入資料
@@ -2382,6 +2392,7 @@
         hasInventoryPermission = false;
         userRole = 'none';
         canSwitchStore = false;
+        canViewOverviewFlag = false;
         inventoryData = {};
         storeInfo = {};
         originalData = [];
@@ -2411,6 +2422,27 @@
     window.firebaseAuth = auth;
   </script>
 
+  <!-- Supabase client：用現有的 Firebase 登入身份，不用另外登入 -->
+  <script type="module">
+    import { createClient } from 'https://esm.sh/@supabase/supabase-js@2.45.4';
+
+    // 🔧 換成你自己的 Supabase 專案值（Settings → API Keys）
+    // publishable key 設計上就是公開的，放在 GitHub Pages 上沒有問題，
+    // 安全性是靠 Firebase claims + 資料庫端的 get_inventory() 把關
+    const SUPABASE_URL = 'https://ziiwtzqwytrfaikzkmsj.supabase.co';
+    const SUPABASE_PUBLISHABLE_KEY = 'sb_publishable_OFmaIR4UoNPiJjZeHylt8A_igvk04RP';
+
+    const supabase = createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY, {
+      accessToken: async () => {
+        const user = window.firebaseAuth?.currentUser;
+        if (!user) return null;
+        return await user.getIdToken();
+      }
+    });
+
+    window.supabaseClient = supabase;
+  </script>
+
   <script>
     let data = [];
     let originalData = [];
@@ -2434,23 +2466,20 @@
     let currentSortColumn = null; // 當前排序的欄位
     let currentSortOrder = 'none'; // 排序順序：'none', 'asc', 'desc'
 
-    // 🆕 庫存總覽功能白名單：administrator 以外可額外開放的帳號
-    const OVERVIEW_ALLOWED_EMAILS = [
-      'jimmy.chen@istore.com.tw'
-    ];
+    // 🆕 庫存總覽權限（來自 Firebase claim can_view_overview）
+    let canViewOverviewFlag = false;
 
     function canViewOverview() {
-      return userRole === 'administrator' ||
-        OVERVIEW_ALLOWED_EMAILS.includes((currentUserEmail || '').toLowerCase());
+      return userRole === 'administrator' || canViewOverviewFlag === true;
     }
     
-    // 🆕 權限分組系統
-    const USER_PERMISSIONS = {
+    // 🆕 權限能力對照表
+    // ⚠️ 這裡「只」定義角色能做什麼，不再包含任何 email 名單。
+    //    誰屬於哪個角色，單一來源是 Firebase custom claims（app_role），
+    //    用 set_firebase_claims.js 設定。人員異動只需改那一支腳本。
+    const ROLE_CAPABILITIES = {
       // 管理員：完整權限
       administrator: {
-        users: [
-          'morio.chang@istore.com.tw'
-        ],
         canViewInventory: true,      // 可以看到總庫存和庫存欄位
         defaultStore: '75',           // 預設顯示店別 75
         canSwitchStore: true          // 可以切換所有店別
@@ -2458,67 +2487,49 @@
       
       // 經理：完整權限
       manager: {
-        users: [
-          'onion.huang@istore.com.tw'
-        ],
-        canViewInventory: true,      // 可以看到總庫存和庫存欄位
-        defaultStore: '75',           // 預設顯示店別 75
-        canSwitchStore: true          // 可以切換所有店別
+        canViewInventory: true,
+        defaultStore: '75',
+        canSwitchStore: true
       },
       
-      // 店別 75：只能看自己店
+      // 店別 75：鎖定顯示自己的店（庫存數字仍為全通路，供轉貨判斷用）
       store_75: {
-        users: [
-          'istore.tc@istore.com.tw',
-          'ivy.chu@istore.com.tw',
-          'iris.chang@istore.com.tw',
-          'jimmy.chen@istore.com.tw',
-          'frank.chang@istore.com.tw',
-          'amy.chen@istore.com.tw',
-          'sharon.hsu@istore.com.tw',
-          'run.lin@istore.com.tw',
-          'luna.lin@istore.com.tw'
-        ],
-        canViewInventory: true,      // 可以看到總庫存和庫存欄位
-        defaultStore: '75',           // 預設顯示店別 75
+        canViewInventory: true,
+        defaultStore: '75',
         canSwitchStore: false         // 無法切換店別
       },
       
-      // 店別 77：只能看自己店
+      // 店別 77：鎖定顯示自己的店
       store_77: {
-        users: [
-          'istore.mtc@istore.com.tw',
-          'mark.hung@istore.com.tw',
-          'william.huang@istore.com.tw',
-          'allen.chen@istore.com.tw',
-          'ariel.chen@istore.com.tw',
-          'ziwei.chiang@istore.com.tw',
-          'harry.lin@istore.com.tw'
-        ],
-        canViewInventory: true,      // 可以看到總庫存和庫存欄位
-        defaultStore: '77',           // 預設顯示店別 77
-        canSwitchStore: false         // 無法切換店別
+        canViewInventory: true,
+        defaultStore: '77',
+        canSwitchStore: false
       }
     };
     
-    // 🆕 根據 email 取得使用者權限
-    function getUserPermissions(email) {
-      for (const [role, config] of Object.entries(USER_PERMISSIONS)) {
-        if (config.users.includes(email)) {
-          return {
-            role: role,
-            canViewInventory: config.canViewInventory,
-            defaultStore: config.defaultStore,
-            canSwitchStore: config.canSwitchStore
-          };
-        }
+    // 🆕 根據 Firebase custom claims 取得使用者權限
+    function getUserPermissions(claims) {
+      const role = claims?.app_role;
+      const config = ROLE_CAPABILITIES[role];
+      
+      if (!config) {
+        // 未登錄在權限名單中：無權限
+        // （資料庫端也會一併拒絕，前端只是不要顯示相關 UI）
+        return {
+          role: 'none',
+          canViewInventory: false,
+          defaultStore: '75',
+          canSwitchStore: false,
+          canViewOverview: false
+        };
       }
-      // 其他人：無權限
+      
       return {
-        role: 'none',
-        canViewInventory: false,
-        defaultStore: '75',
-        canSwitchStore: false
+        role: role,
+        canViewInventory: config.canViewInventory,
+        defaultStore: config.defaultStore,
+        canSwitchStore: config.canSwitchStore,
+        canViewOverview: claims.can_view_overview === true
       };
     }
 
@@ -5260,14 +5271,40 @@
         }      }
     }
 
-    // 🆕 載入庫存資料
+    // 🆕 庫存載入失敗時的可見提示（避免畫面靜悄悄地壞掉）
+    function showInventoryError(message) {
+      const statusDiv = document.getElementById('inventoryStatus');
+      if (!statusDiv) return;
+      statusDiv.classList.remove('loaded');
+      statusDiv.style.display = 'flex';
+      statusDiv.innerHTML = `<span style="color:#b91c1c;">⚠️ ${message}</span>`;
+    }
+
+    // 🆕 載入庫存資料（透過 Supabase RPC，身份由資料庫端驗證）
     async function loadInventory() {
-      try {        const response = await fetch('inventory.json?v=' + new Date().getTime());
-        
-        if (!response.ok) {          return;
+      try {
+        const { data, error } = await window.supabaseClient.rpc('get_inventory');
+
+        if (error) {
+          console.error('❌ 載入庫存失敗:', error);
+          const msg = error.message || '';
+          if (msg.includes('FORBIDDEN_NO_ROLE') || msg.includes('FORBIDDEN_UNKNOWN_ROLE')) {
+            showInventoryError('您的帳號尚未開通庫存權限，請聯絡系統管理員');
+          } else if (msg.includes('NO_DATA')) {
+            showInventoryError('目前尚無庫存資料，請稍後再試');
+          } else if (msg.includes('JWT') || msg.includes('token')) {
+            showInventoryError('登入狀態已過期，請重新整理頁面');
+          } else {
+            showInventoryError('庫存資料載入失敗，請重新整理頁面');
+          }
+          return;
         }
-        
-        const data = await response.json();
+
+        if (!data) {
+          showInventoryError('庫存資料載入失敗，請重新整理頁面');
+          return;
+        }
+
         inventoryData = data.inventory || {};
         storeInfo = data.storeInfo || {};
         
@@ -5293,6 +5330,7 @@
         
       } catch (error) {
         console.error('❌ 載入庫存失敗:', error);
+        showInventoryError('無法連線至庫存伺服器，請檢查網路後重新整理');
       }
     }
 
