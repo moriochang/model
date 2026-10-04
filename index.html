@@ -4450,27 +4450,36 @@
 
     const HOT_MODEL_PRESETS = [
       // CPU
-      { id: 'cpu_mba13_1tb', category: 'CPU', label: 'M5 MBA 13" 1TB', subcat: 'MBA 13 M5', kw: '1TB' },
       { id: 'cpu_mba13_512', category: 'CPU', label: 'M5 MBA 13" 512G', subcat: 'MBA 13 M5', kw: '512' },
       { id: 'cpu_mba15_512', category: 'CPU', label: 'M5 MBA 15" 512G', subcat: 'MBA 15 M5', kw: '512' },
       { id: 'cpu_mbn_256', category: 'CPU', label: 'MBN 256G', subcat: 'MBN', kw: '256GB' },
       { id: 'cpu_mbn_512', category: 'CPU', label: 'MBN 512G', subcat: 'MBN', kw: '512GB' },
       { id: 'cpu_mbp14_1tb', category: 'CPU', label: 'M5 MBP 14" 1TB', subcat: 'MBP 14 M5', kw: '1TB' },
+      { id: 'cpu_macmini_512', category: 'CPU', label: 'M6 Mac mini 512G', subcat: 'MAC MINI', kw: '512' },
       // iPad
       { id: 'ipad_air11_128', category: 'iPad', label: 'M4 iPad Air 11" 128G', subcat: 'iPad Air 11in M4', kw: '128' },
       { id: 'ipad_air11_256', category: 'iPad', label: 'M4 iPad Air 11" 256G', subcat: 'iPad Air 11in M4', kw: '256' },
-      { id: 'ipad_air13_256', category: 'iPad', label: 'M4 iPad Air 13" 256G', subcat: 'iPad Air 13in M4', kw: '256' },
-      { id: 'ipad_pro11_256', category: 'iPad', label: 'M5 iPad Pro 11" 256G', subcat: 'iPad Pro 11(M5)', kw: '256' },
       { id: 'ipad_a16_128', category: 'iPad', label: 'iPad (A16) 128G', subcat: 'iPad(A16)', kw: '128' },
       // iPhone
       { id: 'iphone_17_256', category: 'iPhone', label: 'iPhone 17 256G', subcat: 'iPhone 17', kw: '256G' },
-      { id: 'iphone_17p_256', category: 'iPhone', label: 'iPhone 17 Pro 256G', subcat: 'iPhone 17 Pro', kw: '256G' },
-      { id: 'iphone_17pm_256', category: 'iPhone', label: 'iPhone 17 PM 256G', subcat: 'iPhone 17 Pro Max', kw: '256G' },
+      { id: 'iphone_18p_256', category: 'iPhone', label: 'iPhone 18 Pro 256G', subcat: 'iPhone 18 Pro', kw: ' 256 ' },
+      { id: 'iphone_18p_512', category: 'iPhone', label: 'iPhone 18 Pro 512G', subcat: 'iPhone 18 Pro', kw: ' 512 ' },
+      { id: 'iphone_18pm_256', category: 'iPhone', label: 'iPhone 18 PM 256G', subcat: 'iPhone 18 Pro Max', kw: ' 256 ' },
+      { id: 'iphone_18pm_512', category: 'iPhone', label: 'iPhone 18 PM 512G', subcat: 'iPhone 18 Pro Max', kw: ' 512 ' },
       // Apple Watch
-      { id: 'aw_s11_42', category: 'Apple Watch', label: 'AW S11 GPS 42mm', subcat: 'S11-GPS', kw: ' 42 ' },
-      { id: 'aw_s11_46', category: 'Apple Watch', label: 'AW S11 GPS 46mm', subcat: 'S11-GPS', kw: ' 46 ' },
       { id: 'aw_se3_40', category: 'Apple Watch', label: 'AW SE 3 GPS 40mm', subcat: 'SE 3-GPS', kw: ' 40 ' },
       { id: 'aw_se3_44', category: 'Apple Watch', label: 'AW SE 3 GPS 44mm', subcat: 'SE 3-GPS', kw: ' 44 ' },
+      { id: 'aw_se3c_40', category: 'Apple Watch', label: 'AW SE 3 Cell 40mm', subcat: 'SE 3-Cell', kw: ' 40 ' },
+      { id: 'aw_se3c_44', category: 'Apple Watch', label: 'AW SE 3 Cell 44mm', subcat: 'SE 3-Cell', kw: ' 44 ' },
+      { id: 'aw_s12_42', category: 'Apple Watch', label: 'AW S12 GPS 42mm', subcat: 'S12-GPS', kw: ' 42 ' },
+      { id: 'aw_s12_46', category: 'Apple Watch', label: 'AW S12 GPS 46mm', subcat: 'S12-GPS', kw: ' 46 ' },
+      { id: 'aw_s12c_42', category: 'Apple Watch', label: 'AW S12 Cell 42mm', subcat: 'S12-Cell', kw: ' 42 ' },
+      { id: 'aw_s12c_46', category: 'Apple Watch', label: 'AW S12 Cell 46mm', subcat: 'S12-Cell', kw: ' 46 ' },
+      { id: 'aw_s12ti_42', category: 'Apple Watch', label: 'AW S12 鈦金屬 42mm', subcat: 'S12-鈦金屬', kw: ' 42 ' },
+      { id: 'aw_s12ti_46', category: 'Apple Watch', label: 'AW S12 鈦金屬 46mm', subcat: 'S12-鈦金屬', kw: ' 46 ' },
+      { id: 'aw_s12ce_42', category: 'Apple Watch', label: 'AW S12 陶瓷 42mm', subcat: 'S12-陶瓷', kw: ' 42 ' },
+      { id: 'aw_s12ce_46', category: 'Apple Watch', label: 'AW S12 陶瓷 46mm', subcat: 'S12-陶瓷', kw: ' 46 ' },
+      { id: 'aw_ultra4_49', category: 'Apple Watch', label: 'AW Ultra 4 49mm', subcat: 'Ultra 4', kw: ' 49 ' },
     ];
 
     function initializeLowStockAlert() {
