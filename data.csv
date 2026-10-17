@@ -68,8 +68,6 @@ MHLR3FE/A,0013016725,MagSafe 皮革卡套 棕 MHLR3,Accy,*iPhone Accy,MagSafe,17
 MHLT3FE/A,0013016726,MagSafe 皮革卡套 黑 MHLT3,Accy,*iPhone Accy,MagSafe,1790
 MYMC2ZP/A,0013016755,Beats Flex 入耳 黑紅 MYMC2,Audio,Beats,Beats Flex,2390
 MYMD2ZP/A,0013016756,Beats Flex 入耳 柚黃 MYMD2,Audio,Beats,Beats Flex,2390
-MY5G2TA/A,0013016757,HomePod mini 灰 MY5G2,Audio,HomePod,HomePod mini 灰,3990
-MY5H2TA/A,0013016758,HomePod mini 白 MY5H2,Audio,HomePod,HomePod mini 白,3990
 S9043ZX/A,0013016810,AC+ for HomePod mini S9043,Care,ACPP+,HomePod mini ACPP+,590
 MYME2ZP/A,0013017766,Beats Flex 入耳 卡其灰 MYME2,Audio,Beats,Beats Flex,2390
 MYMG2ZP/A,0013017767,Beats Flex 入耳 冷豔藍 MYMG2,Audio,Beats,Beats Flex,2390
@@ -113,7 +111,6 @@ MJKT3FE/A,0013018240,44mm 鏈紋錶帶 粉筆白L MJKT3,Accy,*Apple Watch Accy,B
 MJM43FE/A,0013018306,iPad Mini Cover 綠頭鴨 MJM43,Accy,iPad Case,iPad Mini Cover,1190
 MJM63FE/A,0013018307,iPad Mini Cover 電光橙 MJM63,Accy,iPad Case,iPad Mini Cover,1190
 MJM23FE/A,0013018309,iPad Air 4 Case 電光橙 MJM23,Accy,iPad Case,iPad Air 10.9,2590
-S9634ZX/A,0013018326,AC+ for Apple TV S9634,Care,ACPP+,Apple TV ACPP+,720
 MJWN3FE/A,0013018382,40 N 運動錶環 彩虹 MJWN3,Accy,*Apple Watch Accy,Band 40mm Nike Sport Loop,1600
 MJWP3FE/A,0013018383,44 N 運動錶環 彩虹 MJWP3,Accy,*Apple Watch Accy,Band 44mm Nike Sport,1600
 2000130185989,0013018598,[i]Care MBA 15一年期_4460,Care,iCPP,[i]Care M1/M2 MBA 三年期_4460,0
@@ -137,9 +134,6 @@ MM6K3FE/A,0013019029,iPad Mini 6th Case 櫻桃 MM6K3,Accy,iPad Case,iPad Mini,19
 MM6L3FE/A,0013019030,iPad Mini 6th Case 薰衣 MM6L3,Accy,iPad Case,iPad Mini,1940
 MM6N3FE/A,0013019032,iPad Pro 11 Case 薰衣草 MM6N3,Accy,iPad Case,iPad Pro 11,2590
 MM6P3FE/A,0013019033,iPad Pro 12.9 Case 薰衣草 MM6P3,Accy,iPad Case,iPad Pro 12.9,3290
-MJ2C3TA/A,0013020088,HomePod mini 藍 MJ2C3,Audio,HomePod,HomePod mini 藍,3990
-MJ2D3TA/A,0013020089,HomePod mini 橘 MJ2D3,Audio,HomePod,HomePod mini 橘,3990
-MJ2E3TA/A,0013020090,HomePod mini 黃 MJ2E3,Audio,HomePod,HomePod mini 黃,3990
 MK2F3TA/A,0013020605,Beats Fit Pro 黑 MK2F3,Audio,Beats,Fit Pro,6990
 MK2G3TA/A,0013020606,Beats Fit Pro 白 MK2G3,Audio,Beats,Fit Pro,6990
 MK2H3TA/A,0013020607,Beats Fit Pro 紫 MK2H3,Audio,Beats,Fit Pro,6990
@@ -1445,3 +1439,11 @@ MKUF4FE/A,0013032880,42mm N運動錶環 灰色 MKUF4,Accy,*Apple Watch Accy,Band
 MKUW4FE/A,0013032881,46mm N運動錶環 黑色 MKUW4,Accy,*Apple Watch Accy,Band 46mm Nike Sport Loop,1600
 MKUY4FE/A,0013032882,46mm N運動錶環 灰色 MKUY4,Accy,*Apple Watch Accy,Band 46mm Nike Sport Loop,1600
 ML374FE/A,0013032883,46mm 運動錶環 橄欖 XL ML374,Accy,*Apple Watch Accy,Band 46mm SportLoop,1600
+MLFF4TA/A,0013033137,Apple TV 4K A19 MLFF4,Accy,Apple TV,Apple TV 4K A19,9900
+MLFC4TA/A,0013033138,Apple TV Siri 遙控器 MLFC4,Accy,Apple TV,Apple TV Accy,1900
+SJ2C3TA/A,0013033139,AC+ for Apple TV (4代) SJ2C3,Care,ACPP+,Apple TV ACPP+,1390
+MGHJ4TA/A,0013033140,HomePod mini 2 黑 MGHJ4,Accy,HomePod,HomePod mini 2 黑,4790
+MGHK4TA/A,0013033141,HomePod mini 2 白 MGHK4,Accy,HomePod,HomePod mini 2 白,4790
+MGHL4TA/A,0013033142,HomePod mini 2 綠 MGHL4,Accy,HomePod,HomePod mini 2 綠,4790
+MGHM4TA/A,0013033143,HomePod mini 2 藍 MGHM4,Accy,HomePod,HomePod mini 2 藍,4790
+MGKR4TA/A,0013033144,HomePod mini 2 粉 MGKR4,Accy,HomePod,HomePod mini 2 粉,4790
