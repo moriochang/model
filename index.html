@@ -1080,14 +1080,18 @@
       display: flex;
       gap: 16px;
       align-items: center;
-      flex-wrap: wrap;
+      flex-wrap: nowrap;
     }
 
     .search-input-wrapper {
       flex: 1;
-      min-width: 300px;
+      min-width: 200px;
       position: relative;
     }
+
+    /* 下拉選單固定寬度，避免長選項（如 MBP XDR 16 M5 Pro&Max）撐寬而把按鈕擠到下一行 */
+    #categoryFilter { width: 160px; flex-shrink: 0; }
+    #subcategoryFilter { width: 200px; flex-shrink: 0; text-overflow: ellipsis; }
 
     .filter-select {
       min-width: 150px;
@@ -1121,6 +1125,8 @@
       transition: all 0.3s ease;
       box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
       font-size: 14px;
+      white-space: nowrap;
+      flex-shrink: 0;
     }
 
     .clear-filters:hover {
@@ -1609,8 +1615,11 @@
         min-width: unset;
       }
       
-      .filter-select {
+      .filter-select,
+      #categoryFilter,
+      #subcategoryFilter {
         min-width: unset;
+        width: auto;
       }
 
       .quick-filter-row {
