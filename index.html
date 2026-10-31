@@ -1694,7 +1694,7 @@
     #educationPage .content-wrapper { max-width: 1200px; }
     .edu-toolbar {
       display: flex; flex-wrap: wrap; gap: 12px; align-items: center;
-      justify-content: space-between; margin-bottom: 12px;
+      justify-content: space-between; margin-bottom: 24px;
     }
     .edu-tabs { display: flex; flex-wrap: wrap; gap: 8px; }
     .edu-tab {
@@ -2027,7 +2027,6 @@
             <div class="edu-tabs" id="eduTabs"></div>
             <input type="search" id="eduSearch" class="edu-search" placeholder="搜尋機型，例如 MBA 15、1T">
           </div>
-          <div class="edu-meta" id="eduMeta"></div>
           <div id="eduContent"></div>
         </div>
       </div>
@@ -6003,7 +6002,7 @@
     // 價差與折扣會自動計算。
     // 資料來源：Apple 台灣教育商店（apple.com/tw-edu）與一般商店（apple.com/tw）
     // ============================================================
-    const EDU_PRICE_UPDATED = '2026/11/01';
+    const EDU_PRICE_UPDATED = '2026/11/01';   // 資料日期（僅供維護時參考，不顯示在頁面上）
 
     const EDU_PRICE_DATA = [
       { category: 'Mac', groups: [
@@ -6303,14 +6302,7 @@
         });
       }
 
-      function renderMeta() {
-        const meta = document.getElementById('eduMeta');
-        if (!meta) return;
-        meta.innerHTML = `資料日期 <strong>${esc(EDU_PRICE_UPDATED)}</strong>・原價＝Apple 台灣官網一般商店售價，教育價＝Apple 教育商店售價（新台幣）・實際價格以官網為準`;
-      }
-
       function initEduPrices() {
-        renderMeta();
         renderTabs();
         renderContent();
         // 點選單以外的地方就收起展開選單
