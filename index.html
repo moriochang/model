@@ -1827,11 +1827,8 @@
       .edu-grid { grid-template-columns: 1fr; }
       .edu-toolbar { flex-direction: column; align-items: stretch; }
       .edu-search { flex: 1 1 auto; width: 100%; }
-      .edu-tab-wrap { position: static; flex: 1 1 auto; display: flex; }
       .edu-tab { flex: 1 1 auto; justify-content: center; padding: 9px 10px; }
       .edu-tab-sub { max-width: 110px; }
-      .edu-flyout { left: 0; right: 0; min-width: 0; top: calc(100% + 8px); }
-      .edu-flyout-item { font-size: 16px; padding: 11px 14px; }
       .edu-section-title { flex-wrap: wrap; }
       table.edu-table th, table.edu-table td { padding: 9px 10px; }
     }
@@ -1853,6 +1850,21 @@
       table.edu-table .edu-col-pct { display: none; }
       .edu-card-head { flex-wrap: wrap; }
       .edu-card-note { margin-left: 16px; text-align: left; width: 100%; }
+    }
+    /* 手機／平板（觸控）：選單改為頁面內展開，不浮在內容上，
+       避免 iOS Safari 被下方表格蓋住 */
+    @media (max-width: 768px), (hover: none), (pointer: coarse) {
+      .edu-tabs { z-index: auto; }
+      .edu-tab-wrap { display: contents; }
+      .edu-flyout {
+        display: none; position: static; order: 99; flex: 0 0 100%; width: 100%; min-width: 0;
+        margin-top: 2px; padding: 12px 8px 8px; opacity: 1; visibility: visible; transform: none;
+        transition: none; box-shadow: none;
+      }
+      .edu-flyout::before { display: none; }
+      .edu-tab-wrap.open .edu-flyout { display: block; }
+      .edu-flyout-item { font-size: 16px; padding: 12px 14px; white-space: normal; }
+      .edu-flyout-all { font-size: 14px; }
     }
   </style>
 </head>
@@ -6123,6 +6135,7 @@
       let eduActiveCategory = 'all';
       let eduActiveGroup = '';
       let eduQuery = '';
+      let eduMobileOpen = '';   // 手機上目前展開的分類
 
       const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
       const fmt = n => n.toLocaleString('en-US');
@@ -6162,6 +6175,7 @@
 
       function closeFlyouts() {
         document.querySelectorAll('.edu-tab-wrap.open').forEach(w => w.classList.remove('open'));
+        eduMobileOpen = '';
       }
 
       // 分類按鈕＋展開選單（滑鼠移上去展開；手機點一下展開）
@@ -6186,7 +6200,7 @@
               <button type="button" class="edu-flyout-item edu-flyout-all${active && !eduActiveGroup ? ' current' : ''}" data-cat="${esc(t.key)}" data-group="">全部 ${esc(t.label)}</button>
               ${t.groups.map(g => `<button type="button" class="edu-flyout-item${active && eduActiveGroup === g.name ? ' current' : ''}" data-cat="${esc(t.key)}" data-group="${esc(g.name)}">${esc(g.name)}<span class="edu-flyout-count">${g.items.length}</span></button>`).join('')}
             </div>` : '';
-          return `<div class="edu-tab-wrap${hasMenu ? ' has-menu' : ''}">
+          return `<div class="edu-tab-wrap${hasMenu ? ' has-menu' : ''}${eduMobileOpen === t.key ? ' open' : ''}">
             <button type="button" class="edu-tab${active ? ' active' : ''}" data-cat="${esc(t.key)}" ${hasMenu ? 'aria-haspopup="true"' : ''}>${esc(t.label)}${sub}${hasMenu ? '<span class="edu-caret" aria-hidden="true"></span>' : ''}</button>
             ${menu}
           </div>`;
@@ -6214,10 +6228,11 @@
             e.stopPropagation();
             const cat = btn.getAttribute('data-cat');
             if (hasMenu && !canHover()) {
-              // 手機：點分類先展開機型清單，再點一次收起
-              const wasOpen = wrap.classList.contains('open');
-              closeFlyouts();
-              if (!wasOpen) wrap.classList.add('open');
+              // 手機：點分類展開機型清單，再點一次收起
+              const next = eduMobileOpen === cat ? '' : cat;
+              document.querySelectorAll('.edu-tab-wrap.open').forEach(w => w.classList.remove('open'));
+              eduMobileOpen = next;
+              if (next) wrap.classList.add('open');
               return;
             }
             selectCategory(cat, '');
@@ -6227,8 +6242,10 @@
             item.addEventListener('click', e => {
               e.stopPropagation();
               selectCategory(item.getAttribute('data-cat'), item.getAttribute('data-group'));
-              const content = document.getElementById('eduContent');
-              if (content && !canHover()) content.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              if (!canHover()) {
+                const content = document.getElementById('eduContent');
+                if (content) content.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              }
             });
           });
         });
