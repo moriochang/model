@@ -1708,6 +1708,54 @@
       border-color: #8b2440; color: #fff;
     }
     .edu-tab .edu-count { opacity: .7; font-weight: 500; margin-left: 4px; }
+    #educationPage { min-height: 760px; }
+    .edu-tabs { position: relative; z-index: 20; }
+    .edu-tab-wrap { position: relative; }
+    .edu-tab { display: inline-flex; align-items: center; gap: 4px; }
+    .edu-tab-sub {
+      font-weight: 500; font-size: 13px; opacity: .85; margin-left: 4px;
+      padding-left: 8px; border-left: 1px solid rgba(255,255,255,.4);
+      max-width: 180px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+    }
+    .edu-caret {
+      width: 7px; height: 7px; margin-left: 4px; border-right: 2px solid currentColor;
+      border-bottom: 2px solid currentColor; transform: translateY(-2px) rotate(45deg);
+      opacity: .6; transition: transform .2s ease;
+    }
+    .edu-tab-wrap.open .edu-caret { transform: translateY(1px) rotate(225deg); }
+
+    /* 展開選單（Apple 官網導覽列風格） */
+    .edu-flyout {
+      position: absolute; top: calc(100% + 8px); left: 0; min-width: 280px;
+      padding: 18px 10px 12px; background: #161617; border-radius: 16px;
+      box-shadow: 0 20px 40px -10px rgba(0,0,0,.45);
+      opacity: 0; visibility: hidden; transform: translateY(-6px);
+      transition: opacity .18s ease, transform .18s ease, visibility .18s;
+    }
+    .edu-flyout::before { /* 讓滑鼠從按鈕移到選單時不會中斷 */
+      content: ''; position: absolute; left: 0; right: 0; top: -10px; height: 10px;
+    }
+    .edu-tab-wrap.open .edu-flyout { opacity: 1; visibility: visible; transform: translateY(0); }
+    .edu-flyout-label {
+      color: #86868b; font-size: 12px; font-weight: 500; padding: 0 14px 8px;
+    }
+    .edu-flyout-item {
+      display: flex; align-items: center; justify-content: space-between; gap: 16px;
+      width: 100%; padding: 9px 14px; background: none; border: none; border-radius: 10px;
+      color: #e8e8ed; font-family: inherit; font-size: 17px; font-weight: 600;
+      text-align: left; cursor: pointer; white-space: nowrap; transition: background .15s ease, color .15s ease;
+    }
+    .edu-flyout-item:hover, .edu-flyout-item:focus-visible { background: rgba(255,255,255,.1); color: #fff; outline: none; }
+    .edu-flyout-item.current { color: #fff; background: rgba(160, 44, 78, .55); }
+    .edu-flyout-all { font-size: 14px; color: #a1a1a6; font-weight: 500; margin-bottom: 4px; }
+    .edu-flyout-count { font-size: 12px; font-weight: 500; color: #6e6e73; }
+    .edu-flyout-item.current .edu-flyout-count { color: #f5c2d0; }
+    .edu-crumb-sep { color: #c7c7cc; font-weight: 400; }
+    .edu-show-all {
+      margin-left: 8px; padding: 4px 12px; font-size: 13px; font-weight: 600; font-family: inherit;
+      color: #8b2440; background: #fdf2f5; border: 1px solid #f3c6d3; border-radius: 999px; cursor: pointer;
+    }
+    .edu-show-all:hover { background: #fbe4ea; }
     .edu-search {
       flex: 0 1 280px; min-width: 200px; padding: 11px 16px;
       border: 2px solid #e5e7eb; border-radius: 12px; font-size: 14px;
@@ -1779,7 +1827,12 @@
       .edu-grid { grid-template-columns: 1fr; }
       .edu-toolbar { flex-direction: column; align-items: stretch; }
       .edu-search { flex: 1 1 auto; width: 100%; }
-      .edu-tab { flex: 1 1 auto; text-align: center; padding: 9px 10px; }
+      .edu-tab-wrap { position: static; flex: 1 1 auto; display: flex; }
+      .edu-tab { flex: 1 1 auto; justify-content: center; padding: 9px 10px; }
+      .edu-tab-sub { max-width: 110px; }
+      .edu-flyout { left: 0; right: 0; min-width: 0; top: calc(100% + 8px); }
+      .edu-flyout-item { font-size: 16px; padding: 11px 14px; }
+      .edu-section-title { flex-wrap: wrap; }
       table.edu-table th, table.edu-table td { padding: 9px 10px; }
     }
     @media (max-width: 600px) {
@@ -6068,6 +6121,7 @@
     // ============================================================
     (function () {
       let eduActiveCategory = 'all';
+      let eduActiveGroup = '';
       let eduQuery = '';
 
       const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
@@ -6096,6 +6150,21 @@
         return qn.every(t => hay.includes(t));
       }
 
+      const canHover = () => window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+      function selectCategory(cat, group) {
+        eduActiveCategory = cat;
+        eduActiveGroup = group || '';
+        closeFlyouts();
+        renderTabs();
+        renderContent();
+      }
+
+      function closeFlyouts() {
+        document.querySelectorAll('.edu-tab-wrap.open').forEach(w => w.classList.remove('open'));
+      }
+
+      // 分類按鈕＋展開選單（滑鼠移上去展開；手機點一下展開）
       function renderTabs() {
         const tabs = document.getElementById('eduTabs');
         if (!tabs) return;
@@ -6104,15 +6173,63 @@
           counts[c.category] = c.groups.reduce((s, g) => s + g.items.length, 0);
           counts.all += counts[c.category];
         });
-        const list = [['all', '全部']].concat(EDU_PRICE_DATA.map(c => [c.category, c.category]));
-        tabs.innerHTML = list.map(([key, label]) =>
-          `<button type="button" class="edu-tab${key === eduActiveCategory ? ' active' : ''}" data-cat="${esc(key)}">${esc(label)}<span class="edu-count">${counts[key]}</span></button>`
-        ).join('');
-        tabs.querySelectorAll('.edu-tab').forEach(btn => {
-          btn.addEventListener('click', () => {
-            eduActiveCategory = btn.getAttribute('data-cat');
-            renderTabs();
-            renderContent();
+        const list = [{ key: 'all', label: '全部', groups: [] }]
+          .concat(EDU_PRICE_DATA.map(c => ({ key: c.category, label: c.category, groups: c.groups })));
+
+        tabs.innerHTML = list.map(t => {
+          const active = t.key === eduActiveCategory;
+          const hasMenu = t.groups.length > 1;
+          const sub = active && eduActiveGroup ? `<span class="edu-tab-sub">${esc(eduActiveGroup)}</span>` : `<span class="edu-count">${counts[t.key]}</span>`;
+          const menu = hasMenu ? `
+            <div class="edu-flyout" role="menu">
+              <div class="edu-flyout-label">選擇 ${esc(t.label)} 機型</div>
+              <button type="button" class="edu-flyout-item edu-flyout-all${active && !eduActiveGroup ? ' current' : ''}" data-cat="${esc(t.key)}" data-group="">全部 ${esc(t.label)}</button>
+              ${t.groups.map(g => `<button type="button" class="edu-flyout-item${active && eduActiveGroup === g.name ? ' current' : ''}" data-cat="${esc(t.key)}" data-group="${esc(g.name)}">${esc(g.name)}<span class="edu-flyout-count">${g.items.length}</span></button>`).join('')}
+            </div>` : '';
+          return `<div class="edu-tab-wrap${hasMenu ? ' has-menu' : ''}">
+            <button type="button" class="edu-tab${active ? ' active' : ''}" data-cat="${esc(t.key)}" ${hasMenu ? 'aria-haspopup="true"' : ''}>${esc(t.label)}${sub}${hasMenu ? '<span class="edu-caret" aria-hidden="true"></span>' : ''}</button>
+            ${menu}
+          </div>`;
+        }).join('');
+
+        tabs.querySelectorAll('.edu-tab-wrap').forEach(wrap => {
+          const btn = wrap.querySelector('.edu-tab');
+          const hasMenu = wrap.classList.contains('has-menu');
+          let hideTimer = null;
+
+          if (hasMenu) {
+            wrap.addEventListener('mouseenter', () => {
+              if (!canHover()) return;
+              clearTimeout(hideTimer);
+              closeFlyouts();
+              wrap.classList.add('open');
+            });
+            wrap.addEventListener('mouseleave', () => {
+              if (!canHover()) return;
+              hideTimer = setTimeout(() => wrap.classList.remove('open'), 180);
+            });
+          }
+
+          btn.addEventListener('click', e => {
+            e.stopPropagation();
+            const cat = btn.getAttribute('data-cat');
+            if (hasMenu && !canHover()) {
+              // 手機：點分類先展開機型清單，再點一次收起
+              const wasOpen = wrap.classList.contains('open');
+              closeFlyouts();
+              if (!wasOpen) wrap.classList.add('open');
+              return;
+            }
+            selectCategory(cat, '');
+          });
+
+          wrap.querySelectorAll('.edu-flyout-item').forEach(item => {
+            item.addEventListener('click', e => {
+              e.stopPropagation();
+              selectCategory(item.getAttribute('data-cat'), item.getAttribute('data-group'));
+              const content = document.getElementById('eduContent');
+              if (content && !canHover()) content.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
           });
         });
       }
@@ -6129,6 +6246,7 @@
           if (eduActiveCategory !== 'all' && eduActiveCategory !== cat.category) return;
           const cards = [];
           cat.groups.forEach(group => {
+            if (eduActiveGroup && group.name !== eduActiveGroup) return;
             const items = group.items.filter(it => itemMatches(cat, group, it, qn));
             if (!items.length) return;
             shown += items.length;
@@ -6155,11 +6273,17 @@
             </div>`);
           });
           if (cards.length) {
-            html += `<h3 class="edu-section-title">${esc(cat.category)}</h3><div class="edu-grid">${cards.join('')}</div>`;
+            const crumb = eduActiveGroup
+              ? `${esc(cat.category)} <span class="edu-crumb-sep">›</span> ${esc(eduActiveGroup)} <button type="button" class="edu-show-all" data-cat="${esc(cat.category)}">顯示全部 ${esc(cat.category)}</button>`
+              : esc(cat.category);
+            html += `<h3 class="edu-section-title">${crumb}</h3><div class="edu-grid">${cards.join('')}</div>`;
           }
         });
 
         box.innerHTML = shown ? html : `<div class="edu-empty">找不到符合「${esc(rawQ)}」的機型</div>`;
+        box.querySelectorAll('.edu-show-all').forEach(btn => {
+          btn.addEventListener('click', () => selectCategory(btn.getAttribute('data-cat'), ''));
+        });
       }
 
       function renderMeta() {
@@ -6172,6 +6296,11 @@
         renderMeta();
         renderTabs();
         renderContent();
+        // 點選單以外的地方就收起展開選單
+        document.addEventListener('click', e => {
+          if (!e.target.closest('.edu-tab-wrap')) closeFlyouts();
+        });
+        document.addEventListener('keydown', e => { if (e.key === 'Escape') closeFlyouts(); });
         const input = document.getElementById('eduSearch');
         if (input) {
           input.addEventListener('input', () => { eduQuery = input.value; renderContent(); });
