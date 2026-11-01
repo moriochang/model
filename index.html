@@ -2588,6 +2588,14 @@
     let inventoryData = {}; // 🆕 儲存庫存資料
     let storeInfo = {}; // 🆕 店別資訊
     let inventoryLastUpdate = ''; // 🆕 inventory.json 的資料更新時間
+    // 🆕 庫存是否已從 Supabase 載入完成。庫存相關頁面要等它就緒才初始化，
+    //    否則在載入前點進去會畫出空表（沒有門市欄、合計全 0），之後也不會重畫
+    let inventoryLoaded = false;
+    const inventoryReadyCallbacks = [];
+    function whenInventoryReady(fn) {
+      if (inventoryLoaded || !hasInventoryPermission) { fn(); return; } // 無權限者直接執行，讓頁面顯示🔒提示
+      inventoryReadyCallbacks.push(fn);
+    }
     let selectedStore = '75'; // 🆕 當前選擇的店別（預設：75店）
     let currentUserEmail = ''; // 🆕 當前使用者 email
     let hasInventoryPermission = false; // 🆕 是否有庫存查看權限
@@ -5476,6 +5484,10 @@
         if (updateTimeSpan) updateTimeSpan.textContent = `(${data.lastUpdate})`;
         inventoryLastUpdate = data.lastUpdate || '';
         if (statusDiv) statusDiv.classList.add('loaded');
+
+        // 🆕 標記就緒，執行在載入前就被點開的頁面初始化
+        inventoryLoaded = true;
+        inventoryReadyCallbacks.splice(0).forEach(fn => fn());
         
         // 重新渲染表格
         if (originalData.length > 0) {
@@ -5768,22 +5780,22 @@
           // 第一次點低庫存警報時才執行初始化
           if (pageName === 'lowstock' && !lowStockInitialized) {
             lowStockInitialized = true;
-            initializeLowStockAlert();
+            whenInventoryReady(initializeLowStockAlert);
           }
           // 第一次點 Hotmodel 時才執行初始化
           if (pageName === 'hotmodel' && !hotmodelInitialized) {
             hotmodelInitialized = true;
-            initializeHotmodel();
+            whenInventoryReady(initializeHotmodel);
           }
           // 第一次點庫存總覽時才執行初始化
           if (pageName === 'overview' && !overviewInitialized) {
             overviewInitialized = true;
-            initializeOverview();
+            whenInventoryReady(initializeOverview);
           }
           // 第一次點 Hotmodel 總覽時才執行初始化
           if (pageName === 'hotmodelMatrix' && !hotmodelMatrixInitialized) {
             hotmodelMatrixInitialized = true;
-            initializeHotmodelMatrix();
+            whenInventoryReady(initializeHotmodelMatrix);
           }
         });
       });
