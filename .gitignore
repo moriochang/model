@@ -1,0 +1,22 @@
+# ⚠️ Firebase 服務帳戶金鑰 — 等同專案最高權限，外流即全線失守
+serviceAccountKey.json
+*-firebase-adminsdk-*.json
+
+# ⚠️ Supabase secret key 與其他環境變數
+.env
+.env.*
+!.env.example
+
+# ⚠️ 庫存資料已改由 Supabase 提供，不再納入版本控管
+inventory.json
+
+# 本機測試資料
+.local/
+
+# Node
+node_modules/
+npm-debug.log*
+
+# 系統檔
+.DS_Store
+Thumbs.db
