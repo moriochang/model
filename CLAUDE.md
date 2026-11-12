@@ -10,7 +10,7 @@ iStore 中區內部使用的 Apple 產品查詢與庫存工具。單一 `index.h
 
 | 檔案 | 說明 |
 |---|---|
-| `index.html` | 整個網站（HTML + CSS + JS，約 6,400 行），刻意維持單一檔案 |
+| `index.html` | 整個網站（HTML + CSS + JS，約 6,900 行），刻意維持單一檔案 |
 | `data.csv` | 產品主檔（約 1,500 筆），靜態部署 |
 | `hotmodel_reference.csv` | Hotmodel 主打機型 SKU 清單，靜態部署 |
 | `images/` | CARE 保險等頁面圖片 |
@@ -45,6 +45,7 @@ iStore 中區內部使用的 Apple 產品查詢與庫存工具。單一 `index.h
 - 角色：`administrator`、`manager`、`store_75`、`store_77`。單店角色鎖定自己店（`canSwitchStore: false`），但仍讀全通路庫存。
 - 庫存總覽頁：administrator 或 claim `can_view_overview: true`。
 - 新增角色要改兩處：本機 `set_firebase_claims.js` 的名單 + `index.html` 的 `ROLE_CAPABILITIES`（Supabase 用 `store\_%` 比對，通常不用改）。
+- 各頁門市鎖定一律用 `canSwitchStore`／`selectedStore` 判斷，**不要寫死角色名**（例如 `userRole === 'store_75'`），否則新增單店角色時會漏鎖。
 - 登入時一律 `getIdTokenResult(true)` 強制刷新，角色變更重新整理就生效。
 
 ## index.html 結構
@@ -64,9 +65,11 @@ iStore 中區內部使用的 Apple 產品查詢與庫存工具。單一 `index.h
 
 - 頁面切換：`showPage()`、`pageMap`、`.nav-btn[data-page]`
 - 庫存：`loadInventory()`（呼叫 `rpc('get_inventory')`）、`inventoryData`、`storeInfo`、`inventoryLastUpdate`
-- **`whenInventoryReady(fn)`**：庫存頁（lowstock / hotmodel / overview / hotmodelMatrix）只初始化一次，**必須等庫存載入後才畫**，否則會畫出空表且不會重畫。新增任何依賴庫存的頁面都要用它包起來
+- **`whenInventoryReady(fn, '#頁面id')`**：庫存頁（lowstock / hotmodel / overview / hotmodelMatrix / arrival）只初始化一次，**必須等庫存載入後才畫**，否則會畫出空表且不會重畫。新增任何依賴庫存的頁面都要用它包起來；第二個參數給頁面 id，庫存載入失敗時該頁上方會顯示錯誤提示
 - Hotmodel：`HOT_MODEL_PRESETS`、`loadHotmodelReference()`、`buildHotmodelMatrix()`、`renderHotmodelMatrix()`、`measureLabelWidth()`
 - 常數：`HOTMODEL_EXCLUDED_STORES = ['825','830']`（特賣會、維修中心不列入掃描與轉貨來源）、`FOCUS_REGION_STORES`（中區 75/76/77/81/84，矩陣表框線標示）
+- 低庫存：`LOWSTOCK_EXCLUDED_STORES = ['830','880']`（維修中心、總倉不列為低庫存、不在門市選單）、`LOWSTOCK_EXCLUDED_SOURCES = ['830']`（不建議從維修中心轉貨；880 仍優先）。「全部門市」以 `storeInfo` 逐店檢查，庫存沒記錄的門市當 0（庫存資料只記有貨的門市）
+- 手機版（640px 以下）：`<style>` 最後一段把搜尋、低庫存、Hotmodel 表格改成卡片。搜尋表格靠每格的 `data-label` 顯示欄名；低庫存、Hotmodel 靠 `td:nth-child(n)` 對應欄名，**改這兩張表的欄位順序要同步改 CSS**
 - 解析：`extractStorageCapacity()`、`extractWatchSize()`、`classifyCareDevice()`
 - 一週到貨：導覽列最右邊，所有有庫存權限的角色都可見、可切換任一門市。第一次點才載入，庫存欄位用 `whenInventoryReady` 等庫存。
   型號（Apple Part #）用 `data.csv` 的 `manufacture_style` 對到品名與料號；對不到的是 CTO 客製機，品名後加灰色型號、庫存顯示「—」。
@@ -114,7 +117,10 @@ Firebase 授權網域要有 `localhost`，否則登入會被擋；`file://` 直�
 ## 部署
 
 commit 並 push 到 `main`，GitHub Pages 約 1 分鐘生效，使用者需 `⌘ + Shift + R` 強制重新整理。
+
 commit 前看一次 `git status`，確認沒有 `serviceAccountKey.json`、`.env`、`inventory.json`、`node_modules/`。
+
+2026-11-12 已重建 repo（舊歷史含 `inventory.json`、`backup/` 與員工 email，整個刪除後重開同名 repo）。其他電腦若有舊 clone，**刪掉重新 clone，不可從舊 clone push**，否則舊資料會被推回來。
 
 ## 營運資料夾與電腦分工
 

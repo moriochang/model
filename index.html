@@ -2727,7 +2727,16 @@
         // 🆕 從 Firebase custom claims 取得角色（唯一權限來源）
         // 一律強制刷新 token，確保剛設定或剛變更的 claims 立即生效，
         // 不用請同事登出再登入。每次登入多一個網路請求，可忽略。
-        const tokenResult = await user.getIdTokenResult(true);
+        let tokenResult;
+        try {
+          tokenResult = await user.getIdTokenResult(true);
+        } catch (e) {
+          // 網路中斷等原因拿不到權限：先讓產品搜尋可用，並提示重新整理
+          console.error('❌ 取得帳號權限失敗:', e);
+          showInventoryError('無法確認帳號權限，請檢查網路後重新整理頁面');
+          if (window.loadDefaultCSV) window.loadDefaultCSV();
+          return;
+        }
         
         currentUserEmail = user.email;
         const permissions = getUserPermissions(tokenResult.claims);
@@ -3597,11 +3606,9 @@
       // 初始化門市選單（依權限）
       const storeSelector = document.getElementById('hotmodelStoreFilter');
       if (storeSelector && Object.keys(storeInfo).length > 0) {
-        if (userRole === 'store_75') {
-          storeSelector.innerHTML = `<option value="75" selected>75 - ${storeInfo['75']}</option>`;
-          storeSelector.disabled = true;
-        } else if (userRole === 'store_77') {
-          storeSelector.innerHTML = `<option value="77" selected>77 - ${storeInfo['77']}</option>`;
+        if (!canSwitchStore) {
+          // 單店角色鎖定自己的店（同低庫存）
+          storeSelector.innerHTML = `<option value="${selectedStore}" selected>${selectedStore} - ${storeInfo[selectedStore] || ''}</option>`;
           storeSelector.disabled = true;
         } else {
           storeSelector.innerHTML = '<option value="all">全部門市</option>';
@@ -4533,15 +4540,21 @@
           });
       }
       restockSelect.addEventListener('change', renderRestockSuggestions);
-      if (!canSwitchStore) renderRestockSuggestions(); // 單店角色直接顯示自己店的建議
+
+      // 矩陣與補貨建議都依賴主打清單：清單載完才畫
+      // （單店角色直接顯示自己店的建議；管理者若在載入中已選門市也一併畫）
+      const renderAll = () => {
+        renderHotmodelMatrix();
+        if (restockSelect.value) renderRestockSuggestions();
+      };
 
       // reference 未載入時先補載（與 Hotmodel 頁相同的保護）
       if (hotmodelReference.length === 0) {
         const c = document.getElementById('hotmodelMatrixContainer');
         if (c) c.innerHTML = '<div class="loading">載入主打商品清單中...</div>';
-        loadHotmodelReference().then(() => renderHotmodelMatrix());
+        loadHotmodelReference().then(renderAll);
       } else {
-        renderHotmodelMatrix();
+        renderAll();
       }
     }
 
@@ -4962,21 +4975,12 @@
       const storeSelector = document.getElementById('lowstockStoreFilter');
       if (storeSelector && Object.keys(storeInfo).length > 0) {
         // 🆕 根據使用者角色決定可選擇的門市
-        if (userRole === 'store_75') {
-          // store_75 只能選擇店別 75
+        if (!canSwitchStore) {
+          // 單店角色只能看自己的店（店別來自 ROLE_CAPABILITIES 的 defaultStore，新增角色不用改這裡）
           storeSelector.innerHTML = ''; // 清空選項
           const option = document.createElement('option');
-          option.value = '75';
-          option.textContent = `75 - ${storeInfo['75']}`;
-          option.selected = true;
-          storeSelector.appendChild(option);
-          storeSelector.disabled = true; // 禁用選擇
-        } else if (userRole === 'store_77') {
-          // store_77 只能選擇店別 77
-          storeSelector.innerHTML = ''; // 清空選項
-          const option = document.createElement('option');
-          option.value = '77';
-          option.textContent = `77 - ${storeInfo['77']}`;
+          option.value = selectedStore;
+          option.textContent = `${selectedStore} - ${storeInfo[selectedStore] || ''}`;
           option.selected = true;
           storeSelector.appendChild(option);
           storeSelector.disabled = true; // 禁用選擇
@@ -5404,17 +5408,18 @@
       });
       csvContent += '\n';
       
-      // CSV 資料
+      // CSV 資料（文字欄位內的 " 要寫成 ""，例：MBP 16" 皮革護套）
+      const csvEsc = v => `"${String(v).replace(/"/g, '""')}"`;
       lowStockItems.forEach(item => {
         const ratioPercent = (item.achievementRatio * 100).toFixed(1);
         const standardDisplay = item.standardStock.toFixed(1);
         
         csvContent += `${item.storeId},`;
-        csvContent += `"${item.storeName}",`;
-        csvContent += `"${item.category}",`;
-        csvContent += `"${item.model}",`;
-        csvContent += `"${item.code}",`;
-        csvContent += `"${item.name}",`;
+        csvContent += `${csvEsc(item.storeName)},`;
+        csvContent += `${csvEsc(item.category)},`;
+        csvContent += `${csvEsc(item.model)},`;
+        csvContent += `${csvEsc(item.code)},`;
+        csvContent += `${csvEsc(item.name)},`;
         csvContent += `${item.totalStock},`;
         csvContent += `${item.storeStock},`;
         csvContent += `${standardDisplay},`;
@@ -5783,6 +5788,12 @@
         
         // 初始化店別選單
         initializeStoreSelector();
+
+        // 單店角色：表頭在庫存載入前就畫了（只有「店別 77」），這時補上店名
+        if (!canSwitchStore) {
+          const storeLabel = document.querySelector('#stockHeader span');
+          if (storeLabel && storeInfo[selectedStore]) storeLabel.textContent = storeInfo[selectedStore];
+        }
         
         // 低庫存警報改為點擊時才初始化（避免手機卡頓）
         // initializeLowStockAlert() 移至 nav-btn 點擊事件
@@ -5867,20 +5878,22 @@
           return;
         }
 
-        // 🆕 建立產品資料快速查找表
-        productDataMap.clear();
-        originalData.forEach(row => {
-          const code = row[columnMapping['Code']] || row['Code'];
-          if (code) {
-            productDataMap.set(code, row);
-          }
-        });        const headers = Object.keys(originalData[0]);
+        const headers = Object.keys(originalData[0]);
         const mappingSuccess = createColumnMapping(headers);
         
         if (!mappingSuccess) {
           showError('data.csv 欄位格式不正確');
           return;
         }
+
+        // 🆕 建立產品資料快速查找表（要在欄位對應建好之後）
+        productDataMap.clear();
+        originalData.forEach(row => {
+          const code = row[columnMapping['Code']] || row['Code'];
+          if (code) {
+            productDataMap.set(code, row);
+          }
+        });
 
         data = originalData; // 🆕 初始化 data 變數
         renderTable(originalData);
@@ -6046,41 +6059,32 @@
         
         showQuickSubcategoryButtons(selectedCategory);
         activeQuickSubcategory = null;
+        // 與快速按鈕相同：換大分類就清掉容量篩選
+        // （沒有快速按鈕的分類如 Accy 也要記下來，容量列才會正確隱藏）
+        activeQuickFilter = selectedCategory || null;
+        activeQuickCapacity = null;
         
         const buttons = document.querySelectorAll('.quick-filter-btn');
         buttons.forEach(btn => {
-          if (btn.getAttribute('data-category') === selectedCategory) {
-            btn.classList.add('active');
-            activeQuickFilter = selectedCategory;
-          } else {
-            btn.classList.remove('active');
-          }
+          btn.classList.toggle('active', btn.getAttribute('data-category') === selectedCategory);
         });
         
-        if (!selectedCategory) {
-          activeQuickFilter = null;
-        }
-        
+        showQuickCapacityButtons();
         applyFilters();
       });
       
       document.getElementById('subcategoryFilter').addEventListener('change', function() {
         const selectedSubcategory = this.value;
         
+        // 與快速按鈕相同：換中分類就清掉容量篩選
+        activeQuickSubcategory = selectedSubcategory || null;
+        activeQuickCapacity = null;
         const buttons = document.querySelectorAll('.quick-subcategory-btn');
         buttons.forEach(btn => {
-          if (btn.getAttribute('data-subcategory') === selectedSubcategory) {
-            btn.classList.add('active');
-            activeQuickSubcategory = selectedSubcategory;
-          } else {
-            btn.classList.remove('active');
-          }
+          btn.classList.toggle('active', btn.getAttribute('data-subcategory') === selectedSubcategory);
         });
         
-        if (!selectedSubcategory) {
-          activeQuickSubcategory = null;
-        }
-        
+        showQuickCapacityButtons();
         applyFilters();
       });
       
