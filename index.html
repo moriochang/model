@@ -1762,10 +1762,6 @@
       font-family: inherit; transition: border-color .2s ease;
     }
     .edu-search:focus { outline: none; border-color: #8b2440; }
-    .edu-meta {
-      font-size: 13px; color: #6b7280; margin-bottom: 24px; line-height: 1.6;
-    }
-    .edu-meta strong { color: #374151; }
     .edu-section-title {
       font-size: 20px; font-weight: 700; color: #1c1c1e;
       margin: 28px 0 14px; display: flex; align-items: baseline; gap: 10px;
@@ -1875,8 +1871,6 @@
     #arrivalPage table { background: transparent; }
     #arrivalPage .arr-head { text-align: center; margin-bottom: 24px; }
     #arrivalPage .arr-head h2 { margin: 0 0 8px; font-size: 24px; color: #1e3a8a; }
-    #arrivalPage .arr-head { text-align: center; margin-bottom: 24px; }
-    #arrivalPage .arr-head h2 { margin: 0 0 8px; font-size: 24px; color: #1e3a8a; }
     #arrivalPage .meta { font-size: 14px; color: #64748b; line-height: 1.7; }
     #arrivalPage .controls { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; padding: 16px 20px; margin-bottom: 14px;
     background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%); border: 1px solid #bae6fd; border-radius: 16px; }
@@ -1887,8 +1881,6 @@
     #arrivalPage select, #arrivalPage input[type=search] { padding: 8px 14px; border: 2px solid #cbd5e1; border-radius: 10px; font-size: 14px; font-weight: 500; background: #fff; color: #5c1a2b; }
     #arrivalPage select:focus, #arrivalPage input[type=search]:focus { outline: none; border-color: #8b2440; box-shadow: 0 0 0 3px rgba(139,36,64,.1); }
     #arrivalPage input[type=search] { flex: 1; min-width: 160px; color: #334155; }
-    #arrivalPage .summary { padding: 6px 4px 12px; font-size: 13px; color: #64748b; }
-    #arrivalPage .summary b { color: #1e3a8a; }
     #arrivalPage .tbl-wrap { overflow-x: auto; }
     #arrivalPage table { border-collapse: separate; border-spacing: 0 2px; width: 100%; font-size: 13px; }
     #arrivalPage th, #arrivalPage td { padding: 6px 10px; text-align: right; white-space: nowrap; }
@@ -1903,7 +1895,6 @@
     #arrivalPage .desc { white-space: nowrap; }
     #arrivalPage .part { color: #94a3b8; font-size: 11px; font-family: monospace; margin-left: 6px; }
     #arrivalPage .num-arr { color: #1e3a8a; font-weight: 700; }
-    #arrivalPage .zero { color: #cbd5e1; }
     #arrivalPage .warn { display: inline-block; background: #fee2e2; color: #dc2626; border-radius: 4px; padding: 1px 6px; font-size: 11px; font-weight: 600; margin-left: 6px; }
     #arrivalPage .na { color: #cbd5e1; }
     #arrivalPage .stk { display: inline-block; min-width: 34px; padding: 3px 6px; border-radius: 4px; }
@@ -2012,6 +2003,9 @@
     }
     /* 浮動說明框掛在 body 底下（.container 有 backdrop-filter，fixed 會跑位） */
     .arr-pop { position: fixed; background: #1e293b; color: #fff; padding: 8px 12px; border-radius: 10px; font-size: 13px; pointer-events: none; display: none; z-index: 1000; line-height: 1.5; }
+    /* 📱 手機長清單「顯示更多」按鈕 */
+    .show-more-btn { width: 100%; padding: 10px; border: 2px solid #cbd5e1; border-radius: 10px; background: #fff; color: #475569; font-size: 14px; font-weight: 600; cursor: pointer; }
+
     /* ===================== 📱 手機版（640px 以下）：頁首、搜尋、低庫存、Hotmodel ===================== */
     @media (max-width: 640px) {
       html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
@@ -2081,22 +2075,23 @@
       #lowstockTable tbody td, #hotmodelTable tbody td { display: block; padding: 0 !important; border: none; text-align: left; white-space: normal; word-break: break-word; min-width: 0; }
       #lowstockTable tbody td:not([colspan])::before, #hotmodelTable tbody td:not([colspan])::before { display: block; font-size: 10px; font-weight: 500; color: #9ca3af; margin-bottom: 2px; }
       #lowstockTable tbody td[colspan], #hotmodelTable tbody td[colspan] { grid-column: 1 / -1; }
-      #lowstockTable td:nth-child(1)::before { content: "大分類"; }
-      #lowstockTable td:nth-child(2)::before { content: "型號"; }
-      #lowstockTable td:nth-child(3)::before { content: "Code"; }
-      #lowstockTable td:nth-child(4) { grid-column: 1 / -1; order: -1; font-size: 14px; font-weight: 600; }
-      #lowstockTable td:nth-child(5)::before { content: "總庫存"; }
-      #lowstockTable td:nth-child(6)::before { content: "門市庫存"; }
-      #lowstockTable td:nth-child(7)::before { content: "配置達成率"; }
-      #lowstockTable td:nth-child(8) { grid-column: 1 / -1; }
-      #lowstockTable td:nth-child(8)::before { content: "建議轉貨門市"; }
+      #lowstockTable td:not([colspan]):nth-child(1)::before { content: "大分類"; }
+      #lowstockTable td:not([colspan]):nth-child(2)::before { content: "型號"; }
+      #lowstockTable td:not([colspan]):nth-child(3)::before { content: "Code"; }
+      #lowstockTable td:not([colspan]):nth-child(4) { grid-column: 1 / -1; order: -1; font-size: 14px; font-weight: 600; }
+      #lowstockTable td:not([colspan]):nth-child(5)::before { content: "總庫存"; }
+      #lowstockTable td:not([colspan]):nth-child(6)::before { content: "門市庫存"; }
+      #lowstockTable td:not([colspan]):nth-child(6) div { white-space: normal !important; } /* 店名太長時換行，不擠到旁邊欄 */
+      #lowstockTable td:not([colspan]):nth-child(7)::before { content: "配置達成率"; }
+      #lowstockTable td:not([colspan]):nth-child(8) { grid-column: 1 / -1; }
+      #lowstockTable td:not([colspan]):nth-child(8)::before { content: "建議轉貨門市"; }
       #hotmodelTable tbody tr { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      #hotmodelTable td:nth-child(2) { grid-column: 1 / -1; order: -1; font-size: 15px; }
-      #hotmodelTable td:nth-child(1)::before { content: "大分類"; }
-      #hotmodelTable td:nth-child(3)::before { content: "門市"; }
-      #hotmodelTable td:nth-child(4), #hotmodelTable td:nth-child(5) { grid-column: 1 / -1; }
-      #hotmodelTable td:nth-child(4)::before { content: "SKU 詳情（該店庫存）"; }
-      #hotmodelTable td:nth-child(5)::before { content: "建議轉貨門市"; }
+      #hotmodelTable td:not([colspan]):nth-child(2) { grid-column: 1 / -1; order: -1; font-size: 15px; }
+      #hotmodelTable td:not([colspan]):nth-child(1)::before { content: "大分類"; }
+      #hotmodelTable td:not([colspan]):nth-child(3)::before { content: "門市"; }
+      #hotmodelTable td:not([colspan]):nth-child(4), #hotmodelTable td:not([colspan]):nth-child(5) { grid-column: 1 / -1; }
+      #hotmodelTable td:not([colspan]):nth-child(4)::before { content: "SKU 詳情（該店庫存）"; }
+      #hotmodelTable td:not([colspan]):nth-child(5)::before { content: "建議轉貨門市"; }
     }
   </style>
 </head>
@@ -2738,7 +2733,6 @@
           return;
         }
         
-        currentUserEmail = user.email;
         const permissions = getUserPermissions(tokenResult.claims);
         
         userRole = permissions.role;
@@ -2778,7 +2772,6 @@
         await signOut(auth);
         
         // 2. 清除本地資料
-        currentUserEmail = '';
         hasInventoryPermission = false;
         userRole = 'none';
         canSwitchStore = false;
@@ -2880,8 +2873,17 @@
       }
       bar.querySelector('span').textContent = `⚠️ ${message}`;
     }
+    // 🆕 手機上長清單分段顯示（電腦版照舊一次全部顯示）
+    // 放在最前面：低庫存、搜尋的 let 初始值會用到 SHOW_MORE_STEP
+    const SHOW_MORE_STEP = 100;
+    const isPhoneWidth = () => window.matchMedia('(max-width: 640px)').matches;
+    function showMoreRow(colspan, remaining, onClick) {
+      const tr = document.createElement('tr');
+      tr.innerHTML = `<td colspan="${colspan}" style="text-align: center; padding: 14px;"><button type="button" class="show-more-btn">顯示更多（還有 ${remaining} 筆）</button></td>`;
+      tr.querySelector('button').addEventListener('click', onClick);
+      return tr;
+    }
     let selectedStore = '75'; // 🆕 當前選擇的店別（預設：75店）
-    let currentUserEmail = ''; // 🆕 當前使用者 email
     let hasInventoryPermission = false; // 🆕 是否有庫存查看權限
     let userRole = 'none'; // 🆕 使用者身份
     let canSwitchStore = false; // 🆕 是否可以切換店別
@@ -3822,10 +3824,7 @@
         if (sortedOthers.length > 0) {
           const visible = sortedOthers.slice(0, 5);
           const hidden = sortedOthers.slice(5);
-          const renderChip = s => `<div style="display: inline-block; margin: 2px 4px; padding: 4px 8px; background: #f0fdf4; border: 1px solid #86efac; border-radius: 6px; font-size: 11px;">
-              <span style="font-weight: 600; color: #166534;">${s.id}</span>
-              <span style="color: #16a34a; margin-left: 4px;">(${s.stock})</span>
-            </div>`;
+          const renderChip = s => transferChipHtml(s.id, s.stock);
           const visibleHtml = visible.map(renderChip).join('');
           if (hidden.length > 0) {
             const hiddenHtml = hidden.map(renderChip).join('');
@@ -3955,6 +3954,8 @@
 
     // ========== 庫存總覽（僅 administrator） ==========
     let activeOverviewCategory = 'CPU';
+    let overviewReady = false;        // 庫存總覽已初始化（重新整理庫存後要重畫）
+    let hotmodelMatrixReady = false;  // Hotmodel 總覽已初始化
     let overviewExpanded = false; // 🆕 是否展開為 SKU 級檢視
     const OVERVIEW_CATEGORIES = ['CPU', 'iPad', 'iPhone', 'Apple Watch'];
 
@@ -4055,6 +4056,7 @@
 
       renderOverview();
       if (!canSwitchStore) renderOverviewRestock(); // 單店角色直接顯示自己店的建議
+      overviewReady = true;
     }
 
     // 計算中分類 × 門市矩陣（列 = 中分類，欄 = 門市），並附帶每個中分類的 SKU 級明細
@@ -4062,12 +4064,12 @@
       // Code → { mid, name }（僅該大分類，且排除 iPad CL）
       const codeMeta = new Map();
       originalData.forEach(row => {
-        const code = row['Code'];
+        const code = row[columnMapping['Code']];
         if (!code) return;
-        if ((row['大分類'] || '') !== category) return;
-        const name = row['product_name'] || '';
+        if ((row[columnMapping['大分類']] || '') !== category) return;
+        const name = row[columnMapping['product_name']] || '';
         if (isExcludedFromOverview(category, name)) return; // 🆕 iPad CL 排除
-        codeMeta.set(code, { mid: row['中分類'] || '未分類', name });
+        codeMeta.set(code, { mid: row[columnMapping['中分類']] || '未分類', name });
       });
 
       const stores = Object.keys(storeInfo)
@@ -4236,13 +4238,13 @@
       // 收集當前大分類下：中分類 → 該中分類所有 SKU
       const midToSkus = new Map();
       originalData.forEach(row => {
-        if ((row['大分類'] || '') !== activeOverviewCategory) return;
-        const code = row['Code'];
+        if ((row[columnMapping['大分類']] || '') !== activeOverviewCategory) return;
+        const code = row[columnMapping['Code']];
         if (!code || !inventoryData[code]) return; // 無庫存追蹤資料的 SKU 不納入轉貨計算
-        if (isExcludedFromOverview(activeOverviewCategory, row['product_name'])) return; // 🆕 iPad CL 排除
-        const mid = row['中分類'] || '未分類';
+        if (isExcludedFromOverview(activeOverviewCategory, row[columnMapping['product_name']])) return; // 🆕 iPad CL 排除
+        const mid = row[columnMapping['中分類']] || '未分類';
         if (!midToSkus.has(mid)) midToSkus.set(mid, []);
-        midToSkus.get(mid).push({ code, name: row['product_name'] || '' });
+        midToSkus.get(mid).push({ code, name: row[columnMapping['product_name']] || '' });
       });
 
       const items = [];
@@ -4306,9 +4308,7 @@
           skuHtml = '<div style="padding: 8px 12px; color: #94a3b8; font-size: 12px;">全門市皆無可轉貨庫存</div>';
         } else {
           skuHtml = item.top2.map((s, i) => {
-            const chips = s.sources.slice(0, 5).map(src =>
-              `<span style="display: inline-block; margin: 2px 3px 2px 0; padding: 3px 8px; background: #f0fdf4; border: 1px solid #86efac; border-radius: 6px; font-size: 11px;"><span style="font-weight: 600; color: #166534;">${src.id}</span><span style="color: #16a34a; margin-left: 3px;">(${src.qty})</span></span>`
-            ).join('');
+            const chips = s.sources.slice(0, 5).map(src => restockChipHtml(src.id, src.qty)).join('');
             const more = s.sources.length > 5
               ? `<span style="font-size: 11px; color: #94a3b8; margin-left: 4px;">+${s.sources.length - 5} 家</span>` : '';
             return `<div class="ov-restock-sku-item" data-code="${s.code}" style="padding: 8px 12px; border-top: 1px solid #f1f5f9; cursor: pointer;">
@@ -4394,15 +4394,15 @@
       // 🆕 找出該中分類所有 SKU（含 inventory.json 尚無庫存記錄的款式，視為 0 並標註）
       const skus = [];
       originalData.forEach(row => {
-        if ((row['大分類'] || '') !== activeOverviewCategory) return;
-        if ((row['中分類'] || '未分類') !== mid) return;
-        if (isExcludedFromOverview(activeOverviewCategory, row['product_name'])) return; // 🆕 iPad CL 排除
-        const code = row['Code'];
+        if ((row[columnMapping['大分類']] || '') !== activeOverviewCategory) return;
+        if ((row[columnMapping['中分類']] || '未分類') !== mid) return;
+        if (isExcludedFromOverview(activeOverviewCategory, row[columnMapping['product_name']])) return; // 🆕 iPad CL 排除
+        const code = row[columnMapping['Code']];
         if (!code) return;
         const hasData = !!inventoryData[code];
         skus.push({
           code,
-          name: row['product_name'] || '',
+          name: row[columnMapping['product_name']] || '',
           qty: hasData ? (inventoryData[code].stores?.[storeId] || 0) : 0,
           hasData
         });
@@ -4556,6 +4556,7 @@
       } else {
         renderAll();
       }
+      hotmodelMatrixReady = true;
     }
 
     // 計算機型 × 門市矩陣
@@ -4814,9 +4815,7 @@
           skuHtml = '<div style="padding: 8px 12px; color: #94a3b8; font-size: 12px;">全門市皆無可轉貨庫存</div>';
         } else {
           skuHtml = item.top2.map((s, i) => {
-            const chips = s.sources.slice(0, 5).map(src =>
-              `<span style="display: inline-block; margin: 2px 3px 2px 0; padding: 3px 8px; background: #f0fdf4; border: 1px solid #86efac; border-radius: 6px; font-size: 11px;"><span style="font-weight: 600; color: #166534;">${src.id}</span><span style="color: #16a34a; margin-left: 3px;">(${src.qty})</span></span>`
-            ).join('');
+            const chips = s.sources.slice(0, 5).map(src => restockChipHtml(src.id, src.qty)).join('');
             const more = s.sources.length > 5
               ? `<span style="font-size: 11px; color: #94a3b8; margin-left: 4px;">+${s.sources.length - 5} 家</span>` : '';
             return `<div class="restock-sku-item" data-code="${s.code}" style="padding: 8px 12px; border-top: 1px solid #f1f5f9; cursor: pointer;">
@@ -4907,6 +4906,18 @@
     // 🆕 重點關注區域（中區）：在矩陣表中用框線與表頭標籤標示，不影響熱力色
     const FOCUS_REGION_STORES = ['75', '76', '77', '81', '84'];
     const FOCUS_BORDER = '2px solid #6366f1';
+
+    // 🆕 建議轉貨門市小標籤：低庫存、Hotmodel 用（店號 + 可轉台數）
+    function transferChipHtml(id, stock) {
+      return `<div style="display: inline-block; margin: 2px 4px; padding: 4px 8px; background: #f0fdf4; border: 1px solid #86efac; border-radius: 6px; font-size: 11px;">
+              <span style="font-weight: 600; color: #166534;">${id}</span>
+              <span style="color: #16a34a; margin-left: 4px;">(${stock})</span>
+            </div>`;
+    }
+    // 🆕 補貨建議裡的來源門市小標籤：兩個總覽頁用
+    function restockChipHtml(id, qty) {
+      return `<span style="display: inline-block; margin: 2px 3px 2px 0; padding: 3px 8px; background: #f0fdf4; border: 1px solid #86efac; border-radius: 6px; font-size: 11px;"><span style="font-weight: 600; color: #166534;">${id}</span><span style="color: #16a34a; margin-left: 3px;">(${qty})</span></span>`;
+    }
 
     // 回傳該欄位需要的區域框線樣式（左界／右界／中間）
     function focusColStyle(storeId, stores, isHeader) {
@@ -5006,83 +5017,53 @@
       loadLowStockData();
     }
 
-    function loadLowStockData() {
-      const storeFilter = document.getElementById('lowstockStoreFilter').value;
-      const threshold = parseFloat(document.getElementById('lowstockThreshold').value);      const lowStockItems = [];
-      
+    // 🆕 低庫存清單計算（畫面與匯出共用，避免兩邊規則不一致）
+    //    回傳順序：依庫存資料的商品順序、同商品依門市順序（畫面另外依大分類排序）
+    function buildLowStockItems(storeFilter, threshold) {
+      const items = [];
       // 「全部門市」要檢查的門市：以 storeInfo 為準（庫存只記有貨的門市，缺貨門市要當 0 算進來）
       const lowstockStores = Object.keys(storeInfo).filter(s => !LOWSTOCK_EXCLUDED_STORES.includes(s));
+      const storeIds = storeFilter === 'all' ? lowstockStores : [storeFilter];
 
-      // 遍歷所有產品
       for (const [code, product] of Object.entries(inventoryData)) {
         const totalStock = product.total || 0;
-        
         // 總庫存 < 19 台，不顯示（連每店 1 台都不夠）
         if (totalStock < 19) continue;
-        
-        // 計算單店標準庫存 = 總庫存 × 閾值%
+        // 單店標準庫存 = 總庫存 × 閾值%
         const standardStock = totalStock * threshold;
-        
-        // 🆕 使用 Map 快速查找產品資料（取代 find）
+
         const productData = productDataMap.get(code);
         if (!productData) continue;
-        
         const category = productData[columnMapping['大分類']] || '';
-        
-        // 只處理指定的四大分類
+        // 只處理四大分類，並套用大分類篩選
         if (!['CPU', 'iPad', 'iPhone', 'Apple Watch'].includes(category)) continue;
-        
-        // 🆕 大分類篩選
         if (activeLowStockCategory !== 'all' && category !== activeLowStockCategory) continue;
-        
-        // 如果選擇全部門市
-        if (storeFilter === 'all') {
-          // 檢查每個門市
-          for (const storeId of lowstockStores) {
-            const storeStock = product.stores?.[storeId] || 0;
-            // 判斷：單店庫存 < 標準庫存 時顯示
-            if (storeStock < standardStock) {
-              // 計算達成率 = 單店庫存 / 標準庫存
-              const achievementRatio = storeStock / standardStock;
-              
-              lowStockItems.push({
-                storeId: storeId,
-                storeName: storeInfo[storeId] || storeId,
-                category: category,
-                model: productData[columnMapping['manufacture_style']] || '',
-                code: code,
-                name: productData[columnMapping['product_name']] || '',
-                totalStock: totalStock,
-                storeStock: storeStock,
-                standardStock: standardStock,
-                achievementRatio: achievementRatio
-              });
-            }
-          }
-        } else {
-          // 特定門市
-          const storeStock = product.stores?.[storeFilter] || 0;
-          
+
+        for (const storeId of storeIds) {
+          const storeStock = product.stores?.[storeId] || 0;
           // 判斷：單店庫存 < 標準庫存 時顯示
-          if (storeStock < standardStock) {
-            // 計算達成率 = 單店庫存 / 標準庫存
-            const achievementRatio = storeStock / standardStock;
-            
-            lowStockItems.push({
-              storeId: storeFilter,
-              storeName: storeInfo[storeFilter] || storeFilter,
-              category: category,
-              model: productData[columnMapping['manufacture_style']] || '',
-              code: code,
-              name: productData[columnMapping['product_name']] || '',
-              totalStock: totalStock,
-              storeStock: storeStock,
-              standardStock: standardStock,
-              achievementRatio: achievementRatio
-            });
-          }
+          if (storeStock >= standardStock) continue;
+          items.push({
+            storeId: storeId,
+            storeName: storeInfo[storeId] || storeId,
+            category: category,
+            model: productData[columnMapping['manufacture_style']] || '',
+            code: code,
+            name: productData[columnMapping['product_name']] || '',
+            totalStock: totalStock,
+            storeStock: storeStock,
+            standardStock: standardStock,
+            achievementRatio: storeStock / standardStock // 達成率 = 單店庫存 / 標準庫存
+          });
         }
       }
+      return items;
+    }
+
+    function loadLowStockData() {
+      const storeFilter = document.getElementById('lowstockStoreFilter').value;
+      const threshold = parseFloat(document.getElementById('lowstockThreshold').value);
+      const lowStockItems = buildLowStockItems(storeFilter, threshold);
       
       // 按大分類排序
       lowStockItems.sort((a, b) => {
@@ -5128,7 +5109,9 @@
       document.getElementById('lowstockUpdateTime').textContent = formatDataUpdateTime();
     }
 
-    function renderLowStockTable(items) {
+    let lowstockRenderLimit = SHOW_MORE_STEP;
+    function renderLowStockTable(items, keepLimit) {
+      if (!keepLimit) lowstockRenderLimit = SHOW_MORE_STEP;
       const tbody = document.getElementById('lowstockTableBody');
       const emptyDiv = document.getElementById('lowstockEmpty');
       const tableWrapper = document.querySelector('.lowstock-table-wrapper');
@@ -5147,7 +5130,8 @@
       // 🆕 預先計算閾值，避免在循環中重複讀取 DOM
       const threshold = parseFloat(document.getElementById('lowstockThreshold').value);
       
-      items.forEach(item => {
+      const shownItems = isPhoneWidth() ? items.slice(0, lowstockRenderLimit) : items;
+      shownItems.forEach(item => {
         const tr = document.createElement('tr');
         
         // 顯示達成率（百分比）
@@ -5212,21 +5196,11 @@
           const hiddenStores = suggestedStores.slice(5);
           
           // 顯示前5家
-          suggestedStoresHtml = visibleStores.map(store => 
-            `<div style="display: inline-block; margin: 2px 4px; padding: 4px 8px; background: #f0fdf4; border: 1px solid #86efac; border-radius: 6px; font-size: 11px;">
-              <span style="font-weight: 600; color: #166534;">${store.id}</span>
-              <span style="color: #16a34a; margin-left: 4px;">(${store.stock})</span>
-            </div>`
-          ).join('');
+          suggestedStoresHtml = visibleStores.map(st => transferChipHtml(st.id, st.stock)).join('');
           
           // 如果有超過5家，添加展開按鈕
           if (hiddenStores.length > 0) {
-            const hiddenStoresHtml = hiddenStores.map(store => 
-              `<div style="display: inline-block; margin: 2px 4px; padding: 4px 8px; background: #f0fdf4; border: 1px solid #86efac; border-radius: 6px; font-size: 11px;">
-                <span style="font-weight: 600; color: #166534;">${store.id}</span>
-                <span style="color: #16a34a; margin-left: 4px;">(${store.stock})</span>
-              </div>`
-            ).join('');
+            const hiddenStoresHtml = hiddenStores.map(st => transferChipHtml(st.id, st.stock)).join('');
             
             const uniqueId = 'stores-' + item.code + '-' + item.storeId;
             suggestedStoresHtml = `
@@ -5271,6 +5245,13 @@
         
         // 點擊事件改用事件委派（initializeStockCellDelegation），不再每列加監聽器
       });
+
+      if (shownItems.length < items.length) {
+        tbody.appendChild(showMoreRow(8, items.length - shownItems.length, () => {
+          lowstockRenderLimit += SHOW_MORE_STEP;
+          renderLowStockTable(items, true);
+        }));
+      }
       
       // 🆕 為展開按鈕添加事件監聽器（只限低庫存表格；Hotmodel 有自己的事件委派）
       tbody.querySelectorAll('.expand-stores-btn').forEach(btn => {
@@ -5313,85 +5294,17 @@
           .sort((a, b) => parseInt(a) - parseInt(b))
       ];
       
-      const lowstockStores = Object.keys(storeInfo).filter(s => !LOWSTOCK_EXCLUDED_STORES.includes(s));
-
-      // 重新計算低庫存資料（與 loadLowStockData 相同邏輯）
-      for (const [code, product] of Object.entries(inventoryData)) {
-        const totalStock = product.total || 0;
-        
-        if (totalStock < 19) continue;
-        
-        const standardStock = totalStock * threshold;
-        const productData = productDataMap.get(code);
-        if (!productData) continue;
-        
-        const category = productData[columnMapping['大分類']] || '';
-        if (!['CPU', 'iPad', 'iPhone', 'Apple Watch'].includes(category)) continue;
-        
-        if (activeLowStockCategory !== 'all' && category !== activeLowStockCategory) continue;
-        
-        if (storeFilter === 'all') {
-          for (const storeId of lowstockStores) {
-            const storeStock = product.stores?.[storeId] || 0;
-            if (storeStock < standardStock) {
-              const achievementRatio = storeStock / standardStock;
-              
-              // 🆕 計算建議轉貨門市（使用 Map 以門市 ID 為 key）
-              const suggestedStoresMap = new Map();
-              const storeStandardStock = totalStock * threshold;
-              
-              for (const [sid, sstock] of Object.entries(product.stores || {})) {
-                if (sstock > storeStandardStock && sid !== storeId && !LOWSTOCK_EXCLUDED_SOURCES.includes(sid)) {
-                  suggestedStoresMap.set(sid, sstock);
-                }
-              }
-              
-              lowStockItems.push({
-                storeId: storeId,
-                storeName: storeInfo[storeId] || storeId,
-                category: category,
-                model: productData[columnMapping['manufacture_style']] || '',
-                code: code,
-                name: productData[columnMapping['product_name']] || '',
-                totalStock: totalStock,
-                storeStock: storeStock,
-                standardStock: standardStock,
-                achievementRatio: achievementRatio,
-                suggestedStoresMap: suggestedStoresMap
-              });
-            }
-          }
-        } else {
-          const storeStock = product.stores?.[storeFilter] || 0;
-          if (storeStock < standardStock) {
-            const achievementRatio = storeStock / standardStock;
-            
-            // 🆕 計算建議轉貨門市（使用 Map 以門市 ID 為 key）
-            const suggestedStoresMap = new Map();
-            const storeStandardStock = totalStock * threshold;
-            
-            for (const [sid, sstock] of Object.entries(product.stores || {})) {
-              if (sstock > storeStandardStock && sid !== storeFilter && !LOWSTOCK_EXCLUDED_SOURCES.includes(sid)) {
-                suggestedStoresMap.set(sid, sstock);
-              }
-            }
-            
-            lowStockItems.push({
-              storeId: storeFilter,
-              storeName: storeInfo[storeFilter] || storeFilter,
-              category: category,
-              model: productData[columnMapping['manufacture_style']] || '',
-              code: code,
-              name: productData[columnMapping['product_name']] || '',
-              totalStock: totalStock,
-              storeStock: storeStock,
-              standardStock: standardStock,
-              achievementRatio: achievementRatio,
-              suggestedStoresMap: suggestedStoresMap
-            });
+      // 與畫面相同的清單，再加上各門市可轉貨庫存（排除本店與 830）
+      buildLowStockItems(storeFilter, threshold).forEach(item => {
+        const suggestedStoresMap = new Map();
+        const storeStandardStock = item.totalStock * threshold;
+        for (const [sid, sstock] of Object.entries(inventoryData[item.code].stores || {})) {
+          if (sstock > storeStandardStock && sid !== item.storeId && !LOWSTOCK_EXCLUDED_SOURCES.includes(sid)) {
+            suggestedStoresMap.set(sid, sstock);
           }
         }
-      }
+        lowStockItems.push({ ...item, suggestedStoresMap });
+      });
       
       if (lowStockItems.length === 0) {
         alert('目前沒有低庫存資料可匯出');
@@ -5509,8 +5422,8 @@
             bValue = inventoryData[bCode]?.total || 0;
             break;
           case 'remark':
-            aValue = parseFloat(a[columnMapping['Remark']] || 0);
-            bValue = parseFloat(b[columnMapping['Remark']] || 0);
+            aValue = parseFloat(a[columnMapping['Remark']]) || 0; // 非數字（文字備註）當 0
+            bValue = parseFloat(b[columnMapping['Remark']]) || 0;
             break;
           default:
             return 0;
@@ -5554,9 +5467,12 @@
     }
 
     // 🆕 渲染表格（含庫存）
-    function renderTable(filteredData) {
+    let searchRenderLimit = SHOW_MORE_STEP;
+
+    function renderTable(filteredData, keepLimit) {
       const tbody = document.querySelector('#resultTable tbody');
       tbody.innerHTML = '';
+      if (!keepLimit) searchRenderLimit = SHOW_MORE_STEP; // 換篩選／排序就從頭顯示
       
       // 🆕 根據權限決定 colspan（有權限時多兩欄：總庫存 + 店別庫存）
       const colspanCount = hasInventoryPermission ? 9 : 7;
@@ -5566,7 +5482,8 @@
         return;
       }
 
-      filteredData.forEach(row => {
+      const shownRows = isPhoneWidth() ? filteredData.slice(0, searchRenderLimit) : filteredData;
+      shownRows.forEach(row => {
         const code = row[columnMapping['Code']] || '';
         
         // 🆕 只有有權限的使用者才處理庫存
@@ -5650,6 +5567,13 @@
         
         tbody.appendChild(tr);
       });
+
+      if (shownRows.length < filteredData.length) {
+        tbody.appendChild(showMoreRow(colspanCount, filteredData.length - shownRows.length, () => {
+          searchRenderLimit += SHOW_MORE_STEP;
+          renderTable(filteredData, true);
+        }));
+      }
     }
 
     // 🆕 根據權限初始化介面
@@ -5808,6 +5732,18 @@
         if (statusDiv) statusDiv.classList.add('loaded');
 
         // 🆕 標記就緒，執行在載入前就被點開的頁面初始化
+        // 重新整理庫存時：已打開過的兩個總覽頁跟著更新（第一次載入時還沒初始化，不會進來）
+        if (overviewReady) {
+          renderOverview();
+          renderOverviewRestock();
+          document.getElementById('overviewUpdateTime').textContent = `(資料時間 ${formatDataUpdateTime()})`;
+        }
+        if (hotmodelMatrixReady) {
+          renderHotmodelMatrix();
+          renderRestockSuggestions();
+          document.getElementById('hotmodelMatrixUpdateTime').textContent = `(資料時間 ${formatDataUpdateTime()})`;
+        }
+
         inventoryLoaded = true;
         inventoryError = '';
         inventoryWaitingPages.clear();
@@ -6673,7 +6609,6 @@ const state = { view: 'store', store: '75', lobs: new Set(LOB_ORDER), q: '', acc
 
 const $ = id => document.getElementById(id);
 const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
-const sname = s => s;
 const arrPop = document.createElement('div');
 arrPop.className = 'arr-pop';
 document.body.appendChild(arrPop);
@@ -6723,7 +6658,7 @@ function setup() {
 $('arrIssue').textContent = D.issue;
 $('arrMeta').innerHTML = `信件日期 ${fmtMailTime(D.mailTime)}　共 ${Number(D.total).toLocaleString()} 件　庫存時間 ${esc(inventoryLastUpdate || '—')}<br>預計一週內陸續到貨，最遲七個工作天內全數到貨`;
 
-$('arrStore').innerHTML = D.stores.map(s => `<option value="${esc(s)}"${s === state.store ? ' selected' : ''}>${esc(sname(s))}</option>`).join('');
+$('arrStore').innerHTML = D.stores.map(s => `<option value="${esc(s)}"${s === state.store ? ' selected' : ''}>${esc(s)}</option>`).join('');
 
 }
 
@@ -6864,7 +6799,7 @@ $('arrOut').addEventListener('click', e => {
   const r = D.rows.find(x => x.part === c.dataset.part), s = c.dataset.s;
   const q = r.qty[s] || 0;
   const cur = r.stock ? (r.stock[s] || 0) : null;
-  pop.innerHTML = `${esc(sname(s))}<br>${esc(r.name)}<br>到貨 ${q}　目前庫存 ${cur === null ? '—' : cur}${cur === null ? '' : `　到貨後 ${cur + q}`}`;
+  pop.innerHTML = `${esc(s)}<br>${esc(r.name)}<br>到貨 ${q}　目前庫存 ${cur === null ? '—' : cur}${cur === null ? '' : `　到貨後 ${cur + q}`}`;
   pop.style.display = 'block';
   const rc = c.getBoundingClientRect();
   pop.style.left = Math.min(rc.left, innerWidth - pop.offsetWidth - 8) + 'px';
