@@ -3959,9 +3959,10 @@
     let overviewExpanded = false; // 🆕 是否展開為 SKU 級檢視
     const OVERVIEW_CATEGORIES = ['CPU', 'iPad', 'iPhone', 'Apple Watch'];
 
-    // 🆕 庫存總覽排除規則：iPad 的 Cellular 版本不納入（彙總與展開皆排除）
+    // 🆕 庫存總覽排除規則：iPad 的行動網路版本不納入（彙總與展開皆排除）
+    //    品名寫法有兩種：「 CL 」（iPad 11 CL 128GB）與「 5G 」（iPad mini 5G 128G）
     function isExcludedFromOverview(category, productName) {
-      return category === 'iPad' && /\sCL\s/.test(productName || '');
+      return category === 'iPad' && /\s(CL|5G)\s/.test(productName || '');
     }
 
     // 🆕 SKU 排序權重：換算成可比較的數值（AW 用錶徑 mm，其餘用容量 GB）
@@ -4061,14 +4062,14 @@
 
     // 計算中分類 × 門市矩陣（列 = 中分類，欄 = 門市），並附帶每個中分類的 SKU 級明細
     function buildOverviewMatrix(category) {
-      // Code → { mid, name }（僅該大分類，且排除 iPad CL）
+      // Code → { mid, name }（僅該大分類，且排除 iPad 行動網路版）
       const codeMeta = new Map();
       originalData.forEach(row => {
         const code = row[columnMapping['Code']];
         if (!code) return;
         if ((row[columnMapping['大分類']] || '') !== category) return;
         const name = row[columnMapping['product_name']] || '';
-        if (isExcludedFromOverview(category, name)) return; // 🆕 iPad CL 排除
+        if (isExcludedFromOverview(category, name)) return; // 🆕 iPad 行動網路版排除
         codeMeta.set(code, { mid: row[columnMapping['中分類']] || '未分類', name });
       });
 
@@ -4241,7 +4242,7 @@
         if ((row[columnMapping['大分類']] || '') !== activeOverviewCategory) return;
         const code = row[columnMapping['Code']];
         if (!code || !inventoryData[code]) return; // 無庫存追蹤資料的 SKU 不納入轉貨計算
-        if (isExcludedFromOverview(activeOverviewCategory, row[columnMapping['product_name']])) return; // 🆕 iPad CL 排除
+        if (isExcludedFromOverview(activeOverviewCategory, row[columnMapping['product_name']])) return; // 🆕 iPad 行動網路版排除
         const mid = row[columnMapping['中分類']] || '未分類';
         if (!midToSkus.has(mid)) midToSkus.set(mid, []);
         midToSkus.get(mid).push({ code, name: row[columnMapping['product_name']] || '' });
@@ -4396,7 +4397,7 @@
       originalData.forEach(row => {
         if ((row[columnMapping['大分類']] || '') !== activeOverviewCategory) return;
         if ((row[columnMapping['中分類']] || '未分類') !== mid) return;
-        if (isExcludedFromOverview(activeOverviewCategory, row[columnMapping['product_name']])) return; // 🆕 iPad CL 排除
+        if (isExcludedFromOverview(activeOverviewCategory, row[columnMapping['product_name']])) return; // 🆕 iPad 行動網路版排除
         const code = row[columnMapping['Code']];
         if (!code) return;
         const hasData = !!inventoryData[code];
