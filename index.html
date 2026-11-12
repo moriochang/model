@@ -2841,9 +2841,35 @@
     //    否則在載入前點進去會畫出空表（沒有門市欄、合計全 0），之後也不會重畫
     let inventoryLoaded = false;
     const inventoryReadyCallbacks = [];
-    function whenInventoryReady(fn) {
+    // 🆕 庫存載入失敗時，正在等庫存的頁面要顯示錯誤，不然會一直停在「載入中...」
+    let inventoryError = '';                 // 最近一次載入失敗的訊息（成功後清空）
+    const inventoryWaitingPages = new Set(); // 正在等庫存的頁面（例：'#lowstockPage'）
+    function whenInventoryReady(fn, pageSelector) {
       if (inventoryLoaded || !hasInventoryPermission) { fn(); return; } // 無權限者直接執行，讓頁面顯示🔒提示
-      inventoryReadyCallbacks.push(fn);
+      inventoryReadyCallbacks.push(fn);   // 之後載入成功（例：重新整理）仍會執行
+      if (pageSelector) {
+        inventoryWaitingPages.add(pageSelector);
+        if (inventoryError) showPageInventoryError(pageSelector, inventoryError);
+      }
+    }
+    // 在頁面最上方顯示庫存載入失敗提示（同一頁只放一個，訊息會更新）
+    function showPageInventoryError(pageSelector, message) {
+      const box = document.querySelector(`${pageSelector} .lowstock-container`);
+      if (!box) return;
+      let bar = box.querySelector('.inv-load-error');
+      if (!bar) {
+        bar = document.createElement('div');
+        bar.className = 'inv-load-error';
+        bar.style.cssText = 'display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; margin-bottom: 16px; padding: 12px 16px; background: #fef2f2; border: 1px solid #fecaca; border-radius: 12px; color: #b91c1c; font-size: 14px; font-weight: 600;';
+        const text = document.createElement('span');
+        const btn = document.createElement('button');
+        btn.textContent = '重新整理頁面';
+        btn.style.cssText = 'padding: 6px 12px; border: 1px solid #fca5a5; border-radius: 8px; background: #fff; color: #b91c1c; font-size: 13px; font-weight: 600; cursor: pointer;';
+        btn.addEventListener('click', () => location.reload());
+        bar.append(text, btn);
+        box.prepend(bar);
+      }
+      bar.querySelector('span').textContent = `⚠️ ${message}`;
     }
     let selectedStore = '75'; // 🆕 當前選擇的店別（預設：75店）
     let currentUserEmail = ''; // 🆕 當前使用者 email
@@ -5717,6 +5743,9 @@
 
     // 🆕 庫存載入失敗時的可見提示（避免畫面靜悄悄地壞掉）
     function showInventoryError(message) {
+      // 通知所有正在等庫存的頁面
+      inventoryError = message;
+      inventoryWaitingPages.forEach(sel => showPageInventoryError(sel, message));
       const statusDiv = document.getElementById('inventoryStatus');
       if (!statusDiv) return;
       statusDiv.classList.remove('loaded');
@@ -5769,6 +5798,9 @@
 
         // 🆕 標記就緒，執行在載入前就被點開的頁面初始化
         inventoryLoaded = true;
+        inventoryError = '';
+        inventoryWaitingPages.clear();
+        document.querySelectorAll('.inv-load-error').forEach(el => el.remove());
         inventoryReadyCallbacks.splice(0).forEach(fn => fn());
         
         // 重新渲染表格
@@ -6067,22 +6099,22 @@
           // 第一次點低庫存警報時才執行初始化
           if (pageName === 'lowstock' && !lowStockInitialized) {
             lowStockInitialized = true;
-            whenInventoryReady(initializeLowStockAlert);
+            whenInventoryReady(initializeLowStockAlert, '#lowstockPage');
           }
           // 第一次點 Hotmodel 時才執行初始化
           if (pageName === 'hotmodel' && !hotmodelInitialized) {
             hotmodelInitialized = true;
-            whenInventoryReady(initializeHotmodel);
+            whenInventoryReady(initializeHotmodel, '#hotmodelPage');
           }
           // 第一次點庫存總覽時才執行初始化
           if (pageName === 'overview' && !overviewInitialized) {
             overviewInitialized = true;
-            whenInventoryReady(initializeOverview);
+            whenInventoryReady(initializeOverview, '#overviewPage');
           }
           // 第一次點 Hotmodel 總覽時才執行初始化
           if (pageName === 'hotmodelMatrix' && !hotmodelMatrixInitialized) {
             hotmodelMatrixInitialized = true;
-            whenInventoryReady(initializeHotmodelMatrix);
+            whenInventoryReady(initializeHotmodelMatrix, '#hotmodelMatrixPage');
           }
           // 第一次點一週到貨時才載入（庫存欄位會等庫存就緒才畫）
           if (pageName === 'arrival' && !arrivalInitialized) {
@@ -6871,7 +6903,7 @@ window.initializeArrival = async function () {
   state.lobs = new Set(LOB_ORDER);
   const pref = (typeof selectedStore !== 'undefined') ? selectedStore : '75';
   state.store = D.stores.includes(pref) ? pref : (D.stores.includes('75') ? '75' : D.stores[0]);
-  whenInventoryReady(() => { attachStock(); setup(); render(); });
+  whenInventoryReady(() => { attachStock(); setup(); render(); }, '#arrivalPage');
 };
   })();
   </script>
