@@ -1897,6 +1897,9 @@
     #arrivalPage .num-arr { color: #1e3a8a; font-weight: 700; }
     #arrivalPage .warn { display: inline-block; background: #fee2e2; color: #dc2626; border-radius: 4px; padding: 1px 6px; font-size: 11px; font-weight: 600; margin-left: 6px; }
     #arrivalPage .na { color: #cbd5e1; }
+    #arrivalPage .single tr.st td { font-size: 13px; color: #475569; background: #f8fafc; }
+    #arrivalPage .single tr.st td.desc { padding-left: 28px; }
+    #arrivalPage .single tr.st.fk td.desc { color: #3730a3; font-weight: 600; }
     #arrivalPage .stk { display: inline-block; min-width: 34px; padding: 3px 6px; border-radius: 4px; }
     #arrivalPage .s0 { background: #fee2e2; color: #dc2626; font-weight: 600; }
     #arrivalPage .s2 { background: #fef3c7; color: #b45309; }
@@ -1986,6 +1989,7 @@
       #arrivalPage .single th, #arrivalPage .single td { padding: 6px 4px; }
       #arrivalPage .single td.desc { white-space: normal; word-break: break-word; line-height: 1.35; font-size: 13px; }
       #arrivalPage .single tr.item td:first-child { padding-left: 8px; }
+      #arrivalPage .single tr.st td.desc { padding-left: 20px; }
       #arrivalPage .single tr.sub td { padding-left: 8px; }
       #arrivalPage .single thead th:first-child { padding-left: 8px; }
       #arrivalPage .single .part, #arrivalPage .single .warn { margin-left: 4px; }
@@ -6606,6 +6610,7 @@ const LOB_NAME = { Mac: 'Mac', iPad: 'iPad', iPhone: 'iPhone', Watch: 'Watch', A
 const lobName = l => LOB_NAME[l] || l;
 const FOCUS = (typeof FOCUS_REGION_STORES !== 'undefined') ? FOCUS_REGION_STORES : ['75', '76', '77', '81', '84'];
 let D = null;
+const ALL = '__all';   // 單店下拉的「ALL（全部門市）」
 const state = { view: 'store', store: '75', lobs: new Set(LOB_ORDER), q: '', accOpen: false, refillOnly: false };
 
 const $ = id => document.getElementById(id);
@@ -6659,7 +6664,7 @@ function setup() {
 $('arrIssue').textContent = D.issue;
 $('arrMeta').innerHTML = `信件日期 ${fmtMailTime(D.mailTime)}　共 ${Number(D.total).toLocaleString()} 件　庫存時間 ${esc(inventoryLastUpdate || '—')}<br>預計一週內陸續到貨，最遲七個工作天內全數到貨`;
 
-$('arrStore').innerHTML = D.stores.map(s => `<option value="${esc(s)}"${s === state.store ? ' selected' : ''}>${esc(s)}</option>`).join('');
+$('arrStore').innerHTML = `<option value="${ALL}"${state.store === ALL ? ' selected' : ''}>ALL（全部門市）</option>` + D.stores.map(s => `<option value="${esc(s)}"${s === state.store ? ' selected' : ''}>${esc(s)}</option>`).join('');
 
 }
 
@@ -6714,6 +6719,53 @@ function renderStore() {
           h += `<tr class="item"><td class="desc">${esc(r.name)}${r.stock === null ? `<span class="part">${esc(r.part)}</span>` : ''}${has && cur === 0 ? '<span class="warn">補缺貨</span>' : ''}</td>
             <td class="num-arr">+${r.qty[s]}</td>
             <td>${has ? `<span class="stk ${stkCls(cur)}">${cur}</span><span class="arrow">→</span><span class="stk ${stkCls(cur + r.qty[s])}">${cur + r.qty[s]}</span>` : '<span class="na" title="客製機，對不到庫存">—</span>'}</td></tr>`;
+        }
+      }
+      h += `</tbody></table>`;
+    }
+    h += `</section>`;
+  }
+  return h + `</div>`;
+}
+
+// 單店模式選 ALL：每個品項底下列出有到貨的門市（各店到貨、庫存 → 到貨後）
+function renderAll() {
+  const st = D.stores;
+  const names = (typeof storeInfo !== 'undefined' && storeInfo) || {};
+  const rows = D.rows.filter(r => state.lobs.has(r.lob) &&
+    (!state.q || r.name.toLowerCase().includes(state.q) || r.desc.toLowerCase().includes(state.q) || r.part.toLowerCase().includes(state.q) || (r.sub || '').toLowerCase().includes(state.q)));
+  const all = D.rows.filter(r => !state.q || r.name.toLowerCase().includes(state.q) || r.desc.toLowerCase().includes(state.q) || r.part.toLowerCase().includes(state.q) || (r.sub || '').toLowerCase().includes(state.q));
+  const tot = rs => rs.reduce((a, r) => a + r.total, 0);
+  let h = `<div class="kpis two">
+    <div class="kpi main"><div class="kv">${tot(all).toLocaleString()}</div><div class="kl">全部門市到貨（件）</div></div>
+    <div class="kpi"><div class="kv">${all.length}</div><div class="kl">品項</div></div>
+  </div><div class="lobbar">` +
+    LOB_ORDER.map(l => {
+      const n = tot(all.filter(r => r.lob === l));
+      return `<button class="lobpill${state.lobs.has(l) ? ' on' : ''}${n ? '' : ' none'}" data-lob="${esc(l)}">${esc(lobName(l))}<b>${n}</b></button>`;
+    }).join('') + `</div>`;
+
+  if (!rows.length) return h + `<div class="empty">${all.length ? '目前的篩選沒有符合的品項' : '找不到符合的品項'}</div>`;
+
+  h += `<div class="cards">`;
+  for (const g of grouped(rows)) {
+    const items = g.subs.flatMap(x => x.rows);
+    const closed = collapsed(g.lob);
+    h += `<section class="lobcard${g.lob === 'Accessories' ? ' toggle' : ''}" data-lob="${esc(g.lob)}">
+      <header>${g.lob === 'Accessories' ? (closed ? '▸ ' : '▾ ') : ''}${esc(lobName(g.lob))}<span>${tot(items)} 件 · ${items.length} 項${closed ? ' · 點開' : ''}</span></header>`;
+    if (!closed) {
+      h += `<table class="single"><thead><tr><th>品名／門市</th><th>到貨</th><th>庫存 → 到貨後</th></tr></thead><tbody>`;
+      for (const sg of g.subs) {
+        h += `<tr class="sub"><td colspan="3">${esc(sg.sub)}</td></tr>`;
+        for (const r of [...sg.rows].sort((a, b) => b.total - a.total)) {
+          h += `<tr class="item"><td class="desc">${esc(r.name)}${r.stock === null ? `<span class="part">${esc(r.part)}</span>` : ''}</td><td class="num-arr">+${r.total}</td><td></td></tr>`;
+          for (const s of st) {
+            const q = r.qty[s]; if (!q) continue;
+            const has = !!r.stock, cur = has ? (r.stock[s] || 0) : null;
+            h += `<tr class="item st${FOCUS.includes(s) ? ' fk' : ''}"><td class="desc">${esc(s)} ${esc(names[s] || '')}${has && cur === 0 ? '<span class="warn">補缺貨</span>' : ''}</td>
+              <td class="num-arr">+${q}</td>
+              <td>${has ? `<span class="stk ${stkCls(cur)}">${cur}</span><span class="arrow">→</span><span class="stk ${stkCls(cur + q)}">${cur + q}</span>` : '<span class="na" title="客製機，對不到庫存">—</span>'}</td></tr>`;
+          }
         }
       }
       h += `</tbody></table>`;
@@ -6781,7 +6833,7 @@ function render() {
   $('arrVStore').classList.toggle('on', state.view === 'store');
   $('arrVMatrix').classList.toggle('on', state.view === 'matrix');
   $('arrStore').style.display = state.view === 'store' ? '' : 'none';
-  $('arrOut').innerHTML = state.view === 'store' ? renderStore() : renderMatrix();
+  $('arrOut').innerHTML = state.view === 'matrix' ? renderMatrix() : state.store === ALL ? renderAll() : renderStore();
 }
 
 $('arrOut').addEventListener('click', e => {
